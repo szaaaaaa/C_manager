@@ -97,9 +97,28 @@ export function ExplanationBubble({ item, explanation, loading, error, onClose }
                 initial={{ opacity: 0, y: -4 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.12, duration: 0.3 }}
-                style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 3 }}
+                style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 3, display: 'flex', alignItems: 'center', gap: 6 }}
               >
                 AI 文件解读
+                {explanation?.backend_used && (
+                  <span style={{
+                    fontSize: 9,
+                    padding: '1px 6px',
+                    borderRadius: 4,
+                    background: explanation.backend_used === 'local'
+                      ? 'rgba(0,200,100,0.15)'
+                      : 'rgba(0,150,255,0.15)',
+                    color: explanation.backend_used === 'local'
+                      ? 'rgba(0,220,120,0.9)'
+                      : 'rgba(100,180,255,0.9)',
+                    border: explanation.backend_used === 'local'
+                      ? '1px solid rgba(0,200,100,0.25)'
+                      : '1px solid rgba(0,150,255,0.25)',
+                    fontWeight: 500,
+                  }}>
+                    {explanation.backend_used === 'local' ? '本地AI' : '云端AI'}
+                  </span>
+                )}
               </motion.div>
               <div style={{
                 fontSize: 11, color: 'var(--text-muted)',

@@ -29,6 +29,7 @@ export interface ExplainResponse {
   safety: 'red' | 'yellow' | 'green';
   size_human: string;
   explanation: string;
+  backend_used: 'local' | 'api';
 }
 
 export interface ScanConfig {
@@ -37,8 +38,19 @@ export interface ScanConfig {
   max_depth: number;
 }
 
+export type AiBackend = 'local' | 'api' | 'auto';
+
 export interface AppSettings {
+  aiBackend: AiBackend;
   apiKey: string;
+  useEnvKey: boolean;
   baseUrl: string;
   model: string;
+}
+
+export interface ModelInfo {
+  id: string;
+  name: string;
+  context_length: number;
+  pricing: Record<string, string>;
 }

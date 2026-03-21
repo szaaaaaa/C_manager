@@ -1,6 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { LayoutDashboard, List, Settings, HardDrive, Key } from 'lucide-react';
-import type { AppSettings } from '../types';
+import { useEffect, useState } from 'react';
+import { LayoutDashboard, List, Settings, HardDrive, Key, ChevronDown, Check, Loader2, Cpu, Cloud } from 'lucide-react';
+import { fetchModels, fetchEnvKey, fetchModelStatus } from '../api';
+import type { AiBackend, AppSettings, ModelInfo } from '../types';
 
 type View = 'dashboard' | 'results';
 
@@ -12,6 +14,8 @@ interface Props {
   onSettingsChange: (s: AppSettings) => void;
   showSettings: boolean;
   onToggleSettings: () => void;
+  onSaveSettings: () => void;
+  settingsDirty: boolean;
 }
 
 export function Sidebar({
@@ -22,10 +26,54 @@ export function Sidebar({
   onSettingsChange,
   showSettings,
   onToggleSettings,
+  onSaveSettings,
+  settingsDirty,
 }: Props) {
+  const [models, setModels] = useState<ModelInfo[]>([]);
+  const [modelsLoading, setModelsLoading] = useState(false);
+  const [modelsError, setModelsError] = useState<string | null>(null);
+  const [envKeyInfo, setEnvKeyInfo] = useState<{ has_env_key: boolean; source: string | null }>({ has_env_key: false, source: null });
+  const [localModelAvailable, setLocalModelAvailable] = useState(false);
+  const [showModelDropdown, setShowModelDropdown] = useState(false);
+  const [modelFilter, setModelFilter] = useState('');
+  const [savedFlash, setSavedFlash] = useState(false);
+
+  // Check env key and local model on mount
+  useEffect(() => {
+    fetchEnvKey().then(setEnvKeyInfo).catch(() => {});
+    fetchModelStatus().then((s) => setLocalModelAvailable(s.available)).catch(() => {});
+  }, []);
+
+  const handleFetchModels = async () => {
+    const key = settings.useEnvKey ? '' : settings.apiKey;
+    if (!key && !envKeyInfo.has_env_key) return;
+    setModelsLoading(true);
+    setModelsError(null);
+    try {
+      const result = await fetchModels(key, settings.baseUrl);
+      setModels(result);
+    } catch (e: unknown) {
+      setModelsError(e instanceof Error ? e.message : 'Failed to fetch models');
+    } finally {
+      setModelsLoading(false);
+    }
+  };
+
+  const handleSave = () => {
+    onSaveSettings();
+    setSavedFlash(true);
+    setTimeout(() => setSavedFlash(false), 1500);
+  };
+
+  const filteredModels = models.filter(
+    (m) =>
+      m.id.toLowerCase().includes(modelFilter.toLowerCase()) ||
+      m.name.toLowerCase().includes(modelFilter.toLowerCase())
+  );
+
   return (
     <div style={{
-      width: 220,
+      width: 260,
       flexShrink: 0,
       display: 'flex',
       flexDirection: 'column',
@@ -41,7 +89,6 @@ export function Sidebar({
           transition={{ duration: 0.4 }}
           style={{ display: 'flex', alignItems: 'center', gap: 10 }}
         >
-          {/* Logo icon with hover glow */}
           <motion.div
             whileHover={{ boxShadow: '0 0 24px rgba(0,212,255,0.5)', scale: 1.05 }}
             transition={{ type: 'spring', stiffness: 400, damping: 20 }}
@@ -87,7 +134,6 @@ export function Sidebar({
           label="扫描结果"
           active={currentView === 'results'}
           disabled={!hasResults}
-          badge={hasResults ? undefined : undefined}
           onClick={() => hasResults && onViewChange('results')}
         />
       </nav>
@@ -96,7 +142,7 @@ export function Sidebar({
       <div style={{ padding: '0 12px 8px' }}>
         <NavItem
           icon={<Settings size={16} />}
-          label="API 设置"
+          label="设置"
           active={showSettings}
           onClick={onToggleSettings}
         />
@@ -116,34 +162,356 @@ export function Sidebar({
               overflow: 'hidden',
             }}
           >
-            <div style={{ padding: '16px' }}>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: 12 }}>
-                <Key size={13} color="var(--accent-cyan)" />
-                <span style={{ fontSize: 11, fontWeight: 600, color: 'var(--text-secondary)', textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-                  LLM 配置
-                </span>
+            <div style={{ padding: '16px', maxHeight: 'calc(100vh - 340px)', overflowY: 'auto' }}>
+              {/* ── AI Backend Selector ── */}
+              <SectionLabel icon={<Cpu size={13} />} label="AI 后端" />
+              <div style={{ display: 'flex', gap: 6, marginBottom: 14 }}>
+                {([
+                  { key: 'api' as AiBackend, label: '云端 API', icon: <Cloud size={12} />, enabled: true },
+                  { key: 'local' as AiBackend, label: '本地模型', icon: <Cpu size={12} />, enabled: localModelAvailable },
+                  { key: 'auto' as AiBackend, label: '自动', icon: null, enabled: localModelAvailable },
+                ] as const).map(({ key, label, icon, enabled }) => (
+                  <motion.button
+                    key={key}
+                    onClick={() => enabled && onSettingsChange({ ...settings, aiBackend: key })}
+                    whileHover={enabled ? { scale: 1.03 } : {}}
+                    whileTap={enabled ? { scale: 0.97 } : {}}
+                    style={{
+                      flex: 1,
+                      padding: '7px 4px',
+                      borderRadius: 8,
+                      border: settings.aiBackend === key
+                        ? '1px solid rgba(0,212,255,0.5)'
+                        : '1px solid var(--border)',
+                      background: settings.aiBackend === key
+                        ? 'rgba(0,212,255,0.1)'
+                        : 'rgba(255,255,255,0.03)',
+                      color: !enabled
+                        ? 'var(--text-muted)'
+                        : settings.aiBackend === key
+                          ? 'var(--accent-cyan)'
+                          : 'var(--text-secondary)',
+                      fontSize: 10,
+                      fontWeight: settings.aiBackend === key ? 600 : 400,
+                      cursor: enabled ? 'pointer' : 'not-allowed',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'center',
+                      gap: 3,
+                      opacity: enabled ? 1 : 0.45,
+                    }}
+                  >
+                    {icon}
+                    {label}
+                  </motion.button>
+                ))}
               </div>
-              <SettingField
-                label="API Key"
-                value={settings.apiKey}
-                type="password"
-                placeholder="sk-..."
-                onChange={(v) => onSettingsChange({ ...settings, apiKey: v })}
-              />
+
+              {!localModelAvailable && settings.aiBackend !== 'api' && (
+                <div style={{
+                  fontSize: 10, color: 'rgba(255,180,60,0.8)', marginBottom: 10,
+                  padding: '6px 8px', background: 'rgba(255,180,60,0.08)',
+                  borderRadius: 6, border: '1px solid rgba(255,180,60,0.15)',
+                }}>
+                  本地模型未加载，将自动使用云端 API
+                </div>
+              )}
+
+              {/* ── API Key ── */}
+              <SectionLabel icon={<Key size={13} />} label="API Key" />
+
+              {envKeyInfo.has_env_key && (
+                <motion.button
+                  onClick={() => onSettingsChange({ ...settings, useEnvKey: !settings.useEnvKey, apiKey: '' })}
+                  whileHover={{ scale: 1.01 }}
+                  style={{
+                    width: '100%',
+                    padding: '8px 10px',
+                    borderRadius: 8,
+                    border: settings.useEnvKey
+                      ? '1px solid rgba(0,212,255,0.4)'
+                      : '1px solid var(--border)',
+                    background: settings.useEnvKey
+                      ? 'rgba(0,212,255,0.08)'
+                      : 'rgba(255,255,255,0.03)',
+                    color: 'var(--text-secondary)',
+                    fontSize: 11,
+                    cursor: 'pointer',
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: 8,
+                    marginBottom: 8,
+                    textAlign: 'left',
+                  }}
+                >
+                  <div style={{
+                    width: 16, height: 16, borderRadius: 4,
+                    border: settings.useEnvKey
+                      ? '1px solid var(--accent-cyan)'
+                      : '1px solid var(--text-muted)',
+                    background: settings.useEnvKey ? 'var(--accent-cyan)' : 'transparent',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
+                  }}>
+                    {settings.useEnvKey && <Check size={10} color="white" />}
+                  </div>
+                  <div>
+                    <div style={{ fontSize: 11 }}>使用环境变量</div>
+                    <div style={{ fontSize: 9, color: 'var(--text-muted)', marginTop: 1 }}>
+                      {envKeyInfo.source} 已设置
+                    </div>
+                  </div>
+                </motion.button>
+              )}
+
+              {!settings.useEnvKey && (
+                <SettingField
+                  label=""
+                  value={settings.apiKey}
+                  type="password"
+                  placeholder="sk-or-..."
+                  onChange={(v) => onSettingsChange({ ...settings, apiKey: v })}
+                />
+              )}
+
+              {/* ── Base URL ── */}
               <SettingField
                 label="Base URL"
                 value={settings.baseUrl}
                 placeholder="https://openrouter.ai/api/v1"
                 onChange={(v) => onSettingsChange({ ...settings, baseUrl: v })}
               />
-              <SettingField
-                label="模型"
-                value={settings.model}
-                placeholder="anthropic/claude-haiku-4-5"
-                onChange={(v) => onSettingsChange({ ...settings, model: v })}
-              />
-              <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 8, lineHeight: 1.5 }}>
-                支持 OpenRouter / OpenAI 兼容接口
+
+              {/* ── Model selector ── */}
+              <div style={{ marginBottom: 10 }}>
+                <label style={{ fontSize: 10, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>
+                  模型
+                </label>
+                <div style={{ position: 'relative' }}>
+                  <button
+                    onClick={() => {
+                      if (models.length === 0 && !modelsLoading) handleFetchModels();
+                      setShowModelDropdown(!showModelDropdown);
+                    }}
+                    style={{
+                      width: '100%',
+                      padding: '7px 9px',
+                      background: 'rgba(255,255,255,0.05)',
+                      border: '1px solid var(--border)',
+                      borderRadius: 6,
+                      color: 'var(--text-primary)',
+                      fontSize: 11,
+                      cursor: 'pointer',
+                      display: 'flex',
+                      alignItems: 'center',
+                      justifyContent: 'space-between',
+                      textAlign: 'left',
+                      fontFamily: 'Inter, sans-serif',
+                    }}
+                  >
+                    <span style={{
+                      overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+                      flex: 1, minWidth: 0,
+                    }}>
+                      {settings.model || 'Select model...'}
+                    </span>
+                    {modelsLoading ? (
+                      <motion.div
+                        animate={{ rotate: 360 }}
+                        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+                      >
+                        <Loader2 size={12} color="var(--text-muted)" />
+                      </motion.div>
+                    ) : (
+                      <ChevronDown size={12} color="var(--text-muted)" />
+                    )}
+                  </button>
+
+                  {/* Model dropdown */}
+                  <AnimatePresence>
+                    {showModelDropdown && (
+                      <motion.div
+                        initial={{ opacity: 0, y: -4 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -4 }}
+                        transition={{ duration: 0.15 }}
+                        style={{
+                          position: 'absolute',
+                          top: '100%',
+                          left: 0, right: 0,
+                          marginTop: 4,
+                          background: 'rgba(16, 16, 32, 0.98)',
+                          border: '1px solid rgba(0,212,255,0.2)',
+                          borderRadius: 8,
+                          boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+                          zIndex: 200,
+                          maxHeight: 280,
+                          display: 'flex',
+                          flexDirection: 'column',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        {/* Search input */}
+                        <div style={{ padding: '8px 8px 4px' }}>
+                          <input
+                            type="text"
+                            value={modelFilter}
+                            onChange={(e) => setModelFilter(e.target.value)}
+                            placeholder="搜索模型..."
+                            autoFocus
+                            style={{
+                              width: '100%',
+                              padding: '6px 8px',
+                              background: 'rgba(255,255,255,0.06)',
+                              border: '1px solid var(--border)',
+                              borderRadius: 5,
+                              color: 'var(--text-primary)',
+                              fontSize: 11,
+                              outline: 'none',
+                              fontFamily: 'Inter, sans-serif',
+                            }}
+                          />
+                        </div>
+
+                        {/* Model list */}
+                        <div style={{ overflowY: 'auto', padding: '4px' }}>
+                          {modelsLoading && (
+                            <div style={{ padding: '12px', fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
+                              正在加载模型列表...
+                            </div>
+                          )}
+                          {modelsError && (
+                            <div style={{ padding: '12px', fontSize: 11, color: 'rgba(255,100,100,0.9)', textAlign: 'center' }}>
+                              {modelsError}
+                            </div>
+                          )}
+                          {!modelsLoading && !modelsError && filteredModels.length === 0 && models.length > 0 && (
+                            <div style={{ padding: '12px', fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
+                              无匹配模型
+                            </div>
+                          )}
+                          {!modelsLoading && models.length === 0 && !modelsError && (
+                            <button
+                              onClick={handleFetchModels}
+                              style={{
+                                width: '100%', padding: '10px', fontSize: 11,
+                                color: 'var(--accent-cyan)', background: 'none',
+                                border: 'none', cursor: 'pointer', textAlign: 'center',
+                              }}
+                            >
+                              点击加载模型列表
+                            </button>
+                          )}
+                          {filteredModels.map((m) => (
+                            <button
+                              key={m.id}
+                              onClick={() => {
+                                onSettingsChange({ ...settings, model: m.id });
+                                setShowModelDropdown(false);
+                                setModelFilter('');
+                              }}
+                              style={{
+                                width: '100%',
+                                padding: '7px 8px',
+                                background: settings.model === m.id
+                                  ? 'rgba(0,212,255,0.1)'
+                                  : 'transparent',
+                                border: 'none',
+                                borderRadius: 5,
+                                color: settings.model === m.id
+                                  ? 'var(--accent-cyan)'
+                                  : 'var(--text-secondary)',
+                                fontSize: 10,
+                                cursor: 'pointer',
+                                textAlign: 'left',
+                                display: 'flex',
+                                alignItems: 'center',
+                                justifyContent: 'space-between',
+                                gap: 4,
+                              }}
+                              onMouseEnter={(e) => {
+                                (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.05)';
+                              }}
+                              onMouseLeave={(e) => {
+                                (e.target as HTMLElement).style.background =
+                                  settings.model === m.id ? 'rgba(0,212,255,0.1)' : 'transparent';
+                              }}
+                            >
+                              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
+                                {m.name || m.id}
+                              </span>
+                              {settings.model === m.id && <Check size={10} />}
+                            </button>
+                          ))}
+                        </div>
+                      </motion.div>
+                    )}
+                  </AnimatePresence>
+                </div>
+
+                {/* Manual model input fallback */}
+                <input
+                  type="text"
+                  value={settings.model}
+                  placeholder="或手动输入模型ID"
+                  onChange={(e) => onSettingsChange({ ...settings, model: e.target.value })}
+                  style={{
+                    width: '100%',
+                    padding: '5px 9px',
+                    background: 'rgba(255,255,255,0.03)',
+                    border: '1px solid var(--border)',
+                    borderRadius: 5,
+                    color: 'var(--text-muted)',
+                    fontSize: 10,
+                    outline: 'none',
+                    fontFamily: 'Inter, sans-serif',
+                    marginTop: 4,
+                  }}
+                />
+              </div>
+
+              {/* ── Save Button ── */}
+              <motion.button
+                onClick={handleSave}
+                whileHover={{ scale: 1.02 }}
+                whileTap={{ scale: 0.97 }}
+                style={{
+                  width: '100%',
+                  padding: '9px 12px',
+                  borderRadius: 8,
+                  border: 'none',
+                  background: savedFlash
+                    ? 'rgba(0,200,100,0.3)'
+                    : settingsDirty
+                      ? 'var(--accent-gradient)'
+                      : 'rgba(255,255,255,0.08)',
+                  color: savedFlash
+                    ? 'rgba(0,255,150,1)'
+                    : settingsDirty
+                      ? 'white'
+                      : 'var(--text-muted)',
+                  fontSize: 12,
+                  fontWeight: 600,
+                  cursor: 'pointer',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  gap: 6,
+                  transition: 'background 0.3s, color 0.3s',
+                }}
+              >
+                {savedFlash ? (
+                  <>
+                    <Check size={14} />
+                    已保存
+                  </>
+                ) : (
+                  '保存配置'
+                )}
+              </motion.button>
+
+              <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 10, lineHeight: 1.5 }}>
+                支持 OpenRouter / OpenAI 兼容接口。环境变量 OPENROUTER_API_KEY 或 OPENAI_API_KEY 可自动识别。
               </div>
             </div>
           </motion.div>
@@ -158,8 +526,24 @@ export function Sidebar({
         color: 'var(--text-muted)',
         lineHeight: 1.6,
       }}>
-        🛡️ 只读扫描，不执行任何删除操作
+        只读扫描，不执行任何删除操作
       </div>
+    </div>
+  );
+}
+
+function SectionLabel({ icon, label }: { icon: React.ReactNode; label: string }) {
+  return (
+    <div style={{
+      display: 'flex', alignItems: 'center', gap: 6, marginBottom: 8,
+    }}>
+      <span style={{ color: 'var(--accent-cyan)', display: 'flex' }}>{icon}</span>
+      <span style={{
+        fontSize: 11, fontWeight: 600, color: 'var(--text-secondary)',
+        textTransform: 'uppercase', letterSpacing: '0.08em',
+      }}>
+        {label}
+      </span>
     </div>
   );
 }
@@ -216,9 +600,11 @@ function SettingField({
 }) {
   return (
     <div style={{ marginBottom: 10 }}>
-      <label style={{ fontSize: 10, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>
-        {label}
-      </label>
+      {label && (
+        <label style={{ fontSize: 10, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>
+          {label}
+        </label>
+      )}
       <input
         type={type}
         value={value}

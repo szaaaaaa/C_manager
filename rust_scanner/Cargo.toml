@@ -1,0 +1,13 @@
+[package]
+name = "rust_scanner"
+version = "0.1.0"
+edition = "2021"
+
+[lib]
+name = "rust_scanner"
+crate-type = ["cdylib"]
+
+[dependencies]
+pyo3 = { version = "0.22", features = ["extension-module"] }
+mft = "0.6"
+rayon = "1.10"

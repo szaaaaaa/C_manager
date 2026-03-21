@@ -22,8 +22,12 @@ import type {
 
 type View = 'dashboard' | 'results';
 
+const STORAGE_KEY = 'c_manager_settings';
+
 const DEFAULT_SETTINGS: AppSettings = {
+  aiBackend: 'api',
   apiKey: '',
+  useEnvKey: false,
   baseUrl: 'https://openrouter.ai/api/v1',
   model: 'anthropic/claude-haiku-4-5',
 };
@@ -33,6 +37,19 @@ const DEFAULT_CONFIG: ScanConfig = {
   min_size_mb: 50,
   max_depth: 3,
 };
+
+function loadSettings(): AppSettings {
+  try {
+    const saved = localStorage.getItem(STORAGE_KEY);
+    if (saved) {
+      const parsed = JSON.parse(saved);
+      return { ...DEFAULT_SETTINGS, ...parsed };
+    }
+  } catch {
+    // ignore
+  }
+  return DEFAULT_SETTINGS;
+}
 
 export default function App() {
   const [view, setView] = useState<View>('dashboard');
@@ -45,11 +62,14 @@ export default function App() {
   const [explanation, setExplanation] = useState<ExplainResponse | null>(null);
   const [explainLoading, setExplainLoading] = useState(false);
   const [explainError, setExplainError] = useState<string | null>(null);
-  const [settings, setSettings] = useState<AppSettings>(DEFAULT_SETTINGS);
+  const [settings, setSettings] = useState<AppSettings>(loadSettings);
+  const [savedSettings, setSavedSettings] = useState<AppSettings>(loadSettings);
   const [showSettings, setShowSettings] = useState(false);
   const [backendError, setBackendError] = useState<string | null>(null);
 
   const sseCleanup = useRef<(() => void) | null>(null);
+
+  const settingsDirty = JSON.stringify(settings) !== JSON.stringify(savedSettings);
 
   // Load drive info on mount
   useEffect(() => {
@@ -58,19 +78,9 @@ export default function App() {
       .catch(() => setBackendError('无法连接到后端服务 (localhost:8765)。请先启动 Python 后端。'));
   }, []);
 
-  // Load persisted settings
-  useEffect(() => {
-    try {
-      const saved = localStorage.getItem('c_manager_settings');
-      if (saved) setSettings(JSON.parse(saved));
-    } catch {
-      // ignore
-    }
-  }, []);
-
-  // Persist settings on change
-  useEffect(() => {
-    localStorage.setItem('c_manager_settings', JSON.stringify(settings));
+  const handleSaveSettings = useCallback(() => {
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(settings));
+    setSavedSettings(settings);
   }, [settings]);
 
   const handleStartScan = useCallback(async (config: ScanConfig) => {
@@ -126,7 +136,10 @@ export default function App() {
     setExplanation(null);
     setExplainError(null);
 
-    if (!settings.apiKey) {
+    // Use saved settings for API calls
+    const s = savedSettings;
+
+    if (s.aiBackend === 'api' && !s.apiKey && !s.useEnvKey) {
       setExplainError('no api key');
       return;
     }
@@ -137,9 +150,10 @@ export default function App() {
         item.path,
         item.size,
         item.is_dir,
-        settings.apiKey,
-        settings.baseUrl,
-        settings.model
+        s.useEnvKey ? '' : s.apiKey,
+        s.baseUrl,
+        s.model,
+        s.aiBackend
       );
       setExplanation(resp);
     } catch (e: unknown) {
@@ -147,7 +161,7 @@ export default function App() {
     } finally {
       setExplainLoading(false);
     }
-  }, [selectedItem, settings]);
+  }, [selectedItem, savedSettings]);
 
   const handleCloseExplanation = useCallback(() => {
     setSelectedItem(null);
@@ -166,6 +180,8 @@ export default function App() {
         onSettingsChange={setSettings}
         showSettings={showSettings}
         onToggleSettings={() => setShowSettings(v => !v)}
+        onSaveSettings={handleSaveSettings}
+        settingsDirty={settingsDirty}
       />
 
       {/* Main content area */}
@@ -189,11 +205,11 @@ export default function App() {
                 flexShrink: 0,
               }}
             >
-              ⚠️ {backendError}
+              {backendError}
               <button
                 onClick={() => setBackendError(null)}
                 style={{ background: 'none', border: 'none', cursor: 'pointer', color: '#ff8888', fontSize: 16 }}
-              >×</button>
+              >x</button>
             </motion.div>
           )}
         </AnimatePresence>

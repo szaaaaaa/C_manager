@@ -46,7 +46,7 @@ export function ScanResults({ items, progress, onItemClick, selectedPath }: Prop
             扫描结果
           </h2>
           <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 3 }}>
-            找到 {items.length} 个大文件/文件夹 · 点击任意项目获取AI分析
+            找到 {items.length} 个大文件 · 点击任意项目获取AI分析
           </p>
         </div>
         {progress?.running && (
