@@ -3,9 +3,10 @@ use std::fs::File;
 use std::io::BufReader;
 
 use mft::attribute::MftAttributeContent;
+use mft::attribute::x30::FileNamespace;
 use mft::MftParser;
 
-use crate::models::FileRecord;
+use super::models::FileRecord;
 
 /// Read and parse MFT entries from a volume (e.g. "\\\\.\\C:").
 /// Returns file records with size >= min_size_bytes, sorted by size descending,
@@ -21,8 +22,8 @@ pub fn scan_mft(
         MftParser::from_read_seek(reader, None).map_err(|e| format!("MFT parse error: {}", e))?;
 
     // Phase 1: Collect all entries to build parent map and file list
-    let mut name_map: HashMap<u64, (String, u64)> = HashMap::new(); // entry_id -> (name, parent_id)
-    let mut files: Vec<FileRecord> = Vec::new();
+    let mut name_map: HashMap<u64, (String, u64)> = HashMap::new();
+    let mut files: Vec<(u64, u64, String, u64)> = Vec::new(); // (entry_id, parent_id, name, size)
 
     for entry_result in parser.iter_entries() {
         let entry = match entry_result {
@@ -32,7 +33,6 @@ pub fn scan_mft(
 
         let entry_id = entry.header.record_number;
 
-        // Find the $FILE_NAME attribute to get name, parent ref, and flags
         for attr_result in entry.iter_attributes() {
             let attr = match attr_result {
                 Ok(a) => a,
@@ -40,13 +40,12 @@ pub fn scan_mft(
             };
 
             if let MftAttributeContent::AttrX30(file_name_attr) = attr.data {
-                let name = file_name_attr.name.clone();
-
-                // Skip DOS short names (namespace 2) — prefer Win32 or Win32+DOS
-                if file_name_attr.namespace == 2 {
+                // Skip DOS short names
+                if file_name_attr.namespace == FileNamespace::DOS {
                     continue;
                 }
 
+                let name = file_name_attr.name.clone();
                 let parent_id = file_name_attr.parent.entry;
                 let is_dir = entry.header.flags.bits() & 0x02 != 0;
                 let size = file_name_attr.logical_size;
@@ -54,33 +53,36 @@ pub fn scan_mft(
                 name_map.insert(entry_id, (name.clone(), parent_id));
 
                 if !is_dir && size >= min_size_bytes {
-                    files.push(FileRecord {
-                        entry_id,
-                        parent_entry_id: parent_id,
-                        name,
-                        size,
-                        is_directory: false,
-                    });
+                    files.push((entry_id, parent_id, name, size));
                 }
 
-                break; // Use the first valid $FILE_NAME
+                break;
             }
         }
     }
 
     // Phase 2: Sort by size descending, take top_n
-    files.sort_unstable_by(|a, b| b.size.cmp(&a.size));
+    files.sort_unstable_by(|a, b| b.3.cmp(&a.3));
     files.truncate(top_n);
 
-    // Phase 3: Rebuild full paths for the top_n files
-    for file in &mut files {
-        file.name = rebuild_path(file.parent_entry_id, &file.name, &name_map);
-    }
+    // Phase 3: Rebuild full paths
+    let results = files
+        .into_iter()
+        .map(|(_, parent_id, file_name, size)| {
+            let full_path = rebuild_path(parent_id, &file_name, &name_map);
+            let display_name = file_name;
+            FileRecord {
+                path: full_path,
+                name: display_name,
+                size,
+                is_dir: false,
+            }
+        })
+        .collect();
 
-    Ok(files)
+    Ok(results)
 }
 
-/// Walk up the parent chain to rebuild the full path.
 fn rebuild_path(
     parent_id: u64,
     file_name: &str,
@@ -90,7 +92,6 @@ fn rebuild_path(
     let mut current = parent_id;
     let mut depth = 0;
 
-    // MFT root entry is typically entry 5
     while current != 5 && depth < 64 {
         match name_map.get(&current) {
             Some((name, parent)) => {
@@ -98,7 +99,7 @@ fn rebuild_path(
                 current = *parent;
                 depth += 1;
             }
-            None => break, // Orphan entry — stop here
+            None => break,
         }
     }
 

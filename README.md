@@ -11,64 +11,47 @@
 - **Rust MFT 极速扫描** — 直读 NTFS 主文件表，秒级扫完整个 C 盘
 - **AI 白话翻译** — 点击文件，AI 用通俗幽默的中文解释它是干嘛的
 - **红绿灯安全评级** — 🟢可以删 🟡建议保留 🔴系统核心别碰
-- **多模型支持** — OpenRouter 动态拉取可用模型列表，预留本地模型接口
+- **多模型支持** — OpenRouter 动态拉取可用模型列表
 
 ## 技术栈
 
 | 层 | 技术 |
 |----|------|
-| 扫描引擎 | Rust（mft crate + PyO3） |
+| 桌面框架 | Tauri 2 |
+| 后端 | Rust（mft, reqwest, serde） |
 | 前端 | React 19, TypeScript, Vite, Framer Motion |
 | AI | OpenRouter / OpenAI 兼容 API |
 
-## 项目结构
+## 环境要求
 
-```
-C_manager/
-├── rust_scanner/              # Rust MFT 扫描器
-│   ├── Cargo.toml             # 依赖: mft, pyo3, rayon
-│   ├── pyproject.toml         # maturin 构建配置
-│   └── src/
-│       ├── lib.rs             # PyO3 模块入口，暴露 scan_mft()
-│       ├── mft_reader.rs      # MFT 解析、路径重建、排序
-│       └── models.rs          # FileRecord 结构体
-└── frontend/                  # React 前端
-    └── src/
-        ├── App.tsx            # 主容器
-        ├── api.ts             # HTTP 客户端
-        ├── types.ts           # 类型定义
-        └── components/
-            ├── Dashboard.tsx       # 扫描控制面板
-            ├── ScanResults.tsx     # 结果列表
-            ├── ExplanationBubble.tsx # AI 解释气泡
-            ├── Sidebar.tsx         # 导航 + 设置面板
-            ├── DriveRing.tsx       # 磁盘用量环形图
-            └── SafetyBadge.tsx     # 红绿灯徽章
-```
+- [Rust](https://rustup.rs/) (stable)
+- Node.js 18+
+- Tauri 2 prerequisites: https://tauri.app/start/prerequisites/
 
-## 编译 Rust 扫描器
+## 开发
 
 ```bash
-cd rust_scanner
-pip install maturin
-maturin develop --release
+# 安装前端依赖
+cd frontend
+npm install
+
+# 启动 Tauri 开发模式（同时编译 Rust + 启动 Vite）
+npx tauri dev
 ```
 
-需要管理员权限运行才能读取 MFT。
-
-## 前端开发
+## 构建
 
 ```bash
 cd frontend
-npm install
-npm run dev
+npx tauri build
 ```
+
+产出在 `src-tauri/target/release/bundle/` 下。
 
 ## 设置
 
 侧边栏「设置」中可配置：
 
-- **AI 后端** — 云端 API / 本地模型 / 自动
-- **API Key** — 环境变量自动识别，或手动输入
+- **API Key** — 环境变量（OPENROUTER_API_KEY / OPENAI_API_KEY）自动识别，或手动输入
 - **Base URL** — 默认 OpenRouter，可改为任意 OpenAI 兼容接口
 - **模型选择** — 下拉列表从 OpenRouter 动态拉取，也支持手动输入

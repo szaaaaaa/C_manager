@@ -1,0 +1,48 @@
+{
+  "red": [
+    "windows\\system32",
+    "windows\\syswow64",
+    "windows\\winsxs",
+    "windows\\boot",
+    "windows\\servicing",
+    "program files\\windows",
+    "program files (x86)\\windows",
+    "\\windows\\",
+    "\\boot\\",
+    "\\efi\\"
+  ],
+  "red_names": [
+    "ntoskrnl.exe",
+    "hal.dll",
+    "bootmgr",
+    "pagefile.sys",
+    "hiberfil.sys",
+    "swapfile.sys",
+    "ntldr"
+  ],
+  "yellow": [
+    "program files\\",
+    "program files (x86)\\",
+    "programdata\\",
+    "appdata\\roaming\\",
+    "appdata\\local\\",
+    "users\\default",
+    "\\drivers\\",
+    "\\system volume information"
+  ],
+  "green": [
+    "\\appdata\\local\\temp",
+    "\\windows\\temp",
+    "\\temp\\",
+    "\\tmp\\",
+    "\\downloads\\",
+    "\\$recycle.bin",
+    "\\thumbnails",
+    "\\cache\\",
+    ".tmp",
+    ".log",
+    ".dmp",
+    ".bak",
+    ".old"
+  ]
+}

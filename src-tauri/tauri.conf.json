@@ -1,0 +1,25 @@
+{
+  "productName": "C盘守护者",
+  "version": "0.1.0",
+  "identifier": "com.cmanager.app",
+  "build": {
+    "beforeBuildCommand": "cd frontend && npm run build",
+    "beforeDevCommand": "cd frontend && npm run dev",
+    "devUrl": "http://localhost:5173",
+    "frontendDist": "../frontend/dist"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "C盘守护者",
+        "width": 1200,
+        "height": 800,
+        "minWidth": 900,
+        "minHeight": 600
+      }
+    ],
+    "security": {
+      "csp": null
+    }
+  }
+}

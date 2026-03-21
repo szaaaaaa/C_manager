@@ -16,20 +16,12 @@ export interface DriveInfo {
   error?: string;
 }
 
-export interface ScanProgress {
-  running: boolean;
-  progress: number;
-  current_path: string;
-  result_count: number;
-  error: string | null;
-}
-
 export interface ExplainResponse {
   path: string;
   safety: 'red' | 'yellow' | 'green';
   size_human: string;
   explanation: string;
-  backend_used: 'local' | 'api';
+  backend_used: string;
 }
 
 export interface ScanConfig {
@@ -38,10 +30,7 @@ export interface ScanConfig {
   max_depth: number;
 }
 
-export type AiBackend = 'local' | 'api' | 'auto';
-
 export interface AppSettings {
-  aiBackend: AiBackend;
   apiKey: string;
   useEnvKey: boolean;
   baseUrl: string;
@@ -52,5 +41,4 @@ export interface ModelInfo {
   id: string;
   name: string;
   context_length: number;
-  pricing: Record<string, string>;
 }

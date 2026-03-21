@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dashboard } from './components/Dashboard';
 import { ScanResults } from './components/ScanResults';
@@ -7,9 +7,7 @@ import { Sidebar } from './components/Sidebar';
 import {
   explainItem,
   fetchDriveInfo,
-  fetchScanResults,
-  startScan,
-  subscribeScanProgress,
+  scanDrive,
 } from './api';
 import type {
   AppSettings,
@@ -25,7 +23,6 @@ type View = 'dashboard' | 'results';
 const STORAGE_KEY = 'c_manager_settings';
 
 const DEFAULT_SETTINGS: AppSettings = {
-  aiBackend: 'api',
   apiKey: '',
   useEnvKey: false,
   baseUrl: 'https://openrouter.ai/api/v1',
@@ -67,15 +64,13 @@ export default function App() {
   const [showSettings, setShowSettings] = useState(false);
   const [backendError, setBackendError] = useState<string | null>(null);
 
-  const sseCleanup = useRef<(() => void) | null>(null);
-
   const settingsDirty = JSON.stringify(settings) !== JSON.stringify(savedSettings);
 
   // Load drive info on mount
   useEffect(() => {
     fetchDriveInfo('C:\\')
       .then(setDriveInfo)
-      .catch(() => setBackendError('无法连接到后端服务 (localhost:8765)。请先启动 Python 后端。'));
+      .catch((e) => setBackendError(`无法获取磁盘信息: ${e}`));
   }, []);
 
   const handleSaveSettings = useCallback(() => {
@@ -91,37 +86,19 @@ export default function App() {
     setExplanation(null);
     setExplainError(null);
     setProgress({ running: true, progress: 0, current_path: '', result_count: 0, error: null });
-
-    try {
-      await startScan(config);
-    } catch (e: unknown) {
-      const msg = e instanceof Error ? e.message : String(e);
-      setBackendError(`扫描启动失败: ${msg}`);
-      setScanning(false);
-      return;
-    }
-
     setView('results');
 
-    // Subscribe to SSE progress
-    sseCleanup.current?.();
-    sseCleanup.current = subscribeScanProgress(
-      (p) => setProgress(p),
-      async () => {
-        // Scan done — fetch results
-        try {
-          const r = await fetchScanResults();
-          setResults(r.results);
-        } catch {
-          // ignore
-        }
-        setScanning(false);
-      },
-      (err) => {
-        setBackendError(`进度流失败: ${err.message}`);
-        setScanning(false);
-      }
-    );
+    try {
+      const items = await scanDrive(config.root, config.min_size_mb, config.max_depth);
+      setResults(items);
+      setProgress({ running: false, progress: items.length, current_path: '', result_count: items.length, error: null });
+    } catch (e: unknown) {
+      const msg = e instanceof Error ? e.message : String(e);
+      setBackendError(`扫描失败: ${msg}`);
+      setProgress(null);
+    } finally {
+      setScanning(false);
+    }
   }, [scanning]);
 
   const handleItemClick = useCallback(async (item: ScanItem) => {
@@ -136,10 +113,9 @@ export default function App() {
     setExplanation(null);
     setExplainError(null);
 
-    // Use saved settings for API calls
     const s = savedSettings;
 
-    if (s.aiBackend === 'api' && !s.apiKey && !s.useEnvKey) {
+    if (!s.apiKey && !s.useEnvKey) {
       setExplainError('no api key');
       return;
     }
@@ -152,8 +128,7 @@ export default function App() {
         item.is_dir,
         s.useEnvKey ? '' : s.apiKey,
         s.baseUrl,
-        s.model,
-        s.aiBackend
+        s.model
       );
       setExplanation(resp);
     } catch (e: unknown) {
@@ -171,7 +146,6 @@ export default function App() {
 
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', position: 'relative', zIndex: 1 }}>
-      {/* Sidebar */}
       <Sidebar
         currentView={view}
         onViewChange={setView}
@@ -184,9 +158,7 @@ export default function App() {
         settingsDirty={settingsDirty}
       />
 
-      {/* Main content area */}
       <div style={{ flex: 1, overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}>
-        {/* Backend error banner */}
         <AnimatePresence>
           {backendError && (
             <motion.div
@@ -214,7 +186,6 @@ export default function App() {
           )}
         </AnimatePresence>
 
-        {/* View content */}
         <div style={{ flex: 1, overflow: 'hidden', position: 'relative' }}>
           <AnimatePresence mode="wait">
             {view === 'dashboard' ? (
@@ -249,7 +220,6 @@ export default function App() {
                   onItemClick={handleItemClick}
                   selectedPath={selectedItem?.path ?? null}
                 />
-                {/* Explanation panel overlays the right side of results */}
                 <ExplanationBubble
                   item={selectedItem}
                   explanation={explanation}
