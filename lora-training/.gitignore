@@ -1,0 +1,9 @@
+# Python
+__pycache__/
+*.pyc
+
+# Training output (models are too large for git)
+output/
+
+# Unsloth compiled cache
+unsloth_compiled_cache/

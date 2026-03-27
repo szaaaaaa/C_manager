@@ -26,6 +26,8 @@ pub async fn fetch_models(
             .map_err(|_| "API key required to fetch models".to_string())?
     };
 
+    super::validate_base_url(&base_url)?;
+
     let client = reqwest::Client::new();
     let resp = client
         .get(format!("{}/models", base_url))

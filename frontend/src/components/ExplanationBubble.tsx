@@ -1,8 +1,14 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState, useRef } from 'react';
-import { X, Sparkles, Bot } from 'lucide-react';
+import { X, Send } from 'lucide-react';
 import { SafetyBadge } from './SafetyBadge';
-import type { ExplainResponse, ScanItem } from '../types';
+import { chatAboutFile } from '../api';
+import type { ExplainResponse, ScanItem, AppSettings } from '../types';
+
+interface ChatMsg {
+  role: 'user' | 'assistant';
+  content: string;
+}
 
 interface Props {
   item: ScanItem | null;
@@ -10,304 +16,331 @@ interface Props {
   loading: boolean;
   error: string | null;
   onClose: () => void;
+  settings: AppSettings;
 }
 
-export function ExplanationBubble({ item, explanation, loading, error, onClose }: Props) {
+export function ExplanationBubble({ item, explanation, loading, error, onClose, settings }: Props) {
   const visible = item !== null;
+  const [chatHistory, setChatHistory] = useState<ChatMsg[]>([]);
+  const [inputValue, setInputValue] = useState('');
+  const [chatLoading, setChatLoading] = useState(false);
+  const chatEndRef = useRef<HTMLDivElement>(null);
+  const [dragPos, setDragPos] = useState({ x: 0, y: 0 });
+  const [dragging, setDragging] = useState(false);
+  const dragStart = useRef({ x: 0, y: 0 });
+
+  // Reset chat and position when item changes
+  useEffect(() => {
+    setChatHistory([]);
+    setInputValue('');
+    setDragPos({ x: 0, y: 0 });
+  }, [item?.path]);
+
+  // Auto-scroll chat
+  useEffect(() => {
+    chatEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+  }, [chatHistory, explanation]);
+
+  const handleSend = async () => {
+    if (!inputValue.trim() || !item || chatLoading) return;
+    const msg = inputValue.trim();
+    setInputValue('');
+
+    const history: ChatMsg[] = [];
+    if (explanation) {
+      history.push({ role: 'assistant', content: explanation.explanation });
+    }
+    history.push(...chatHistory);
+
+    setChatHistory(prev => [...prev, { role: 'user', content: msg }]);
+    setChatLoading(true);
+
+    try {
+      const isLocal = settings.modelSource === 'local';
+
+      const reply = await chatAboutFile(
+        item.path, item.size, item.is_dir,
+        history.map(m => ({ role: m.role, content: m.content })),
+        msg,
+        isLocal ? '' : (settings.useEnvKey ? '' : settings.apiKey),
+        isLocal ? '' : settings.baseUrl,
+        isLocal ? '' : settings.model,
+        isLocal,
+        isLocal ? (settings.tavilyKey || '') : '',
+      );
+      setChatHistory(prev => [...prev, { role: 'assistant', content: reply }]);
+    } catch (e) {
+      setChatHistory(prev => [...prev, { role: 'assistant', content: `错误: ${e}` }]);
+    } finally {
+      setChatLoading(false);
+    }
+  };
 
   return (
     <AnimatePresence>
       {visible && (
-        <motion.div
-          key={item?.path}
-          initial={{ opacity: 0, x: 60, scale: 0.94 }}
-          animate={{ opacity: 1, x: 0, scale: 1 }}
-          exit={{ opacity: 0, x: 60, scale: 0.94 }}
-          transition={{ type: 'spring', stiffness: 340, damping: 28 }}
-          style={{
-            position: 'absolute',
-            right: 0,
-            top: 0,
-            bottom: 0,
-            width: 350,
-            background: 'rgba(8, 8, 20, 0.88)',
-            backdropFilter: 'blur(32px)',
-            borderLeft: '1px solid rgba(0, 212, 255, 0.18)',
-            display: 'flex',
-            flexDirection: 'column',
-            zIndex: 100,
-            overflow: 'hidden',
-            boxShadow: '-8px 0 48px rgba(0, 0, 0, 0.5), -1px 0 0 rgba(0, 212, 255, 0.1)',
-          }}
-        >
-          {/* Top glow accent strip */}
-          <div style={{
-            position: 'absolute',
-            top: 0, left: 0, right: 0,
-            height: 2,
-            background: 'var(--accent-gradient-vivid)',
-            opacity: 0.9,
-          }} />
-
-          {/* Left arrow pointer — visually connects bubble to the row */}
+        <>
+          {/* Backdrop */}
           <motion.div
-            initial={{ opacity: 0, x: 8 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ delay: 0.18, duration: 0.3 }}
+            key="backdrop"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.2 }}
+            onClick={onClose}
             style={{
-              position: 'absolute',
-              left: -9,
-              top: '50%',
-              transform: 'translateY(-50%)',
-              width: 0,
-              height: 0,
-              borderTop: '9px solid transparent',
-              borderBottom: '9px solid transparent',
-              borderRight: '9px solid rgba(0, 212, 255, 0.25)',
-              filter: 'drop-shadow(-2px 0 6px rgba(0,212,255,0.2))',
+              position: 'fixed', inset: 0,
+              background: 'rgba(0,0,0,0.55)',
+              backdropFilter: 'blur(6px)',
+              zIndex: 200,
             }}
           />
 
-          {/* Header */}
-          <div style={{
-            padding: '22px 20px 16px',
-            borderBottom: '1px solid rgba(255,255,255,0.07)',
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: 10,
-          }}>
+          {/* Main bubble */}
+          <motion.div
+            key={item?.path}
+            initial={{ opacity: 0, scale: 0.6, y: 50 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.75, y: 30 }}
+            transition={{ type: 'spring', stiffness: 350, damping: 25, mass: 0.8 }}
+            style={{
+              position: 'fixed',
+              top: `calc(50% + ${dragPos.y}px)`,
+              left: `calc(50% + ${dragPos.x}px)`,
+              transform: 'translate(-50%, -50%)',
+              width: 460, maxWidth: 'calc(100vw - 60px)',
+              maxHeight: 'calc(100vh - 80px)',
+              background: 'linear-gradient(145deg, rgba(10,10,30,0.97), rgba(18,18,40,0.97))',
+              border: '1px solid rgba(0,212,255,0.15)',
+              borderRadius: 22,
+              display: 'flex', flexDirection: 'column',
+              zIndex: 201,
+              overflow: 'hidden',
+              boxShadow: '0 30px 90px rgba(0,0,0,0.6), 0 0 80px rgba(0,212,255,0.05)',
+            }}
+          >
+            {/* Gradient top strip */}
             <motion.div
-              initial={{ scale: 0.6, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ type: 'spring', stiffness: 450, damping: 20, delay: 0.08 }}
+              initial={{ scaleX: 0 }}
+              animate={{ scaleX: 1 }}
+              transition={{ delay: 0.1, duration: 0.6, ease: 'easeOut' }}
               style={{
-                width: 34, height: 34, borderRadius: 10,
-                background: 'linear-gradient(135deg, rgba(0,212,255,0.2), rgba(0,102,255,0.2))',
-                border: '1px solid rgba(0,212,255,0.35)',
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0,
-                marginTop: 1,
-                boxShadow: '0 0 16px rgba(0,212,255,0.15)',
+                height: 3, transformOrigin: 'left',
+                background: 'linear-gradient(90deg, #00d4ff, #7c3aed, #f43f5e)',
               }}
-            >
-              <Bot size={16} color="var(--accent-cyan)" />
-            </motion.div>
-            <div style={{ flex: 1, minWidth: 0 }}>
-              <motion.div
-                initial={{ opacity: 0, y: -4 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.12, duration: 0.3 }}
-                style={{ fontSize: 13, fontWeight: 600, color: 'var(--text-primary)', marginBottom: 3, display: 'flex', alignItems: 'center', gap: 6 }}
-              >
-                AI 文件解读
-                {explanation?.backend_used && (
-                  <span style={{
-                    fontSize: 9,
-                    padding: '1px 6px',
-                    borderRadius: 4,
-                    background: explanation.backend_used === 'local'
-                      ? 'rgba(0,200,100,0.15)'
-                      : 'rgba(0,150,255,0.15)',
-                    color: explanation.backend_used === 'local'
-                      ? 'rgba(0,220,120,0.9)'
-                      : 'rgba(100,180,255,0.9)',
-                    border: explanation.backend_used === 'local'
-                      ? '1px solid rgba(0,200,100,0.25)'
-                      : '1px solid rgba(0,150,255,0.25)',
-                    fontWeight: 500,
-                  }}>
-                    {explanation.backend_used === 'local' ? '本地AI' : '云端AI'}
-                  </span>
-                )}
-              </motion.div>
-              <div style={{
-                fontSize: 11, color: 'var(--text-muted)',
-                overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
-              }}>
-                {item?.name}
-              </div>
-            </div>
-            <motion.button
-              onClick={onClose}
-              whileHover={{ scale: 1.15, color: 'var(--text-primary)' }}
-              whileTap={{ scale: 0.9 }}
-              style={{
-                background: 'none', border: 'none', cursor: 'pointer',
-                color: 'var(--text-muted)', padding: 4, borderRadius: 6,
-                display: 'flex', alignItems: 'center', justifyContent: 'center',
-                flexShrink: 0,
-              }}
-            >
-              <X size={16} />
-            </motion.button>
-          </div>
+            />
 
-          {/* Body */}
-          <div style={{ flex: 1, overflowY: 'auto', padding: '20px' }}>
-            {/* File info card */}
-            {item && (
-              <motion.div
-                initial={{ opacity: 0, y: 8 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.14, duration: 0.35 }}
-                style={{
-                  background: 'rgba(255,255,255,0.04)',
-                  border: '1px solid rgba(255,255,255,0.07)',
-                  borderRadius: 'var(--radius-md)',
-                  padding: '14px',
-                  marginBottom: 18,
-                }}
-              >
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                  <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>文件大小</span>
-                  <span style={{ fontSize: 14, fontWeight: 700, color: 'var(--accent-cyan)', fontVariantNumeric: 'tabular-nums' }}>
-                    {item.size_human}
-                  </span>
-                </div>
-                <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: 8 }}>
-                  <span style={{ fontSize: 11, color: 'var(--text-muted)' }}>安全评级</span>
-                  <SafetyBadge safety={item.safety} size="sm" />
-                </div>
+            {/* Header — draggable */}
+            <div
+              onPointerDown={(e) => {
+                setDragging(true);
+                dragStart.current = { x: e.clientX - dragPos.x, y: e.clientY - dragPos.y };
+                (e.target as HTMLElement).setPointerCapture(e.pointerId);
+              }}
+              onPointerMove={(e) => {
+                if (!dragging) return;
+                setDragPos({ x: e.clientX - dragStart.current.x, y: e.clientY - dragStart.current.y });
+              }}
+              onPointerUp={() => setDragging(false)}
+              style={{
+                padding: '18px 22px 14px',
+                display: 'flex', alignItems: 'center', justifyContent: 'space-between',
+                borderBottom: '1px solid rgba(255,255,255,0.06)',
+                cursor: dragging ? 'grabbing' : 'grab',
+                userSelect: 'none',
+              }}
+            >
+              <div style={{ minWidth: 0 }}>
                 <div style={{
-                  fontSize: 10, color: 'var(--text-muted)', marginTop: 4,
+                  fontSize: 15, fontWeight: 700, color: 'var(--text-primary)',
                   overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
                 }}>
-                  {item.path}
+                  {item?.name}
                 </div>
+                <div style={{ display: 'flex', alignItems: 'center', gap: 10, marginTop: 6 }}>
+                  <span style={{ fontSize: 18, fontWeight: 800, color: 'var(--accent-cyan)', fontVariantNumeric: 'tabular-nums' }}>
+                    {item?.size_human}
+                  </span>
+                  <SafetyBadge safety={item?.safety ?? 'yellow'} size="sm" />
+                </div>
+              </div>
+              <motion.button
+                onClick={onClose}
+                whileHover={{ scale: 1.15, rotate: 90 }}
+                whileTap={{ scale: 0.85 }}
+                transition={{ type: 'spring', stiffness: 400, damping: 15 }}
+                style={{
+                  background: 'rgba(255,255,255,0.06)', border: 'none', cursor: 'pointer',
+                  color: 'var(--text-muted)', width: 32, height: 32, borderRadius: 8,
+                  display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                }}
+              >
+                <X size={15} />
+              </motion.button>
+            </div>
+
+            {/* Path */}
+            <div style={{
+              padding: '0 22px', marginTop: 10, marginBottom: 6,
+            }}>
+              <div style={{
+                fontSize: 11, color: 'var(--text-muted)', fontFamily: 'monospace',
+                padding: '6px 10px', background: 'rgba(255,255,255,0.03)', borderRadius: 6,
+                overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap',
+              }}>
+                {item?.path}
+              </div>
+            </div>
+
+            {/* Scrollable content — analysis + chat */}
+            <div style={{ flex: 1, overflowY: 'auto', padding: '14px 22px 10px' }}>
+              {/* Analysis */}
+              {loading && <LoadingDots />}
+              {error && !loading && <ErrorBlock error={error} />}
+              {explanation && !loading && (
+                <motion.div
+                  initial={{ opacity: 0, y: 8 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  transition={{ duration: 0.35 }}
+                  style={{
+                    fontSize: 14, color: 'var(--text-primary)', lineHeight: 1.9,
+                    whiteSpace: 'pre-wrap',
+                  }}
+                >
+                  {explanation.explanation}
+                </motion.div>
+              )}
+
+              {/* Chat history */}
+              {chatHistory.map((msg, i) => (
+                <motion.div
+                  key={i}
+                  initial={{ opacity: 0, y: 6 }}
+                  animate={{ opacity: 1, y: 0 }}
+                  style={{
+                    marginTop: 12,
+                    padding: '10px 14px',
+                    borderRadius: 12,
+                    fontSize: 13,
+                    lineHeight: 1.7,
+                    whiteSpace: 'pre-wrap',
+                    ...(msg.role === 'user'
+                      ? {
+                          background: 'rgba(0,212,255,0.1)',
+                          border: '1px solid rgba(0,212,255,0.15)',
+                          color: 'var(--accent-cyan)',
+                          marginLeft: 40,
+                        }
+                      : {
+                          background: 'rgba(255,255,255,0.04)',
+                          border: '1px solid rgba(255,255,255,0.06)',
+                          color: 'var(--text-primary)',
+                          marginRight: 40,
+                        }),
+                  }}
+                >
+                  {msg.content}
+                </motion.div>
+              ))}
+
+              {chatLoading && (
+                <div style={{ marginTop: 12 }}>
+                  <LoadingDots />
+                </div>
+              )}
+
+              <div ref={chatEndRef} />
+            </div>
+
+            {/* Chat input */}
+            {explanation && !loading && (
+              <motion.div
+                initial={{ opacity: 0, y: 10 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.3 }}
+                style={{
+                  padding: '12px 16px',
+                  borderTop: '1px solid rgba(255,255,255,0.06)',
+                  display: 'flex', gap: 8, alignItems: 'center',
+                }}
+              >
+                <input
+                  value={inputValue}
+                  onChange={e => setInputValue(e.target.value)}
+                  onKeyDown={e => { if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); handleSend(); } }}
+                  placeholder="继续追问..."
+                  style={{
+                    flex: 1, padding: '10px 14px', borderRadius: 10,
+                    background: 'rgba(255,255,255,0.05)',
+                    border: '1px solid rgba(255,255,255,0.08)',
+                    color: 'var(--text-primary)', fontSize: 13,
+                    outline: 'none', fontFamily: 'Inter, sans-serif',
+                  }}
+                />
+                <motion.button
+                  onClick={handleSend}
+                  whileHover={{ scale: 1.08 }}
+                  whileTap={{ scale: 0.92 }}
+                  disabled={chatLoading || !inputValue.trim()}
+                  style={{
+                    width: 38, height: 38, borderRadius: 10, border: 'none',
+                    background: inputValue.trim() ? 'var(--accent-gradient)' : 'rgba(255,255,255,0.06)',
+                    color: inputValue.trim() ? 'white' : 'var(--text-muted)',
+                    cursor: inputValue.trim() ? 'pointer' : 'default',
+                    display: 'flex', alignItems: 'center', justifyContent: 'center',
+                    flexShrink: 0,
+                  }}
+                >
+                  <Send size={15} />
+                </motion.button>
               </motion.div>
             )}
 
-            {/* Explanation content */}
-            {loading && <LoadingSkeleton />}
-            {error && !loading && <ErrorState error={error} />}
-            {explanation && !loading && (
-              <TypewriterText text={explanation.explanation} />
-            )}
-
-            {!loading && !error && !explanation && (
-              <div style={{
-                display: 'flex', flexDirection: 'column', alignItems: 'center',
-                gap: 10, padding: '24px 0', color: 'var(--text-muted)',
-              }}>
-                <Sparkles size={24} style={{ opacity: 0.4 }} />
-                <span style={{ fontSize: 13 }}>正在请求AI分析...</span>
-              </div>
-            )}
-          </div>
-
-          {/* Disclaimer */}
-          <div style={{
-            padding: '12px 20px',
-            borderTop: '1px solid rgba(255,255,255,0.05)',
-            fontSize: 10,
-            color: 'var(--text-muted)',
-            lineHeight: 1.5,
-          }}>
-            ⚠️ AI建议仅供参考。删除前请确认，本工具只提供建议，不会执行任何删除操作。
-          </div>
-        </motion.div>
+            {/* Footer */}
+            <div style={{
+              padding: '8px 22px 10px', fontSize: 10,
+              color: 'var(--text-muted)', textAlign: 'center',
+              borderTop: explanation ? 'none' : '1px solid rgba(255,255,255,0.05)',
+            }}>
+              AI建议仅供参考 · 本工具不会执行任何删除操作
+            </div>
+          </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
 }
 
-function LoadingSkeleton() {
+function LoadingDots() {
   return (
-    <div style={{ display: 'flex', flexDirection: 'column', gap: 10 }}>
-      <div style={{ display: 'flex', alignItems: 'center', gap: 8, marginBottom: 4 }}>
-        <motion.div
-          style={{ width: 18, height: 18, borderRadius: '50%', background: 'var(--accent-gradient)' }}
-          animate={{ rotate: 360 }}
-          transition={{ duration: 1.2, repeat: Infinity, ease: 'linear' }}
-        />
-        <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>正在分析中...</span>
-      </div>
-      {[100, 85, 100, 60, 90].map((w, i) => (
-        <motion.div
-          key={i}
-          className="shimmer"
-          initial={{ opacity: 0, x: -8 }}
-          animate={{ opacity: 1 - i * 0.07, x: 0 }}
-          transition={{ delay: i * 0.06, duration: 0.3 }}
-          style={{ height: 14, width: `${w}%`, borderRadius: 4 }}
-        />
-      ))}
+    <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+      <motion.div
+        style={{ width: 16, height: 16, borderRadius: '50%', border: '2px solid transparent', borderTopColor: 'var(--accent-cyan)' }}
+        animate={{ rotate: 360 }}
+        transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}
+      />
+      <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>正在分析...</span>
     </div>
   );
 }
 
-function ErrorState({ error }: { error: string }) {
-  const isNoKey = error.toLowerCase().includes('api') || error.toLowerCase().includes('401') || error.toLowerCase().includes('403') || error === 'no api key';
+function ErrorBlock({ error }: { error: string }) {
+  const isNoKey = error === 'no api key' || error.includes('401') || error.includes('403');
   return (
     <motion.div
-      initial={{ opacity: 0, scale: 0.97 }}
+      initial={{ opacity: 0, scale: 0.95 }}
       animate={{ opacity: 1, scale: 1 }}
-      transition={{ type: 'spring', stiffness: 400, damping: 25 }}
       style={{
         background: 'rgba(255,68,68,0.08)',
         border: '1px solid rgba(255,68,68,0.2)',
-        borderRadius: 'var(--radius-md)',
-        padding: '16px',
-        fontSize: 13,
-        color: 'rgba(255,140,140,0.9)',
-        lineHeight: 1.6,
+        borderRadius: 12, padding: '14px',
+        fontSize: 13, color: 'rgba(255,140,140,0.9)', lineHeight: 1.6,
       }}
     >
       {isNoKey ? (
-        <>
-          <strong>需要API Key</strong>
-          <br />
-          请在侧边栏设置中填入API Key（支持OpenRouter / OpenAI）才能使用AI分析功能。
-        </>
+        <><strong>需要 API Key</strong><br />请在左侧设置中填入 API Key</>
       ) : (
-        <>
-          <strong>分析失败</strong>
-          <br />
-          {error}
-        </>
-      )}
-    </motion.div>
-  );
-}
-
-function TypewriterText({ text }: { text: string }) {
-  const [displayed, setDisplayed] = useState('');
-  const idx = useRef(0);
-
-  useEffect(() => {
-    idx.current = 0;
-    setDisplayed('');
-    const iv = setInterval(() => {
-      idx.current += 1;
-      setDisplayed(text.slice(0, idx.current));
-      if (idx.current >= text.length) clearInterval(iv);
-    }, 16);
-    return () => clearInterval(iv);
-  }, [text]);
-
-  return (
-    <motion.div
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 0.3 }}
-      style={{
-        fontSize: 14,
-        color: 'var(--text-primary)',
-        lineHeight: 1.8,
-        whiteSpace: 'pre-wrap',
-      }}
-    >
-      {displayed}
-      {displayed.length < text.length && (
-        <motion.span
-          style={{
-            display: 'inline-block', width: 2, height: '1em',
-            background: 'var(--accent-cyan)', marginLeft: 2,
-            verticalAlign: 'text-bottom',
-          }}
-          animate={{ opacity: [1, 0] }}
-          transition={{ duration: 0.5, repeat: Infinity }}
-        />
+        <><strong>分析失败</strong><br />{error}</>
       )}
     </motion.div>
   );

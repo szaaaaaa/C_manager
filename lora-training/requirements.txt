@@ -1,0 +1,6 @@
+unsloth[cu124-torch250]
+datasets
+trl
+peft
+accelerate
+bitsandbytes

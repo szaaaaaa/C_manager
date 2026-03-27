@@ -2,4 +2,12 @@ node_modules/
 frontend/node_modules/
 frontend/dist/
 src-tauri/target/
+src-tauri/resources/*.gguf
+src-tauri/result.json
+src-tauri/scan_stderr.txt
+lora-training/output/
+lora-training/data/raw/
 .env
+.claude/settings.local.json
+.claude/worktrees/
+.claire/

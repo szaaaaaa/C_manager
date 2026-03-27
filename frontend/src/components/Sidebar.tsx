@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { LayoutDashboard, List, Settings, HardDrive, Key, ChevronDown, Check, Loader2 } from 'lucide-react';
-import { fetchModels, fetchEnvKey } from '../api';
-import type { AppSettings, ModelInfo } from '../types';
+import { LayoutDashboard, List, Settings, HardDrive, Key, ChevronDown, Check, Loader2, Cpu, Cloud, Search } from 'lucide-react';
+import { fetchModels, fetchEnvKey, initLocalModel, getLocalModelStatus } from '../api';
+import type { AppSettings, LocalModelStatus, ModelInfo } from '../types';
 
 type View = 'dashboard' | 'results';
 
@@ -36,10 +36,28 @@ export function Sidebar({
   const [showModelDropdown, setShowModelDropdown] = useState(false);
   const [modelFilter, setModelFilter] = useState('');
   const [savedFlash, setSavedFlash] = useState(false);
+  const [localStatus, setLocalStatus] = useState<LocalModelStatus>({ loaded: false, model_name: '', error: null });
+  const [localLoading, setLocalLoading] = useState(false);
 
   useEffect(() => {
     fetchEnvKey().then(setEnvKeyInfo).catch(() => {});
+    // Check local model status on mount
+    getLocalModelStatus().then(setLocalStatus).catch(() => {});
   }, []);
+
+  const handleLoadLocalModel = async () => {
+    setLocalLoading(true);
+    try {
+      const status = await initLocalModel();
+      setLocalStatus(status);
+    } catch (e: unknown) {
+      setLocalStatus({ loaded: false, model_name: '', error: e instanceof Error ? e.message : String(e) });
+    } finally {
+      setLocalLoading(false);
+    }
+  };
+
+  const isLocal = settings.modelSource === 'local';
 
   const handleFetchModels = async () => {
     const key = settings.useEnvKey ? '' : settings.apiKey;
@@ -156,188 +174,277 @@ export function Sidebar({
             style={{ borderTop: '1px solid var(--border)', overflow: 'hidden' }}
           >
             <div style={{ padding: '16px', maxHeight: 'calc(100vh - 340px)', overflowY: 'auto' }}>
-              {/* API Key */}
-              <SectionLabel icon={<Key size={13} />} label="API Key" />
-
-              {envKeyInfo.has_env_key && (
-                <motion.button
-                  onClick={() => onSettingsChange({ ...settings, useEnvKey: !settings.useEnvKey, apiKey: '' })}
-                  whileHover={{ scale: 1.01 }}
-                  style={{
-                    width: '100%', padding: '8px 10px', borderRadius: 8,
-                    border: settings.useEnvKey ? '1px solid rgba(0,212,255,0.4)' : '1px solid var(--border)',
-                    background: settings.useEnvKey ? 'rgba(0,212,255,0.08)' : 'rgba(255,255,255,0.03)',
-                    color: 'var(--text-secondary)', fontSize: 11, cursor: 'pointer',
-                    display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, textAlign: 'left',
-                  }}
-                >
-                  <div style={{
-                    width: 16, height: 16, borderRadius: 4,
-                    border: settings.useEnvKey ? '1px solid var(--accent-cyan)' : '1px solid var(--text-muted)',
-                    background: settings.useEnvKey ? 'var(--accent-cyan)' : 'transparent',
-                    display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-                  }}>
-                    {settings.useEnvKey && <Check size={10} color="white" />}
-                  </div>
-                  <div>
-                    <div style={{ fontSize: 11 }}>使用环境变量</div>
-                    <div style={{ fontSize: 9, color: 'var(--text-muted)', marginTop: 1 }}>
-                      {envKeyInfo.source} 已设置
-                    </div>
-                  </div>
-                </motion.button>
-              )}
-
-              {!settings.useEnvKey && (
-                <SettingField
-                  label=""
-                  value={settings.apiKey}
-                  type="password"
-                  placeholder="sk-or-..."
-                  onChange={(v) => onSettingsChange({ ...settings, apiKey: v })}
+              {/* Model Source Toggle */}
+              <SectionLabel icon={<Cpu size={13} />} label="模型来源" />
+              <div style={{ display: 'flex', gap: 6, marginBottom: 12 }}>
+                <SourceToggle
+                  icon={<Cpu size={12} />}
+                  label="本地模型"
+                  active={isLocal}
+                  onClick={() => onSettingsChange({ ...settings, modelSource: 'local' })}
                 />
-              )}
-
-              {/* Base URL */}
-              <SettingField
-                label="Base URL"
-                value={settings.baseUrl}
-                placeholder="https://openrouter.ai/api/v1"
-                onChange={(v) => onSettingsChange({ ...settings, baseUrl: v })}
-              />
-
-              {/* Model selector */}
-              <div style={{ marginBottom: 10 }}>
-                <label style={{ fontSize: 10, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>
-                  模型
-                </label>
-                <div style={{ position: 'relative' }}>
-                  <button
-                    onClick={() => {
-                      if (models.length === 0 && !modelsLoading) handleFetchModels();
-                      setShowModelDropdown(!showModelDropdown);
-                    }}
-                    style={{
-                      width: '100%', padding: '7px 9px',
-                      background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)',
-                      borderRadius: 6, color: 'var(--text-primary)', fontSize: 11,
-                      cursor: 'pointer', display: 'flex', alignItems: 'center',
-                      justifyContent: 'space-between', textAlign: 'left', fontFamily: 'Inter, sans-serif',
-                    }}
-                  >
-                    <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1, minWidth: 0 }}>
-                      {settings.model || 'Select model...'}
-                    </span>
-                    {modelsLoading ? (
-                      <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
-                        <Loader2 size={12} color="var(--text-muted)" />
-                      </motion.div>
-                    ) : (
-                      <ChevronDown size={12} color="var(--text-muted)" />
-                    )}
-                  </button>
-
-                  <AnimatePresence>
-                    {showModelDropdown && (
-                      <motion.div
-                        initial={{ opacity: 0, y: -4 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -4 }}
-                        transition={{ duration: 0.15 }}
-                        style={{
-                          position: 'absolute', top: '100%', left: 0, right: 0, marginTop: 4,
-                          background: 'rgba(16, 16, 32, 0.98)', border: '1px solid rgba(0,212,255,0.2)',
-                          borderRadius: 8, boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
-                          zIndex: 200, maxHeight: 280, display: 'flex', flexDirection: 'column', overflow: 'hidden',
-                        }}
-                      >
-                        <div style={{ padding: '8px 8px 4px' }}>
-                          <input
-                            type="text"
-                            value={modelFilter}
-                            onChange={(e) => setModelFilter(e.target.value)}
-                            placeholder="搜索模型..."
-                            autoFocus
-                            style={{
-                              width: '100%', padding: '6px 8px',
-                              background: 'rgba(255,255,255,0.06)', border: '1px solid var(--border)',
-                              borderRadius: 5, color: 'var(--text-primary)', fontSize: 11,
-                              outline: 'none', fontFamily: 'Inter, sans-serif',
-                            }}
-                          />
-                        </div>
-                        <div style={{ overflowY: 'auto', padding: '4px' }}>
-                          {modelsLoading && (
-                            <div style={{ padding: '12px', fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
-                              正在加载模型列表...
-                            </div>
-                          )}
-                          {modelsError && (
-                            <div style={{ padding: '12px', fontSize: 11, color: 'rgba(255,100,100,0.9)', textAlign: 'center' }}>
-                              {modelsError}
-                            </div>
-                          )}
-                          {!modelsLoading && !modelsError && filteredModels.length === 0 && models.length > 0 && (
-                            <div style={{ padding: '12px', fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
-                              无匹配模型
-                            </div>
-                          )}
-                          {!modelsLoading && models.length === 0 && !modelsError && (
-                            <button
-                              onClick={handleFetchModels}
-                              style={{
-                                width: '100%', padding: '10px', fontSize: 11,
-                                color: 'var(--accent-cyan)', background: 'none',
-                                border: 'none', cursor: 'pointer', textAlign: 'center',
-                              }}
-                            >
-                              点击加载模型列表
-                            </button>
-                          )}
-                          {filteredModels.map((m) => (
-                            <button
-                              key={m.id}
-                              onClick={() => {
-                                onSettingsChange({ ...settings, model: m.id });
-                                setShowModelDropdown(false);
-                                setModelFilter('');
-                              }}
-                              style={{
-                                width: '100%', padding: '7px 8px',
-                                background: settings.model === m.id ? 'rgba(0,212,255,0.1)' : 'transparent',
-                                border: 'none', borderRadius: 5,
-                                color: settings.model === m.id ? 'var(--accent-cyan)' : 'var(--text-secondary)',
-                                fontSize: 10, cursor: 'pointer', textAlign: 'left',
-                                display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 4,
-                              }}
-                              onMouseEnter={(e) => { (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.05)'; }}
-                              onMouseLeave={(e) => { (e.target as HTMLElement).style.background = settings.model === m.id ? 'rgba(0,212,255,0.1)' : 'transparent'; }}
-                            >
-                              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
-                                {m.name || m.id}
-                              </span>
-                              {settings.model === m.id && <Check size={10} />}
-                            </button>
-                          ))}
-                        </div>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
-                </div>
-
-                <input
-                  type="text"
-                  value={settings.model}
-                  placeholder="或手动输入模型ID"
-                  onChange={(e) => onSettingsChange({ ...settings, model: e.target.value })}
-                  style={{
-                    width: '100%', padding: '5px 9px',
-                    background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)',
-                    borderRadius: 5, color: 'var(--text-muted)', fontSize: 10,
-                    outline: 'none', fontFamily: 'Inter, sans-serif', marginTop: 4,
-                  }}
+                <SourceToggle
+                  icon={<Cloud size={12} />}
+                  label="云端 API"
+                  active={!isLocal}
+                  onClick={() => onSettingsChange({ ...settings, modelSource: 'api' })}
                 />
               </div>
+
+              {isLocal ? (
+                <>
+                  {/* Local Model Status */}
+                  <div style={{
+                    padding: '8px 10px', borderRadius: 8, marginBottom: 10,
+                    background: localStatus.loaded ? 'rgba(0,200,100,0.08)' : 'rgba(255,180,0,0.08)',
+                    border: `1px solid ${localStatus.loaded ? 'rgba(0,200,100,0.3)' : 'rgba(255,180,0,0.3)'}`,
+                  }}>
+                    <div style={{ display: 'flex', alignItems: 'center', gap: 6, marginBottom: localStatus.loaded ? 0 : 8 }}>
+                      <div style={{
+                        width: 6, height: 6, borderRadius: '50%',
+                        background: localStatus.loaded ? '#00c864' : '#ffb400',
+                      }} />
+                      <span style={{ fontSize: 11, color: 'var(--text-secondary)', flex: 1 }}>
+                        {localLoading
+                          ? '正在加载模型...'
+                          : localStatus.loaded
+                            ? '本地模型已就绪'
+                            : '本地模型未加载'}
+                      </span>
+                    </div>
+
+                    {localStatus.loaded && (
+                      <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 4 }}>
+                        {localStatus.model_name}
+                      </div>
+                    )}
+
+                    {!localStatus.loaded && (
+                      <button
+                        onClick={handleLoadLocalModel}
+                        disabled={localLoading}
+                        style={{
+                          width: '100%', padding: '6px 10px', borderRadius: 6,
+                          background: 'rgba(0,212,255,0.1)', border: '1px solid rgba(0,212,255,0.3)',
+                          color: 'var(--accent-cyan)', fontSize: 11, cursor: localLoading ? 'wait' : 'pointer',
+                          display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 6,
+                        }}
+                      >
+                        {localLoading && (
+                          <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
+                            <Loader2 size={12} />
+                          </motion.div>
+                        )}
+                        {localLoading ? '加载中...' : '加载模型'}
+                      </button>
+                    )}
+
+                    {localStatus.error && (
+                      <div style={{ fontSize: 10, color: 'rgba(255,100,100,0.9)', marginTop: 6, lineHeight: 1.5 }}>
+                        {localStatus.error}
+                      </div>
+                    )}
+                  </div>
+
+                  {/* Tavily Search API Key */}
+                  <SectionLabel icon={<Search size={13} />} label="联网搜索 (Tavily)" />
+                  <SettingField
+                    label=""
+                    value={settings.tavilyKey || ''}
+                    type="password"
+                    placeholder="tvly-..."
+                    onChange={(v) => onSettingsChange({ ...settings, tavilyKey: v })}
+                  />
+                  <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: -4, marginBottom: 10, lineHeight: 1.5 }}>
+                    填入后本地模型会先搜索再回答，减少幻觉。留空则纯离线。
+                  </div>
+                </>
+              ) : (
+                <>
+                  {/* API Key */}
+                  <SectionLabel icon={<Key size={13} />} label="API Key" />
+
+                  {envKeyInfo.has_env_key && (
+                    <motion.button
+                      onClick={() => onSettingsChange({ ...settings, useEnvKey: !settings.useEnvKey, apiKey: '' })}
+                      whileHover={{ scale: 1.01 }}
+                      style={{
+                        width: '100%', padding: '8px 10px', borderRadius: 8,
+                        border: settings.useEnvKey ? '1px solid rgba(0,212,255,0.4)' : '1px solid var(--border)',
+                        background: settings.useEnvKey ? 'rgba(0,212,255,0.08)' : 'rgba(255,255,255,0.03)',
+                        color: 'var(--text-secondary)', fontSize: 11, cursor: 'pointer',
+                        display: 'flex', alignItems: 'center', gap: 8, marginBottom: 8, textAlign: 'left',
+                      }}
+                    >
+                      <div style={{
+                        width: 16, height: 16, borderRadius: 4,
+                        border: settings.useEnvKey ? '1px solid var(--accent-cyan)' : '1px solid var(--text-muted)',
+                        background: settings.useEnvKey ? 'var(--accent-cyan)' : 'transparent',
+                        display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
+                      }}>
+                        {settings.useEnvKey && <Check size={10} color="white" />}
+                      </div>
+                      <div>
+                        <div style={{ fontSize: 11 }}>使用环境变量</div>
+                        <div style={{ fontSize: 9, color: 'var(--text-muted)', marginTop: 1 }}>
+                          {envKeyInfo.source} 已设置
+                        </div>
+                      </div>
+                    </motion.button>
+                  )}
+
+                  {!settings.useEnvKey && (
+                    <SettingField
+                      label=""
+                      value={settings.apiKey}
+                      type="password"
+                      placeholder="sk-or-..."
+                      onChange={(v) => onSettingsChange({ ...settings, apiKey: v })}
+                    />
+                  )}
+
+                  {/* Base URL */}
+                  <SettingField
+                    label="Base URL"
+                    value={settings.baseUrl}
+                    placeholder="https://openrouter.ai/api/v1"
+                    onChange={(v) => onSettingsChange({ ...settings, baseUrl: v })}
+                  />
+
+                  {/* Model selector */}
+                  <div style={{ marginBottom: 10 }}>
+                    <label style={{ fontSize: 10, color: 'var(--text-muted)', display: 'block', marginBottom: 4 }}>
+                      模型
+                    </label>
+                    <div style={{ position: 'relative' }}>
+                      <button
+                        onClick={() => {
+                          if (models.length === 0 && !modelsLoading) handleFetchModels();
+                          setShowModelDropdown(!showModelDropdown);
+                        }}
+                        style={{
+                          width: '100%', padding: '7px 9px',
+                          background: 'rgba(255,255,255,0.05)', border: '1px solid var(--border)',
+                          borderRadius: 6, color: 'var(--text-primary)', fontSize: 11,
+                          cursor: 'pointer', display: 'flex', alignItems: 'center',
+                          justifyContent: 'space-between', textAlign: 'left', fontFamily: 'Inter, sans-serif',
+                        }}
+                      >
+                        <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1, minWidth: 0 }}>
+                          {settings.model || 'Select model...'}
+                        </span>
+                        {modelsLoading ? (
+                          <motion.div animate={{ rotate: 360 }} transition={{ duration: 1, repeat: Infinity, ease: 'linear' }}>
+                            <Loader2 size={12} color="var(--text-muted)" />
+                          </motion.div>
+                        ) : (
+                          <ChevronDown size={12} color="var(--text-muted)" />
+                        )}
+                      </button>
+
+                      <AnimatePresence>
+                        {showModelDropdown && (
+                          <motion.div
+                            initial={{ opacity: 0, y: -4 }}
+                            animate={{ opacity: 1, y: 0 }}
+                            exit={{ opacity: 0, y: -4 }}
+                            transition={{ duration: 0.15 }}
+                            style={{
+                              position: 'absolute', top: '100%', left: 0, right: 0, marginTop: 4,
+                              background: 'rgba(16, 16, 32, 0.98)', border: '1px solid rgba(0,212,255,0.2)',
+                              borderRadius: 8, boxShadow: '0 8px 32px rgba(0,0,0,0.5)',
+                              zIndex: 200, maxHeight: 280, display: 'flex', flexDirection: 'column', overflow: 'hidden',
+                            }}
+                          >
+                            <div style={{ padding: '8px 8px 4px' }}>
+                              <input
+                                type="text"
+                                value={modelFilter}
+                                onChange={(e) => setModelFilter(e.target.value)}
+                                placeholder="搜索模型..."
+                                autoFocus
+                                style={{
+                                  width: '100%', padding: '6px 8px',
+                                  background: 'rgba(255,255,255,0.06)', border: '1px solid var(--border)',
+                                  borderRadius: 5, color: 'var(--text-primary)', fontSize: 11,
+                                  outline: 'none', fontFamily: 'Inter, sans-serif',
+                                }}
+                              />
+                            </div>
+                            <div style={{ overflowY: 'auto', padding: '4px' }}>
+                              {modelsLoading && (
+                                <div style={{ padding: '12px', fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
+                                  正在加载模型列表...
+                                </div>
+                              )}
+                              {modelsError && (
+                                <div style={{ padding: '12px', fontSize: 11, color: 'rgba(255,100,100,0.9)', textAlign: 'center' }}>
+                                  {modelsError}
+                                </div>
+                              )}
+                              {!modelsLoading && !modelsError && filteredModels.length === 0 && models.length > 0 && (
+                                <div style={{ padding: '12px', fontSize: 11, color: 'var(--text-muted)', textAlign: 'center' }}>
+                                  无匹配模型
+                                </div>
+                              )}
+                              {!modelsLoading && models.length === 0 && !modelsError && (
+                                <button
+                                  onClick={handleFetchModels}
+                                  style={{
+                                    width: '100%', padding: '10px', fontSize: 11,
+                                    color: 'var(--accent-cyan)', background: 'none',
+                                    border: 'none', cursor: 'pointer', textAlign: 'center',
+                                  }}
+                                >
+                                  点击加载模型列表
+                                </button>
+                              )}
+                              {filteredModels.map((m) => (
+                                <button
+                                  key={m.id}
+                                  onClick={() => {
+                                    onSettingsChange({ ...settings, model: m.id });
+                                    setShowModelDropdown(false);
+                                    setModelFilter('');
+                                  }}
+                                  style={{
+                                    width: '100%', padding: '7px 8px',
+                                    background: settings.model === m.id ? 'rgba(0,212,255,0.1)' : 'transparent',
+                                    border: 'none', borderRadius: 5,
+                                    color: settings.model === m.id ? 'var(--accent-cyan)' : 'var(--text-secondary)',
+                                    fontSize: 10, cursor: 'pointer', textAlign: 'left',
+                                    display: 'flex', alignItems: 'center', justifyContent: 'space-between', gap: 4,
+                                  }}
+                                  onMouseEnter={(e) => { (e.target as HTMLElement).style.background = 'rgba(255,255,255,0.05)'; }}
+                                  onMouseLeave={(e) => { (e.target as HTMLElement).style.background = settings.model === m.id ? 'rgba(0,212,255,0.1)' : 'transparent'; }}
+                                >
+                                  <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', whiteSpace: 'nowrap', flex: 1 }}>
+                                    {m.name || m.id}
+                                  </span>
+                                  {settings.model === m.id && <Check size={10} />}
+                                </button>
+                              ))}
+                            </div>
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+
+                    <input
+                      type="text"
+                      value={settings.model}
+                      placeholder="或手动输入模型ID"
+                      onChange={(e) => onSettingsChange({ ...settings, model: e.target.value })}
+                      style={{
+                        width: '100%', padding: '5px 9px',
+                        background: 'rgba(255,255,255,0.03)', border: '1px solid var(--border)',
+                        borderRadius: 5, color: 'var(--text-muted)', fontSize: 10,
+                        outline: 'none', fontFamily: 'Inter, sans-serif', marginTop: 4,
+                      }}
+                    />
+                  </div>
+                </>
+              )}
 
               {/* Save Button */}
               <motion.button
@@ -357,7 +464,10 @@ export function Sidebar({
               </motion.button>
 
               <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 10, lineHeight: 1.5 }}>
-                支持 OpenRouter / OpenAI 兼容接口。环境变量 OPENROUTER_API_KEY 或 OPENAI_API_KEY 可自动识别。
+                {isLocal
+                  ? '使用内置本地模型，完全离线，免费使用。无需安装其他软件。'
+                  : '支持 OpenRouter / OpenAI 兼容接口。环境变量 OPENROUTER_API_KEY 或 OPENAI_API_KEY 可自动识别。'
+                }
               </div>
             </div>
           </motion.div>
@@ -409,6 +519,28 @@ function NavItem({ icon, label, active, disabled, onClick }: {
       {icon}
       {label}
     </motion.button>
+  );
+}
+
+function SourceToggle({ icon, label, active, onClick }: {
+  icon: React.ReactNode; label: string; active: boolean; onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        flex: 1, padding: '7px 8px', borderRadius: 6,
+        background: active ? 'rgba(0,212,255,0.1)' : 'rgba(255,255,255,0.03)',
+        border: active ? '1px solid rgba(0,212,255,0.3)' : '1px solid var(--border)',
+        color: active ? 'var(--accent-cyan)' : 'var(--text-muted)',
+        fontSize: 11, fontWeight: active ? 600 : 400, cursor: 'pointer',
+        display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 5,
+        transition: 'all 0.15s',
+      }}
+    >
+      {icon}
+      {label}
+    </button>
   );
 }
 

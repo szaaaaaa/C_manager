@@ -2,6 +2,7 @@
 name = "c-manager"
 version = "0.1.0"
 edition = "2021"
+default-run = "c-manager"
 
 [lib]
 name = "c_manager_lib"
@@ -14,10 +15,23 @@ serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 reqwest = { version = "0.12", features = ["json"] }
 tokio = { version = "1", features = ["full"] }
+rayon = "1"
+llama-cpp-2 = "0.1"
 
 [target.'cfg(windows)'.dependencies]
 mft = "0.6"
-windows-sys = { version = "0.59", features = ["Win32_Storage_FileSystem"] }
+windows-sys = { version = "0.59", features = [
+    "Win32_Foundation",
+    "Win32_Storage_FileSystem",
+    "Win32_Security",
+    "Win32_System_Threading",
+    "Win32_System_IO",
+    "Win32_UI_Shell",
+] }
+
+[[bin]]
+name = "export_scan"
+path = "src/bin/export_scan.rs"
 
 [build-dependencies]
 tauri-build = { version = "2", features = [] }

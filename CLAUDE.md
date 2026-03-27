@@ -20,7 +20,7 @@ Tauri 桌面应用：Rust 后端 + React 前端（WebView）。无 Python 依赖
 - 扫描引擎：Rust（mft crate，Windows 直读 MFT；非 Windows 用 read_dir 遍历）
 - 后端：Rust（Tauri commands，reqwest 代理 LLM API）
 - 前端：React 19 + TypeScript + Vite + Framer Motion
-- LLM：OpenRouter / OpenAI 兼容接口
+- LLM：本地 llama.cpp 内嵌推理（GGUF）/ OpenRouter 云端 API 备选
 - 安全评级：编译时嵌入的 rules.json 模式匹配
 - 安全原则：**绝对不执行任何删除操作**，只提供建议
 
@@ -36,7 +36,8 @@ C_manager/
 │       ├── commands/          # Tauri commands
 │       │   ├── scan.rs        # scan_drive — MFT 扫描
 │       │   ├── drive.rs       # get_drive_info — 磁盘信息
-│       │   ├── explain.rs     # explain_item — LLM 解释代理
+│       │   ├── explain.rs     # explain_item — LLM 解释（本地/云端）
+│       │   ├── local_llm.rs   # llama.cpp 内嵌推理引擎
 │       │   └── models.rs      # fetch_models, get_env_key
 │       ├── scanner/           # 扫描引擎
 │       │   ├── mft_reader.rs  # NTFS MFT 解析（Windows only）

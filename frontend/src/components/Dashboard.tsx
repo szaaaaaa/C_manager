@@ -1,6 +1,6 @@
 import { motion, useMotionValue, animate } from 'framer-motion';
 import { useEffect, useState } from 'react';
-import { HardDrive, Search, Zap } from 'lucide-react';
+import { HardDrive, Search, Shield, ShieldCheck, Zap } from 'lucide-react';
 import { DriveRing } from './DriveRing';
 import type { DriveInfo, ScanConfig } from '../types';
 
@@ -10,6 +10,8 @@ interface Props {
   scanning: boolean;
   scanConfig: ScanConfig;
   onConfigChange: (c: ScanConfig) => void;
+  isAdmin: boolean;
+  onRequestAdmin: () => void;
 }
 
 function formatBytes(bytes: number): string {
@@ -36,7 +38,7 @@ function CountUpValue({ target, format }: { target: number; format: (n: number) 
   return <span>{display}</span>;
 }
 
-export function Dashboard({ driveInfo, onStartScan, scanning, scanConfig, onConfigChange }: Props) {
+export function Dashboard({ driveInfo, onStartScan, scanning, scanConfig, onConfigChange, isAdmin, onRequestAdmin }: Props) {
   const usedPercent = driveInfo
     ? Math.round((driveInfo.used / driveInfo.total) * 100)
     : 0;
@@ -195,6 +197,69 @@ export function Dashboard({ driveInfo, onStartScan, scanning, scanConfig, onConf
             </div>
           </div>
         </div>
+      </motion.div>
+
+      {/* Admin privilege banner */}
+      <motion.div
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ duration: 0.4, delay: 0.15 }}
+        style={{
+          background: isAdmin
+            ? 'rgba(0,200,100,0.08)'
+            : 'rgba(255,180,60,0.08)',
+          border: isAdmin
+            ? '1px solid rgba(0,200,100,0.2)'
+            : '1px solid rgba(255,180,60,0.2)',
+          borderRadius: 'var(--radius-md)',
+          padding: '14px 20px',
+          display: 'flex',
+          alignItems: 'center',
+          justifyContent: 'space-between',
+          gap: 16,
+        }}
+      >
+        <div style={{ display: 'flex', alignItems: 'center', gap: 12 }}>
+          {isAdmin
+            ? <ShieldCheck size={18} color="rgba(0,220,120,0.9)" />
+            : <Shield size={18} color="rgba(255,180,60,0.9)" />
+          }
+          <div>
+            <div style={{
+              fontSize: 13, fontWeight: 600,
+              color: isAdmin ? 'rgba(0,220,120,0.9)' : 'rgba(255,180,60,0.9)',
+            }}>
+              {isAdmin ? '完整扫描模式' : '标准扫描模式'}
+            </div>
+            <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>
+              {isAdmin
+                ? '管理员权限已获取，可访问所有系统保护目录，扫描结果完整'
+                : '个人文件已完整覆盖。提权后可额外扫描系统保护目录（通常为不可删除的系统文件）'
+              }
+            </div>
+          </div>
+        </div>
+        {!isAdmin && (
+          <motion.button
+            onClick={onRequestAdmin}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            style={{
+              padding: '8px 16px',
+              borderRadius: 8,
+              border: '1px solid rgba(0,212,255,0.4)',
+              background: 'rgba(0,212,255,0.1)',
+              color: 'var(--accent-cyan)',
+              fontSize: 12,
+              fontWeight: 600,
+              cursor: 'pointer',
+              whiteSpace: 'nowrap',
+              flexShrink: 0,
+            }}
+          >
+            以管理员重启
+          </motion.button>
+        )}
       </motion.div>
 
       {/* Scan Config + Start */}

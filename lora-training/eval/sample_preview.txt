@@ -1,0 +1,81 @@
+=== Sample 1 (high) ===
+INPUT:
+文件名：rootfs.vhdx
+完整路径：C:\Users\ziang\AppData\Roaming\Claude\vm_bundles\claudevm.bundle\rootfs.vhdx
+所在目录：Claude\vm_bundles\claudevm.bundle
+大小：9.8 GB
+初步分类：属于某个软件或服务，如果用户不再使用该软件可以考虑删除
+
+OUTPUT:
+这是 Claude Desktop（Anthropic 的 AI 助手）的 Linux 虚拟磁盘，里面装着它运行代码分析等高级功能所需的完整系统环境。
+
+看看再删
+删了的话 Claude Desktop 的代码执行等功能会无法使用，需要重新下载。如果你已经不用 Claude Desktop 了，直接卸载软件即可。重装后会自动重建，但接近 10GB，下载需要时间。
+
+---
+
+=== Sample 5 (medium) ===
+INPUT:
+文件名：055ce947259f47b692b3c10e581fe0d905258c
+完整路径：C:\Users\ziang\AppData\Roaming\Trae\ModularData\ai-agent\snapshot\697f994346cca2876c6edd6f\v2\.git\objects\bc\055ce947259f47b692b3c10e581fe0d905258c
+所在目录：.git\objects\bc
+大小：2.6 GB
+初步分类：属于某个软件或服务，如果用户不再使用该软件可以考虑删除
+
+OUTPUT:
+这是 Trae（字节跳动的 AI 编程助手）的 Agent 快照数据，保存了你用 AI 写代码时的工作状态和中间结果。
+
+看看再删
+删了的话 Trae 的 AI 助手会丢失历史工作记录，但软件本身还能正常使用。如果你已经不用 Trae 了，直接卸载即可。
+VERIFY: 确认 Trae ai-agent snapshot 具体存储的是对话记录还是代码快照
+
+---
+
+=== Sample 6 (high) ===
+INPUT:
+文件名：e1597f6061539e649001cb5005068508472141366b0a76b0cb005e3f.body
+完整路径：C:\Users\ziang\AppData\Local\pip\cache\http-v2\e\1\5\9\7\e1597f6061539e649001cb5005068508472141366b0a76b0cb005e3f.body
+所在目录：5\9\7
+大小：2.6 GB
+初步分类：缓存、临时文件或残留数据，删除不影响任何功能
+
+OUTPUT:
+这是 Python pip 的下载缓存，之前用 pip install 安装 Python 包时下载的安装文件副本。
+
+放心删
+纯缓存，删了不影响已安装的 Python 包，只是下次重装同一个包时需要重新下载。可以用 pip cache purge 命令一键清理。
+
+---
+
+=== Sample 51 (high) ===
+INPUT:
+文件名：swapfile.sys
+完整路径：C:\swapfile.sys
+所在目录：C:
+大小：512 MB
+初步分类：系统核心文件，删除可能导致系统崩溃或无法启动
+
+OUTPUT:
+这是 Windows 的 UWP 应用交换文件，系统把暂时不用的应用商店应用数据临时存到这里，释放内存。
+
+千万别删
+属于 Windows 系统核心文件，由系统自动管理，无法也不应该手动删除。删了系统可能变得不稳定。
+
+---
+
+=== Sample 101 (high) ===
+INPUT:
+文件名：msedge.dll
+完整路径：C:\Program Files (x86)\Microsoft\EdgeWebView\Application\146.0.3856.62\msedge.dll
+所在目录：EdgeWebView\Application\146.0.3856.62
+大小：300 MB
+初步分类：属于某个软件或服务，如果用户不再使用该软件可以考虑删除
+
+OUTPUT:
+这是 Microsoft Edge 浏览器的核心引擎文件，Edge 运行网页时的主要组件。
+
+看看再删
+属于 Edge 浏览器的核心文件，删了 Edge 会无法使用。多个版本并存是 Windows 自动更新导致的，旧版本会被系统自动清理。
+
+---
+

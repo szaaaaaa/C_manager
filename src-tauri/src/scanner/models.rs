@@ -1,7 +1,7 @@
 use serde::Serialize;
 
 /// A single file record extracted from scanning.
-#[derive(Clone, Serialize)]
+#[derive(Clone, Debug, Serialize)]
 pub struct FileRecord {
     pub path: String,
     pub name: String,
