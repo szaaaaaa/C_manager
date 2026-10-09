@@ -1,0 +1,40 @@
+{
+  "description": "Historical pure-SFT recipe used as a diagnostic baseline; budgets and labels differ from RAG-SFT.",
+  "base_repository": "unsloth/Qwen3.5-0.8B",
+  "base_revision": "23c69c53358a07516b5827588b3fdb12ae78fd65",
+  "seed": 42,
+  "precision": "BF16",
+  "lora_r": 16,
+  "lora_alpha": 16,
+  "lora_dropout": 0.05,
+  "max_length": 1024,
+  "batch_size": 2,
+  "gradient_accumulation": 4,
+  "first_stage": {
+    "data_sha256": "331befbf8ffca728309f87ff3dffc7bc954a90320f4035d8d624a2ae7064257a",
+    "valid_samples": 604,
+    "train_samples": 549,
+    "validation_samples": 55,
+    "epochs": 3,
+    "steps": 207,
+    "learning_rate": 0.0002,
+    "warmup_steps": 10,
+    "training_loss": 0.9947,
+    "final_eval_loss": 1.2300950288772583,
+    "runtime_seconds_approx": 2419
+  },
+  "correction_stage": {
+    "data_sha256": "c9af7a193ecdfe7d2be59913b11ef6f08db8fd2a512f03e4f6a94506e251bdc4",
+    "samples": 133,
+    "train_samples": 121,
+    "validation_samples": 12,
+    "epochs": 1,
+    "steps": 16,
+    "learning_rate": 5e-05,
+    "warmup_steps": 2,
+    "training_loss": 0.7835,
+    "final_eval_loss": 0.4142945110797882,
+    "runtime_seconds_approx": 222.8
+  },
+  "limitation": "Metadata reconstructed from run logs; historical input snapshots and weights are local only. Current training_data.jsonl contains later corrections and does not exactly reproduce these historical weights."
+}

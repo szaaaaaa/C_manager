@@ -11,7 +11,7 @@ use std::{mem, ptr};
 
 use rayon::prelude::*;
 
-use windows_sys::Win32::Foundation::{CloseHandle, HANDLE, INVALID_HANDLE_VALUE};
+use windows_sys::Win32::Foundation::{CloseHandle, GetLastError, ERROR_HANDLE_EOF, HANDLE, INVALID_HANDLE_VALUE};
 use windows_sys::Win32::Storage::FileSystem::{
     CreateFileW, FILE_SHARE_DELETE, FILE_SHARE_READ, FILE_SHARE_WRITE, OPEN_EXISTING,
 };
@@ -84,6 +84,7 @@ impl StringArena {
 pub fn scan_usn(
     drive_letter: &str, // e.g. "C:"
     min_size_bytes: u64,
+    max_depth: u32,
     top_n: usize,
     cancel: &AtomicBool,
     on_event: &Option<EventFn>,
@@ -153,7 +154,14 @@ pub fn scan_usn(
             )
         };
 
-        if ok == 0 || bytes_returned <= 8 {
+        if ok == 0 {
+            let error = unsafe { GetLastError() };
+            if error != ERROR_HANDLE_EOF {
+                return Err(format!("USN enumeration failed: {}", std::io::Error::from_raw_os_error(error as i32)));
+            }
+            break;
+        }
+        if bytes_returned <= 8 {
             break;
         }
 
@@ -228,7 +236,7 @@ pub fn scan_usn(
             return Err("Scan cancelled".to_string());
         }
         let path = build_path(*id, &entries, &arena, &mut path_cache);
-        if !path.is_empty() {
+        if !path.is_empty() && path.matches('\\').count().saturating_sub(1) <= max_depth as usize {
             let name = arena.get(entries[id].name_offset, entries[id].name_len).to_owned();
             file_entries.push((name, path));
         }
@@ -317,6 +325,9 @@ pub fn scan_usn(
     }
 
     let mut files = files_collector.into_inner().unwrap();
+    if let Some(ref cb) = on_event {
+        cb(ScanEvent::Progress(total_files, matched_count.load(Ordering::Relaxed)));
+    }
 
     // Partial sort: O(M + N log N) instead of O(M log M)
     if files.len() > top_n {
@@ -361,6 +372,28 @@ fn build_path(
         format!("{}\\{}", parent_path, name)
     };
 
-    cache.insert(file_ref, full_path.clone());
+    // Cache directories only: file paths are visited once and would duplicate the output allocation.
+    if entry.is_dir {
+        cache.insert(file_ref, full_path.clone());
+    }
     full_path
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn reconstructed_files_do_not_duplicate_directory_cache() {
+        let mut arena = StringArena::with_capacity(64);
+        let mut entries = HashMap::new();
+        for (id, parent_ref, name, is_dir) in [(6, 5, "目录", true), (7, 6, "文件.bin", false)] {
+            let (name_offset, name_len) = arena.push(name);
+            entries.insert(id, FileEntry { name_offset, name_len, parent_ref, is_dir });
+        }
+        let mut cache = HashMap::from([(5, "C:".to_string())]);
+        assert_eq!(build_path(7, &entries, &arena, &mut cache), "C:\\目录\\文件.bin");
+        assert!(cache.contains_key(&6));
+        assert!(!cache.contains_key(&7));
+    }
 }

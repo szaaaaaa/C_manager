@@ -1,0 +1,5 @@
+# Keep experiment input and result hashes stable across Windows and Unix checkouts.
+lora-training/data/*.json text eol=lf
+lora-training/data/*.jsonl text eol=lf
+lora-training/experiments/**/*.json text eol=lf
+src-tauri/src/safety/knowledge.json text eol=lf

@@ -68,6 +68,7 @@ export default function App() {
   const [explanation, setExplanation] = useState<ExplainResponse | null>(null);
   const [explainLoading, setExplainLoading] = useState(false);
   const [explainError, setExplainError] = useState<string | null>(null);
+  const explainRequestRef = useRef(0);
   const [initialSettings] = useState(loadSettings);
   const [settings, setSettings] = useState<AppSettings>(initialSettings);
   const [savedSettings, setSavedSettings] = useState<AppSettings>(initialSettings);
@@ -112,6 +113,8 @@ export default function App() {
   const handleStartScan = useCallback(async (config: ScanConfig) => {
     if (scanning) return;
     setScanning(true);
+    explainRequestRef.current += 1;
+    setExplainLoading(false);
     setResults([]);
     fileBatchRef.current = [];
     setSelectedItem(null);
@@ -166,6 +169,8 @@ export default function App() {
   }, []);
 
   const handleItemClick = useCallback(async (item: ScanItem) => {
+    const requestId = ++explainRequestRef.current;
+    setExplainLoading(false);
     if (selectedItem?.path === item.path) {
       setSelectedItem(null);
       setExplanation(null);
@@ -197,15 +202,17 @@ export default function App() {
         isLocal,
         isLocal ? (s.tavilyKey || '') : '',
       );
-      setExplanation(resp);
+      if (requestId === explainRequestRef.current) setExplanation(resp);
     } catch (e: unknown) {
-      setExplainError(e instanceof Error ? e.message : String(e));
+      if (requestId === explainRequestRef.current) setExplainError(e instanceof Error ? e.message : String(e));
     } finally {
-      setExplainLoading(false);
+      if (requestId === explainRequestRef.current) setExplainLoading(false);
     }
   }, [selectedItem, savedSettings]);
 
   const handleCloseExplanation = useCallback(() => {
+    explainRequestRef.current += 1;
+    setExplainLoading(false);
     setSelectedItem(null);
     setExplanation(null);
     setExplainError(null);
@@ -292,8 +299,7 @@ export default function App() {
                   onItemsDeleted={(paths) => {
                     setResults(prev => prev.filter(r => !paths.includes(r.path)));
                     if (selectedItem && paths.includes(selectedItem.path)) {
-                      setSelectedItem(null);
-                      setExplanation(null);
+                      handleCloseExplanation();
                     }
                   }}
                 />
@@ -348,9 +354,6 @@ function AdminDialog({ onClose, onElevate }: { onClose: () => void; onElevate: (
   }, [dragging]);
 
   const onPointerUp = useCallback(() => setDragging(false), []);
-
-  const dragRef = useRef({ x: 0, y: 0 });
-  dragRef.current = dragStart.current;
 
   return (
     <motion.div

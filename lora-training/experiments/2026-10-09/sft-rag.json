@@ -1,0 +1,296 @@
+{
+  "model": "D:\\C_manager\\lora-training\\output\\rag_model",
+  "mode": "rag",
+  "precision": "BF16",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "seed": 42,
+    "use_cache": true
+  },
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.3.0",
+  "cases_sha256": "a516f0f456d18ba589034e23f3a3e47cefb5762f7436387bf22d502d4372603b",
+  "knowledge_sha256": "547f1cb9e11aae21796c4d7fe897b90f52dd8fe5bceec6b726ffc28a4d25cf0d",
+  "records": [
+    {
+      "id": "pip-body",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body",
+      "answer": "这是 Python 的下载缓存，里面存放的是 pip 运行时下载和构建 wheel 文件的副本。清理后，下次运行 python 包时仍需重新下载，别误以为这是已安装的运行库。",
+      "seconds": 9.974,
+      "input_tokens": 250,
+      "output_tokens": 45,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "pip-wheel",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl",
+      "answer": "这是 pip 的缓存文件，里面存放了 Python 包下载和构建时产生的 wheel 文件。清理后，下次需要重新下载或构建这些包，不会卸载已安装的版本。如果要清理，先通过 `pip cache purge` 处理，并确认这些文件确实还在使用。",
+      "seconds": 3.8084,
+      "input_tokens": 252,
+      "output_tokens": 62,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-dll",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+      "answer": "这是 WebView2 的运行时库文件，桌面应用用它来显示网页界面。删除后，可能无法启动或显示相关应用。即使你不用 Edge 浏览器，也可能有其他应用依赖它。先保留，通过 Windows 应用管理处理，别按版本目录直接删。",
+      "seconds": 3.6687,
+      "input_tokens": 287,
+      "output_tokens": 59,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-exe",
+      "path": "D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe",
+      "answer": "这是 EdgeWebView 的运行时文件，桌面应用用它来显示网页。删除后，可能还会有其他应用无法启动或显示界面。即使它不是 Edge 浏览器，也不能直接按版本目录名判断是否还能用。保留运行库，通过 Windows 应用管理处理，别按版本名直接删。",
+      "seconds": 4.0583,
+      "input_tokens": 286,
+      "output_tokens": 65,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-folder",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "answer": "这是 OneNote 在本地缓存笔记内容，可能包含尚未同步的修改。删除后，这些笔记可能丢失，云端也无法恢复。先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理。",
+      "seconds": 3.4406,
+      "input_tokens": 267,
+      "output_tokens": 50,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-file",
+      "path": "C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin",
+      "answer": "这是 OneNote 在本地缓存笔记内容的文件，可能包含尚未同步的修改。删除后，这些笔记可能丢失，云端也无法恢复。先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理。",
+      "seconds": 3.4456,
+      "input_tokens": 278,
+      "output_tokens": 51,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-base",
+      "path": "C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "answer": "这是当前 Python 环境里的 PyTorch 文件，张量计算和机器学习需要它。单独删掉这个库，可能让环境里的 PyTorch 无法运行。先确认项目还依赖它，再用该环境的包管理工具卸载。",
+      "seconds": 3.7419,
+      "input_tokens": 272,
+      "output_tokens": 53,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-env",
+      "path": "D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "answer": "这是当前 Python 环境里安装的 PyTorch 文件，用于张量计算和机器学习。单独删掉它，这个环境里的 PyTorch 可能就无法运行了。先确认项目还依赖它，再用该环境的包管理工具卸载，别直接删。",
+      "seconds": 3.8545,
+      "input_tokens": 270,
+      "output_tokens": 57,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-weights",
+      "path": "C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+      "answer": "这是 Hugging Face 下载的模型或数据集的本地缓存文件。删除后，可能还需要重新下载，离线时也可能无法运行。先确认项目当前的下载状态，再通过 Hugging Face 的缓存管理工具清理。",
+      "seconds": 3.1959,
+      "input_tokens": 281,
+      "output_tokens": 47,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-blob",
+      "path": "D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67",
+      "answer": "这是 Hugging Face 下载的模型或数据集的本地缓存。删除后，可能还需要重新下载，离线时也可能无法运行。先确认项目当前的下载状态，再通过 Hugging Face 的缓存管理工具清理。",
+      "seconds": 3.1954,
+      "input_tokens": 271,
+      "output_tokens": 46,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-folder",
+      "path": "C:\\Users\\Eval\\Projects\\demo\\node_modules",
+      "answer": "这是 Node.js 项目的依赖目录，运行或构建项目时可能会用到。直接删除会破坏项目，需要依照项目的依赖声明和锁文件重新安装。先确认项目状态，再用项目对应的包管理工具处理。",
+      "seconds": 3.189,
+      "input_tokens": 253,
+      "output_tokens": 47,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-file",
+      "path": "D:\\Projects\\demo\\node_modules\\example-package\\main.js",
+      "answer": "这是 Node.js 项目的依赖目录，删除后项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装。先确认项目是否还在运行，并保留需要修改的修改内容，再用项目对应的包管理工具处理。",
+      "seconds": 3.5046,
+      "input_tokens": 255,
+      "output_tokens": 52,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。先关闭相关应用，并优先通过 Windows 的临时文件清理功能处理。",
+      "seconds": 2.6014,
+      "input_tokens": 259,
+      "output_tokens": 38,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "使用",
+          "占用",
+          "任务"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp-uppercase",
+      "path": "C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG",
+      "answer": "这是当前用户的临时目录，可能包含正在使用的文件。先关闭相关应用和任务，优先通过 Windows 的临时文件清理功能处理，并跳过占用项。",
+      "seconds": 2.4366,
+      "input_tokens": 260,
+      "output_tokens": 36,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp",
+      "path": "C:\\Windows\\Temp\\staging.tmp",
+      "answer": "这是 Windows 临时目录中的文件，系统服务或安装任务可能还在使用它。先通过系统清理功能处理，等任务结束后再清理。",
+      "seconds": 2.2078,
+      "input_tokens": 242,
+      "output_tokens": 32,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp-file",
+      "path": "C:/Windows/Temp/update-progress.bin",
+      "answer": "这是 Windows 临时目录中的文件，系统服务或安装任务可能还在使用它。先通过系统清理功能处理，等任务结束后再清理。",
+      "seconds": 2.1777,
+      "input_tokens": 241,
+      "output_tokens": 32,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-archive",
+      "path": "C:\\Users\\Eval\\Documents\\archive.bin",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。",
+      "seconds": 2.5162,
+      "input_tokens": 234,
+      "output_tokens": 38,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-microsoft",
+      "path": "C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。",
+      "seconds": 2.512,
+      "input_tokens": 240,
+      "output_tokens": 38,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-cache",
+      "path": "C:\\Users\\Eval\\Documents\\cache\\journal.db",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。",
+      "seconds": 2.4609,
+      "input_tokens": 236,
+      "output_tokens": 38,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-download",
+      "path": "C:\\Users\\Eval\\Downloads\\family-backup.zip",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。",
+      "seconds": 2.5414,
+      "input_tokens": 238,
+      "output_tokens": 38,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "cache-prefix-nearmiss",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。",
+      "seconds": 2.5142,
+      "input_tokens": 243,
+      "output_tokens": 38,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-onnx",
+      "path": "D:\\Research\\Shared\\network.onnx",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。",
+      "seconds": 2.6181,
+      "input_tokens": 234,
+      "output_tokens": 38,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-with-distractor",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll",
+      "answer": "这是 EdgeWebView 的运行时文件，桌面应用用它来显示网页界面。删除后，可能还会有其他应用需要它，所以不能直接按版本目录删。先保留，通过 Windows 应用管理处理，别按文件名猜版本。",
+      "seconds": 3.2295,
+      "input_tokens": 349,
+      "output_tokens": 51,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-missing-evidence",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。",
+      "seconds": 2.516,
+      "input_tokens": 251,
+      "output_tokens": 38,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    }
+  ]
+}

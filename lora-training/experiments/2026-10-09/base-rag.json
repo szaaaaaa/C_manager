@@ -1,0 +1,335 @@
+{
+  "model": "D:\\C_manager\\lora-training\\output\\base_model",
+  "mode": "rag",
+  "precision": "BF16",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "seed": 42,
+    "use_cache": true
+  },
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.3.0",
+  "cases_sha256": "a516f0f456d18ba589034e23f3a3e47cefb5762f7436387bf22d502d4372603b",
+  "knowledge_sha256": "547f1cb9e11aae21796c4d7fe897b90f52dd8fe5bceec6b726ffc28a4d25cf0d",
+  "records": [
+    {
+      "id": "pip-body",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body",
+      "answer": "这个文件是 Python 包 pip 的下载缓存，建议先确认是否已安装该包，再决定是否删除。",
+      "seconds": 8.7779,
+      "input_tokens": 250,
+      "output_tokens": 28,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "pip-wheel",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl",
+      "answer": "这个文件是 Python 包 pip 的缓存，包含下载和构建的 wheel 文件。建议先确认是否已安装该包，未安装时删除不影响运行，但下次需重新下载。",
+      "seconds": 3.0049,
+      "input_tokens": 252,
+      "output_tokens": 45,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-dll",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+      "answer": "这个文件是 EdgeWebView 的运行时库，用于为桌面应用提供嵌入网页的运行环境，独立于主浏览器。建议保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。",
+      "seconds": 3.404,
+      "input_tokens": 287,
+      "output_tokens": 52,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-exe",
+      "path": "D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe",
+      "answer": "这个文件是 EdgeWebView2 Runtime，用于为桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。建议保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。",
+      "seconds": 3.2801,
+      "input_tokens": 286,
+      "output_tokens": 51,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-folder",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "answer": "这个文件夹存放的是 OneNote 16.0 的本地缓存，主要用于存储未同步的笔记修改。建议先确认所有笔记是否已同步并备份，再决定删除。",
+      "seconds": 2.7578,
+      "input_tokens": 267,
+      "output_tokens": 42,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "丢失",
+          "丢",
+          "损失"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-file",
+      "path": "C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin",
+      "answer": "这个文件是 OneNote 16.0 的本地缓存，存放着未同步的笔记内容，建议先确认备份再删除。",
+      "seconds": 2.2221,
+      "input_tokens": 278,
+      "output_tokens": 33,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "丢失",
+          "丢"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-base",
+      "path": "C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "answer": "这个文件是 PyTorch 库的一部分，用于张量计算和机器学习，建议先确认环境依赖后再处理。",
+      "seconds": 1.9571,
+      "input_tokens": 272,
+      "output_tokens": 28,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "卸载",
+          "包管理"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-env",
+      "path": "D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "answer": "这个文件是 PyTorch 库的一部分，用于张量计算和机器学习，建议先确认环境依赖后再处理。",
+      "seconds": 1.9895,
+      "input_tokens": 270,
+      "output_tokens": 28,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "卸载",
+          "包管理"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-weights",
+      "path": "C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+      "answer": "这个文件是 Hugging Face Hub 下载的模型缓存，200MB 大小，建议先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。",
+      "seconds": 2.9828,
+      "input_tokens": 281,
+      "output_tokens": 45,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "离线"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-blob",
+      "path": "D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67",
+      "answer": "这个文件是 Hugging Face Hub 下载的模型缓存，200MB 大小，建议先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。",
+      "seconds": 2.9159,
+      "input_tokens": 271,
+      "output_tokens": 45,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-folder",
+      "path": "C:\\Users\\Eval\\Projects\\demo\\node_modules",
+      "answer": "这个文件夹存放的是 Node.js 项目的依赖包目录，删除会影响项目运行和构建，建议先确认备份再处理。",
+      "seconds": 2.0576,
+      "input_tokens": 253,
+      "output_tokens": 29,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "安装"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-file",
+      "path": "D:\\Projects\\demo\\node_modules\\example-package\\main.js",
+      "answer": "这个文件是 Node.js 项目依赖目录，删除可能导致项目无法运行或构建，建议先确认项目是否已停止运行并备份依赖文件。",
+      "seconds": 2.3099,
+      "input_tokens": 255,
+      "output_tokens": 34,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "安装"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin",
+      "answer": "这个文件是 Windows 临时目录下的安装进度缓存，大小 200MB 且路径指向 AppData 下的临时文件夹，说明它可能包含正在运行的安装程序残留。建议先关闭相关应用，优先使用 Windows 设置中的临时文件清理功能，避免误删正在使用的文件。",
+      "seconds": 3.9867,
+      "input_tokens": 259,
+      "output_tokens": 66,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp-uppercase",
+      "path": "C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG",
+      "answer": "这个文件是 Windows 临时目录下的日志文件，大小 200MB 且路径指向 APPDATA 下的临时文件夹，大概率是某个应用或安装程序正在运行的临时文件。建议先关闭相关应用，优先使用 Windows 设置中的临时文件清理功能，避免误删正在使用的文件。",
+      "seconds": 4.0088,
+      "input_tokens": 260,
+      "output_tokens": 67,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp",
+      "path": "C:\\Windows\\Temp\\staging.tmp",
+      "answer": "这个文件是 Windows 临时目录下的缓存文件，暂时无需删除，建议先检查是否正在使用或等待安装任务完成后再清理。",
+      "seconds": 2.3243,
+      "input_tokens": 242,
+      "output_tokens": 33,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp-file",
+      "path": "C:/Windows/Temp/update-progress.bin",
+      "answer": "这个文件是 Windows 临时目录下的缓存文件，建议优先使用 Windows 存储清理功能，等待安装任务结束后再处理。",
+      "seconds": 2.2007,
+      "input_tokens": 241,
+      "output_tokens": 30,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-archive",
+      "path": "C:\\Users\\Eval\\Documents\\archive.bin",
+      "answer": "这个文件是 200MB 的 `.bin` 格式文件，目前无法确定具体用途，建议先备份重要数据后再处理。",
+      "seconds": 2.4402,
+      "input_tokens": 234,
+      "output_tokens": 34,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-microsoft",
+      "path": "C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat",
+      "answer": "这个文件是 Microsoft 未公开产品目录下的 Payload 数据，目前无法确定具体用途，建议先备份重要数据再处理。",
+      "seconds": 2.3589,
+      "input_tokens": 240,
+      "output_tokens": 31,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-cache",
+      "path": "C:\\Users\\Eval\\Documents\\cache\\journal.db",
+      "answer": "这个文件是 200MB 的数据库，但仅凭文件名和大小无法确定具体用途，建议先备份确认后再删除。",
+      "seconds": 2.4519,
+      "input_tokens": 236,
+      "output_tokens": 33,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-download",
+      "path": "C:\\Users\\Eval\\Downloads\\family-backup.zip",
+      "answer": "这个文件是 200MB 的备份压缩包，但根据现有资料无法确定具体用途，建议先确认是否已备份，再决定是否删除。",
+      "seconds": 2.7335,
+      "input_tokens": 238,
+      "output_tokens": 36,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "cache-prefix-nearmiss",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body",
+      "answer": "这个文件是 Python 缓存备份，可能包含个人数据，建议先备份再删除。",
+      "seconds": 1.7256,
+      "input_tokens": 243,
+      "output_tokens": 22,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "无法",
+          "不确定",
+          "不能确定",
+          "难以",
+          "不清楚"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-onnx",
+      "path": "D:\\Research\\Shared\\network.onnx",
+      "answer": "这个文件是网络模型文件，通常用于深度学习训练或推理，但仅凭文件名无法确定具体用途，建议先备份数据再处理。",
+      "seconds": 2.3021,
+      "input_tokens": 234,
+      "output_tokens": 33,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-with-distractor",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll",
+      "answer": "这个文件是 EdgeWebView 的运行时库，用于支持 WebView2 嵌入网页，建议保留以防应用无法启动。",
+      "seconds": 2.0794,
+      "input_tokens": 349,
+      "output_tokens": 28,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-missing-evidence",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin",
+      "answer": "这个文件是 OneNote 16.0 缓存目录下的临时文件，无法确定具体用途，建议先备份数据再删除。",
+      "seconds": 2.2825,
+      "input_tokens": 251,
+      "output_tokens": 32,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    }
+  ]
+}

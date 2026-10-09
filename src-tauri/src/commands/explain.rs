@@ -1,5 +1,5 @@
 use serde::{Deserialize, Serialize};
-use crate::safety::rate_safety;
+use crate::safety::{file_context, lookup_knowledge, rate_safety};
 
 use super::local_llm::LocalLlmState;
 
@@ -69,17 +69,17 @@ pub struct ExplainResponse {
 
 use super::{format_size, validate_base_url};
 
-fn build_prompt(path: &str, size_human: &str, is_dir: bool, safety: &str, search_context: Option<&str>) -> String {
+pub(super) fn build_prompt(path: &str, size_human: &str, is_dir: bool, safety: &str, search_context: Option<&str>) -> Vec<serde_json::Value> {
     let kind = if is_dir { "文件夹" } else { "文件" };
-    let name = path.rsplit('\\').next().unwrap_or(path);
+    let name = path.rsplit(['\\', '/']).next().unwrap_or(path);
     let (safety_verdict, safety_desc) = match safety {
         "red" => ("千万别删", "系统核心文件，删除可能导致系统崩溃或无法启动"),
-        "yellow" => ("看看再删", "属于某个软件或服务，如果用户不再使用该软件可以考虑删除"),
-        "green" => ("放心删", "缓存、临时文件或残留数据，删除不影响任何功能"),
+        "yellow" => ("看看再删", "用途或删除影响需要确认，可能包含软件或个人数据"),
+        "green" => ("可清理", "疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留"),
         _ => ("看看再删", "无法确定安全性"),
     };
 
-    let parts: Vec<&str> = path.split('\\').collect();
+    let parts: Vec<&str> = path.split(['\\', '/']).collect();
     let parent_chain = if parts.len() > 3 {
         parts[parts.len().saturating_sub(4)..parts.len().saturating_sub(1)].join("\\")
     } else {
@@ -91,79 +91,26 @@ fn build_prompt(path: &str, size_human: &str, is_dir: bool, safety: &str, search
         None => String::new(),
     };
 
-    format!(
-        "你是一个帮普通用户看懂电脑文件的助手。用户发现C盘里有个占空间的{kind}，看不懂是什么，需要你用大白话解释。\n\n\
-         请用自然的中文写一段话（不要用【】标签），按这个顺序说清楚：\n\
-         1. 第一句：这是「XX软件」的什么数据（必须从路径推断出具体软件名，如 .claude→Claude Desktop，Trae→Trae AI编程助手，torch→PyTorch）\n\
-         2. 第二句：用大白话说这个数据具体干什么用的，别说\"缓存\"\"配置\"这种笼统词，要说清对用户意味着什么\n\
-         3. 空一行，单独写判定：{verdict}\n\
-         4. 接着自然地说：删了会怎样（具体影响哪个功能），如果不用这个软件了怎么处理，删了之后能不能恢复\n\n\
-         语气要求：像一个懂电脑的朋友在跟你解释，简洁但不冷冰冰。总共不超过100字。\n\n\
-         {kind}名：{name}\n完整路径：{path}\n所在目录：{parent}\n大小：{size}\n初步分类：{safety_desc}{search}",
-        kind = kind,
-        verdict = safety_verdict,
-        name = name,
-        path = path,
-        parent = parent_chain,
-        size = size_human,
-        safety_desc = safety_desc,
-        search = search_section,
-    )
+    let instruction = format!(
+        "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个{kind}的用途、删除影响和处理建议。\n\
+         像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n\
+         优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n\
+         规则判定是{verdict}。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+        kind = kind, verdict = safety_verdict,
+    );
+    let input = format!(
+        "{kind}名：{name}\n完整路径：{path}\n所在目录：{parent}\n大小：{size}\n初步分类：{safety_desc}\n\n用途资料：\n{facts}{search}",
+        kind = kind, name = name, path = path, parent = parent_chain,
+        size = size_human, safety_desc = safety_desc, facts = file_context(path), search = search_section,
+    );
+    vec![
+        serde_json::json!({"role": "system", "content": instruction}),
+        serde_json::json!({"role": "user", "content": input}),
+    ]
 }
 
-/// Check if a file path contains recognizable software/directory keywords
-/// that the local model was trained on. If not, the model likely needs
-/// web search context to avoid hallucination.
 fn path_is_known(path: &str) -> bool {
-    let lower = path.to_lowercase();
-
-    // Well-known software and directory patterns covered by training data
-    const KNOWN_PATTERNS: &[&str] = &[
-        // OS & System
-        "windows", "system32", "syswow64", "winsxs", "boot", "efi",
-        "pagefile", "hiberfil", "swapfile", "ntoskrnl",
-        // Dev tools
-        ".cargo", ".rustup", "python", "node_modules", "npm", ".venv",
-        "anaconda", "miniforge", "conda", "pip", ".git", "docker",
-        "java", "jdk", "gradle", "maven", ".m2", "go-build",
-        // AI/ML
-        "huggingface", "torch", "pytorch", "tensorflow", "ollama",
-        "llama", "gguf", "safetensors", "onnx", "cuda", "cudnn",
-        "nvidia", "model", "lora", "stable-diffusion", "gpt4all",
-        // Browsers
-        "chrome", "edge", "firefox", "brave", "opera", "vivaldi",
-        "qqbrowser", "360chrome",
-        // Apps - Communication
-        "wechat", "weixin", "qq", "tencent", "dingtalk", "feishu",
-        "telegram", "discord", "slack", "teams", "wemeet", "zoom",
-        // Apps - Productivity
-        "microsoft", "office", "onedrive", "onenote", "outlook",
-        "wps", "adobe", "photoshop", "premiere", "autocad", "autodesk",
-        "notion", "obsidian", "evernote", "typora", "logseq", "xmind",
-        // Apps - Media
-        "spotify", "steam", "epic", "blender", "obs-studio", "vlc",
-        "potplayer", "audacity", "davinci", "handbrake",
-        // Apps - Chinese software
-        "baidu", "sogou", "youdao", "kuaishou", "douyin", "iqiyi",
-        "quark", "thunder", "sunlogin", "todesk", "kingsoft", "2345",
-        "lenovo", "asus", "dell",
-        // Apps - Dev/IDE
-        ".vscode", "cursor", "trae", "windsurf", "jetbrains",
-        "intellij", "pycharm", "visual studio", "codex",
-        // Cloud & VM
-        "wsl", "lxss", "hyper-v", "virtualbox", "vmware",
-        ".vhdx", "ubuntu",
-        // Games
-        "steamapps", "epic games", "riot", "valorant", "fortnite",
-        "genshin", "cyberpunk", "battlefield", "counter-strike",
-        // System paths
-        "appdata", "program files", "programdata", "temp", "cache",
-        "downloads", "$recycle.bin", "prefetch", "driverstore",
-        // Claude
-        ".claude", "claude",
-    ];
-
-    KNOWN_PATTERNS.iter().any(|pat| lower.contains(pat))
+    lookup_knowledge(path).is_some()
 }
 
 /// Call OpenAI-compatible API (/chat/completions) for cloud providers
@@ -247,8 +194,7 @@ pub async fn explain_item(
             None
         };
 
-        let prompt = build_prompt(&path, &size_human, is_dir, &safety, search_context.as_deref());
-        let messages = vec![serde_json::json!({"role": "user", "content": prompt})];
+        let messages = build_prompt(&path, &size_human, is_dir, &safety, search_context.as_deref());
 
         let inner = state.inner.clone();
         tokio::task::spawn_blocking(move || {
@@ -257,8 +203,7 @@ pub async fn explain_item(
         .await
         .map_err(|e| format!("推理任务失败: {}", e))??
     } else {
-        let prompt = build_prompt(&path, &size_human, is_dir, &safety, None);
-        let messages = vec![serde_json::json!({"role": "user", "content": prompt})];
+        let messages = build_prompt(&path, &size_human, is_dir, &safety, None);
         let key = resolve_key(&api_key)?;
         validate_base_url(&base_url)?;
         call_cloud_llm(messages, &key, &base_url, &model).await?
@@ -296,7 +241,6 @@ pub async fn chat_about_file(
     let safety = rate_safety(&path).to_string();
     let size_human = format_size(size_bytes);
 
-    let kind = if is_dir { "文件夹" } else { "文件" };
     let name = path.rsplit('\\').next().unwrap_or(&path);
 
     // For chat, search if user is asking about something the model might not know
@@ -312,17 +256,12 @@ pub async fn chat_about_file(
         String::new()
     };
 
-    let system_msg = format!(
-        "你是Windows文件助手，正在帮用户分析一个{}。\n\
-         文件名：{}\n路径：{}\n大小：{}\n安全分类：{}{}\n\n\
-         用简洁的中文回答用户的追问，不超过3句话。",
-        kind, name, path, size_human, safety, search_section
-    );
-
-    let mut messages: Vec<serde_json::Value> = vec![
-        serde_json::json!({"role": "system", "content": system_msg}),
-    ];
+    let mut messages = build_prompt(&path, &size_human, is_dir, &safety,
+        if search_section.is_empty() { None } else { Some(&search_section) });
     for msg in &history {
+        if !matches!(msg.role.as_str(), "user" | "assistant") {
+            return Err("对话历史只支持 user 和 assistant 角色".to_string());
+        }
         messages.push(serde_json::json!({"role": msg.role, "content": msg.content}));
     }
     messages.push(serde_json::json!({"role": "user", "content": user_message}));
@@ -339,5 +278,29 @@ pub async fn chat_about_file(
         let key = resolve_key(&api_key)?;
         validate_base_url(&base_url)?;
         call_cloud_llm(messages, &key, &base_url, &model).await
+    }
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn generic_directories_do_not_skip_context_search() {
+        assert!(!path_is_known("C:\\Users\\User\\AppData\\Local\\UnknownApp\\data.db"));
+        assert!(!path_is_known("C:\\Program Files\\UnknownApp\\model.bin"));
+        assert!(!path_is_known("C:\\Users\\User\\Documents\\cache.db"));
+        assert!(!path_is_known("C:\\Program Files\\Microsoft\\UnknownApp\\data.bin"));
+        assert!(path_is_known("C:\\Users\\User\\AppData\\Local\\pip\\cache\\download.body"));
+    }
+
+    #[test]
+    fn explanations_and_chat_receive_verified_context() {
+        let messages = build_prompt("C:/Users/User/AppData/Local/Microsoft/OneNote/16.0/cache",
+            "200 MB", true, "yellow", None);
+        assert!(messages[1]["content"].as_str().unwrap().contains("尚未同步"));
+        assert!(messages[1]["content"].as_str().unwrap().contains("Microsoft\\OneNote\\16.0"));
+        let unknown = build_prompt("C:\\Users\\User\\Documents\\archive.bin", "200 MB", false, "yellow", None);
+        assert!(unknown[1]["content"].as_str().unwrap().contains("没有匹配到"));
     }
 }

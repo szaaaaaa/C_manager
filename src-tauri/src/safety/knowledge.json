@@ -1,0 +1,61 @@
+{
+  "unknown": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+  "entries": [
+    {
+      "id": "webview2", "patterns": ["\\microsoft\\edgewebview\\application\\"], "safety": "yellow",
+      "facts": "用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。",
+      "answer": "这是 WebView2 的运行库，桌面软件用它来显示网页界面。即使你不用 Edge 浏览器，也可能有其他应用依赖它；直接删掉会影响这些应用。建议保留，通过系统应用管理处理，别按版本号猜哪些文件可以删。",
+      "examples": ["C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.1000.1\\msedge.dll", "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.1000.1\\msedgewebview2.exe"],
+      "source": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution"
+    },
+    {
+      "id": "onenote-cache", "patterns": ["\\microsoft\\onenote\\", "\\cache\\"], "safety": "yellow",
+      "facts": "用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。",
+      "answer": "先确认笔记已经同步并做好备份。这个 OneNote 缓存可能留着还没上传的笔记修改，直接删除会丢失这些内容，云端也未必有副本。要腾空间，先在 OneNote 中检查同步状态，再管理不再需要的笔记本。",
+      "examples": ["C:\\Users\\Example\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache", "C:\\Users\\Example\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin"],
+      "source": "https://support.microsoft.com/en-us/onenote/onenote-help-and-learning/fix-issues-when-you-can-t-sync-onenote"
+    },
+    {
+      "id": "pip-cache", "patterns": ["\\pip\\cache\\"], "safety": "green",
+      "facts": "用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。",
+      "answer": "这是 pip 下载或构建 Python 包时留下的缓存副本，和已经装好的包是分开的。清理后，现有 Python 包还能使用，只是下次安装可能需要重新下载或构建。可以用 pip cache purge 清理。",
+      "examples": ["C:\\Users\\Example\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body", "C:\\Users\\Example\\AppData\\Local\\pip\\cache\\wheels\\package.whl"],
+      "source": "https://pip.pypa.io/en/stable/topics/caching/"
+    },
+    {
+      "id": "pytorch-package", "patterns": ["\\site-packages\\torch\\"], "safety": "yellow",
+      "facts": "用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。",
+      "answer": "这是当前 Python 环境里的 PyTorch 文件，机器学习和张量计算代码可能会用到它。单独删掉库文件，可能让这个环境中的 PyTorch 无法运行。先确认项目还用不用，再通过这个环境的包管理工具卸载。",
+      "examples": ["C:\\Users\\Example\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll", "C:\\Users\\Example\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll"],
+      "source": "https://docs.pytorch.org/docs/stable/"
+    },
+    {
+      "id": "huggingface-cache", "patterns": ["\\.cache\\huggingface\\hub\\"], "safety": "yellow",
+      "facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。",
+      "answer": "这是 Hugging Face 下载资源的本地缓存，项目可能正从这里读取模型或数据。删掉后通常需要重新下载，离线运行也可能受影响。先确认哪些版本还在用，再通过 Hugging Face 的缓存管理工具清理。",
+      "examples": ["C:\\Users\\Example\\.cache\\huggingface\\hub\\models--Example--Model\\snapshots\\abc\\model.safetensors", "C:\\Users\\Example\\.cache\\huggingface\\hub\\models--Example--Model\\blobs\\123abc"],
+      "source": "https://huggingface.co/docs/huggingface_hub/guides/manage-cache"
+    },
+    {
+      "id": "node-dependencies", "patterns": ["\\node_modules\\"], "safety": "yellow",
+      "facts": "用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。",
+      "answer": "这是 Node.js 项目的依赖文件，运行或构建项目时可能会用到。删除后需要按项目的依赖声明和锁文件重新安装，目录里手工改过的内容则未必能恢复。先确认项目状态并保留这些文件，再用项目的包管理工具处理。",
+      "examples": ["C:\\Users\\Example\\Projects\\sample\\node_modules\\package\\index.js", "C:\\Users\\Example\\Projects\\sample\\node_modules"],
+      "source": "https://docs.npmjs.com/cli/v11/commands/npm-install"
+    },
+    {
+      "id": "user-temp", "patterns": ["\\appdata\\local\\temp\\"], "safety": "green",
+      "facts": "用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。",
+      "answer": "它位于当前用户的临时目录，不过路径本身不能说明这个文件里是什么。应用或安装程序可能还在使用它，贸然清理会让当前任务失败。先关闭相关任务，再用 Windows 的临时文件清理功能处理，并跳过仍被占用的文件。",
+      "examples": ["C:\\Users\\Example\\AppData\\Local\\Temp\\session.tmp", "C:\\Users\\Example\\AppData\\Local\\Temp\\setup.bin"],
+      "source": "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    },
+    {
+      "id": "windows-temp", "patterns": ["\\windows\\temp\\"], "safety": "green",
+      "facts": "用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。",
+      "answer": "这是 Windows 临时目录中的文件，系统服务或安装任务可能还在使用它。先等相关任务结束，优先通过 Windows 的存储清理功能处理。被占用的文件应跳过，别强行删除。",
+      "examples": ["C:\\Windows\\Temp\\install.tmp", "C:\\Windows\\Temp\\task.log"],
+      "source": "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    }
+  ]
+}

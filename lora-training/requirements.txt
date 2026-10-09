@@ -1,6 +1,7 @@
-unsloth[cu124-torch250]
+unsloth>=2026.3.10
 datasets
-trl
+trl>=0.24.0
+transformers>=5.3.0
 peft
 accelerate
 bitsandbytes

@@ -1,0 +1,43 @@
+{
+  "runtime": "CPU llama.cpp via llama-cpp-2 0.1.139",
+  "ctx_size": 2048,
+  "sampling": {
+    "temperature": 0.3,
+    "top_p": 0.9,
+    "seed": 0,
+    "max_tokens": 512
+  },
+  "model": {
+    "filename": "qwen3.5-0.8b-q4_k_m.gguf",
+    "bytes": 529296992,
+    "sha256": "22c071142089bf12d69fd3a06f84d80a5db96199dc768a745fb87d8b0ac571c8"
+  },
+  "test_seconds": 16.84,
+  "records": [
+    {
+      "path": "C:\\Users\\User\\AppData\\Local\\pip\\cache\\http-v2\\example.body",
+      "answer": "这是 Python 包的下载缓存，清理后下次下载会重复。先确认这些文件是否还在运行，再运行 `pip cache purge` 清理。"
+    },
+    {
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+      "answer": "这是 WebView2 的运行时库文件，桌面应用用它来显示网页。即使你不用 Edge 浏览器，这个文件也可能在其他应用里运行，直接删掉会出问题。先保留，通过 Windows 应用管理处理。"
+    },
+    {
+      "path": "C:\\Users\\User\\Documents\\archive.bin",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。"
+    },
+    {
+      "path": "C:\\Users\\User\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "answer": "这是 OneNote 的本地缓存，里面可能还保留着尚未同步的笔记修改。直接删除会丢失这些内容，云端也无法恢复。先确认这些笔记是否已同步，并备份它们，再在 OneNote 里处理。"
+    },
+    {
+      "path": "C:\\Users\\User\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "answer": "这是当前 Python 环境里的 PyTorch 文件，张量计算和机器学习代码里用它。单独删掉这个 DLL 可能让项目里的其他代码也找不到，而且它可能还依赖其他软件。先确认项目里还有哪些东西，再用这个环境的包管理工具卸载，别直接删。"
+    },
+    {
+      "path": "C:\\Users\\User\\AppData\\Local\\pip\\cache-backup\\saved.body",
+      "answer": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。"
+    }
+  ],
+  "limitation": "Six smoke cases and UTF-8 roundtrip; not an installer/GUI or universal accuracy test."
+}

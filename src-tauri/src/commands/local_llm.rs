@@ -7,7 +7,6 @@ use llama_cpp_2::llama_backend::LlamaBackend;
 use llama_cpp_2::llama_batch::LlamaBatch;
 use llama_cpp_2::model::params::LlamaModelParams;
 use llama_cpp_2::model::{AddBos, LlamaModel};
-use llama_cpp_2::model::Special;
 use llama_cpp_2::sampling::LlamaSampler;
 use serde::Serialize;
 use tauri::Manager;
@@ -45,29 +44,22 @@ pub struct LocalModelInfo {
 }
 
 /// Find model GGUF file. Checks:
-/// 1. src-tauri/resources/ (dev mode)
-/// 2. Tauri resource dir (production)
-/// 3. lora-training/output/ (freshly trained)
+/// Fresh training output in dev mode, then the bundled resource.
 fn find_model_path(app: &tauri::AppHandle) -> Result<PathBuf, String> {
     let mut candidates: Vec<PathBuf> = Vec::new();
-
+    #[cfg(debug_assertions)]
+    {
+        let project = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
+        candidates.push(project.join("..").join("lora-training").join("output")
+            .join("finetuned_model_gguf").join(MODEL_FILENAME));
+        candidates.push(project.join("resources").join(MODEL_FILENAME));
+    }
     // Production: Tauri bundled resource
     if let Ok(dir) = app.path().resource_dir() {
         candidates.push(dir.join("resources").join(MODEL_FILENAME));
     }
-    // Dev mode: project resources dir
-    candidates.push(PathBuf::from("resources").join(MODEL_FILENAME));
-    // Freshly trained model output
-    candidates.push(
-        PathBuf::from("..")
-            .join("lora-training")
-            .join("output")
-            .join("finetuned_model_gguf")
-            .join(MODEL_FILENAME),
-    );
-
     for candidate in &candidates {
-        if candidate.exists() {
+        if candidate.is_file() {
             return Ok(candidate.clone());
         }
     }
@@ -144,7 +136,7 @@ fn format_chatml(messages: &[serde_json::Value]) -> String {
         prompt.push_str(&format!("<|im_start|>{}\n{}<|im_end|>\n", role, content));
     }
     // Prompt the model to generate assistant response
-    prompt.push_str("<|im_start|>assistant\n");
+    prompt.push_str("<|im_start|>assistant\n<think>\n\n</think>\n\n");
     prompt
 }
 
@@ -157,7 +149,8 @@ pub fn infer_blocking(inner: &Arc<Mutex<Option<LoadedModel>>>, messages: &[serde
     let prompt = format_chatml(messages);
 
     let ctx_params = LlamaContextParams::default()
-        .with_n_ctx(NonZeroU32::new(CTX_SIZE));
+        .with_n_ctx(NonZeroU32::new(CTX_SIZE))
+        .with_n_batch(CTX_SIZE);
 
     let mut ctx = loaded
         .model
@@ -167,7 +160,7 @@ pub fn infer_blocking(inner: &Arc<Mutex<Option<LoadedModel>>>, messages: &[serde
     // Tokenize prompt
     let tokens = loaded
         .model
-        .str_to_token(&prompt, AddBos::Always)
+        .str_to_token(&prompt, AddBos::Never)
         .map_err(|e| format!("分词失败: {}", e))?;
 
     if tokens.len() >= CTX_SIZE as usize {
@@ -192,30 +185,27 @@ pub fn infer_blocking(inner: &Arc<Mutex<Option<LoadedModel>>>, messages: &[serde
         LlamaSampler::dist(0),
     ]);
 
-    let eos = loaded.model.token_eos();
-    let mut output = String::new();
+    let mut output = Vec::new();
     let mut n_decoded = tokens.len();
 
-    for _ in 0..MAX_RESPONSE_TOKENS {
+    for _ in 0..MAX_RESPONSE_TOKENS.min(CTX_SIZE as usize - tokens.len()) {
         let token = sampler.sample(&ctx, -1);
         sampler.accept(token);
 
-        if token == eos {
+        if loaded.model.is_eog_token(token) {
             break;
         }
 
-        // Check for <|im_end|> token
+        // Tokens may contain only part of a UTF-8 character; decode after collecting the bytes.
         let piece = loaded
             .model
-            .token_to_str(token, Special::Tokenize)
+            .token_to_piece_bytes(token, 1024, false, None)
             .map_err(|e| format!("token 解码失败: {}", e))?;
-
-        if piece.contains("<|im_end|>") {
+        output.extend_from_slice(&piece);
+        n_decoded += 1;
+        if n_decoded >= CTX_SIZE as usize {
             break;
         }
-
-        output.push_str(&piece);
-        n_decoded += 1;
 
         // Prepare next decode step
         batch.clear();
@@ -227,6 +217,7 @@ pub fn infer_blocking(inner: &Arc<Mutex<Option<LoadedModel>>>, messages: &[serde
     }
 
     // Strip Qwen3.5's <think>...</think> blocks
+    let output = String::from_utf8_lossy(&output);
     let mut result = output.trim().to_string();
     while let Some(start) = result.find("<think>") {
         if let Some(end) = result.find("</think>") {
@@ -255,4 +246,47 @@ pub fn infer_blocking(inner: &Arc<Mutex<Option<LoadedModel>>>, messages: &[serde
     }
 
     Ok(result)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    #[ignore = "requires the local GGUF model"]
+    fn local_model_chinese_and_explanation_smoke() {
+        let backend = LlamaBackend::init().unwrap();
+        let path = std::env::var_os("C_MANAGER_TEST_MODEL").map(PathBuf::from)
+            .unwrap_or_else(|| PathBuf::from(env!("CARGO_MANIFEST_DIR")).join("resources").join(MODEL_FILENAME));
+        let model = LlamaModel::load_from_file(&backend, path, &LlamaModelParams::default()).unwrap();
+        let text = "这是浏览器缓存，保存网页图片。🧪";
+        let tokens = model.str_to_token(text, AddBos::Never).unwrap();
+        let decoded: Vec<u8> = tokens.iter().flat_map(|t| model.token_to_piece_bytes(*t, 1024, false, None).unwrap()).collect();
+        assert_eq!(String::from_utf8(decoded).unwrap(), text);
+        let inner = Arc::new(Mutex::new(Some(LoadedModel { backend, model })));
+        let cases: &[(&str, bool, &str, &[&str])] = &[
+            ("C:\\Users\\User\\AppData\\Local\\pip\\cache\\http-v2\\example.body", false, "green", &["pip", "Python"]),
+            ("C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll", false, "yellow", &["WebView"]),
+            ("C:\\Users\\User\\Documents\\archive.bin", false, "yellow", &["无法", "不确定", "不能确定", "难以", "不清楚"]),
+            ("C:\\Users\\User\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache", true, "yellow", &["同步", "备份"]),
+            ("C:\\Users\\User\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll", false, "yellow", &["PyTorch", "torch", "Torch"]),
+            ("C:\\Users\\User\\AppData\\Local\\pip\\cache-backup\\saved.body", false, "yellow", &["无法", "不确定", "不能确定", "难以", "不清楚"]),
+        ];
+        let mut failures = Vec::new();
+        for (path, is_dir, safety, expected) in cases {
+            let messages = super::super::explain::build_prompt(path, "200 MB", *is_dir, safety, None);
+            let response = infer_blocking(&inner, &messages).unwrap();
+            println!("Explanation for {}: {}", path, response);
+            let unsafe_claim = (path.contains("OneNote") && (response.contains("纯缓存")
+                || !["丢", "损失"].iter().any(|word| response.contains(word))))
+                || (path.contains("EdgeWebView") && (!["应用", "软件"].iter().any(|word| response.contains(word))
+                    || response.contains("删了 Edge") || response.contains("删了Edge")))
+                || (path.contains("cache-backup") && response.contains("pip cache purge"));
+            if !expected.iter().any(|word| response.contains(word)) || response.contains('\u{fffd}')
+                || unsafe_claim || response.contains("conda env remove -n base") || response.contains("pip cache clear") {
+                failures.push(*path);
+            }
+        }
+        assert!(failures.is_empty(), "Missing purpose/uncertainty cues in: {:?}", failures);
+    }
 }

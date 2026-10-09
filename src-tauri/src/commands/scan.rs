@@ -39,8 +39,8 @@ pub async fn scan_drive(
     on_event: Channel<ScanMessage>,
     cancel_state: State<'_, ScanCancel>,
 ) -> Result<(), String> {
-    if min_size_mb < 0.0 {
-        return Err("min_size_mb must be non-negative".to_string());
+    if !min_size_mb.is_finite() || min_size_mb < 0.0 {
+        return Err("min_size_mb must be finite and non-negative".to_string());
     }
     let min_bytes = (min_size_mb * 1024.0 * 1024.0) as u64;
     let cancel = cancel_state.0.clone();

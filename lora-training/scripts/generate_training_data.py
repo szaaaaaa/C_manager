@@ -14,13 +14,9 @@ with open(os.path.join(PROJECT_ROOT, "data", "raw", "scan_results.json"), "r", e
     scan_results = json.load(f)
 
 SYSTEM_PROMPT = (
-    "你是一个帮普通用户看懂电脑文件的助手。用户发现C盘里有个占空间的{kind}，看不懂是什么，需要你用大白话解释。\n\n"
-    "请用自然的中文写一段话（不要用【】标签），按这个顺序说清楚：\n"
-    "1. 第一句：这是「XX软件」的什么数据（必须从路径推断出具体软件名）\n"
-    "2. 第二句：用大白话说这个数据具体干什么用的，别说\"缓存\"\"配置\"这种笼统词，要说清对用户意味着什么\n"
-    "3. 空一行，单独写判定：{{verdict}}\n"
-    "4. 接着自然地说：删了会怎样（具体影响哪个功能），如果不用这个软件了怎么处理，删了之后能不能恢复\n\n"
-    "语气要求：像一个懂电脑的朋友在跟你解释，简洁但不冷冰冰。总共不超过100字。"
+    "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个{kind}的用途、删除影响和处理建议。\n"
+    "像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n"
+    "规则判定是{verdict}。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
 )
 
 def get_verdict(safety: str) -> str:
@@ -29,8 +25,8 @@ def get_verdict(safety: str) -> str:
 def get_safety_desc(safety: str) -> str:
     return {
         "red": "系统核心文件，删除可能导致系统崩溃或无法启动",
-        "yellow": "属于某个软件或服务，如果用户不再使用该软件可以考虑删除",
-        "green": "缓存、临时文件或残留数据，删除不影响任何功能",
+        "yellow": "用途或删除影响需要确认，可能包含软件或个人数据",
+        "green": "疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留",
     }.get(safety, "无法确定安全性")
 
 def get_parent_chain(path: str) -> str:
@@ -175,7 +171,7 @@ PATTERNS = [
     {
         "match": lambda i: match_path(i, "ollama", "ggml-hip"),
         "confidence": "high",
-        "response": lambda i: f"这是 Ollama 的 AMD ROCm GPU 加速库，支持 AMD 显卡加速 AI 推理。\n\n{get_verdict(i['safety'])}\n你用的是 NVIDIA 显卡，这个 AMD 的加速库实际用不到，但它是 Ollama 安装自带的，删了可能影响 Ollama 更新。"
+        "response": lambda i: f"这是 Ollama 的 AMD ROCm GPU 加速库，支持 AMD 显卡加速 AI 推理。\n\n{get_verdict(i['safety'])}\n是否用到它取决于你的显卡和运行配置。它是 Ollama 安装自带的组件，不建议单独删，以免影响程序完整性。"
     },
     {
         "match": lambda i: match_path(i, "ollama") and "cublaslt" in i["name"].lower(),
@@ -185,7 +181,7 @@ PATTERNS = [
     {
         "match": lambda i: match_path(i, "ollama", "rocblas"),
         "confidence": "high",
-        "response": lambda i: f"这是 Ollama 自带的 AMD ROCm 数学库，用于 AMD 显卡加速。你的电脑是 NVIDIA 显卡，这个库用不到。\n\n{get_verdict(i['safety'])}\n虽然用不到，但它是 Ollama 安装包自带的组件，单独删可能影响 Ollama 的完整性。建议保留。"
+        "response": lambda i: f"这是 Ollama 自带的 AMD ROCm 数学库，用于 AMD 显卡加速。\n\n{get_verdict(i['safety'])}\n仅凭路径无法判断你的电脑是否用到这个库。它属于 Ollama 安装包，单独删可能影响程序完整性，建议保留。"
     },
     {
         "match": lambda i: match_path(i, "ollama", "mlx"),
@@ -423,6 +419,11 @@ PATTERNS = [
     },
     # ===== Edge =====
     {
+        "match": lambda i: i["name"].lower() == "msedge.dll" and "edgewebview" in i["path"].lower(),
+        "confidence": "high",
+        "response": lambda i: f"这是 Microsoft Edge WebView2 运行时的网页引擎，供其他 Windows 应用在自己的窗口里显示网页内容。\n\n{get_verdict(i['safety'])}\n它不是单纯的浏览器缓存。单独删除会让依赖 WebView2 的应用无法正常显示界面，建议保留并通过系统应用管理维护。"
+    },
+    {
         "match": lambda i: "msedge.dll" in i["name"].lower() and ("edgecore" in i["path"].lower() or "edge\\application" in i["path"].lower() or "edgewebview" in i["path"].lower()),
         "confidence": "high",
         "response": lambda i: f"这是 Microsoft Edge 浏览器的核心引擎文件，Edge 运行网页时的主要组件。\n\n{get_verdict(i['safety'])}\n属于 Edge 浏览器的核心文件，删了 Edge 会无法使用。多个版本并存是 Windows 自动更新导致的，旧版本会被系统自动清理。"
@@ -504,7 +505,6 @@ PATTERNS = [
     {
         "match": lambda i: match_path(i, "tencent", "xwechat") and "flue.dll" in i["name"].lower(),
         "confidence": "medium",
-        "confidence": "high",
         "response": lambda i: f"这是微信电脑版的小程序运行框架（RadiumWMPF）的渲染引擎，WeChatAppEx.exe 进程加载它来运行微信里的小程序和内嵌网页。\n\n{get_verdict(i['safety'])}\n删了的话微信小程序会显示白屏。不用担心，删除 XPlugin 文件夹后重启微信会自动重新下载。"
     },
     # ===== WeMeet (Tencent Meeting) =====
@@ -639,7 +639,6 @@ PATTERNS = [
     {
         "match": lambda i: "guanjia" in i["path"].lower(),
         "confidence": "medium",
-        "confidence": "high",
         "response": lambda i: f"这是 QClaw（腾讯管家团队出品的 AI 远程助手）的自动更新程序缓存。QClaw 可以通过微信远程控制电脑，和腾讯电脑管家是同一个团队的产品。\n\n{get_verdict(i['safety'])}\n如果你不用 QClaw 远程助手，可以卸载 QClaw 后删除这个残留。如果在用，这是更新组件，删了可能影响自动更新。"
     },
     # ===== Lenovo AIAgent RAG =====
@@ -652,7 +651,6 @@ PATTERNS = [
     {
         "match": lambda i: match_path(i, "lenovo", "lemcpmanager"),
         "confidence": "medium",
-        "confidence": "high",
         "response": lambda i: f"这是联想 Message Center Plus（消息推送服务）的管理程序，负责在后台检查并推送驱动更新、产品通知等消息弹窗。\n\n{get_verdict(i['safety'])}\n属于联想预装的通知推送组件，不影响电脑核心功能。如果你觉得联想弹窗烦人，可以在服务管理中禁用它。"
     },
     # ===== Lenovo LeFile (cloud search) =====
@@ -701,7 +699,6 @@ PATTERNS = [
     {
         "match": lambda i: match_path(i, "windows") and i["name"].endswith(".dat") and i["safety"] == "red",
         "confidence": "medium",
-        "confidence": "high",
         "response": lambda i: f"这是 Windows 系统目录下的大型数据文件，很可能是 Windows Update 或软件安装过程中断后留下的残留文件。\n\n{get_verdict(i['safety'])}\n不要手动删除 Windows 目录下的文件。可以用系统自带的「磁盘清理」工具（选择「清理系统文件」）来安全处理这类残留。"
     },
     # ===== NVIDIA driver core =====
@@ -736,7 +733,7 @@ PATTERNS = [
     {
         "match": lambda i: match_path(i, "ollama") and "amd_comgr" in i["name"].lower(),
         "confidence": "high",
-        "response": lambda i: f"这是 Ollama 自带的 AMD GPU 编译器组件，用于 AMD 显卡加速。你用的是 NVIDIA 显卡，这个用不到。\n\n{get_verdict(i['safety'])}\n虽然用不到，但它是 Ollama 安装包自带的组件。不建议单独删。"
+        "response": lambda i: f"这是 Ollama 自带的 AMD GPU 编译器组件，用于 AMD 显卡加速。\n\n{get_verdict(i['safety'])}\n仅凭文件路径无法判断你的显卡类型。这是 Ollama 安装包的一部分，不建议单独删。"
     },
     # ===== conda cublas (non-cublasLt) =====
     {
@@ -831,7 +828,7 @@ def _conda_torch_response(item: dict, lib_name: str, description: str) -> str:
         f"这是你的 Python 环境「{env_name}」里的 {lib_name}，{description}。\n\n"
         f"{get_verdict(item['safety'])}\n"
         f"删了的话这个环境里的 PyTorch 会无法使用 GPU。如果你不再用「{env_name}」这个环境了，"
-        f"可以用 conda env remove -n {env_name} 整个删掉，比单独删文件更干净。"
+        f"先确认需要保留的配置和数据，再通过 conda 的包和环境管理功能处理，不要单独删库文件。"
     )
 
 def _conda_env_response(item: dict, description: str, lib_name: str) -> str:
@@ -841,14 +838,12 @@ def _conda_env_response(item: dict, description: str, lib_name: str) -> str:
         f"这是你的 Python 环境「{env_name}」里的 {description}。\n\n"
         f"{get_verdict(item['safety'])}\n"
         f"删了的话这个环境里依赖 {lib_name} 的代码会无法运行。如果你不再用「{env_name}」这个环境，"
-        f"可以用 conda env remove -n {env_name} 整个删掉。"
+        f"先确认需要保留的配置和数据，再通过 conda 的包和环境管理功能处理，不要单独删库文件。"
     )
 
 
 def generate_training_data():
     """Generate training data by matching scan results against patterns."""
-    instruction = SYSTEM_PROMPT.format(kind="文件")  # default, will be overridden
-
     results = []
     unmatched = []
 
@@ -860,7 +855,7 @@ def generate_training_data():
         for pattern in PATTERNS:
             if pattern["match"](item):
                 entry = {
-                    "instruction": SYSTEM_PROMPT.format(kind=kind).replace("{{verdict}}", get_verdict(item["safety"])),
+                    "instruction": SYSTEM_PROMPT.format(kind=kind, verdict=get_verdict(item["safety"])),
                     "input": input_text,
                     "output": pattern["response"](item),
                     "confidence": pattern.get("confidence", "high"),
@@ -882,6 +877,9 @@ def generate_training_data():
     output_path = os.path.join(PROJECT_ROOT, "data", "training_data.jsonl")
     with open(output_path, "w", encoding="utf-8") as f:
         for entry in results:
+            entry["output"] = "\n".join(line for line in entry["output"].splitlines()
+                if line.strip() not in {"放心删", "看看再删", "千万别删"}).strip()
+            assert "{verdict}" not in entry["instruction"] and entry["output"]
             f.write(json.dumps(entry, ensure_ascii=False) + "\n")
 
     # Write unmatched items for review
@@ -914,6 +912,23 @@ def generate_synthetic_data():
     U = "C:\\Users\\User"
 
     synthetic = [
+        # Unknown names must not teach the model to invent an owner or a recovery guarantee.
+        (f"{U}\\Documents\\archive.bin", "archive.bin", "200 MB", 209715200, False, "yellow",
+         "仅凭这个路径和文件名，无法确认 archive.bin 的用途；.bin 可以保存很多不同类型的数据。先确认是哪个程序创建的，涉及自己的资料时先备份，再决定是否删除。"),
+        (f"{U}\\AppData\\Local\\UnknownApp\\data.db", "data.db", "300 MB", 314572800, False, "yellow",
+         "这看起来是某个应用的数据文件，但路径不足以确认具体应用或数据库内容。它可能包含需要保留的数据，先在对应应用里确认用途和备份方式，不建议直接删除。"),
+        ("C:\\ProgramData\\UnknownService\\storage.dat", "storage.dat", "400 MB", 419430400, False, "yellow",
+         "这是某个程序保存在 ProgramData 下的数据文件，仅凭 storage.dat 这个名字无法判断用途。先确认对应程序是否仍在使用；如果不用了，优先通过应用的卸载或清理功能处理。"),
+        (f"{U}\\AppData\\Local\\Microsoft\\unknown.bin", "unknown.bin", "150 MB", 157286400, False, "yellow",
+         "Microsoft 目录下也有很多不同组件的数据，仅凭 unknown.bin 无法确认它的用途。不要据此认定它是 Edge 或 Office 的缓存，先查文件属性和对应程序，再决定是否清理。"),
+        (f"{U}\\AppData\\Roaming\\Adobe\\data.db", "data.db", "250 MB", 262144000, False, "yellow",
+         "路径显示它与 Adobe 软件有关，但 data.db 这个名字不足以判断数据库保存了什么。先备份需要保留的数据，再通过对应 Adobe 应用确认用途，别直接当作缓存删除。"),
+        ("C:\\Program Files\\UnknownApp\\model.bin", "model.bin", "500 MB", 524288000, False, "yellow",
+         "这看起来是 UnknownApp 安装目录里的数据文件，但无法仅凭 model.bin 确认模型类型或功能。单独删除可能影响程序运行；如果不再使用这个应用，优先正常卸载。"),
+        (f"{U}\\Documents\\cache.db", "cache.db", "100 MB", 104857600, False, "yellow",
+         "文件名带 cache 并不能证明它可以安全清理，尤其这里是你的文档目录。它可能包含自己保存的数据，先确认创建它的程序并做好备份，再决定是否删除。"),
+        (f"{U}\\Downloads\\backup.zip", "backup.zip", "1.0 GB", 1073741824, False, "green",
+         "这看起来是你下载或保存的压缩包，路径不能说明里面的内容是否还需要。先打开确认并备份需要保留的资料；下载目录里的文件也不一定能重新获取。"),
         # ===== Chrome =====
         (f"{U}\\AppData\\Local\\Google\\Chrome\\User Data\\Default\\Cache\\Cache_Data\\f_00a1b2", "f_00a1b2", "850 MB", 891289600, False, "green",
          "这是 Google Chrome 浏览器的网页缓存文件，保存了你浏览过的网页图片、脚本等资源，下次访问同一网站时加载更快。\n\n放心删\n纯缓存，删了不影响 Chrome 任何功能，只是下次打开常用网站时加载会稍慢。可以在 Chrome 设置→隐私→清除浏览数据里清理。"),
@@ -1685,8 +1700,8 @@ def generate_synthetic_data():
         # ===== Zoom — more =====
         (f"{U}\\AppData\\Roaming\\Zoom\\data", "data", "500 MB", 524288000, True, "yellow",
          "这是 Zoom 的本地数据目录，保存了会议录制、虚拟背景和设置信息。\n\n看看再删\n删了的话本地保存的会议录制和虚拟背景会丢失。Zoom 账号设置在云端，不受影响。"),
-        (f"{U}\\AppData\\Roaming\\Zoom\\data\\VirtualBkgnd_Custom", "VirtualBkgnd_Custom", "200 MB", 209715200, True, "green",
-         "这是 Zoom 的自定义虚拟背景图片缓存。\n\n放心删\n删了的话你设置的自定义虚拟背景会消失，需要重新添加。"),
+        (f"{U}\\AppData\\Roaming\\Zoom\\data\\VirtualBkgnd_Custom", "VirtualBkgnd_Custom", "200 MB", 209715200, True, "yellow",
+         "这是 Zoom 保存的自定义虚拟背景图片。先备份还需要的图片，删掉后原来的背景可能无法找回；建议在 Zoom 的背景设置里移除不需要的项。"),
 
         # ===== Python __pycache__ =====
         (f"{U}\\Projects\\myproject\\__pycache__", "__pycache__", "100 MB", 104857600, True, "green",
@@ -1699,8 +1714,8 @@ def generate_synthetic_data():
          "这是 Discord 的 JavaScript 代码缓存，加速界面加载用的。\n\n放心删\n纯缓存，Discord 会自动重建。"),
 
         # ===== GitHub Desktop — more =====
-        (f"{U}\\AppData\\Local\\GitHubDesktop\\app-3.3.7", "app-3.3.7", "300 MB", 314572800, True, "green",
-         "这是 GitHub Desktop 的旧版本文件夹（3.3.7），当前使用的是更新的版本。\n\n放心删\n旧版本安装目录，当前版本已经更新到新的文件夹。删了不影响 GitHub Desktop 使用。"),
+        (f"{U}\\AppData\\Local\\GitHubDesktop\\app-3.3.7", "app-3.3.7", "300 MB", 314572800, True, "yellow",
+         "这是 GitHub Desktop 3.3.7 的程序目录，版本号本身不能说明它已经过期或不再使用。先在应用中确认当前版本；如果不再使用 GitHub Desktop，建议正常卸载，别单独删除程序目录。"),
 
         # ===== iQIYI — more =====
         (f"C:\\Program Files (x86)\\iQIYI\\LStyle\\skin", "skin", "200 MB", 209715200, True, "green",
@@ -1712,11 +1727,11 @@ def generate_synthetic_data():
 
         # ===== Office — OneNote cache =====
         (f"{U}\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache", "cache", "300 MB", 314572800, True, "green",
-         "这是 OneNote 的本地笔记缓存，你的笔记内容的离线副本。\n\n放心删\n删了的话 OneNote 需要重新从云端同步笔记，首次打开会比较慢。你的笔记数据都在 OneDrive 上，不会丢失。"),
+         "先确认笔记已经同步并做好备份，这是 OneNote 保存本地笔记内容的缓存，可能包含还没同步的修改。直接删除会丢失这些内容；要释放空间，建议在 OneNote 里关闭已同步的笔记本并重启应用。"),
 
         # ===== Outlook cache =====
         (f"{U}\\AppData\\Local\\Microsoft\\Outlook\\abc@outlook.com.ost", "abc@outlook.com.ost", "2.0 GB", 2147483648, False, "yellow",
-         "这是 Microsoft Outlook 的离线邮件缓存文件（.ost），保存了你的邮箱所有邮件的本地副本。\n\n看看再删\n删了的话 Outlook 需要重新从服务器同步所有邮件，可能需要较长时间。你的邮件在服务器上不会丢失。关闭 Outlook 后才能删除。"),
+         "这是 Outlook 的离线邮箱数据文件。先确认邮件和修改已同步，并备份需要保留的内容；删除后通常要从服务器重新下载，但不能保证未同步的本地内容能恢复。建议通过 Outlook 的账户和数据文件管理功能处理。"),
 
         # ===== Anaconda — different env patterns =====
         (f"{U}\\anaconda3\\envs\\tensorflow\\Lib\\site-packages\\tensorflow\\python\\_pywrap_tensorflow_internal.pyd", "_pywrap_tensorflow_internal.pyd", "700 MB", 734003200, False, "yellow",
@@ -1849,12 +1864,12 @@ def generate_synthetic_data():
          "这是 KeePass（密码管理工具）的加密密码数据库，存储了你保存的所有账号密码。\n\n看看再删\n这是你的密码库！删了的话所有保存的密码会永久丢失。强烈建议做好备份后再做任何操作。"),
 
         # ===== OBS recordings — more =====
-        (f"{U}\\Videos\\OBS\\Replay-2024-03-15.mp4", "Replay-2024-03-15.mp4", "1.5 GB", 1610612736, False, "green",
-         "这是 OBS Studio 的回放录制文件，你按了回放快捷键时保存的精彩片段。\n\n放心删\n这是你的录制内容。确认不需要后可以删除释放空间。"),
+        (f"{U}\\Videos\\OBS\\Replay-2024-03-15.mp4", "Replay-2024-03-15.mp4", "1.5 GB", 1610612736, False, "yellow",
+         "这是 OBS 保存的回放录制视频，属于你的个人录制内容。先播放确认并备份想留下的片段，确定不需要后再删除；它不是会自动重建的程序缓存。"),
 
         # ===== NVIDIA GeForce highlights =====
-        (f"{U}\\Videos\\NVIDIA\\Highlights", "Highlights", "5.0 GB", 5368709120, True, "green",
-         "这是 NVIDIA GeForce Experience 自动录制的游戏精彩时刻视频。\n\n放心删\n这是你游戏过程中的自动录屏。如果你不需要这些回放，可以全部删除。也可以在 GeForce Experience 设置里关闭自动录制。"),
+        (f"{U}\\Videos\\NVIDIA\\Highlights", "Highlights", "5.0 GB", 5368709120, True, "yellow",
+         "这个目录通常保存 NVIDIA 游戏录制功能留下的精彩片段，属于你的录屏内容。先查看并备份想保留的视频，确认不需要后再清理；删除后不能靠重新运行游戏恢复这些片段。"),
 
         # ===== NVIDIA shader cache (system level) =====
         (f"C:\\ProgramData\\NVIDIA Corporation\\NV_Cache", "NV_Cache", "500 MB", 524288000, True, "green",
@@ -1912,7 +1927,7 @@ def generate_synthetic_data():
             "size": size, "is_dir": is_dir, "safety": safety
         })
         results.append({
-            "instruction": instruction_tpl.format(kind=kind).replace("{{verdict}}", verdict),
+            "instruction": instruction_tpl.format(kind=kind, verdict=verdict),
             "input": input_text,
             "output": output,
             "confidence": "high",

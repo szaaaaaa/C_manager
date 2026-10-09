@@ -149,7 +149,7 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
         setShowDeleteConfirm(false);
         setDeleteResult(null);
       }, 2000);
-    } catch (e) {
+    } catch {
       setDeleteResult({ succeeded: 0, failed: checkedItems.length });
     } finally {
       setDeleting(false);

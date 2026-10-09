@@ -1,0 +1,392 @@
+{
+  "model": "D:\\C_manager\\lora-training\\output\\base_model",
+  "mode": "plain",
+  "precision": "BF16",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "seed": 42,
+    "use_cache": true
+  },
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.3.0",
+  "cases_sha256": "a516f0f456d18ba589034e23f3a3e47cefb5762f7436387bf22d502d4372603b",
+  "knowledge_sha256": "547f1cb9e11aae21796c4d7fe897b90f52dd8fe5bceec6b726ffc28a4d25cf0d",
+  "records": [
+    {
+      "id": "pip-body",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body",
+      "answer": "这个文件是 Python 虚拟环境（pip）的缓存目录，存放了 HTTP 请求的临时缓存数据，属于可清理的临时文件。",
+      "seconds": 9.5831,
+      "input_tokens": 192,
+      "output_tokens": 34,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "安装",
+          "装好"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "pip-wheel",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl",
+      "answer": "这个文件是 NumPy 在 Python 环境中缓存的 wheel 包，通常用于快速加载或解压，但建议先确认是否还在运行中。",
+      "seconds": 2.2465,
+      "input_tokens": 194,
+      "output_tokens": 35,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-dll",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+      "answer": "这个文件是 Microsoft Edge 浏览器中 WebView 组件的 DLL 文件，用于加载和运行 WebView 页面。由于路径中未明确说明具体用途，无法确定其具体功能，建议先备份重要数据。",
+      "seconds": 2.9957,
+      "input_tokens": 212,
+      "output_tokens": 48,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "应用",
+          "软件"
+        ],
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-exe",
+      "path": "D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe",
+      "answer": "这个文件是 Edge 浏览器中用于打开网页的 WebView 组件，属于浏览器扩展或插件的一部分，通常用于在 Edge 中打开外部网页。",
+      "seconds": 2.4222,
+      "input_tokens": 211,
+      "output_tokens": 35,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "应用",
+          "软件"
+        ],
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-folder",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "answer": "这个文件夹存放的是 Microsoft OneNote 16.0 的缓存数据，通常用于优化加载速度，但建议先备份以防误删。",
+      "seconds": 2.3237,
+      "input_tokens": 192,
+      "output_tokens": 34,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "同步"
+        ],
+        [
+          "丢失",
+          "丢",
+          "损失"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-file",
+      "path": "C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin",
+      "answer": "这个文件是 Microsoft OneNote 16.0 缓存目录下的临时文件，通常用于存储文档的临时存储或缓存数据，具体用途取决于您是否正在使用 OneNote 软件。",
+      "seconds": 2.8751,
+      "input_tokens": 203,
+      "output_tokens": 44,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "笔记"
+        ],
+        [
+          "同步"
+        ],
+        [
+          "备份"
+        ],
+        [
+          "丢失",
+          "丢"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-base",
+      "path": "C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "answer": "这个文件是 PyTorch 库中 CUDA 相关的 DLL 文件，用于在 CUDA 环境下加载和运行深度学习模型。由于路径中包含 `miniforge3` 且属于个人项目，建议先确认是否已备份重要数据，再决定是否删除该文件。",
+      "seconds": 3.729,
+      "input_tokens": 191,
+      "output_tokens": 60,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "卸载",
+          "包管理"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-env",
+      "path": "D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "answer": "这个文件是 PyTorch 库中用于 CPU 加速的 C 头文件，用于在 Python 环境中处理 CPU 上的深度学习计算任务。",
+      "seconds": 2.3805,
+      "input_tokens": 189,
+      "output_tokens": 35,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "卸载",
+          "包管理"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-weights",
+      "path": "C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+      "answer": "这个文件是用于微调模型权重（如 Tiny 模型）的权重文件，通常用于训练或推理场景。建议先确认是否已备份，若涉及个人数据请谨慎处理。",
+      "seconds": 2.9978,
+      "input_tokens": 210,
+      "output_tokens": 42,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "Hugging Face",
+          "HuggingFace",
+          "huggingface"
+        ],
+        [
+          "下载"
+        ],
+        [
+          "离线"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-blob",
+      "path": "D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67",
+      "answer": "这个文件是 HuggingFace Hub 中用于存储模型数据的 blob 文件，目前用途和删除影响尚不明确，无法直接确定具体用途或恢复方式。建议先确认是否包含个人数据，如有敏感信息请备份后再删除。",
+      "seconds": 3.7798,
+      "input_tokens": 200,
+      "output_tokens": 53,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "下载"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-folder",
+      "path": "C:\\Users\\Eval\\Projects\\demo\\node_modules",
+      "answer": "这个文件夹存放的是 Node.js 项目依赖包，通常用于构建或运行 Node.js 应用，但具体用途取决于你实际使用的软件。建议先确认是否包含个人数据，如有敏感信息请备份。",
+      "seconds": 3.1551,
+      "input_tokens": 181,
+      "output_tokens": 47,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "安装"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-file",
+      "path": "D:\\Projects\\demo\\node_modules\\example-package\\main.js",
+      "answer": "这个文件位于 Node.js 模块目录中，通常用于构建或运行项目，但具体用途取决于项目依赖。建议先确认项目是否已安装，若未安装则无法确定其功能。",
+      "seconds": 3.0874,
+      "input_tokens": 183,
+      "output_tokens": 44,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "修改",
+          "备份",
+          "锁"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin",
+      "answer": "这个文件是 Windows 安装过程中生成的临时缓存文件，大小仅 200MB，通常属于可清理的临时残留。建议先确认是否正在使用该软件，若未使用则可直接删除，保留不影响系统运行。",
+      "seconds": 3.4785,
+      "input_tokens": 187,
+      "output_tokens": 51,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "关闭",
+          "结束",
+          "跳过"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp-uppercase",
+      "path": "C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG",
+      "answer": "这个文件是系统临时缓存，大小仅 200MB，大概率是临时生成的日志或缓存数据，但无法确定是否正在使用，建议先确认是否已删除。",
+      "seconds": 2.861,
+      "input_tokens": 188,
+      "output_tokens": 41,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp",
+      "path": "C:\\Windows\\Temp\\staging.tmp",
+      "answer": "这个文件位于 Windows 临时文件夹中，大小仅 200MB，通常属于临时缓存或残留文件，但无法确定是否正在使用或需要保留，建议先确认是否已删除。",
+      "seconds": 3.0415,
+      "input_tokens": 181,
+      "output_tokens": 45,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "清理"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp-file",
+      "path": "C:/Windows/Temp/update-progress.bin",
+      "answer": "这个文件位于 Windows 临时文件夹中，大小仅 200MB，通常属于系统缓存或临时文件，大概率是误删或系统自动清理留下的残留，但无法确定具体用途，建议先确认是否还在使用。",
+      "seconds": 3.6673,
+      "input_tokens": 180,
+      "output_tokens": 52,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-archive",
+      "path": "C:\\Users\\Eval\\Documents\\archive.bin",
+      "answer": "这个 200MB 的 `.bin` 文件位于您的文档目录中，目前仅能确认其用途为“用途或删除影响需要确认”，无法确定具体是软件还是个人数据，且未提供恢复保证信息。",
+      "seconds": 3.4623,
+      "input_tokens": 177,
+      "output_tokens": 52,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-microsoft",
+      "path": "C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat",
+      "answer": "这个文件位于微软未公开产品目录，大小 200MB，暂无法确定具体用途，建议先确认是否包含个人数据。",
+      "seconds": 2.3173,
+      "input_tokens": 183,
+      "output_tokens": 33,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-cache",
+      "path": "C:\\Users\\Eval\\Documents\\cache\\journal.db",
+      "answer": "这个文件是 200MB 的数据库，位于您的文档缓存目录中，目前用途和恢复方式尚不明确，无法直接删除。建议先确认是否包含个人重要数据，如有需要请备份后再处理。",
+      "seconds": 3.1965,
+      "input_tokens": 179,
+      "output_tokens": 50,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-download",
+      "path": "C:\\Users\\Eval\\Downloads\\family-backup.zip",
+      "answer": "这个文件是 200MB 的家庭备份压缩包，目前无法确定具体用途，建议先确认是否包含个人重要数据。",
+      "seconds": 2.0771,
+      "input_tokens": 181,
+      "output_tokens": 31,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "cache-prefix-nearmiss",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body",
+      "answer": "这个文件位于 Python 缓存目录中，通常用于存储临时缓存数据，但具体用途需结合实际运行环境判断。建议先确认是否已备份，避免误删重要数据。",
+      "seconds": 2.6856,
+      "input_tokens": 186,
+      "output_tokens": 42,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "无法",
+          "不确定",
+          "不能确定",
+          "难以",
+          "不清楚"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-onnx",
+      "path": "D:\\Research\\Shared\\network.onnx",
+      "answer": "这个文件是网络模型文件，通常用于训练或推理深度学习模型，但无法确定具体用途。建议先备份重要数据，确认是否包含个人敏感信息。",
+      "seconds": 2.483,
+      "input_tokens": 177,
+      "output_tokens": 37,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-with-distractor",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll",
+      "answer": "这个文件是 EdgeWebView 应用的核心库，用于加载 WebView 组件，但路径较长且未明确说明具体用途，无法直接判断是否安全删除。建议先备份重要数据，确认是否需保留该文件。",
+      "seconds": 3.192,
+      "input_tokens": 210,
+      "output_tokens": 49,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-missing-evidence",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin",
+      "answer": "这个文件是 Microsoft OneNote 16.0 缓存目录下的临时文件，通常用于存储缓存数据或临时文件，具体用途取决于实际用途。建议先确认是否包含个人数据，如有敏感信息请备份。",
+      "seconds": 3.1701,
+      "input_tokens": 194,
+      "output_tokens": 50,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "无法",
+          "不确定",
+          "不能确定",
+          "难以",
+          "不清楚"
+        ]
+      ],
+      "forbidden_phrases": []
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "base_model": "D:\\C_manager\\lora-training\\output\\base_model",
+  "data_sha256": "143207372aff732b4397367ace6f241e10a9fbc49e908a994697593d463ceb21",
+  "train_samples": 150,
+  "validation_samples": 18,
+  "held_out_groups": [
+    "pip-cache"
+  ],
+  "seed": 42,
+  "epochs": 2,
+  "learning_rate": 0.0001,
+  "batch_size": 2,
+  "gradient_accumulation": 4,
+  "warmup_steps": 5,
+  "eval_save_steps": 10,
+  "best_eval_loss": 1.6573683023452759,
+  "best_checkpoint": "D:\\C_manager\\lora-training\\output\\rag_model\\checkpoints\\checkpoint-20",
+  "lora_r": 16,
+  "lora_alpha": 16,
+  "lora_dropout": 0.05,
+  "target_modules": [
+    "q_proj",
+    "k_proj",
+    "v_proj",
+    "o_proj",
+    "gate_proj",
+    "up_proj",
+    "down_proj"
+  ],
+  "max_length": 1024,
+  "loss": "assistant response only",
+  "load_in_4bit": false,
+  "load_in_16bit": true,
+  "train_steps": 38,
+  "train_loss": 1.0078294465416355,
+  "train_metrics": {
+    "train_runtime": 398.2417,
+    "train_samples_per_second": 0.753,
+    "train_steps_per_second": 0.095,
+    "total_flos": 363306342018816.0,
+    "train_loss": 1.0078294465416355,
+    "epoch": 2.0
+  },
+  "validation": {
+    "eval_loss": 1.6581615209579468,
+    "eval_runtime": 5.2499,
+    "eval_samples_per_second": 3.429,
+    "eval_steps_per_second": 0.952,
+    "epoch": 2.0
+  },
+  "versions": {
+    "torch": "2.10.0+cu128",
+    "unsloth": "2026.3.10",
+    "trl": "0.24.0",
+    "transformers": "5.3.0"
+  },
+  "data_sha256_lf": "c3a2041e398c84a9c5f854130d298743ad31b38db2ee2852ce354672f14f3c46",
+  "line_endings": "Training-time raw input used CRLF; Git corpus uses LF. Parsed JSON objects unchanged."
+}

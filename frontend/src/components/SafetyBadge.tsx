@@ -6,7 +6,7 @@ interface Props {
 const CONFIG = {
   red: { emoji: '🔴', label: '别删', bg: 'var(--red-bg)', color: 'var(--red)', border: 'rgba(255,68,68,0.25)' },
   yellow: { emoji: '🟡', label: '看看再删', bg: 'var(--yellow-bg)', color: 'var(--yellow)', border: 'rgba(255,214,0,0.25)' },
-  green: { emoji: '🟢', label: '放心删', bg: 'var(--green-bg)', color: 'var(--green)', border: 'rgba(0,230,118,0.25)' },
+  green: { emoji: '🟢', label: '可清理', bg: 'var(--green-bg)', color: 'var(--green)', border: 'rgba(0,230,118,0.25)' },
 };
 
 export function SafetyBadge({ safety, size = 'md' }: Props) {

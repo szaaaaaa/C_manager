@@ -1,0 +1,30 @@
+{
+  "base-plain": {
+    "cue_pass": 8,
+    "cases": 24,
+    "median_seconds": 3.01965,
+    "min_seconds": 2.0771,
+    "max_seconds": 9.5831
+  },
+  "sft-plain": {
+    "cue_pass": 5,
+    "cases": 24,
+    "median_seconds": 3.1142000000000003,
+    "min_seconds": 1.8626,
+    "max_seconds": 10.4091
+  },
+  "base-rag": {
+    "cue_pass": 13,
+    "cases": 24,
+    "median_seconds": 2.39955,
+    "min_seconds": 1.7256,
+    "max_seconds": 8.7779
+  },
+  "sft-rag": {
+    "cue_pass": 21,
+    "cases": 24,
+    "median_seconds": 3.1921999999999997,
+    "min_seconds": 2.1777,
+    "max_seconds": 9.974
+  }
+}

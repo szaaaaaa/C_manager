@@ -30,18 +30,24 @@ pub fn scan_drive(
     cancel: Arc<AtomicBool>,
     on_event: Option<EventFn>,
 ) -> Result<Vec<FileRecord>, String> {
+    if cancel.load(Ordering::SeqCst) {
+        return Err("Scan cancelled".to_string());
+    }
+    std::fs::read_dir(root).map_err(|e| format!("Cannot scan {}: {}", root, e))?;
     #[cfg(windows)]
     {
-        // Try USN scanner first (requires admin — volume handle needs GENERIC_READ)
-        let drive_letter = &root[..2]; // "C:" from "C:\\"
-        match usn_scanner::scan_usn(drive_letter, min_size_bytes, top_n, &cancel, &on_event) {
-            Ok(results) => return Ok(results),
-            Err(_) => {
-                // Fall through to readdir (no admin, or volume open failed)
+        // Enumerating a whole volume is only useful when the requested root is that volume.
+        let volume_root = root.trim_end_matches(['\\', '/']);
+        if volume_root.len() == 2 && volume_root.as_bytes()[0].is_ascii_alphabetic()
+            && volume_root.as_bytes()[1] == b':' && root.len() > 2 {
+            match usn_scanner::scan_usn(volume_root, min_size_bytes, max_depth, top_n, &cancel, &on_event) {
+                Ok(results) => return Ok(results),
+                Err(e) if cancel.load(Ordering::SeqCst) => return Err(e),
+                Err(_) => {}
             }
         }
     }
-    scan_readdir(root, min_size_bytes, 30, top_n, cancel, on_event)
+    scan_readdir(root, min_size_bytes, max_depth, top_n, cancel, on_event)
 }
 
 fn scan_readdir(
@@ -125,7 +131,56 @@ fn scan_readdir(
         return Err("Scan cancelled".to_string());
     }
 
+    if let Some(ref cb) = on_event {
+        cb(ScanEvent::Progress(count, files.len() as u64));
+    }
     files.sort_unstable_by(|a, b| b.size.cmp(&a.size));
     files.truncate(top_n);
     Ok(files)
+}
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn scan_respects_root_depth_and_reports_missing_roots() {
+        let root = std::env::temp_dir().join(format!("c-manager-scan-{}", std::process::id()));
+        std::fs::create_dir(&root).unwrap();
+        std::fs::create_dir(root.join("child")).unwrap();
+        std::fs::write(root.join("top.bin"), [0; 16]).unwrap();
+        std::fs::write(root.join("child/deep.bin"), [0; 32]).unwrap();
+        let results = scan_drive(root.to_str().unwrap(), 1, 0, 10,
+            Arc::new(AtomicBool::new(false)), None).unwrap();
+        let progress = Arc::new(std::sync::Mutex::new((0, 0)));
+        let captured = progress.clone();
+        let limited = scan_drive(root.to_str().unwrap(), 1, 1, 0,
+            Arc::new(AtomicBool::new(false)), Some(Box::new(move |event| {
+                if let ScanEvent::Progress(scanned, matched) = event {
+                    *captured.lock().unwrap() = (scanned, matched);
+                }
+            }))).unwrap();
+        let resolved_root = root.canonicalize().unwrap();
+        assert!(resolved_root.starts_with(std::env::temp_dir().canonicalize().unwrap()));
+        std::fs::remove_dir_all(&resolved_root).unwrap();
+        assert_eq!(results.len(), 1);
+        assert_eq!(results[0].name, "top.bin");
+        assert!(limited.is_empty());
+        assert_eq!(progress.lock().unwrap().1, 2);
+        assert!(scan_drive(root.to_str().unwrap(), 1, 0, 10,
+            Arc::new(AtomicBool::new(false)), None).is_err());
+    }
+
+    #[test]
+    #[ignore = "reads the C: drive to compare the default depth with the old traversal"]
+    fn default_scan_performance() {
+        let start = std::time::Instant::now();
+        let old = scan_readdir("C:\\", 10 * 1024 * 1024, 30, 1000,
+            Arc::new(AtomicBool::new(false)), None).unwrap();
+        println!("Old 30-level traversal: {:?}, {} retained files", start.elapsed(), old.len());
+        let start = std::time::Instant::now();
+        let new = scan_drive("C:\\", 10 * 1024 * 1024, 3, 1000,
+            Arc::new(AtomicBool::new(false)), None).unwrap();
+        println!("Configured 3-level scan: {:?}, {} retained files", start.elapsed(), new.len());
+    }
 }

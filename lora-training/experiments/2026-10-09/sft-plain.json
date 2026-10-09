@@ -1,0 +1,445 @@
+{
+  "model": "D:\\C_manager\\lora-training\\output\\corrected_model",
+  "mode": "plain",
+  "precision": "BF16",
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "seed": 42,
+    "use_cache": true
+  },
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "torch": "2.10.0+cu128",
+  "transformers": "5.3.0",
+  "cases_sha256": "a516f0f456d18ba589034e23f3a3e47cefb5762f7436387bf22d502d4372603b",
+  "knowledge_sha256": "547f1cb9e11aae21796c4d7fe897b90f52dd8fe5bceec6b726ffc28a4d25cf0d",
+  "records": [
+    {
+      "id": "pip-body",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body",
+      "answer": "这是 Python pip 的下载缓存，之前用 pip install 安装 Python 包时下载的安装文件副本。\n\n纯缓存，删了不影响已安装的 Python 包，只是下次重装同一个包时需要重新下载。可以用 pip cache purge 命令一键清理。",
+      "seconds": 10.4091,
+      "input_tokens": 192,
+      "output_tokens": 55,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "pip-wheel",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl",
+      "answer": "这是 Python pip 的下载缓存，之前用 pip install 安装 Python 包时下载的安装文件副本。\n\n纯缓存，删了不影响已安装的环境。可以用 pip cache purge 命令一键清理。",
+      "seconds": 2.8935,
+      "input_tokens": 194,
+      "output_tokens": 44,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-dll",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+      "answer": "这是 Microsoft Edge WebView2 的网页渲染引擎组件，Edge 浏览器里显示网页内容的核心库。\n\n属于 Edge 浏览器的核心组件，删了 Edge 会无法显示网页内容。如果不用 Edge 了，通过控制面板卸载。",
+      "seconds": 3.2021,
+      "input_tokens": 212,
+      "output_tokens": 52,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "应用",
+          "软件"
+        ],
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-exe",
+      "path": "D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe",
+      "answer": "这是 Edge WebView 浏览器的运行库，让网页在 Edge 里正常显示。\n\n属于 Edge 浏览器的核心组件，删了 Edge 会无法使用 WebView 功能。不建议单独删，先确认需要保留的用途。",
+      "seconds": 3.107,
+      "input_tokens": 211,
+      "output_tokens": 50,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "应用",
+          "软件"
+        ],
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-folder",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "answer": "这是 OneNote 的本地缓存，保存了你打开过的文档的预览和索引数据。\n\n删了的话打开的文档预览和索引会丢失，但已保存的文档不受影响。建议在 OneNote 里清理不需要的缓存。",
+      "seconds": 3.1195,
+      "input_tokens": 192,
+      "output_tokens": 51,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "同步"
+        ],
+        [
+          "备份"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-file",
+      "path": "C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin",
+      "answer": "这是 OneNote 的本地文档缓存，保存了你打开过的文档的页面数据。\n\n删了的话打开的文档会丢失，但新建文档不受影响。如果不需要 OneNote 了，通过控制面板卸载。",
+      "seconds": 2.9651,
+      "input_tokens": 203,
+      "output_tokens": 46,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "笔记"
+        ],
+        [
+          "同步"
+        ],
+        [
+          "备份"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-base",
+      "path": "C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "answer": "这是你的 Python 环境「base (miniforge3)」里的 PyTorch CUDA GPU 加速库，做深度学习训练和推理时加速的关键组件。\n\n删了的话这个环境里依赖 PyTorch 的代码会无法运行。如果你不再用「base (miniforge3)」这个环境，先确认你的项目依赖，再决定是否删除。",
+      "seconds": 4.581,
+      "input_tokens": 191,
+      "output_tokens": 75,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "卸载",
+          "包管理"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-env",
+      "path": "D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "answer": "这是你的 Python 环境「analytics」里的 PyTorch CPU 运算库，所有深度学习计算的基础组件。\n\n删了的话这个环境里的 PyTorch 会无法使用 GPU。如果你不再用「analytics」这个环境了，先确认是否需要这个环境，再决定是否删除。",
+      "seconds": 3.7872,
+      "input_tokens": 189,
+      "output_tokens": 60,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "卸载",
+          "包管理"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-weights",
+      "path": "C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+      "answer": "这是 HuggingFace 缓存的 AI 模型权重文件（def456 是 sample/tiny 的权重），之前用 Python 加载这个模型时自动下载到本地的。\n\n删了的话下次加载这个模型时需要重新下载。如果你不再用这个模型了，先确认不需要，再删除。",
+      "seconds": 4.0533,
+      "input_tokens": 210,
+      "output_tokens": 64,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "离线"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-blob",
+      "path": "D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67",
+      "answer": "这是 HuggingFace 下载的数据包缓存，之前你在某个开源项目里下载的模型数据副本。\n\n删了的话下次下载同一个模型时需要重新下载。如果你不再需要这个模型了，先确认用途，再决定保留或清理。",
+      "seconds": 3.2774,
+      "input_tokens": 200,
+      "output_tokens": 52,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-folder",
+      "path": "C:\\Users\\Eval\\Projects\\demo\\node_modules",
+      "answer": "这是你的 Python 项目「demo」的依赖包目录，所有第三方库都安装在这里。\n\n删了的话依赖包无法使用。如果你不再需要「demo」这个项目了，先确认依赖是否重要，再删除。",
+      "seconds": 3.0979,
+      "input_tokens": 181,
+      "output_tokens": 48,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "锁",
+          "声明",
+          "备份"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-file",
+      "path": "D:\\Projects\\demo\\node_modules\\example-package\\main.js",
+      "answer": "这是 demo 项目中的 main.js，一个 Node.js 主程序文件，负责启动和运行项目。\n\n删了的话 demo 项目无法启动。如果你不做这个项目了，先确认需求，再决定是否删除。",
+      "seconds": 3.0043,
+      "input_tokens": 183,
+      "output_tokens": 47,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "依赖"
+        ],
+        [
+          "安装"
+        ],
+        [
+          "修改",
+          "备份",
+          "锁"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin",
+      "answer": "这是安装程序安装过程中的进度文件，安装完成后会被系统自动清理。\n\n安装进度文件，安装完成后系统会自动清理。",
+      "seconds": 1.9088,
+      "input_tokens": 187,
+      "output_tokens": 27,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "临时"
+        ],
+        [
+          "使用",
+          "占用",
+          "任务"
+        ],
+        [
+          "关闭",
+          "结束",
+          "跳过"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp-uppercase",
+      "path": "C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG",
+      "answer": "这是 Eval 的会话日志，记录了你的 Eval 运行过程。\n\n纯日志，删了不影响 Eval 功能。",
+      "seconds": 1.8626,
+      "input_tokens": 188,
+      "output_tokens": 26,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "临时"
+        ],
+        [
+          "使用",
+          "占用",
+          "任务"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp",
+      "path": "C:\\Windows\\Temp\\staging.tmp",
+      "answer": "这是 Windows 的临时文件缓存，系统运行过程中产生的临时数据。\n\n属于 Windows 临时文件的缓存，删了不影响任何功能。",
+      "seconds": 2.064,
+      "input_tokens": 181,
+      "output_tokens": 30,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "使用",
+          "占用",
+          "任务"
+        ],
+        [
+          "清理"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp-file",
+      "path": "C:/Windows/Temp/update-progress.bin",
+      "answer": "这是 Windows 更新进程产生的临时更新进度数据，更新完成后留下的中间文件。\n\n属于 Windows 更新管理的临时数据，更新完成后会自动清理。",
+      "seconds": 2.1565,
+      "input_tokens": 180,
+      "output_tokens": 32,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "使用",
+          "占用",
+          "任务"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-archive",
+      "path": "C:\\Users\\Eval\\Documents\\archive.bin",
+      "answer": "这是 Eval 的本地文档/archive.bin，保存了 Eval 运行时的中间数据和调试信息。\n\n删了的话 Eval 的调试日志和中间文件会丢失，但基本的运行记录（.vscode 目录里的代码文件）不受影响。如果 Eval 还在用，不要删。",
+      "seconds": 3.7724,
+      "input_tokens": 177,
+      "output_tokens": 62,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "无法",
+          "不确定",
+          "不能确定",
+          "难以",
+          "不清楚"
+        ],
+        [
+          "备份",
+          "确认"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-microsoft",
+      "path": "C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat",
+      "answer": "这是 UnlistedProduct（未命名产品）的 payload.dat，一个用于软件漏洞扫描和修复的测试数据文件。\n\n属于 UnlistedProduct 的测试数据，不建议手动删除。如果不用这个产品，通过控制面板卸载。",
+      "seconds": 3.1089,
+      "input_tokens": 183,
+      "output_tokens": 49,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "无法",
+          "不确定",
+          "不能确定",
+          "难以",
+          "不清楚"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-cache",
+      "path": "C:\\Users\\Eval\\Documents\\cache\\journal.db",
+      "answer": "这是 Eval 文档缓存的数据库，保存了 Eval 运行时的中间结果和日志。\n\n删了的话 Eval 下次运行时会重新生成缓存，需要重新计算。如果你已经用 Eval 分析了文档，不要删。",
+      "seconds": 3.0036,
+      "input_tokens": 179,
+      "output_tokens": 48,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "无法",
+          "不确定",
+          "不能确定",
+          "难以",
+          "不清楚"
+        ],
+        [
+          "备份",
+          "确认"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-download",
+      "path": "C:\\Users\\Eval\\Downloads\\family-backup.zip",
+      "answer": "这是你的家庭备份文件，保存了你的电脑配置和设置数据。\n\n删了的话你的电脑设置和配置会永久丢失，无法恢复。如果不用了，先确认备份完整，再删除。",
+      "seconds": 2.8426,
+      "input_tokens": 181,
+      "output_tokens": 44,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "cache-prefix-nearmiss",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body",
+      "answer": "这是 Python pip 的下载缓存，之前用 pip install 安装 Python 包时下载的安装文件副本。\n\n删了的话下次用 pip install 安装同一个包时需要重新下载。如果你不再用 Python 了，先确认依赖关系，再决定是否清理。",
+      "seconds": 3.5444,
+      "input_tokens": 186,
+      "output_tokens": 57,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "无法",
+          "不确定",
+          "不能确定",
+          "难以",
+          "不清楚"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-onnx",
+      "path": "D:\\Research\\Shared\\network.onnx",
+      "answer": "这是你的研究项目「AI 大模型对话」中的网络层模型，AI 模型推理时的底层计算组件。\n\n删了的话对应的 AI 模型推理代码会无法运行。如果你不做这个研究，先确认是否需要这个模型，再决定是否删除。",
+      "seconds": 3.9676,
+      "input_tokens": 177,
+      "output_tokens": 55,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-with-distractor",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll",
+      "answer": "这是 Microsoft Edge WebView2 的引擎组件，Edge 浏览器在 Chrome 等浏览器里无法使用的 WebView 版本。\n\n属于 Edge 浏览器的核心组件，删了 Edge 会无法使用。不要单独删，先确认 Edge 版本和安装状态。",
+      "seconds": 4.0601,
+      "input_tokens": 210,
+      "output_tokens": 56,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "应用",
+          "软件"
+        ],
+        [
+          "依赖"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-missing-evidence",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin",
+      "answer": "这是 OneNote 的待处理文档缓存，编辑中未保存的文档副本。\n\n删了的话 OneNote 会重新创建待处理文档，但已保存的文档不受影响。",
+      "seconds": 3.2989,
+      "input_tokens": 194,
+      "output_tokens": 41,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "无法",
+          "不确定",
+          "不能确定",
+          "难以",
+          "不清楚"
+        ],
+        [
+          "确认",
+          "备份"
+        ]
+      ],
+      "forbidden_phrases": []
+    }
+  ]
+}

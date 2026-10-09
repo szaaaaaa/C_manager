@@ -29,20 +29,5 @@
     "users\\default",
     "\\drivers\\",
     "\\system volume information"
-  ],
-  "green": [
-    "\\appdata\\local\\temp",
-    "\\windows\\temp",
-    "\\temp\\",
-    "\\tmp\\",
-    "\\downloads\\",
-    "\\$recycle.bin",
-    "\\thumbnails",
-    "\\cache\\",
-    ".tmp",
-    ".log",
-    ".dmp",
-    ".bak",
-    ".old"
   ]
 }
