@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "gpu_execution": false,
+  "dtype_only_and_real_change_distinguished": true,
+  "normalization_collision_rejected": true,
+  "original_text_config_eos_token_id": 248044,
+  "tokenizer_eos_token": "<|im_end|>",
+  "actual_eos_token_id": 248046
+}

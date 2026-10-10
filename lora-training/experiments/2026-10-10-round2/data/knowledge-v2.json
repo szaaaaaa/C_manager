@@ -1,0 +1,218 @@
+{
+  "version": "round2-v2",
+  "unknown": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+  "entries": [
+    {
+      "id": "webview2",
+      "patterns": [
+        "\\microsoft\\edgewebview\\application\\"
+      ],
+      "safety": "yellow",
+      "source": "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution",
+      "facts": "用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。",
+      "source_scope": "此前官方资料复核：一般用途和保守风险，不是逐文件验证",
+      "minimal_supported_claims": [
+        "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+        "Runtime 的依赖与是否使用 Edge 浏览器分开"
+      ],
+      "required_risk_caveats": [
+        "删除可能影响依赖它的应用",
+        "建议保留并通过 Windows 应用管理处理"
+      ]
+    },
+    {
+      "id": "onenote-cache",
+      "patterns": [
+        "\\microsoft\\onenote\\",
+        "\\cache\\"
+      ],
+      "safety": "yellow",
+      "source": "https://support.microsoft.com/en-us/onenote/onenote-help-and-learning/fix-issues-when-you-can-t-sync-onenote",
+      "facts": "用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。",
+      "source_scope": "此前官方资料复核：一般用途和保守风险，不是逐文件验证",
+      "minimal_supported_claims": [
+        "OneNote 的本地缓存可能包括未同步的笔记修改"
+      ],
+      "required_risk_caveats": [
+        "先检查同步并备份需要的笔记",
+        "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+      ]
+    },
+    {
+      "id": "pip-cache",
+      "patterns": [
+        "\\pip\\cache\\"
+      ],
+      "safety": "green",
+      "source": "https://pip.pypa.io/en/stable/topics/caching/",
+      "facts": "用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。",
+      "source_scope": "此前官方资料复核：一般用途和保守风险，不是逐文件验证",
+      "minimal_supported_claims": [
+        "pip 下载响应或构建 wheel 的缓存",
+        "清理缓存不等于卸载已安装的 Python 包"
+      ],
+      "required_risk_caveats": [
+        "下次安装需要时可能重新下载或构建",
+        "建议用 pip cache purge 管理"
+      ]
+    },
+    {
+      "id": "pytorch-package",
+      "patterns": [
+        "\\site-packages\\torch\\"
+      ],
+      "safety": "yellow",
+      "source": "https://docs.pytorch.org/docs/main/index.html",
+      "facts": "用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。",
+      "source_scope": "此前官方资料复核：一般用途和保守风险，不是逐文件验证",
+      "minimal_supported_claims": [
+        "当前 Python 环境里的 PyTorch 安装包文件",
+        "用于张量计算和机器学习"
+      ],
+      "required_risk_caveats": [
+        "单独删除包内文件可能影响当前环境的 PyTorch",
+        "先确认项目依赖，通过该环境包管理工具卸载"
+      ],
+      "original_source": "https://docs.pytorch.org/docs/stable/",
+      "verified_source": "https://docs.pytorch.org/docs/main/index.html",
+      "source_audit": "../exp_20261010_111944/knowledge-source-audit.md; current official URL, not actual file verification"
+    },
+    {
+      "id": "huggingface-cache",
+      "patterns": [
+        "\\.cache\\huggingface\\hub\\"
+      ],
+      "safety": "yellow",
+      "source": "https://huggingface.co/docs/huggingface_hub/guides/manage-cache",
+      "facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。",
+      "source_scope": "此前官方资料复核：一般用途和保守风险，不是逐文件验证",
+      "minimal_supported_claims": [
+        "Hugging Face Hub 下载模型或数据资源的本地缓存"
+      ],
+      "required_risk_caveats": [
+        "项目可能需要重新下载，离线运行可能受影响",
+        "先确认依赖和下载条件，用缓存管理工具处理"
+      ]
+    },
+    {
+      "id": "node-dependencies",
+      "patterns": [
+        "\\node_modules\\"
+      ],
+      "safety": "yellow",
+      "source": "https://docs.npmjs.com/cli/v11/commands/npm-install",
+      "facts": "用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。",
+      "source_scope": "此前官方资料复核：一般用途和保守风险，不是逐文件验证",
+      "minimal_supported_claims": [
+        "JavaScript/Node.js 项目的依赖目录"
+      ],
+      "required_risk_caveats": [
+        "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+        "保留声明、锁文件及手工修改，不保证修改能恢复"
+      ]
+    },
+    {
+      "id": "user-temp",
+      "patterns": [
+        "\\appdata\\local\\temp\\"
+      ],
+      "safety": "green",
+      "source": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows",
+      "facts": "用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。",
+      "source_scope": "此前官方资料复核：一般用途和保守风险，不是逐文件验证",
+      "minimal_supported_claims": [
+        "当前用户临时目录",
+        "不能仅凭路径或文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "使用中的文件被清理可能让任务失败",
+        "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+      ],
+      "original_source": "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows",
+      "verified_source": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows",
+      "source_audit": "../exp_20261010_111944/knowledge-source-audit.md; current official URL, not actual file verification"
+    },
+    {
+      "id": "windows-temp",
+      "patterns": [
+        "\\windows\\temp\\"
+      ],
+      "safety": "green",
+      "source": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows",
+      "facts": "用途：路径位于 Windows 临时目录，可能含系统服务或安装任务使用的临时文件，不能据文件名确认具体内容。删除影响：清理正在使用的文件可能影响相关任务，不应强制清理占用项。建议：等待相关任务结束，优先用 Windows 存储设置中的清理功能，保留需要的文件，跳过占用项。",
+      "source_scope": "此前官方资料复核：一般用途和保守风险，不是逐文件验证",
+      "minimal_supported_claims": [
+        "Windows 临时目录",
+        "不能仅凭文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "系统服务或安装任务可能正在使用",
+        "等相关任务结束，用 Windows 存储清理并跳过占用项"
+      ],
+      "original_source": "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows",
+      "verified_source": "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows",
+      "source_audit": "../exp_20261010_111944/knowledge-source-audit.md; current official URL, not actual file verification"
+    },
+    {
+      "id": "npm-cache",
+      "patterns": [
+        "\\npm-cache\\_cacache\\"
+      ],
+      "safety": "yellow",
+      "facts": "适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+      "claims": [
+        "资料指定这是配置中的 npm 缓存",
+        "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+      ],
+      "risk": [
+        "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+        "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+      ],
+      "forbidden": [
+        "npm 缓存等于 node_modules 安装依赖或项目源文件",
+        "保证所有包副本都能重新下载",
+        "认定所有同名路径已经验证来源",
+        "要求日常无条件清空缓存"
+      ],
+      "source_ids": [
+        "npm-cache-v11-20261010"
+      ],
+      "sources": [
+        "https://docs.npmjs.com/cli/v11/commands/npm-cache/"
+      ]
+    },
+    {
+      "id": "git-objects",
+      "patterns": [
+        "\\.git\\objects\\"
+      ],
+      "safety": "yellow",
+      "facts": "适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+      "claims": [
+        "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+        "不是通用可随手删除的下载缓存"
+      ],
+      "risk": [
+        "单独删除对象可能破坏仓库完整性",
+        "先备份并确认没有并发写入，用 git gc 等仓库维护",
+        "不能保证远程有全部本地数据"
+      ],
+      "forbidden": [
+        "把对象库当成普通缓存直接清空",
+        "保证远程包含所有本地未推送数据",
+        "仅凭对象文件名猜是哪次提交或源代码",
+        "保证 git gc 在并发写入时绝对安全"
+      ],
+      "source_ids": [
+        "git-objects-progit-20261010",
+        "git-gc-20261010"
+      ],
+      "sources": [
+        "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+        "https://git-scm.com/docs/git-gc"
+      ]
+    }
+  ],
+  "legacy_diagnostic_knowledge": "ROOT/inputs/knowledge.json (unchanged)",
+  "new_family_exposure": "Only evaluation positives receive new-family facts; no new-family material in train/validation."
+}

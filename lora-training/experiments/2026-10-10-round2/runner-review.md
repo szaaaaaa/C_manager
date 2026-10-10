@@ -1,0 +1,13 @@
+# Runner review before GPU freeze
+
+Only new RUN files are editable. Base safetensors/model/tokenizer are reused read-only; old RUN, ROOT inputs and C_manager stay read-only. Helper copies contain the existing answer-only masking formatter and cue checker without old project-relative imports.
+
+Changes: explicit160-row per-arm files/shared32-row validation; file hashes plus disjoint train/validation IDs and normalized paths; only instruction/input/output tokenized. Max40 steps, checkpoint/evaluate20/40, selection by validation NLL. A/B input sequence equality and all4 conditions'72 frozen messages verified on CPU. Evaluation consumes exact instruction/input and asserts equality to supplied messages; it never re-retrieves or substitutes legacy facts. Legacy historical24 is diagnostic; main48 has no keyword cues, so cue_checked=false and cue_pass=null rather than fake passes.
+
+Retained: NF4 double quant, bf16 compute, rank8 q/k/v/o, LR5e-5, seed42, batch1/accum4, seq768, answer-only labels, serialized GPU lock,1740s watchdog, local-only weights, strict723-base+quantstate freeze checks after preparation, raw special-token/EOS248046 checks, no thinking, identical16-token warmup/greedy256 output. Requires_root data_freeze_approved gate currentlyfalse.
+
+Every condition saves normalized runtime base states after warmup. Conditions005/006/007 must exactly match condition004 reference on dtype/shape/raw/F32 values/quantstate before test generation. Input counts come from configuration, not stale24/168 literals. Adapter hashes and selected checkpoint/NLL are saved. The existing num_items_in_batch accumulation warning is retained and observed log snippets are recorded; no new loss implementation is introduced.
+
+CPU checks passed: maximum A/B length413 and C439; all prompt/padding masks; explicit overlong rejection; type-only vs real numeric changes; name normalization collision rejection; template EOS; file counts/hashes/splits. GPU was not started and no experiment result.json exists.
+
+Risks/boundaries: prior loading allocator peak exceeded7168MiB and could recur;40 steps/72 cases are each bounded but total wall time is substantial. A/B change output lengths/expression; B/C hard-negative replacement changes input distribution even with equal counts. Shared validation styles overlap training variants, and historical24 is already familiar: primary48 must remain separate. This is synthetic-data/single-seed evidence, not broad-generalization or independent-user satisfaction. No optimizer/loss change, install, download, merge/export or GUI deployment is included. Single-condition failures preserve result and stop dependent conditions instead of silently changing parameters.

@@ -1,0 +1,120 @@
+{
+  "repo": "unsloth/Qwen3.5-4B",
+  "revision": "3764fa359b9082ea5a1e4a5e3ac3aaf6e9671636",
+  "files": [
+    {
+      "file": "LICENSE",
+      "bytes": 11544,
+      "sha256": "bbedc3fda3305820b977265f01b8619d87570a6739de3a5582c3464840f1e57a",
+      "status": "downloaded"
+    },
+    {
+      "file": "README.md",
+      "bytes": 77671,
+      "sha256": "362977cb4cae69a773776a3b7f30de279f69800a7f3ab90fe9c4dd1dde694b47",
+      "status": "downloaded"
+    },
+    {
+      "file": "added_tokens.json",
+      "bytes": 904,
+      "sha256": "e5f9bfb644ead13bd36dd6cfc41553a93b7c264c0a2e1ac67d033aa8250c8538",
+      "status": "downloaded"
+    },
+    {
+      "file": "chat_template.jinja",
+      "bytes": 7992,
+      "sha256": "8452ca85cb1e0ff04304c02f417a53305d5ba17f6eb9d5693343ad8355f985a8",
+      "status": "downloaded"
+    },
+    {
+      "file": "config.json",
+      "bytes": 2756,
+      "sha256": "14687c353af8012cc1b563b3aeeefaa0b78d8780d8ea5270c73fe9fcdb7387f2",
+      "status": "downloaded"
+    },
+    {
+      "file": "merges.txt",
+      "bytes": 3353273,
+      "sha256": "3bd640ba6d8da8f5844f3548b7e2184fc664dd670e1447e425a48dbaaad1ef43",
+      "status": "downloaded"
+    },
+    {
+      "file": "model.safetensors.index.json",
+      "bytes": 76196,
+      "sha256": "cf3f798ee02ba45f9622aa8892a47369ab667d0afbf154ee7c2212de42e6302d",
+      "status": "downloaded"
+    },
+    {
+      "file": "preprocessor_config.json",
+      "bytes": 781,
+      "sha256": "b99182e09450f26453502b3c3390cce36b33dc8c4a1f3ee21807762e168c74ab",
+      "status": "downloaded"
+    },
+    {
+      "file": "processor_config.json",
+      "bytes": 1300,
+      "sha256": "14932921ca485d458a04dafd8069fbb0a4505622a48208d19ed247115801385b",
+      "status": "downloaded"
+    },
+    {
+      "file": "special_tokens_map.json",
+      "bytes": 876,
+      "sha256": "ce5cbe737f4aacc7696180aac743091101b59e4dc5a338d9fc8a6f716aa513f7",
+      "status": "downloaded"
+    },
+    {
+      "file": "tokenizer.json",
+      "bytes": 19989343,
+      "sha256": "87a7830d63fcf43bf241c3c5242e96e62dd3fdc29224ca26fed8ea333db72de4",
+      "status": "downloaded"
+    },
+    {
+      "file": "tokenizer_config.json",
+      "bytes": 15714,
+      "sha256": "04e9017bf53d513db997ce8a472ec0cef89339c7ab3af449e561af79fd45cb71",
+      "status": "downloaded"
+    },
+    {
+      "file": "video_preprocessor_config.json",
+      "bytes": 817,
+      "sha256": "59c5c9eb52182eb14c06ffb10ca9effd29adce5f238a95de23ca14a38dbd2cb1",
+      "status": "downloaded"
+    },
+    {
+      "file": "vocab.json",
+      "bytes": 5234494,
+      "sha256": "4ab0d5c096294054b66444a116a20baf6e29998fc1fae410ffe4b6fadbc56b5c",
+      "status": "downloaded"
+    },
+    {
+      "id": "qwen35-4b-training-shard2",
+      "directory": "qwen35-4b-training",
+      "format": "safetensors",
+      "repo": "unsloth/Qwen3.5-4B",
+      "revision": "3764fa359b9082ea5a1e4a5e3ac3aaf6e9671636",
+      "file": "model.safetensors-00002-of-00002.safetensors",
+      "bytes": 3990429408,
+      "sha256": "cb544bd9bfae93dc59b0f22b292f5933573854a7f9b97835c67060d7d910e188",
+      "workers": 16,
+      "deadline_seconds": 3600,
+      "status": "downloaded",
+      "path": "D:\\small-model-experiments\\models\\qwen35-4b-training\\model.safetensors-00002-of-00002.safetensors",
+      "download_seconds": 1364.5
+    },
+    {
+      "id": "qwen35-4b-training-shard1",
+      "directory": "qwen35-4b-training",
+      "format": "safetensors",
+      "repo": "unsloth/Qwen3.5-4B",
+      "revision": "3764fa359b9082ea5a1e4a5e3ac3aaf6e9671636",
+      "file": "model.safetensors-00001-of-00002.safetensors",
+      "bytes": 5329398688,
+      "sha256": "26a93f066e1916adb13453dae5a0c707c0fbc71299ed98779571a907b8e74c61",
+      "workers": 16,
+      "deadline_seconds": 3600,
+      "status": "downloaded",
+      "path": "D:\\small-model-experiments\\models\\qwen35-4b-training\\model.safetensors-00001-of-00002.safetensors",
+      "download_seconds": 1397.0470000000205
+    }
+  ]
+}

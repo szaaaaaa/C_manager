@@ -1,0 +1,34 @@
+{
+  "status": "passed",
+  "cpu_only": true,
+  "model_or_gpu_execution": false,
+  "seed": 42,
+  "counts": {
+    "train_A": 160,
+    "train_B": 160,
+    "train_C": 160,
+    "validation": 32,
+    "evaluation": 72,
+    "primary": 48,
+    "historical": 24,
+    "primary_abstention": 20,
+    "historical_abstention": 7
+  },
+  "a_b_instruction_input_row_identity": true,
+  "b_c_positive_row_identity": true,
+  "c_negative_distribution": {
+    "near_miss": 16,
+    "irrelevant_evidence": 16,
+    "guess_request": 16,
+    "missing_evidence": 16
+  },
+  "path_normalization": "lowercase, slash to backslash, trim trailing slash",
+  "cross_split_exact_path_overlaps": 0,
+  "new_family_training_validation_exposure": false,
+  "historical_messages_exact_match_014_and_015": true,
+  "no_target_verbatim_in_input": true,
+  "target_variants_per_known_family_B_C": 4,
+  "token_budget_check": "pending: training owner must apply actual frozen tokenizer; fail on >768, do not silently truncate/drop",
+  "source_generation_count": 584,
+  "derived_eval_copies_not_extra_samples": true
+}

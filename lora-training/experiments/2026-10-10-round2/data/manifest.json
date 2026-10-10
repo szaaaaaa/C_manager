@@ -1,0 +1,107 @@
+{
+  "run_id": "exp_20261010_150741",
+  "status": "awaiting_root_review_freeze",
+  "seed": 42,
+  "sample_rows_excluding_derived_eval_copies": 584,
+  "dataset_counts": {
+    "train_A": 160,
+    "train_B": 160,
+    "train_C": 160,
+    "validation": 32,
+    "evaluation": 72,
+    "primary": 48,
+    "historical": 24,
+    "primary_abstention": 20,
+    "historical_abstention": 7
+  },
+  "train_positive_negative": {
+    "positive": 96,
+    "negative": 64
+  },
+  "validation_positive_negative": {
+    "positive": 16,
+    "negative": 16
+  },
+  "source_paths": {
+    "legacy_knowledge": "D:\\small-model-experiments\\inputs\\knowledge.json",
+    "legacy_cases": "D:\\small-model-experiments\\inputs\\eval_cases.json",
+    "legacy_messages": "D:\\small-model-experiments\\outputs\\exp_20261010_111944\\experiments\\exp_014\\records.jsonl",
+    "official_new_family_sources": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\sources.json"
+  },
+  "source_sha256": {
+    "D:\\small-model-experiments\\inputs\\knowledge.json": "547f1cb9e11aae21796c4d7fe897b90f52dd8fe5bceec6b726ffc28a4d25cf0d",
+    "D:\\small-model-experiments\\inputs\\eval_cases.json": "a516f0f456d18ba589034e23f3a3e47cefb5762f7436387bf22d502d4372603b",
+    "D:\\small-model-experiments\\outputs\\exp_20261010_111944\\experiments\\exp_014\\records.jsonl": "9dd063d543bc175407ac97e08a7973658a02f06c0d52df7eec6452ca54e6aadf",
+    "D:\\small-model-experiments\\outputs\\exp_20261010_111944\\experiments\\exp_015\\records.jsonl": "e06837a148bc8df77df247231106e45726f36cab9c6f801bd43a4b73e9ce4c60",
+    "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\sources.json": "09b84f87ff9bac166f5caa31282f0c6c74fd1260ef96e205a02bd1689c5d3680"
+  },
+  "files": {
+    "train_A.jsonl": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\train_A.jsonl",
+      "bytes": 455462,
+      "sha256": "edd9e4c1e6aab0079d93319e1beae6153b6f18a583dc4de980da7b505d9bb142"
+    },
+    "train_B.jsonl": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\train_B.jsonl",
+      "bytes": 452954,
+      "sha256": "f462472c7c869e16458ab9e2336061567d595a52fb1066fe11a68f211c049857"
+    },
+    "train_C.jsonl": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\train_C.jsonl",
+      "bytes": 472878,
+      "sha256": "704e415120d03262b556a0ac770aa6dadccb24e7a5af69e79d29c0668b77748d"
+    },
+    "validation.jsonl": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\validation.jsonl",
+      "bytes": 95528,
+      "sha256": "6aa827f8c960d7dbfb9156fd0208eb1f822931c98079e6a8333f2034b6d743b0"
+    },
+    "eval_cases.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\eval_cases.json",
+      "bytes": 354607,
+      "sha256": "577f4f5bb6976b2d0bf987747a8014759d201845a5dba943cf60565ad27bdc7f"
+    },
+    "eval_primary48.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\eval_primary48.json",
+      "bytes": 238339,
+      "sha256": "3f96a2a52f936e5b6f0ba5f4f3fd33233980fbac4c43361a8c190f6d5e00a8e2"
+    },
+    "eval_historical24.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\eval_historical24.json",
+      "bytes": 116271,
+      "sha256": "fdbb194472a65ada70c3933547715a82df2cc34370485d1bf8c8c3eb98d1368b"
+    },
+    "knowledge-v2.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\knowledge-v2.json",
+      "bytes": 13320,
+      "sha256": "a4421805b02693772630314f37cd94ac82d76e4c136e4892a5fb033d98485b0f"
+    },
+    "target_variants.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\target_variants.json",
+      "bytes": 9373,
+      "sha256": "41b55414fca21d88f15394d8be6507b4ec71c279c88e3894102a5f53bf6275fe"
+    },
+    "grading_rubric.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\grading_rubric.json",
+      "bytes": 3700,
+      "sha256": "8ebb39e89c70dffb77b7d13bafbb13136c81a4f8b1a32bda8d640d1737ece11b"
+    },
+    "self_check.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\self_check.json",
+      "bytes": 1065,
+      "sha256": "981cbdffbed94b1a8692e641f8fe5ef2a5fccb601d206e86a8bf3be5ac1ca961"
+    },
+    "build_data.py": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\build_data.py",
+      "bytes": 45946,
+      "sha256": "f4013c9983fc725307058e713e933741c1b4bdacd7e62af04ec86a95d70d5cf6"
+    }
+  },
+  "limitations": [
+    "Synthetic paths; shared facts; four fixed answer templates per family, not open-ended natural-language diversity; validation expressions overlap train variants; single seed; same assistant knows design; root masks condition labels until ratings frozen, not independent human blinding",
+    "New family held out of supervised train/val only, not claimed unseen in pretraining",
+    "A vs B changes target token lengths and expressions; B vs C changes negative path/evidence/request distribution, not isolated single factor",
+    "Historical24 uses old facts, separate diagnostic; primary48 uses revised facts and no exact old paths",
+    "C has no unresolved contradictory negative in train; conflict test evaluates compositional abstention, not a memorized conflict template"
+  ]
+}

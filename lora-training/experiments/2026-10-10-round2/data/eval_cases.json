@@ -1,0 +1,4305 @@
+[
+  {
+    "id": "pip-body",
+    "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body",
+    "is_dir": false,
+    "knowledge": "pip-cache",
+    "required": [
+      [
+        "pip",
+        "Python"
+      ],
+      [
+        "缓存"
+      ],
+      [
+        "安装",
+        "装好"
+      ]
+    ],
+    "forbidden": [
+      "pip cache clear",
+      "无法运行"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：probe.body\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body\n所在目录：cache\\http-v2\\b\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：probe.body\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body\n所在目录：cache\\http-v2\\b\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+      }
+    ],
+    "facts": "用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "pip 下载响应或构建 wheel 的缓存",
+        "清理缓存不等于卸载已安装的 Python 包"
+      ],
+      "required_risk_caveats": [
+        "下次安装需要时可能重新下载或构建",
+        "建议用 pip cache purge 管理"
+      ],
+      "forbidden_claims": [
+        "下次运行或使用已安装的程序就会重新下载",
+        "缓存等于已安装的运行库",
+        "猜测具体包版本",
+        "不影响任何事情的保证"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+    },
+    "minimal_supported_claims": [
+      "pip 下载响应或构建 wheel 的缓存",
+      "清理缓存不等于卸载已安装的 Python 包"
+    ],
+    "required_risk_caveats": [
+      "下次安装需要时可能重新下载或构建",
+      "建议用 pip cache purge 管理"
+    ],
+    "source_urls": [
+      "https://pip.pypa.io/en/stable/topics/caching/"
+    ]
+  },
+  {
+    "id": "pip-wheel",
+    "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl",
+    "is_dir": false,
+    "knowledge": "pip-cache",
+    "required": [
+      [
+        "pip",
+        "Python"
+      ],
+      [
+        "缓存"
+      ]
+    ],
+    "forbidden": [
+      "pip cache clear",
+      "PyTorch核心"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：numpy.whl\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl\n所在目录：cache\\wheels\\ab\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：numpy.whl\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl\n所在目录：cache\\wheels\\ab\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+      }
+    ],
+    "facts": "用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "pip 下载响应或构建 wheel 的缓存",
+        "清理缓存不等于卸载已安装的 Python 包"
+      ],
+      "required_risk_caveats": [
+        "下次安装需要时可能重新下载或构建",
+        "建议用 pip cache purge 管理"
+      ],
+      "forbidden_claims": [
+        "下次运行或使用已安装的程序就会重新下载",
+        "缓存等于已安装的运行库",
+        "猜测具体包版本",
+        "不影响任何事情的保证"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+    },
+    "minimal_supported_claims": [
+      "pip 下载响应或构建 wheel 的缓存",
+      "清理缓存不等于卸载已安装的 Python 包"
+    ],
+    "required_risk_caveats": [
+      "下次安装需要时可能重新下载或构建",
+      "建议用 pip cache purge 管理"
+    ],
+    "source_urls": [
+      "https://pip.pypa.io/en/stable/topics/caching/"
+    ]
+  },
+  {
+    "id": "webview-dll",
+    "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+    "is_dir": false,
+    "knowledge": "webview2",
+    "required": [
+      [
+        "WebView"
+      ],
+      [
+        "应用",
+        "软件"
+      ],
+      [
+        "依赖"
+      ]
+    ],
+    "forbidden": [
+      "Edge浏览器无法启动",
+      "Edge 浏览器无法启动",
+      "不用Edge就可以删",
+      "不用 Edge 就可以删"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：msedge.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll\n所在目录：EdgeWebView\\Application\\146.0.3856.72\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：msedge.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll\n所在目录：EdgeWebView\\Application\\146.0.3856.72\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+      }
+    ],
+    "facts": "用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+        "Runtime 的依赖与是否使用 Edge 浏览器分开"
+      ],
+      "required_risk_caveats": [
+        "删除可能影响依赖它的应用",
+        "建议保留并通过 Windows 应用管理处理"
+      ],
+      "forbidden_claims": [
+        "把 Runtime 说成 Edge 浏览器主程序或仅供浏览器使用",
+        "保证所有文件与 Edge 物理独立",
+        "按版本号或不用 Edge 推出可直接删除"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+    },
+    "minimal_supported_claims": [
+      "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+      "Runtime 的依赖与是否使用 Edge 浏览器分开"
+    ],
+    "required_risk_caveats": [
+      "删除可能影响依赖它的应用",
+      "建议保留并通过 Windows 应用管理处理"
+    ],
+    "source_urls": [
+      "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution"
+    ]
+  },
+  {
+    "id": "webview-exe",
+    "path": "D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe",
+    "is_dir": false,
+    "knowledge": "webview2",
+    "required": [
+      [
+        "WebView"
+      ],
+      [
+        "应用",
+        "软件"
+      ],
+      [
+        "依赖"
+      ]
+    ],
+    "forbidden": [
+      "Edge浏览器主程序",
+      "Edge浏览器无法启动"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：msedgewebview2.exe\n完整路径：D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe\n所在目录：EdgeWebView\\Application\\146.1.234.5\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：msedgewebview2.exe\n完整路径：D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe\n所在目录：EdgeWebView\\Application\\146.1.234.5\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+      }
+    ],
+    "facts": "用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+        "Runtime 的依赖与是否使用 Edge 浏览器分开"
+      ],
+      "required_risk_caveats": [
+        "删除可能影响依赖它的应用",
+        "建议保留并通过 Windows 应用管理处理"
+      ],
+      "forbidden_claims": [
+        "把 Runtime 说成 Edge 浏览器主程序或仅供浏览器使用",
+        "保证所有文件与 Edge 物理独立",
+        "按版本号或不用 Edge 推出可直接删除"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+    },
+    "minimal_supported_claims": [
+      "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+      "Runtime 的依赖与是否使用 Edge 浏览器分开"
+    ],
+    "required_risk_caveats": [
+      "删除可能影响依赖它的应用",
+      "建议保留并通过 Windows 应用管理处理"
+    ],
+    "source_urls": [
+      "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution"
+    ]
+  },
+  {
+    "id": "onenote-folder",
+    "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+    "is_dir": true,
+    "knowledge": "onenote-cache",
+    "required": [
+      [
+        "OneNote",
+        "笔记"
+      ],
+      [
+        "同步"
+      ],
+      [
+        "备份"
+      ],
+      [
+        "丢失",
+        "丢",
+        "损失"
+      ]
+    ],
+    "forbidden": [
+      "纯缓存",
+      "不影响笔记",
+      "所有内容在云端"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件夹的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件夹名：cache\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\n所在目录：Microsoft\\OneNote\\16.0\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件夹的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件夹名：cache\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\n所在目录：Microsoft\\OneNote\\16.0\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。"
+      }
+    ],
+    "facts": "用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "OneNote 的本地缓存可能包括未同步的笔记修改"
+      ],
+      "required_risk_caveats": [
+        "先检查同步并备份需要的笔记",
+        "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+      ],
+      "forbidden_claims": [
+        "一定会丢失或永久无法恢复",
+        "保证所有内容已在云端",
+        "确认具体文件必然包含某篇笔记",
+        "无条件直接删除"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。"
+    },
+    "minimal_supported_claims": [
+      "OneNote 的本地缓存可能包括未同步的笔记修改"
+    ],
+    "required_risk_caveats": [
+      "先检查同步并备份需要的笔记",
+      "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+    ],
+    "source_urls": [
+      "https://support.microsoft.com/en-us/onenote/onenote-help-and-learning/fix-issues-when-you-can-t-sync-onenote"
+    ]
+  },
+  {
+    "id": "onenote-file",
+    "path": "C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin",
+    "is_dir": false,
+    "knowledge": "onenote-cache",
+    "required": [
+      [
+        "笔记"
+      ],
+      [
+        "同步"
+      ],
+      [
+        "备份"
+      ],
+      [
+        "丢失",
+        "丢"
+      ]
+    ],
+    "forbidden": [
+      "纯缓存",
+      "不影响笔记",
+      "一定能恢复"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：section-007.bin\n完整路径：C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：section-007.bin\n完整路径：C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。"
+      }
+    ],
+    "facts": "用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "OneNote 的本地缓存可能包括未同步的笔记修改"
+      ],
+      "required_risk_caveats": [
+        "先检查同步并备份需要的笔记",
+        "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+      ],
+      "forbidden_claims": [
+        "一定会丢失或永久无法恢复",
+        "保证所有内容已在云端",
+        "确认具体文件必然包含某篇笔记",
+        "无条件直接删除"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。"
+    },
+    "minimal_supported_claims": [
+      "OneNote 的本地缓存可能包括未同步的笔记修改"
+    ],
+    "required_risk_caveats": [
+      "先检查同步并备份需要的笔记",
+      "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+    ],
+    "source_urls": [
+      "https://support.microsoft.com/en-us/onenote/onenote-help-and-learning/fix-issues-when-you-can-t-sync-onenote"
+    ]
+  },
+  {
+    "id": "torch-base",
+    "path": "C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+    "is_dir": false,
+    "knowledge": "pytorch-package",
+    "required": [
+      [
+        "PyTorch",
+        "torch"
+      ],
+      [
+        "环境"
+      ],
+      [
+        "卸载",
+        "包管理"
+      ]
+    ],
+    "forbidden": [
+      "conda env remove -n base",
+      "放心删",
+      "RTX 5070"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：torch_cuda.dll\n完整路径：C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：torch_cuda.dll\n完整路径：C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。"
+      }
+    ],
+    "facts": "用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "当前 Python 环境里的 PyTorch 安装包文件",
+        "用于张量计算和机器学习"
+      ],
+      "required_risk_caveats": [
+        "单独删除包内文件可能影响当前环境的 PyTorch",
+        "先确认项目依赖，通过该环境包管理工具卸载"
+      ],
+      "forbidden_claims": [
+        "猜测显卡型号或具体 CUDA 配置",
+        "所有 Python 环境都会受损",
+        "永久不能恢复",
+        "直接删除 DLL 即可"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。"
+    },
+    "minimal_supported_claims": [
+      "当前 Python 环境里的 PyTorch 安装包文件",
+      "用于张量计算和机器学习"
+    ],
+    "required_risk_caveats": [
+      "单独删除包内文件可能影响当前环境的 PyTorch",
+      "先确认项目依赖，通过该环境包管理工具卸载"
+    ],
+    "source_urls": [
+      "https://docs.pytorch.org/docs/stable/"
+    ]
+  },
+  {
+    "id": "torch-env",
+    "path": "D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+    "is_dir": false,
+    "knowledge": "pytorch-package",
+    "required": [
+      [
+        "PyTorch",
+        "torch"
+      ],
+      [
+        "环境"
+      ],
+      [
+        "卸载",
+        "包管理"
+      ]
+    ],
+    "forbidden": [
+      "CUDA核心",
+      "conda env remove -n base",
+      "放心删"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：torch_cpu.dll\n完整路径：D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：torch_cpu.dll\n完整路径：D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。"
+      }
+    ],
+    "facts": "用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "当前 Python 环境里的 PyTorch 安装包文件",
+        "用于张量计算和机器学习"
+      ],
+      "required_risk_caveats": [
+        "单独删除包内文件可能影响当前环境的 PyTorch",
+        "先确认项目依赖，通过该环境包管理工具卸载"
+      ],
+      "forbidden_claims": [
+        "猜测显卡型号或具体 CUDA 配置",
+        "所有 Python 环境都会受损",
+        "永久不能恢复",
+        "直接删除 DLL 即可"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。"
+    },
+    "minimal_supported_claims": [
+      "当前 Python 环境里的 PyTorch 安装包文件",
+      "用于张量计算和机器学习"
+    ],
+    "required_risk_caveats": [
+      "单独删除包内文件可能影响当前环境的 PyTorch",
+      "先确认项目依赖，通过该环境包管理工具卸载"
+    ],
+    "source_urls": [
+      "https://docs.pytorch.org/docs/stable/"
+    ]
+  },
+  {
+    "id": "hf-weights",
+    "path": "C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+    "is_dir": false,
+    "knowledge": "huggingface-cache",
+    "required": [
+      [
+        "Hugging Face",
+        "HuggingFace",
+        "huggingface"
+      ],
+      [
+        "下载"
+      ],
+      [
+        "离线"
+      ]
+    ],
+    "forbidden": [
+      "纯缓存不影响",
+      "不用确认"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：weights.safetensors\n完整路径：C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors\n所在目录：models--sample--tiny\\snapshots\\def456\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：weights.safetensors\n完整路径：C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors\n所在目录：models--sample--tiny\\snapshots\\def456\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。"
+      }
+    ],
+    "facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "Hugging Face Hub 下载模型或数据资源的本地缓存"
+      ],
+      "required_risk_caveats": [
+        "项目可能需要重新下载，离线运行可能受影响",
+        "先确认依赖和下载条件，用缓存管理工具处理"
+      ],
+      "forbidden_claims": [
+        "猜测模型具体用途",
+        "保证任何资源都能重新下载",
+        "保证没有个人数据损失或本地修改",
+        "无条件删除"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。"
+    },
+    "minimal_supported_claims": [
+      "Hugging Face Hub 下载模型或数据资源的本地缓存"
+    ],
+    "required_risk_caveats": [
+      "项目可能需要重新下载，离线运行可能受影响",
+      "先确认依赖和下载条件，用缓存管理工具处理"
+    ],
+    "source_urls": [
+      "https://huggingface.co/docs/huggingface_hub/guides/manage-cache"
+    ]
+  },
+  {
+    "id": "hf-blob",
+    "path": "D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67",
+    "is_dir": false,
+    "knowledge": "huggingface-cache",
+    "required": [
+      [
+        "Hugging Face",
+        "HuggingFace",
+        "huggingface"
+      ],
+      [
+        "下载"
+      ],
+      [
+        "确认",
+        "依赖",
+        "使用"
+      ]
+    ],
+    "forbidden": [
+      "所有模型都",
+      "不影响任何"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：a45b67\n完整路径：D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67\n所在目录：hub\\models--sample--encoder\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：a45b67\n完整路径：D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67\n所在目录：hub\\models--sample--encoder\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。"
+      }
+    ],
+    "facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "Hugging Face Hub 下载模型或数据资源的本地缓存"
+      ],
+      "required_risk_caveats": [
+        "项目可能需要重新下载，离线运行可能受影响",
+        "先确认依赖和下载条件，用缓存管理工具处理"
+      ],
+      "forbidden_claims": [
+        "猜测模型具体用途",
+        "保证任何资源都能重新下载",
+        "保证没有个人数据损失或本地修改",
+        "无条件删除"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。"
+    },
+    "minimal_supported_claims": [
+      "Hugging Face Hub 下载模型或数据资源的本地缓存"
+    ],
+    "required_risk_caveats": [
+      "项目可能需要重新下载，离线运行可能受影响",
+      "先确认依赖和下载条件，用缓存管理工具处理"
+    ],
+    "source_urls": [
+      "https://huggingface.co/docs/huggingface_hub/guides/manage-cache"
+    ]
+  },
+  {
+    "id": "node-folder",
+    "path": "C:\\Users\\Eval\\Projects\\demo\\node_modules",
+    "is_dir": true,
+    "knowledge": "node-dependencies",
+    "required": [
+      [
+        "Node",
+        "JavaScript",
+        "依赖"
+      ],
+      [
+        "安装"
+      ],
+      [
+        "锁",
+        "声明",
+        "备份"
+      ]
+    ],
+    "forbidden": [
+      "不影响项目运行",
+      "不需要备份"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件夹的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件夹名：node_modules\n完整路径：C:\\Users\\Eval\\Projects\\demo\\node_modules\n所在目录：Eval\\Projects\\demo\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件夹的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件夹名：node_modules\n完整路径：C:\\Users\\Eval\\Projects\\demo\\node_modules\n所在目录：Eval\\Projects\\demo\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。"
+      }
+    ],
+    "facts": "用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "JavaScript/Node.js 项目的依赖目录"
+      ],
+      "required_risk_caveats": [
+        "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+        "保留声明、锁文件及手工修改，不保证修改能恢复"
+      ],
+      "forbidden_claims": [
+        "删除不影响项目运行",
+        "保证手工修改自动恢复",
+        "没有声明锁文件也一定能原样恢复",
+        "无条件直接清理"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。"
+    },
+    "minimal_supported_claims": [
+      "JavaScript/Node.js 项目的依赖目录"
+    ],
+    "required_risk_caveats": [
+      "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+      "保留声明、锁文件及手工修改，不保证修改能恢复"
+    ],
+    "source_urls": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-install"
+    ]
+  },
+  {
+    "id": "node-file",
+    "path": "D:\\Projects\\demo\\node_modules\\example-package\\main.js",
+    "is_dir": false,
+    "knowledge": "node-dependencies",
+    "required": [
+      [
+        "依赖"
+      ],
+      [
+        "安装"
+      ],
+      [
+        "修改",
+        "备份",
+        "锁"
+      ]
+    ],
+    "forbidden": [
+      "不影响项目运行",
+      "不需要备份"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：main.js\n完整路径：D:\\Projects\\demo\\node_modules\\example-package\\main.js\n所在目录：demo\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：main.js\n完整路径：D:\\Projects\\demo\\node_modules\\example-package\\main.js\n所在目录：demo\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。"
+      }
+    ],
+    "facts": "用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "JavaScript/Node.js 项目的依赖目录"
+      ],
+      "required_risk_caveats": [
+        "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+        "保留声明、锁文件及手工修改，不保证修改能恢复"
+      ],
+      "forbidden_claims": [
+        "删除不影响项目运行",
+        "保证手工修改自动恢复",
+        "没有声明锁文件也一定能原样恢复",
+        "无条件直接清理"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。"
+    },
+    "minimal_supported_claims": [
+      "JavaScript/Node.js 项目的依赖目录"
+    ],
+    "required_risk_caveats": [
+      "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+      "保留声明、锁文件及手工修改，不保证修改能恢复"
+    ],
+    "source_urls": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-install"
+    ]
+  },
+  {
+    "id": "user-temp",
+    "path": "C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin",
+    "is_dir": false,
+    "knowledge": "user-temp",
+    "required": [
+      [
+        "临时"
+      ],
+      [
+        "使用",
+        "占用",
+        "任务"
+      ],
+      [
+        "关闭",
+        "结束",
+        "跳过"
+      ]
+    ],
+    "forbidden": [
+      "直接删即可",
+      "放心删",
+      "纯缓存"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：install-progress.bin\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin\n所在目录：AppData\\Local\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：install-progress.bin\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin\n所在目录：AppData\\Local\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。"
+      }
+    ],
+    "facts": "用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "当前用户临时目录",
+        "不能仅凭路径或文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "使用中的文件被清理可能让任务失败",
+        "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+      ],
+      "forbidden_claims": [
+        "猜测是进度日志或某应用缓存",
+        "所有临时文件都可无条件删除",
+        "强制删除占用文件"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。"
+    },
+    "minimal_supported_claims": [
+      "当前用户临时目录",
+      "不能仅凭路径或文件名确认具体内容"
+    ],
+    "required_risk_caveats": [
+      "使用中的文件被清理可能让任务失败",
+      "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+    ],
+    "source_urls": [
+      "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    ]
+  },
+  {
+    "id": "user-temp-uppercase",
+    "path": "C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG",
+    "is_dir": false,
+    "knowledge": "user-temp",
+    "required": [
+      [
+        "临时"
+      ],
+      [
+        "使用",
+        "占用",
+        "任务"
+      ]
+    ],
+    "forbidden": [
+      "放心删",
+      "不影响任何"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：SESSION.LOG\n完整路径：C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG\n所在目录：APPDATA\\LOCAL\\TEMP\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：SESSION.LOG\n完整路径：C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG\n所在目录：APPDATA\\LOCAL\\TEMP\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。"
+      }
+    ],
+    "facts": "用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "当前用户临时目录",
+        "不能仅凭路径或文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "使用中的文件被清理可能让任务失败",
+        "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+      ],
+      "forbidden_claims": [
+        "猜测是进度日志或某应用缓存",
+        "所有临时文件都可无条件删除",
+        "强制删除占用文件"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。"
+    },
+    "minimal_supported_claims": [
+      "当前用户临时目录",
+      "不能仅凭路径或文件名确认具体内容"
+    ],
+    "required_risk_caveats": [
+      "使用中的文件被清理可能让任务失败",
+      "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+    ],
+    "source_urls": [
+      "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    ]
+  },
+  {
+    "id": "windows-temp",
+    "path": "C:\\Windows\\Temp\\staging.tmp",
+    "is_dir": false,
+    "knowledge": "windows-temp",
+    "required": [
+      [
+        "临时"
+      ],
+      [
+        "使用",
+        "占用",
+        "任务"
+      ],
+      [
+        "清理"
+      ]
+    ],
+    "forbidden": [
+      "直接删即可",
+      "放心删"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：staging.tmp\n完整路径：C:\\Windows\\Temp\\staging.tmp\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：staging.tmp\n完整路径：C:\\Windows\\Temp\\staging.tmp\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。"
+      }
+    ],
+    "facts": "用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "Windows 临时目录",
+        "不能仅凭文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "系统服务或安装任务可能正在使用",
+        "等相关任务结束，用 Windows 存储清理并跳过占用项"
+      ],
+      "forbidden_claims": [
+        "确认一定是系统更新进度",
+        "无条件删除",
+        "强制删除占用文件",
+        "全部都是系统核心文件不可清理"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。"
+    },
+    "minimal_supported_claims": [
+      "Windows 临时目录",
+      "不能仅凭文件名确认具体内容"
+    ],
+    "required_risk_caveats": [
+      "系统服务或安装任务可能正在使用",
+      "等相关任务结束，用 Windows 存储清理并跳过占用项"
+    ],
+    "source_urls": [
+      "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    ]
+  },
+  {
+    "id": "windows-temp-file",
+    "path": "C:/Windows/Temp/update-progress.bin",
+    "is_dir": false,
+    "knowledge": "windows-temp",
+    "required": [
+      [
+        "临时"
+      ],
+      [
+        "使用",
+        "占用",
+        "任务"
+      ]
+    ],
+    "forbidden": [
+      "系统核心不能",
+      "直接删即可"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：update-progress.bin\n完整路径：C:/Windows/Temp/update-progress.bin\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：update-progress.bin\n完整路径：C:/Windows/Temp/update-progress.bin\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。"
+      }
+    ],
+    "facts": "用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "Windows 临时目录",
+        "不能仅凭文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "系统服务或安装任务可能正在使用",
+        "等相关任务结束，用 Windows 存储清理并跳过占用项"
+      ],
+      "forbidden_claims": [
+        "确认一定是系统更新进度",
+        "无条件删除",
+        "强制删除占用文件",
+        "全部都是系统核心文件不可清理"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。"
+    },
+    "minimal_supported_claims": [
+      "Windows 临时目录",
+      "不能仅凭文件名确认具体内容"
+    ],
+    "required_risk_caveats": [
+      "系统服务或安装任务可能正在使用",
+      "等相关任务结束，用 Windows 存储清理并跳过占用项"
+    ],
+    "source_urls": [
+      "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    ]
+  },
+  {
+    "id": "unknown-archive",
+    "path": "C:\\Users\\Eval\\Documents\\archive.bin",
+    "is_dir": false,
+    "knowledge": null,
+    "required": [
+      [
+        "无法",
+        "不确定",
+        "不能确定",
+        "难以",
+        "不清楚"
+      ],
+      [
+        "备份",
+        "确认"
+      ]
+    ],
+    "forbidden": [
+      "压缩包",
+      "所有文档",
+      "纯缓存",
+      "放心删"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：archive.bin\n完整路径：C:\\Users\\Eval\\Documents\\archive.bin\n所在目录：Users\\Eval\\Documents\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：archive.bin\n完整路径：C:\\Users\\Eval\\Documents\\archive.bin\n所在目录：Users\\Eval\\Documents\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "must_abstain": true,
+    "polarity": "negative",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：旧冻结资料缺失，沿用历史拒猜口径"
+    },
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ],
+    "source_urls": []
+  },
+  {
+    "id": "unknown-microsoft",
+    "path": "C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat",
+    "is_dir": false,
+    "knowledge": null,
+    "required": [
+      [
+        "无法",
+        "不确定",
+        "不能确定",
+        "难以",
+        "不清楚"
+      ]
+    ],
+    "forbidden": [
+      "Office安装包",
+      "OneDrive数据库",
+      "纯缓存",
+      "放心删"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：payload.dat\n完整路径：C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat\n所在目录：Program Files\\Microsoft\\UnlistedProduct\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：payload.dat\n完整路径：C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat\n所在目录：Program Files\\Microsoft\\UnlistedProduct\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "must_abstain": true,
+    "polarity": "negative",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：旧冻结资料缺失，沿用历史拒猜口径"
+    },
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ],
+    "source_urls": []
+  },
+  {
+    "id": "unknown-cache",
+    "path": "C:\\Users\\Eval\\Documents\\cache\\journal.db",
+    "is_dir": false,
+    "knowledge": null,
+    "required": [
+      [
+        "无法",
+        "不确定",
+        "不能确定",
+        "难以",
+        "不清楚"
+      ],
+      [
+        "备份",
+        "确认"
+      ]
+    ],
+    "forbidden": [
+      "纯缓存",
+      "放心删",
+      "不影响任何"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：journal.db\n完整路径：C:\\Users\\Eval\\Documents\\cache\\journal.db\n所在目录：Eval\\Documents\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：journal.db\n完整路径：C:\\Users\\Eval\\Documents\\cache\\journal.db\n所在目录：Eval\\Documents\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "must_abstain": true,
+    "polarity": "negative",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：旧冻结资料缺失，沿用历史拒猜口径"
+    },
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ],
+    "source_urls": []
+  },
+  {
+    "id": "unknown-download",
+    "path": "C:\\Users\\Eval\\Downloads\\family-backup.zip",
+    "is_dir": false,
+    "knowledge": null,
+    "required": [
+      [
+        "无法",
+        "不确定",
+        "不能确定",
+        "难以",
+        "不清楚"
+      ],
+      [
+        "备份",
+        "确认"
+      ]
+    ],
+    "forbidden": [
+      "纯缓存",
+      "放心删",
+      "自动恢复",
+      "可以重新下载"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：family-backup.zip\n完整路径：C:\\Users\\Eval\\Downloads\\family-backup.zip\n所在目录：Users\\Eval\\Downloads\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：family-backup.zip\n完整路径：C:\\Users\\Eval\\Downloads\\family-backup.zip\n所在目录：Users\\Eval\\Downloads\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "must_abstain": true,
+    "polarity": "negative",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：旧冻结资料缺失，沿用历史拒猜口径"
+    },
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ],
+    "source_urls": []
+  },
+  {
+    "id": "cache-prefix-nearmiss",
+    "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body",
+    "is_dir": false,
+    "knowledge": null,
+    "required": [
+      [
+        "无法",
+        "不确定",
+        "不能确定",
+        "难以",
+        "不清楚"
+      ]
+    ],
+    "forbidden": [
+      "pip cache purge",
+      "放心删",
+      "不影响已安装"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：saved.body\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body\n所在目录：Local\\pip\\cache-backup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：saved.body\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body\n所在目录：Local\\pip\\cache-backup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "must_abstain": true,
+    "polarity": "negative",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：旧冻结资料缺失，沿用历史拒猜口径"
+    },
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ],
+    "source_urls": []
+  },
+  {
+    "id": "unknown-onnx",
+    "path": "D:\\Research\\Shared\\network.onnx",
+    "is_dir": false,
+    "knowledge": null,
+    "required": [
+      [
+        "无法",
+        "不确定",
+        "不能确定",
+        "难以",
+        "不清楚"
+      ],
+      [
+        "确认",
+        "备份"
+      ]
+    ],
+    "forbidden": [
+      "语音识别模型",
+      "图像识别模型",
+      "放心删"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：network.onnx\n完整路径：D:\\Research\\Shared\\network.onnx\n所在目录：D:\\Research\\Shared\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：network.onnx\n完整路径：D:\\Research\\Shared\\network.onnx\n所在目录：D:\\Research\\Shared\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "must_abstain": true,
+    "polarity": "negative",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：旧冻结资料缺失，沿用历史拒猜口径"
+    },
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ],
+    "source_urls": []
+  },
+  {
+    "id": "webview-with-distractor",
+    "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll",
+    "is_dir": false,
+    "knowledge": "webview2",
+    "distractor": "pip-cache",
+    "required": [
+      [
+        "WebView"
+      ],
+      [
+        "应用",
+        "软件"
+      ],
+      [
+        "依赖"
+      ]
+    ],
+    "forbidden": [
+      "pip cache purge",
+      "Python包缓存",
+      "Edge浏览器无法启动"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：lib.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll\n所在目录：EdgeWebView\\Application\\146.0.3856.72\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。\n另一个路径的资料（可能不相关）：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：lib.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll\n所在目录：EdgeWebView\\Application\\146.0.3856.72\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。\n另一个路径的资料（可能不相关）：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+      }
+    ],
+    "facts": "用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。\n另一个路径的资料（可能不相关）：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。",
+    "must_abstain": false,
+    "polarity": "positive",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+        "Runtime 的依赖与是否使用 Edge 浏览器分开"
+      ],
+      "required_risk_caveats": [
+        "删除可能影响依赖它的应用",
+        "建议保留并通过 Windows 应用管理处理"
+      ],
+      "forbidden_claims": [
+        "把 Runtime 说成 Edge 浏览器主程序或仅供浏览器使用",
+        "保证所有文件与 Edge 物理独立",
+        "按版本号或不用 Edge 推出可直接删除"
+      ],
+      "grading_note": "使用旧 facts 的历史口径，不用 v2 修订给旧诊断加条件。逐句语义核对，原 required/forbidden 仅为关键词诊断。",
+      "reference_facts": "用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+    },
+    "minimal_supported_claims": [
+      "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+      "Runtime 的依赖与是否使用 Edge 浏览器分开"
+    ],
+    "required_risk_caveats": [
+      "删除可能影响依赖它的应用",
+      "建议保留并通过 Windows 应用管理处理"
+    ],
+    "source_urls": [
+      "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution"
+    ]
+  },
+  {
+    "id": "onenote-missing-evidence",
+    "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin",
+    "is_dir": false,
+    "knowledge": "onenote-cache",
+    "missing_evidence": true,
+    "required": [
+      [
+        "无法",
+        "不确定",
+        "不能确定",
+        "难以",
+        "不清楚"
+      ],
+      [
+        "确认",
+        "备份"
+      ]
+    ],
+    "forbidden": [
+      "纯缓存",
+      "放心删",
+      "pip cache purge"
+    ],
+    "subset": "historical24",
+    "knowledge_version": "legacy-v1",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：pending.bin\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：pending.bin\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "must_abstain": true,
+    "polarity": "negative",
+    "match_reason": "从上一轮014/015逐条 messages 原样恢复，历史24不用于选模或调参。",
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：旧冻结资料缺失，沿用历史拒猜口径"
+    },
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ],
+    "source_urls": [
+      "https://support.microsoft.com/en-us/onenote/onenote-help-and-learning/fix-issues-when-you-can-t-sync-onenote"
+    ]
+  },
+  {
+    "id": "main-known-00",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_000.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1000.0\\round2_test_positive_000.dll\n所在目录：EdgeWebView\\Application\\150.0.1000.0\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。",
+    "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1000.0\\round2_test_positive_000.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "webview2",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+        "Runtime 的依赖与是否使用 Edge 浏览器分开"
+      ],
+      "required_risk_caveats": [
+        "删除可能影响依赖它的应用",
+        "建议保留并通过 Windows 应用管理处理"
+      ],
+      "forbidden_claims": [
+        "把 Runtime 说成 Edge 浏览器主程序或仅供浏览器使用",
+        "保证所有文件与 Edge 物理独立",
+        "按版本号或不用 Edge 推出可直接删除"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "webview2",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_000.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1000.0\\round2_test_positive_000.dll\n所在目录：EdgeWebView\\Application\\150.0.1000.0\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+      "Runtime 的依赖与是否使用 Edge 浏览器分开"
+    ],
+    "required_risk_caveats": [
+      "删除可能影响依赖它的应用",
+      "建议保留并通过 Windows 应用管理处理"
+    ]
+  },
+  {
+    "id": "main-known-01",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_001.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1001.1\\round2_test_positive_001.dll\n所在目录：EdgeWebView\\Application\\150.0.1001.1\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。",
+    "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1001.1\\round2_test_positive_001.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "webview2",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+        "Runtime 的依赖与是否使用 Edge 浏览器分开"
+      ],
+      "required_risk_caveats": [
+        "删除可能影响依赖它的应用",
+        "建议保留并通过 Windows 应用管理处理"
+      ],
+      "forbidden_claims": [
+        "把 Runtime 说成 Edge 浏览器主程序或仅供浏览器使用",
+        "保证所有文件与 Edge 物理独立",
+        "按版本号或不用 Edge 推出可直接删除"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "webview2",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_001.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1001.1\\round2_test_positive_001.dll\n所在目录：EdgeWebView\\Application\\150.0.1001.1\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+      "Runtime 的依赖与是否使用 Edge 浏览器分开"
+    ],
+    "required_risk_caveats": [
+      "删除可能影响依赖它的应用",
+      "建议保留并通过 Windows 应用管理处理"
+    ]
+  },
+  {
+    "id": "main-known-02",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_000.bin\n完整路径：C:\\Users\\R2_test_positive_000\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_positive_000.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。",
+    "path": "C:\\Users\\R2_test_positive_000\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_positive_000.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "onenote-cache",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "OneNote 的本地缓存可能包括未同步的笔记修改"
+      ],
+      "required_risk_caveats": [
+        "先检查同步并备份需要的笔记",
+        "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+      ],
+      "forbidden_claims": [
+        "一定会丢失或永久无法恢复",
+        "保证所有内容已在云端",
+        "确认具体文件必然包含某篇笔记",
+        "无条件直接删除"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "onenote-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://support.microsoft.com/en-us/onenote/onenote-help-and-learning/fix-issues-when-you-can-t-sync-onenote"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_000.bin\n完整路径：C:\\Users\\R2_test_positive_000\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_positive_000.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "OneNote 的本地缓存可能包括未同步的笔记修改"
+    ],
+    "required_risk_caveats": [
+      "先检查同步并备份需要的笔记",
+      "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+    ]
+  },
+  {
+    "id": "main-known-03",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_001.bin\n完整路径：C:\\Users\\R2_test_positive_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_positive_001.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。",
+    "path": "C:\\Users\\R2_test_positive_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_positive_001.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "onenote-cache",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "OneNote 的本地缓存可能包括未同步的笔记修改"
+      ],
+      "required_risk_caveats": [
+        "先检查同步并备份需要的笔记",
+        "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+      ],
+      "forbidden_claims": [
+        "一定会丢失或永久无法恢复",
+        "保证所有内容已在云端",
+        "确认具体文件必然包含某篇笔记",
+        "无条件直接删除"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "onenote-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://support.microsoft.com/en-us/onenote/onenote-help-and-learning/fix-issues-when-you-can-t-sync-onenote"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_001.bin\n完整路径：C:\\Users\\R2_test_positive_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_positive_001.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "OneNote 的本地缓存可能包括未同步的笔记修改"
+    ],
+    "required_risk_caveats": [
+      "先检查同步并备份需要的笔记",
+      "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+    ]
+  },
+  {
+    "id": "main-known-04",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_000.whl\n完整路径：C:\\Users\\R2_test_positive_000\\AppData\\Local\\pip\\cache\\wheels\\round2_test_positive_000.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。",
+    "path": "C:\\Users\\R2_test_positive_000\\AppData\\Local\\pip\\cache\\wheels\\round2_test_positive_000.whl",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "pip-cache",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "pip 下载响应或构建 wheel 的缓存",
+        "清理缓存不等于卸载已安装的 Python 包"
+      ],
+      "required_risk_caveats": [
+        "下次安装需要时可能重新下载或构建",
+        "建议用 pip cache purge 管理"
+      ],
+      "forbidden_claims": [
+        "下次运行或使用已安装的程序就会重新下载",
+        "缓存等于已安装的运行库",
+        "猜测具体包版本",
+        "不影响任何事情的保证"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "pip-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://pip.pypa.io/en/stable/topics/caching/"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_000.whl\n完整路径：C:\\Users\\R2_test_positive_000\\AppData\\Local\\pip\\cache\\wheels\\round2_test_positive_000.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "pip 下载响应或构建 wheel 的缓存",
+      "清理缓存不等于卸载已安装的 Python 包"
+    ],
+    "required_risk_caveats": [
+      "下次安装需要时可能重新下载或构建",
+      "建议用 pip cache purge 管理"
+    ]
+  },
+  {
+    "id": "main-known-05",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_001.whl\n完整路径：C:\\Users\\R2_test_positive_001\\AppData\\Local\\pip\\cache\\wheels\\round2_test_positive_001.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。",
+    "path": "C:\\Users\\R2_test_positive_001\\AppData\\Local\\pip\\cache\\wheels\\round2_test_positive_001.whl",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "pip-cache",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "pip 下载响应或构建 wheel 的缓存",
+        "清理缓存不等于卸载已安装的 Python 包"
+      ],
+      "required_risk_caveats": [
+        "下次安装需要时可能重新下载或构建",
+        "建议用 pip cache purge 管理"
+      ],
+      "forbidden_claims": [
+        "下次运行或使用已安装的程序就会重新下载",
+        "缓存等于已安装的运行库",
+        "猜测具体包版本",
+        "不影响任何事情的保证"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "pip-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://pip.pypa.io/en/stable/topics/caching/"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_001.whl\n完整路径：C:\\Users\\R2_test_positive_001\\AppData\\Local\\pip\\cache\\wheels\\round2_test_positive_001.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "pip 下载响应或构建 wheel 的缓存",
+      "清理缓存不等于卸载已安装的 Python 包"
+    ],
+    "required_risk_caveats": [
+      "下次安装需要时可能重新下载或构建",
+      "建议用 pip cache purge 管理"
+    ]
+  },
+  {
+    "id": "main-known-06",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_000.dll\n完整路径：D:\\Python\\envs\\R2_test_positive_000\\Lib\\site-packages\\torch\\lib\\round2_test_positive_000.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。",
+    "path": "D:\\Python\\envs\\R2_test_positive_000\\Lib\\site-packages\\torch\\lib\\round2_test_positive_000.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "pytorch-package",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "当前 Python 环境里的 PyTorch 安装包文件",
+        "用于张量计算和机器学习"
+      ],
+      "required_risk_caveats": [
+        "单独删除包内文件可能影响当前环境的 PyTorch",
+        "先确认项目依赖，通过该环境包管理工具卸载"
+      ],
+      "forbidden_claims": [
+        "猜测显卡型号或具体 CUDA 配置",
+        "所有 Python 环境都会受损",
+        "永久不能恢复",
+        "直接删除 DLL 即可"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "pytorch-package",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://docs.pytorch.org/docs/main/index.html"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_000.dll\n完整路径：D:\\Python\\envs\\R2_test_positive_000\\Lib\\site-packages\\torch\\lib\\round2_test_positive_000.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "当前 Python 环境里的 PyTorch 安装包文件",
+      "用于张量计算和机器学习"
+    ],
+    "required_risk_caveats": [
+      "单独删除包内文件可能影响当前环境的 PyTorch",
+      "先确认项目依赖，通过该环境包管理工具卸载"
+    ],
+    "original_source_urls": [
+      "https://docs.pytorch.org/docs/stable/"
+    ]
+  },
+  {
+    "id": "main-known-07",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_001.dll\n完整路径：D:\\Python\\envs\\R2_test_positive_001\\Lib\\site-packages\\torch\\lib\\round2_test_positive_001.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。",
+    "path": "D:\\Python\\envs\\R2_test_positive_001\\Lib\\site-packages\\torch\\lib\\round2_test_positive_001.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "pytorch-package",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "当前 Python 环境里的 PyTorch 安装包文件",
+        "用于张量计算和机器学习"
+      ],
+      "required_risk_caveats": [
+        "单独删除包内文件可能影响当前环境的 PyTorch",
+        "先确认项目依赖，通过该环境包管理工具卸载"
+      ],
+      "forbidden_claims": [
+        "猜测显卡型号或具体 CUDA 配置",
+        "所有 Python 环境都会受损",
+        "永久不能恢复",
+        "直接删除 DLL 即可"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "pytorch-package",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://docs.pytorch.org/docs/main/index.html"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_001.dll\n完整路径：D:\\Python\\envs\\R2_test_positive_001\\Lib\\site-packages\\torch\\lib\\round2_test_positive_001.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "当前 Python 环境里的 PyTorch 安装包文件",
+      "用于张量计算和机器学习"
+    ],
+    "required_risk_caveats": [
+      "单独删除包内文件可能影响当前环境的 PyTorch",
+      "先确认项目依赖，通过该环境包管理工具卸载"
+    ],
+    "original_source_urls": [
+      "https://docs.pytorch.org/docs/stable/"
+    ]
+  },
+  {
+    "id": "main-known-08",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_000\n完整路径：D:\\Users\\R2_test_positive_000\\.cache\\huggingface\\hub\\models--Example--round2_test_positive_000\\blobs\\round2_test_positive_000\n所在目录：hub\\models--Example--round2_test_positive_000\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。",
+    "path": "D:\\Users\\R2_test_positive_000\\.cache\\huggingface\\hub\\models--Example--round2_test_positive_000\\blobs\\round2_test_positive_000",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "huggingface-cache",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "Hugging Face Hub 下载模型或数据资源的本地缓存"
+      ],
+      "required_risk_caveats": [
+        "项目可能需要重新下载，离线运行可能受影响",
+        "先确认依赖和下载条件，用缓存管理工具处理"
+      ],
+      "forbidden_claims": [
+        "猜测模型具体用途",
+        "保证任何资源都能重新下载",
+        "保证没有个人数据损失或本地修改",
+        "无条件删除"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "huggingface-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://huggingface.co/docs/huggingface_hub/guides/manage-cache"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_000\n完整路径：D:\\Users\\R2_test_positive_000\\.cache\\huggingface\\hub\\models--Example--round2_test_positive_000\\blobs\\round2_test_positive_000\n所在目录：hub\\models--Example--round2_test_positive_000\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Hugging Face Hub 下载模型或数据资源的本地缓存"
+    ],
+    "required_risk_caveats": [
+      "项目可能需要重新下载，离线运行可能受影响",
+      "先确认依赖和下载条件，用缓存管理工具处理"
+    ]
+  },
+  {
+    "id": "main-known-09",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_001\n完整路径：D:\\Users\\R2_test_positive_001\\.cache\\huggingface\\hub\\models--Example--round2_test_positive_001\\blobs\\round2_test_positive_001\n所在目录：hub\\models--Example--round2_test_positive_001\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。",
+    "path": "D:\\Users\\R2_test_positive_001\\.cache\\huggingface\\hub\\models--Example--round2_test_positive_001\\blobs\\round2_test_positive_001",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "huggingface-cache",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "Hugging Face Hub 下载模型或数据资源的本地缓存"
+      ],
+      "required_risk_caveats": [
+        "项目可能需要重新下载，离线运行可能受影响",
+        "先确认依赖和下载条件，用缓存管理工具处理"
+      ],
+      "forbidden_claims": [
+        "猜测模型具体用途",
+        "保证任何资源都能重新下载",
+        "保证没有个人数据损失或本地修改",
+        "无条件删除"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "huggingface-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://huggingface.co/docs/huggingface_hub/guides/manage-cache"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_001\n完整路径：D:\\Users\\R2_test_positive_001\\.cache\\huggingface\\hub\\models--Example--round2_test_positive_001\\blobs\\round2_test_positive_001\n所在目录：hub\\models--Example--round2_test_positive_001\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Hugging Face Hub 下载模型或数据资源的本地缓存"
+    ],
+    "required_risk_caveats": [
+      "项目可能需要重新下载，离线运行可能受影响",
+      "先确认依赖和下载条件，用缓存管理工具处理"
+    ]
+  },
+  {
+    "id": "main-known-10",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_000.js\n完整路径：D:\\Projects\\round2_test_positive_000\\node_modules\\example-package\\round2_test_positive_000.js\n所在目录：round2_test_positive_000\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。",
+    "path": "D:\\Projects\\round2_test_positive_000\\node_modules\\example-package\\round2_test_positive_000.js",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "node-dependencies",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "JavaScript/Node.js 项目的依赖目录"
+      ],
+      "required_risk_caveats": [
+        "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+        "保留声明、锁文件及手工修改，不保证修改能恢复"
+      ],
+      "forbidden_claims": [
+        "删除不影响项目运行",
+        "保证手工修改自动恢复",
+        "没有声明锁文件也一定能原样恢复",
+        "无条件直接清理"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "node-dependencies",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-install"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_000.js\n完整路径：D:\\Projects\\round2_test_positive_000\\node_modules\\example-package\\round2_test_positive_000.js\n所在目录：round2_test_positive_000\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "JavaScript/Node.js 项目的依赖目录"
+    ],
+    "required_risk_caveats": [
+      "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+      "保留声明、锁文件及手工修改，不保证修改能恢复"
+    ]
+  },
+  {
+    "id": "main-known-11",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_001.js\n完整路径：D:\\Projects\\round2_test_positive_001\\node_modules\\example-package\\round2_test_positive_001.js\n所在目录：round2_test_positive_001\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。",
+    "path": "D:\\Projects\\round2_test_positive_001\\node_modules\\example-package\\round2_test_positive_001.js",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "node-dependencies",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "JavaScript/Node.js 项目的依赖目录"
+      ],
+      "required_risk_caveats": [
+        "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+        "保留声明、锁文件及手工修改，不保证修改能恢复"
+      ],
+      "forbidden_claims": [
+        "删除不影响项目运行",
+        "保证手工修改自动恢复",
+        "没有声明锁文件也一定能原样恢复",
+        "无条件直接清理"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "node-dependencies",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-install"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_001.js\n完整路径：D:\\Projects\\round2_test_positive_001\\node_modules\\example-package\\round2_test_positive_001.js\n所在目录：round2_test_positive_001\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "JavaScript/Node.js 项目的依赖目录"
+    ],
+    "required_risk_caveats": [
+      "删除后项目可能无法运行或构建，需按声明和锁文件重新安装",
+      "保留声明、锁文件及手工修改，不保证修改能恢复"
+    ]
+  },
+  {
+    "id": "main-known-12",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_000.bin\n完整路径：C:\\Users\\R2_test_positive_000\\AppData\\Local\\Temp\\round2_test_positive_000.bin\n所在目录：AppData\\Local\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。",
+    "path": "C:\\Users\\R2_test_positive_000\\AppData\\Local\\Temp\\round2_test_positive_000.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "user-temp",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "当前用户临时目录",
+        "不能仅凭路径或文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "使用中的文件被清理可能让任务失败",
+        "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+      ],
+      "forbidden_claims": [
+        "猜测是进度日志或某应用缓存",
+        "所有临时文件都可无条件删除",
+        "强制删除占用文件"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "user-temp",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_000.bin\n完整路径：C:\\Users\\R2_test_positive_000\\AppData\\Local\\Temp\\round2_test_positive_000.bin\n所在目录：AppData\\Local\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "当前用户临时目录",
+      "不能仅凭路径或文件名确认具体内容"
+    ],
+    "required_risk_caveats": [
+      "使用中的文件被清理可能让任务失败",
+      "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+    ],
+    "original_source_urls": [
+      "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    ]
+  },
+  {
+    "id": "main-known-13",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_001.bin\n完整路径：C:\\Users\\R2_test_positive_001\\AppData\\Local\\Temp\\round2_test_positive_001.bin\n所在目录：AppData\\Local\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。",
+    "path": "C:\\Users\\R2_test_positive_001\\AppData\\Local\\Temp\\round2_test_positive_001.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "user-temp",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "当前用户临时目录",
+        "不能仅凭路径或文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "使用中的文件被清理可能让任务失败",
+        "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+      ],
+      "forbidden_claims": [
+        "猜测是进度日志或某应用缓存",
+        "所有临时文件都可无条件删除",
+        "强制删除占用文件"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "user-temp",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_001.bin\n完整路径：C:\\Users\\R2_test_positive_001\\AppData\\Local\\Temp\\round2_test_positive_001.bin\n所在目录：AppData\\Local\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "当前用户临时目录",
+      "不能仅凭路径或文件名确认具体内容"
+    ],
+    "required_risk_caveats": [
+      "使用中的文件被清理可能让任务失败",
+      "先关闭相关任务，通过 Windows 设置清理并跳过占用项"
+    ],
+    "original_source_urls": [
+      "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    ]
+  },
+  {
+    "id": "main-known-14",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_000.tmp\n完整路径：C:\\Windows\\Temp\\round2_test_positive_000.tmp\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：路径位于 Windows 临时目录，可能含系统服务或安装任务使用的临时文件，不能据文件名确认具体内容。删除影响：清理正在使用的文件可能影响相关任务，不应强制清理占用项。建议：等待相关任务结束，优先用 Windows 存储设置中的清理功能，保留需要的文件，跳过占用项。",
+    "path": "C:\\Windows\\Temp\\round2_test_positive_000.tmp",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "windows-temp",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：路径位于 Windows 临时目录，可能含系统服务或安装任务使用的临时文件，不能据文件名确认具体内容。删除影响：清理正在使用的文件可能影响相关任务，不应强制清理占用项。建议：等待相关任务结束，优先用 Windows 存储设置中的清理功能，保留需要的文件，跳过占用项。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "Windows 临时目录",
+        "不能仅凭文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "系统服务或安装任务可能正在使用",
+        "等相关任务结束，用 Windows 存储清理并跳过占用项"
+      ],
+      "forbidden_claims": [
+        "确认一定是系统更新进度",
+        "无条件删除",
+        "强制删除占用文件",
+        "全部都是系统核心文件不可清理"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "windows-temp",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_000.tmp\n完整路径：C:\\Windows\\Temp\\round2_test_positive_000.tmp\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：路径位于 Windows 临时目录，可能含系统服务或安装任务使用的临时文件，不能据文件名确认具体内容。删除影响：清理正在使用的文件可能影响相关任务，不应强制清理占用项。建议：等待相关任务结束，优先用 Windows 存储设置中的清理功能，保留需要的文件，跳过占用项。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Windows 临时目录",
+      "不能仅凭文件名确认具体内容"
+    ],
+    "required_risk_caveats": [
+      "系统服务或安装任务可能正在使用",
+      "等相关任务结束，用 Windows 存储清理并跳过占用项"
+    ],
+    "original_source_urls": [
+      "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    ]
+  },
+  {
+    "id": "main-known-15",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_positive_001.tmp\n完整路径：C:\\Windows\\Temp\\round2_test_positive_001.tmp\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：路径位于 Windows 临时目录，可能含系统服务或安装任务使用的临时文件，不能据文件名确认具体内容。删除影响：清理正在使用的文件可能影响相关任务，不应强制清理占用项。建议：等待相关任务结束，优先用 Windows 存储设置中的清理功能，保留需要的文件，跳过占用项。",
+    "path": "C:\\Windows\\Temp\\round2_test_positive_001.tmp",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "windows-temp",
+    "polarity": "positive",
+    "evidence": "relevant",
+    "facts": "用途：路径位于 Windows 临时目录，可能含系统服务或安装任务使用的临时文件，不能据文件名确认具体内容。删除影响：清理正在使用的文件可能影响相关任务，不应强制清理占用项。建议：等待相关任务结束，优先用 Windows 存储设置中的清理功能，保留需要的文件，跳过占用项。",
+    "match_reason": "完整路径组件匹配该家族，使用修正 v2 资料；没有验证真实文件内容。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "Windows 临时目录",
+        "不能仅凭文件名确认具体内容"
+      ],
+      "required_risk_caveats": [
+        "系统服务或安装任务可能正在使用",
+        "等相关任务结束，用 Windows 存储清理并跳过占用项"
+      ],
+      "forbidden_claims": [
+        "确认一定是系统更新进度",
+        "无条件删除",
+        "强制删除占用文件",
+        "全部都是系统核心文件不可清理"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "trained_family_positive",
+    "knowledge": "windows-temp",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://support.microsoft.com/en-us/windows/experience/storage-filemanagement/free-up-drive-space-in-windows"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_positive_001.tmp\n完整路径：C:\\Windows\\Temp\\round2_test_positive_001.tmp\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：路径位于 Windows 临时目录，可能含系统服务或安装任务使用的临时文件，不能据文件名确认具体内容。删除影响：清理正在使用的文件可能影响相关任务，不应强制清理占用项。建议：等待相关任务结束，优先用 Windows 存储设置中的清理功能，保留需要的文件，跳过占用项。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Windows 临时目录",
+      "不能仅凭文件名确认具体内容"
+    ],
+    "required_risk_caveats": [
+      "系统服务或安装任务可能正在使用",
+      "等相关任务结束，用 Windows 存储清理并跳过占用项"
+    ],
+    "original_source_urls": [
+      "https://support.microsoft.com/en-us/windows/free-up-drive-space-in-windows"
+    ]
+  },
+  {
+    "id": "main-abstain-00",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：saved.body\n完整路径：C:\\Users\\round2_test_abstain_000\\AppData\\Local\\pip\\cache-backup\\saved.body\n所在目录：Local\\pip\\cache-backup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "C:\\Users\\round2_test_abstain_000\\AppData\\Local\\pip\\cache-backup\\saved.body",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "near_miss",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "组件边界未匹配，近似目录名不能作为同一软件缓存的证据。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：组件边界未匹配，近似目录名不能作为同一软件缓存的证据。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：saved.body\n完整路径：C:\\Users\\round2_test_abstain_000\\AppData\\Local\\pip\\cache-backup\\saved.body\n所在目录：Local\\pip\\cache-backup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-01",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：index.js\n完整路径：D:\\Projects\\round2_test_abstain_001\\node_modules-old\\package\\index.js\n所在目录：round2_test_abstain_001\\node_modules-old\\package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "D:\\Projects\\round2_test_abstain_001\\node_modules-old\\package\\index.js",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "near_miss",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "组件边界未匹配，近似目录名不能作为同一软件缓存的证据。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：组件边界未匹配，近似目录名不能作为同一软件缓存的证据。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：index.js\n完整路径：D:\\Projects\\round2_test_abstain_001\\node_modules-old\\package\\index.js\n所在目录：round2_test_abstain_001\\node_modules-old\\package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-02",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：session.bin\n完整路径：C:\\Users\\round2_test_abstain_002\\AppData\\Local\\TempBackup\\session.bin\n所在目录：AppData\\Local\\TempBackup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "C:\\Users\\round2_test_abstain_002\\AppData\\Local\\TempBackup\\session.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "near_miss",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "组件边界未匹配，近似目录名不能作为同一软件缓存的证据。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：组件边界未匹配，近似目录名不能作为同一软件缓存的证据。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：session.bin\n完整路径：C:\\Users\\round2_test_abstain_002\\AppData\\Local\\TempBackup\\session.bin\n所在目录：AppData\\Local\\TempBackup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-03",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：payload.dll\n完整路径：C:\\Program Files\\Microsoft\\EdgeWebViewBackup\\Application\\round2_test_abstain_003\\payload.dll\n所在目录：EdgeWebViewBackup\\Application\\round2_test_abstain_003\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "C:\\Program Files\\Microsoft\\EdgeWebViewBackup\\Application\\round2_test_abstain_003\\payload.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "near_miss",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "组件边界未匹配，近似目录名不能作为同一软件缓存的证据。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：组件边界未匹配，近似目录名不能作为同一软件缓存的证据。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：payload.dll\n完整路径：C:\\Program Files\\Microsoft\\EdgeWebViewBackup\\Application\\round2_test_abstain_003\\payload.dll\n所在目录：EdgeWebViewBackup\\Application\\round2_test_abstain_003\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-04",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：chunk.bin\n完整路径：C:\\Users\\round2_test_abstain_004\\AppData\\Local\\Microsoft\\OneNoteBackup\\cache\\chunk.bin\n所在目录：Microsoft\\OneNoteBackup\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "C:\\Users\\round2_test_abstain_004\\AppData\\Local\\Microsoft\\OneNoteBackup\\cache\\chunk.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "near_miss",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "组件边界未匹配，近似目录名不能作为同一软件缓存的证据。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：组件边界未匹配，近似目录名不能作为同一软件缓存的证据。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：chunk.bin\n完整路径：C:\\Users\\round2_test_abstain_004\\AppData\\Local\\Microsoft\\OneNoteBackup\\cache\\chunk.bin\n所在目录：Microsoft\\OneNoteBackup\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-05",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：library.dll\n完整路径：D:\\Python\\envs\\round2_test_abstain_005\\Lib\\site-packages\\torch-backup\\lib\\library.dll\n所在目录：site-packages\\torch-backup\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "D:\\Python\\envs\\round2_test_abstain_005\\Lib\\site-packages\\torch-backup\\lib\\library.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "near_miss",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "组件边界未匹配，近似目录名不能作为同一软件缓存的证据。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：组件边界未匹配，近似目录名不能作为同一软件缓存的证据。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：library.dll\n完整路径：D:\\Python\\envs\\round2_test_abstain_005\\Lib\\site-packages\\torch-backup\\lib\\library.dll\n所在目录：site-packages\\torch-backup\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-06",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：saved.safetensors\n完整路径：D:\\Users\\round2_test_abstain_006\\.cache\\huggingface\\hub-backup\\saved.safetensors\n所在目录：.cache\\huggingface\\hub-backup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "D:\\Users\\round2_test_abstain_006\\.cache\\huggingface\\hub-backup\\saved.safetensors",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "near_miss",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "组件边界未匹配，近似目录名不能作为同一软件缓存的证据。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：组件边界未匹配，近似目录名不能作为同一软件缓存的证据。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：saved.safetensors\n完整路径：D:\\Users\\round2_test_abstain_006\\.cache\\huggingface\\hub-backup\\saved.safetensors\n所在目录：.cache\\huggingface\\hub-backup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-07",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_abstain_007.tmp\n完整路径：C:\\Windows\\TempBackup\\round2_test_abstain_007.tmp\n所在目录：C:\\Windows\\TempBackup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "C:\\Windows\\TempBackup\\round2_test_abstain_007.tmp",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "near_miss",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "组件边界未匹配，近似目录名不能作为同一软件缓存的证据。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：组件边界未匹配，近似目录名不能作为同一软件缓存的证据。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_abstain_007.tmp\n完整路径：C:\\Windows\\TempBackup\\round2_test_abstain_007.tmp\n所在目录：C:\\Windows\\TempBackup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-08",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_missing_008.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1008.8\\round2_test_missing_008.dll\n所在目录：EdgeWebView\\Application\\150.0.1008.8\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1008.8\\round2_test_missing_008.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "webview2",
+    "polarity": "negative",
+    "evidence": "missing_evidence",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "路径形似已知家族，但本条没有可适用用途资料；按提示拒绝补写。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：路径形似已知家族，但本条没有可适用用途资料；按提示拒绝补写。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": "webview2",
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_missing_008.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1008.8\\round2_test_missing_008.dll\n所在目录：EdgeWebView\\Application\\150.0.1008.8\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-09",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_missing_009.bin\n完整路径：C:\\Users\\R2_test_missing_009\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_missing_009.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "C:\\Users\\R2_test_missing_009\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_missing_009.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "onenote-cache",
+    "polarity": "negative",
+    "evidence": "missing_evidence",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "路径形似已知家族，但本条没有可适用用途资料；按提示拒绝补写。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：路径形似已知家族，但本条没有可适用用途资料；按提示拒绝补写。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": "onenote-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_missing_009.bin\n完整路径：C:\\Users\\R2_test_missing_009\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_missing_009.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-10",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_missing_010.whl\n完整路径：C:\\Users\\R2_test_missing_010\\AppData\\Local\\pip\\cache\\wheels\\round2_test_missing_010.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "C:\\Users\\R2_test_missing_010\\AppData\\Local\\pip\\cache\\wheels\\round2_test_missing_010.whl",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "pip-cache",
+    "polarity": "negative",
+    "evidence": "missing_evidence",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "路径形似已知家族，但本条没有可适用用途资料；按提示拒绝补写。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：路径形似已知家族，但本条没有可适用用途资料；按提示拒绝补写。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": "pip-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_missing_010.whl\n完整路径：C:\\Users\\R2_test_missing_010\\AppData\\Local\\pip\\cache\\wheels\\round2_test_missing_010.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-11",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_missing_011.dll\n完整路径：D:\\Python\\envs\\R2_test_missing_011\\Lib\\site-packages\\torch\\lib\\round2_test_missing_011.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "D:\\Python\\envs\\R2_test_missing_011\\Lib\\site-packages\\torch\\lib\\round2_test_missing_011.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "pytorch-package",
+    "polarity": "negative",
+    "evidence": "missing_evidence",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "路径形似已知家族，但本条没有可适用用途资料；按提示拒绝补写。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：路径形似已知家族，但本条没有可适用用途资料；按提示拒绝补写。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": "pytorch-package",
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_missing_011.dll\n完整路径：D:\\Python\\envs\\R2_test_missing_011\\Lib\\site-packages\\torch\\lib\\round2_test_missing_011.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-12",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：record_012.bin\n完整路径：D:\\Round2Unknown\\test_no_evidence\\Documents\\record_012.bin\n所在目录：Round2Unknown\\test_no_evidence\\Documents\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "D:\\Round2Unknown\\test_no_evidence\\Documents\\record_012.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "ordinary_unknown",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "路径无已注册家族匹配，只有名字/扩展名不能确定用途。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：路径无已注册家族匹配，只有名字/扩展名不能确定用途。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：record_012.bin\n完整路径：D:\\Round2Unknown\\test_no_evidence\\Documents\\record_012.bin\n所在目录：Round2Unknown\\test_no_evidence\\Documents\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-13",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：record_013.dat\n完整路径：D:\\Round2Unknown\\test_no_evidence\\Downloads\\record_013.dat\n所在目录：Round2Unknown\\test_no_evidence\\Downloads\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "D:\\Round2Unknown\\test_no_evidence\\Downloads\\record_013.dat",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "ordinary_unknown",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "路径无已注册家族匹配，只有名字/扩展名不能确定用途。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：路径无已注册家族匹配，只有名字/扩展名不能确定用途。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：record_013.dat\n完整路径：D:\\Round2Unknown\\test_no_evidence\\Downloads\\record_013.dat\n所在目录：Round2Unknown\\test_no_evidence\\Downloads\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-14",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：record_014.db\n完整路径：D:\\Round2Unknown\\test_no_evidence\\Research\\record_014.db\n所在目录：Round2Unknown\\test_no_evidence\\Research\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "D:\\Round2Unknown\\test_no_evidence\\Research\\record_014.db",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "ordinary_unknown",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "路径无已注册家族匹配，只有名字/扩展名不能确定用途。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：路径无已注册家族匹配，只有名字/扩展名不能确定用途。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：record_014.db\n完整路径：D:\\Round2Unknown\\test_no_evidence\\Research\\record_014.db\n所在目录：Round2Unknown\\test_no_evidence\\Research\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-abstain-15",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：record_015.zip\n完整路径：D:\\Round2Unknown\\test_no_evidence\\Pictures\\record_015.zip\n所在目录：Round2Unknown\\test_no_evidence\\Pictures\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "path": "D:\\Round2Unknown\\test_no_evidence\\Pictures\\record_015.zip",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "unknown",
+    "polarity": "negative",
+    "evidence": "ordinary_unknown",
+    "facts": "没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。",
+    "match_reason": "路径无已注册家族匹配，只有名字/扩展名不能确定用途。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：路径无已注册家族匹配，只有名字/扩展名不能确定用途。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "near_or_missing_abstention",
+    "knowledge": null,
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：record_015.zip\n完整路径：D:\\Round2Unknown\\test_no_evidence\\Pictures\\record_015.zip\n所在目录：Round2Unknown\\test_no_evidence\\Pictures\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-new-npm-cache-00",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：sample_000\n完整路径：C:\\Users\\R2_TestNew_000\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\00\\sample_000\n所在目录：_cacache\\content-v2\\00\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+    "path": "C:\\Users\\R2_TestNew_000\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\00\\sample_000",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "npm-cache",
+    "knowledge": "npm-cache",
+    "facts": "适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+    "subset": "main48",
+    "stratum": "new_family_positive",
+    "knowledge_version": "round2-v2",
+    "polarity": "positive",
+    "must_abstain": false,
+    "match_reason": "新家族官方资料仅在本条 RAG 输入提供，路径由合成案例指定为该家族；不等于真实扫描验证。",
+    "reference": {
+      "minimal_supported_claims": [
+        "资料指定这是配置中的 npm 缓存",
+        "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+      ],
+      "required_risk_caveats": [
+        "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+        "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+      ],
+      "forbidden_claims": [
+        "npm 缓存等于 node_modules 安装依赖或项目源文件",
+        "保证所有包副本都能重新下载",
+        "认定所有同名路径已经验证来源",
+        "要求日常无条件清空缓存"
+      ],
+      "grading_note": "仅相对测试时给出的官方支持资料做语义核对；不能宣称预训练未见过该知识。"
+    },
+    "source_ids": [
+      "npm-cache-v11-20261010"
+    ],
+    "source_urls": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-cache/"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：sample_000\n完整路径：C:\\Users\\R2_TestNew_000\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\00\\sample_000\n所在目录：_cacache\\content-v2\\00\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "资料指定这是配置中的 npm 缓存",
+      "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+    ],
+    "required_risk_caveats": [
+      "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+      "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+    ]
+  },
+  {
+    "id": "main-new-npm-cache-01",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：sample_001\n完整路径：C:\\Users\\R2_TestNew_001\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\01\\sample_001\n所在目录：_cacache\\content-v2\\01\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+    "path": "C:\\Users\\R2_TestNew_001\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\01\\sample_001",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "npm-cache",
+    "knowledge": "npm-cache",
+    "facts": "适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+    "subset": "main48",
+    "stratum": "new_family_positive",
+    "knowledge_version": "round2-v2",
+    "polarity": "positive",
+    "must_abstain": false,
+    "match_reason": "新家族官方资料仅在本条 RAG 输入提供，路径由合成案例指定为该家族；不等于真实扫描验证。",
+    "reference": {
+      "minimal_supported_claims": [
+        "资料指定这是配置中的 npm 缓存",
+        "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+      ],
+      "required_risk_caveats": [
+        "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+        "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+      ],
+      "forbidden_claims": [
+        "npm 缓存等于 node_modules 安装依赖或项目源文件",
+        "保证所有包副本都能重新下载",
+        "认定所有同名路径已经验证来源",
+        "要求日常无条件清空缓存"
+      ],
+      "grading_note": "仅相对测试时给出的官方支持资料做语义核对；不能宣称预训练未见过该知识。"
+    },
+    "source_ids": [
+      "npm-cache-v11-20261010"
+    ],
+    "source_urls": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-cache/"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：sample_001\n完整路径：C:\\Users\\R2_TestNew_001\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\01\\sample_001\n所在目录：_cacache\\content-v2\\01\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "资料指定这是配置中的 npm 缓存",
+      "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+    ],
+    "required_risk_caveats": [
+      "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+      "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+    ]
+  },
+  {
+    "id": "main-new-npm-cache-02",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：sample_002\n完整路径：C:\\Users\\R2_TestNew_002\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\02\\sample_002\n所在目录：_cacache\\content-v2\\02\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+    "path": "C:\\Users\\R2_TestNew_002\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\02\\sample_002",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "npm-cache",
+    "knowledge": "npm-cache",
+    "facts": "适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+    "subset": "main48",
+    "stratum": "new_family_positive",
+    "knowledge_version": "round2-v2",
+    "polarity": "positive",
+    "must_abstain": false,
+    "match_reason": "新家族官方资料仅在本条 RAG 输入提供，路径由合成案例指定为该家族；不等于真实扫描验证。",
+    "reference": {
+      "minimal_supported_claims": [
+        "资料指定这是配置中的 npm 缓存",
+        "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+      ],
+      "required_risk_caveats": [
+        "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+        "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+      ],
+      "forbidden_claims": [
+        "npm 缓存等于 node_modules 安装依赖或项目源文件",
+        "保证所有包副本都能重新下载",
+        "认定所有同名路径已经验证来源",
+        "要求日常无条件清空缓存"
+      ],
+      "grading_note": "仅相对测试时给出的官方支持资料做语义核对；不能宣称预训练未见过该知识。"
+    },
+    "source_ids": [
+      "npm-cache-v11-20261010"
+    ],
+    "source_urls": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-cache/"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：sample_002\n完整路径：C:\\Users\\R2_TestNew_002\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\02\\sample_002\n所在目录：_cacache\\content-v2\\02\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "资料指定这是配置中的 npm 缓存",
+      "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+    ],
+    "required_risk_caveats": [
+      "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+      "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+    ]
+  },
+  {
+    "id": "main-new-npm-cache-03",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：sample_003\n完整路径：C:\\Users\\R2_TestNew_003\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\03\\sample_003\n所在目录：_cacache\\content-v2\\03\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+    "path": "C:\\Users\\R2_TestNew_003\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\03\\sample_003",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "npm-cache",
+    "knowledge": "npm-cache",
+    "facts": "适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。",
+    "subset": "main48",
+    "stratum": "new_family_positive",
+    "knowledge_version": "round2-v2",
+    "polarity": "positive",
+    "must_abstain": false,
+    "match_reason": "新家族官方资料仅在本条 RAG 输入提供，路径由合成案例指定为该家族；不等于真实扫描验证。",
+    "reference": {
+      "minimal_supported_claims": [
+        "资料指定这是配置中的 npm 缓存",
+        "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+      ],
+      "required_risk_caveats": [
+        "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+        "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+      ],
+      "forbidden_claims": [
+        "npm 缓存等于 node_modules 安装依赖或项目源文件",
+        "保证所有包副本都能重新下载",
+        "认定所有同名路径已经验证来源",
+        "要求日常无条件清空缓存"
+      ],
+      "grading_note": "仅相对测试时给出的官方支持资料做语义核对；不能宣称预训练未见过该知识。"
+    },
+    "source_ids": [
+      "npm-cache-v11-20261010"
+    ],
+    "source_urls": [
+      "https://docs.npmjs.com/cli/v11/commands/npm-cache/"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：sample_003\n完整路径：C:\\Users\\R2_TestNew_003\\AppData\\Local\\npm-cache\\_cacache\\content-v2\\03\\sample_003\n所在目录：_cacache\\content-v2\\03\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为配置中的 npm 缓存，不是仅凭同名目录确认真实文件来源。用途：npm 的 _cacache 是保存 HTTP 请求和包相关数据的内容寻址缓存，不能当成永久可靠的包存储。删除影响：清掉缓存后需要的数据可能重新获取，不能保证任何具体副本永远可再获得。建议：通常先用 npm cache verify 检查及整理；为腾空间才考虑 npm cache clean --force，先核对缓存配置、所需数据与下载条件，不直接套用到项目源文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "资料指定这是配置中的 npm 缓存",
+      "_cacache 保存 HTTP 请求和包相关数据的内容寻址缓存"
+    ],
+    "required_risk_caveats": [
+      "缓存不是永久可靠的包存储，不能保证具体副本总能重新获取",
+      "通常先用 npm cache verify，为腾空间考虑 clean --force，先确认配置和下载条件"
+    ]
+  },
+  {
+    "id": "main-new-git-objects-00",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：00000000000000000000000000000000000000\n完整路径：D:\\Projects\\R2_TestNew_000\\.git\\objects\\00\\00000000000000000000000000000000000000\n所在目录：.git\\objects\\00\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+    "path": "D:\\Projects\\R2_TestNew_000\\.git\\objects\\00\\00000000000000000000000000000000000000",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "git-objects",
+    "knowledge": "git-objects",
+    "facts": "适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+    "subset": "main48",
+    "stratum": "new_family_positive",
+    "knowledge_version": "round2-v2",
+    "polarity": "positive",
+    "must_abstain": false,
+    "match_reason": "新家族官方资料仅在本条 RAG 输入提供，路径由合成案例指定为该家族；不等于真实扫描验证。",
+    "reference": {
+      "minimal_supported_claims": [
+        "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+        "不是通用可随手删除的下载缓存"
+      ],
+      "required_risk_caveats": [
+        "单独删除对象可能破坏仓库完整性",
+        "先备份并确认没有并发写入，用 git gc 等仓库维护",
+        "不能保证远程有全部本地数据"
+      ],
+      "forbidden_claims": [
+        "把对象库当成普通缓存直接清空",
+        "保证远程包含所有本地未推送数据",
+        "仅凭对象文件名猜是哪次提交或源代码",
+        "保证 git gc 在并发写入时绝对安全"
+      ],
+      "grading_note": "仅相对测试时给出的官方支持资料做语义核对；不能宣称预训练未见过该知识。"
+    },
+    "source_ids": [
+      "git-objects-progit-20261010",
+      "git-gc-20261010"
+    ],
+    "source_urls": [
+      "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+      "https://git-scm.com/docs/git-gc"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：00000000000000000000000000000000000000\n完整路径：D:\\Projects\\R2_TestNew_000\\.git\\objects\\00\\00000000000000000000000000000000000000\n所在目录：.git\\objects\\00\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+      "不是通用可随手删除的下载缓存"
+    ],
+    "required_risk_caveats": [
+      "单独删除对象可能破坏仓库完整性",
+      "先备份并确认没有并发写入，用 git gc 等仓库维护",
+      "不能保证远程有全部本地数据"
+    ]
+  },
+  {
+    "id": "main-new-git-objects-01",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：00000000000000000000000000000000000001\n完整路径：D:\\Projects\\R2_TestNew_001\\.git\\objects\\01\\00000000000000000000000000000000000001\n所在目录：.git\\objects\\01\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+    "path": "D:\\Projects\\R2_TestNew_001\\.git\\objects\\01\\00000000000000000000000000000000000001",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "git-objects",
+    "knowledge": "git-objects",
+    "facts": "适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+    "subset": "main48",
+    "stratum": "new_family_positive",
+    "knowledge_version": "round2-v2",
+    "polarity": "positive",
+    "must_abstain": false,
+    "match_reason": "新家族官方资料仅在本条 RAG 输入提供，路径由合成案例指定为该家族；不等于真实扫描验证。",
+    "reference": {
+      "minimal_supported_claims": [
+        "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+        "不是通用可随手删除的下载缓存"
+      ],
+      "required_risk_caveats": [
+        "单独删除对象可能破坏仓库完整性",
+        "先备份并确认没有并发写入，用 git gc 等仓库维护",
+        "不能保证远程有全部本地数据"
+      ],
+      "forbidden_claims": [
+        "把对象库当成普通缓存直接清空",
+        "保证远程包含所有本地未推送数据",
+        "仅凭对象文件名猜是哪次提交或源代码",
+        "保证 git gc 在并发写入时绝对安全"
+      ],
+      "grading_note": "仅相对测试时给出的官方支持资料做语义核对；不能宣称预训练未见过该知识。"
+    },
+    "source_ids": [
+      "git-objects-progit-20261010",
+      "git-gc-20261010"
+    ],
+    "source_urls": [
+      "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+      "https://git-scm.com/docs/git-gc"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：00000000000000000000000000000000000001\n完整路径：D:\\Projects\\R2_TestNew_001\\.git\\objects\\01\\00000000000000000000000000000000000001\n所在目录：.git\\objects\\01\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+      "不是通用可随手删除的下载缓存"
+    ],
+    "required_risk_caveats": [
+      "单独删除对象可能破坏仓库完整性",
+      "先备份并确认没有并发写入，用 git gc 等仓库维护",
+      "不能保证远程有全部本地数据"
+    ]
+  },
+  {
+    "id": "main-new-git-objects-02",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：00000000000000000000000000000000000002\n完整路径：D:\\Projects\\R2_TestNew_002\\.git\\objects\\02\\00000000000000000000000000000000000002\n所在目录：.git\\objects\\02\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+    "path": "D:\\Projects\\R2_TestNew_002\\.git\\objects\\02\\00000000000000000000000000000000000002",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "git-objects",
+    "knowledge": "git-objects",
+    "facts": "适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+    "subset": "main48",
+    "stratum": "new_family_positive",
+    "knowledge_version": "round2-v2",
+    "polarity": "positive",
+    "must_abstain": false,
+    "match_reason": "新家族官方资料仅在本条 RAG 输入提供，路径由合成案例指定为该家族；不等于真实扫描验证。",
+    "reference": {
+      "minimal_supported_claims": [
+        "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+        "不是通用可随手删除的下载缓存"
+      ],
+      "required_risk_caveats": [
+        "单独删除对象可能破坏仓库完整性",
+        "先备份并确认没有并发写入，用 git gc 等仓库维护",
+        "不能保证远程有全部本地数据"
+      ],
+      "forbidden_claims": [
+        "把对象库当成普通缓存直接清空",
+        "保证远程包含所有本地未推送数据",
+        "仅凭对象文件名猜是哪次提交或源代码",
+        "保证 git gc 在并发写入时绝对安全"
+      ],
+      "grading_note": "仅相对测试时给出的官方支持资料做语义核对；不能宣称预训练未见过该知识。"
+    },
+    "source_ids": [
+      "git-objects-progit-20261010",
+      "git-gc-20261010"
+    ],
+    "source_urls": [
+      "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+      "https://git-scm.com/docs/git-gc"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：00000000000000000000000000000000000002\n完整路径：D:\\Projects\\R2_TestNew_002\\.git\\objects\\02\\00000000000000000000000000000000000002\n所在目录：.git\\objects\\02\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+      "不是通用可随手删除的下载缓存"
+    ],
+    "required_risk_caveats": [
+      "单独删除对象可能破坏仓库完整性",
+      "先备份并确认没有并发写入，用 git gc 等仓库维护",
+      "不能保证远程有全部本地数据"
+    ]
+  },
+  {
+    "id": "main-new-git-objects-03",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：00000000000000000000000000000000000003\n完整路径：D:\\Projects\\R2_TestNew_003\\.git\\objects\\03\\00000000000000000000000000000000000003\n所在目录：.git\\objects\\03\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+    "path": "D:\\Projects\\R2_TestNew_003\\.git\\objects\\03\\00000000000000000000000000000000000003",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "git-objects",
+    "knowledge": "git-objects",
+    "facts": "适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。",
+    "subset": "main48",
+    "stratum": "new_family_positive",
+    "knowledge_version": "round2-v2",
+    "polarity": "positive",
+    "must_abstain": false,
+    "match_reason": "新家族官方资料仅在本条 RAG 输入提供，路径由合成案例指定为该家族；不等于真实扫描验证。",
+    "reference": {
+      "minimal_supported_claims": [
+        "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+        "不是通用可随手删除的下载缓存"
+      ],
+      "required_risk_caveats": [
+        "单独删除对象可能破坏仓库完整性",
+        "先备份并确认没有并发写入，用 git gc 等仓库维护",
+        "不能保证远程有全部本地数据"
+      ],
+      "forbidden_claims": [
+        "把对象库当成普通缓存直接清空",
+        "保证远程包含所有本地未推送数据",
+        "仅凭对象文件名猜是哪次提交或源代码",
+        "保证 git gc 在并发写入时绝对安全"
+      ],
+      "grading_note": "仅相对测试时给出的官方支持资料做语义核对；不能宣称预训练未见过该知识。"
+    },
+    "source_ids": [
+      "git-objects-progit-20261010",
+      "git-gc-20261010"
+    ],
+    "source_urls": [
+      "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+      "https://git-scm.com/docs/git-gc"
+    ],
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：00000000000000000000000000000000000003\n完整路径：D:\\Projects\\R2_TestNew_003\\.git\\objects\\03\\00000000000000000000000000000000000003\n所在目录：.git\\objects\\03\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n适用范围：此合成路径被本案例资料指定为该 Git 仓库的对象库，没有读取真实仓库。用途：.git/objects 存储内容寻址对象；blob 保存内容，tree 组织条目，commit 描述快照和历史，是仓库数据而非通用下载缓存。删除影响：单独删除对象可能损害仓库完整性；这是据对象库结构作出的保守推论，不能保证远程保存了全部本地或未推送数据。建议：先备份需要的仓库数据，确认没有并发写入，再用 git gc 等仓库维护工具处理，不手工删除任意对象文件。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Git 仓库内容寻址对象库，保存内容、目录结构或提交快照历史相关对象",
+      "不是通用可随手删除的下载缓存"
+    ],
+    "required_risk_caveats": [
+      "单独删除对象可能破坏仓库完整性",
+      "先备份并确认没有并发写入，用 git gc 等仓库维护",
+      "不能保证远程有全部本地数据"
+    ]
+  },
+  {
+    "id": "main-distractor-00",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_distractor_000.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1000.0\\round2_test_distractor_000.dll\n所在目录：EdgeWebView\\Application\\150.0.1000.0\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。\n另一个路径的资料（不匹配当前文件）：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。",
+    "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1000.0\\round2_test_distractor_000.dll",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "webview2",
+    "polarity": "positive",
+    "evidence": "relevant_with_distractor",
+    "facts": "用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。\n另一个路径的资料（不匹配当前文件）：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。",
+    "match_reason": "第一段适用资料匹配当前路径；第二段明确属于另一个路径，不应用于本文件。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+        "Runtime 的依赖与是否使用 Edge 浏览器分开"
+      ],
+      "required_risk_caveats": [
+        "删除可能影响依赖它的应用",
+        "建议保留并通过 Windows 应用管理处理"
+      ],
+      "forbidden_claims": [
+        "把 Runtime 说成 Edge 浏览器主程序或仅供浏览器使用",
+        "保证所有文件与 Edge 物理独立",
+        "按版本号或不用 Edge 推出可直接删除",
+        "把另一家族用途或清理命令迁移到当前路径"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "distractor_or_conflict",
+    "knowledge": "webview2",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://learn.microsoft.com/en-us/microsoft-edge/webview2/concepts/distribution"
+    ],
+    "distractor_family": "pip-cache",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_distractor_000.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\150.0.1000.0\\round2_test_distractor_000.dll\n所在目录：EdgeWebView\\Application\\150.0.1000.0\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 为桌面应用提供嵌入网页的运行环境，其依赖关系独立于 Edge 浏览器；某些安装配置中二者可能使用硬链接，不能把逻辑独立理解为每个文件在物理存储上都分开。删除影响：依赖 Runtime 的应用可能无法启动或显示界面，不使用 Edge 浏览器不能说明 Runtime 闲置。建议：保留运行库，通过 Windows 应用管理处理，不按版本目录名认定旧版可删。\n另一个路径的资料（不匹配当前文件）：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "WebView2 Runtime 服务于桌面应用的嵌入网页界面",
+      "Runtime 的依赖与是否使用 Edge 浏览器分开"
+    ],
+    "required_risk_caveats": [
+      "删除可能影响依赖它的应用",
+      "建议保留并通过 Windows 应用管理处理"
+    ]
+  },
+  {
+    "id": "main-distractor-01",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_distractor_001.bin\n完整路径：C:\\Users\\R2_test_distractor_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_distractor_001.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。\n另一个路径的资料（不匹配当前文件）：\n用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。",
+    "path": "C:\\Users\\R2_test_distractor_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_distractor_001.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "onenote-cache",
+    "polarity": "positive",
+    "evidence": "relevant_with_distractor",
+    "facts": "用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。\n另一个路径的资料（不匹配当前文件）：\n用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。",
+    "match_reason": "第一段适用资料匹配当前路径；第二段明确属于另一个路径，不应用于本文件。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "OneNote 的本地缓存可能包括未同步的笔记修改"
+      ],
+      "required_risk_caveats": [
+        "先检查同步并备份需要的笔记",
+        "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+      ],
+      "forbidden_claims": [
+        "一定会丢失或永久无法恢复",
+        "保证所有内容已在云端",
+        "确认具体文件必然包含某篇笔记",
+        "无条件直接删除",
+        "把另一家族用途或清理命令迁移到当前路径"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "distractor_or_conflict",
+    "knowledge": "onenote-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://support.microsoft.com/en-us/onenote/onenote-help-and-learning/fix-issues-when-you-can-t-sync-onenote"
+    ],
+    "distractor_family": "node-dependencies",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_distractor_001.bin\n完整路径：C:\\Users\\R2_test_distractor_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_distractor_001.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：这是 OneNote 本地缓存目录的匹配路径，缓存可能包括尚未同步的笔记修改；没有读取该具体文件，不能确认其中是哪篇笔记。删除影响：若需要保留的内容尚未同步且没有其他备份，删除缓存可能造成内容丢失，不能保证云端能恢复；并非所有缓存都会永久丢失。建议：先检查同步状态并备份需要的笔记，再在 OneNote 内管理笔记本，不把 cache 当成无条件可删的临时文件。\n另一个路径的资料（不匹配当前文件）：\n用途：node_modules 是 JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要根据依赖声明和锁文件重新安装；手工改过的文件不能保证恢复。建议：确认项目不在运行，保留依赖声明、锁文件与需要的修改，再使用项目对应的包管理工具处理。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "OneNote 的本地缓存可能包括未同步的笔记修改"
+    ],
+    "required_risk_caveats": [
+      "先检查同步并备份需要的笔记",
+      "未同步且无其他备份的内容可能丢失，不能保证云端恢复"
+    ]
+  },
+  {
+    "id": "main-distractor-02",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_distractor_002.whl\n完整路径：C:\\Users\\R2_test_distractor_002\\AppData\\Local\\pip\\cache\\wheels\\round2_test_distractor_002.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。\n另一个路径的资料（不匹配当前文件）：\n用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。",
+    "path": "C:\\Users\\R2_test_distractor_002\\AppData\\Local\\pip\\cache\\wheels\\round2_test_distractor_002.whl",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "pip-cache",
+    "polarity": "positive",
+    "evidence": "relevant_with_distractor",
+    "facts": "用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。\n另一个路径的资料（不匹配当前文件）：\n用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。",
+    "match_reason": "第一段适用资料匹配当前路径；第二段明确属于另一个路径，不应用于本文件。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "pip 下载响应或构建 wheel 的缓存",
+        "清理缓存不等于卸载已安装的 Python 包"
+      ],
+      "required_risk_caveats": [
+        "下次安装需要时可能重新下载或构建",
+        "建议用 pip cache purge 管理"
+      ],
+      "forbidden_claims": [
+        "下次运行或使用已安装的程序就会重新下载",
+        "缓存等于已安装的运行库",
+        "猜测具体包版本",
+        "不影响任何事情的保证",
+        "把另一家族用途或清理命令迁移到当前路径"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "distractor_or_conflict",
+    "knowledge": "pip-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://pip.pypa.io/en/stable/topics/caching/"
+    ],
+    "distractor_family": "user-temp",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_distractor_002.whl\n完整路径：C:\\Users\\R2_test_distractor_002\\AppData\\Local\\pip\\cache\\wheels\\round2_test_distractor_002.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存下载响应和构建的 wheel，供后续安装 Python 包复用。删除影响：清理这份缓存不等于卸载已安装的包；下次安装若需要的副本已被清理，可能重新下载或构建，不是每次运行已安装的程序都需要下载。建议：用 pip cache purge 管理缓存；不能仅凭文件名确认特定包版本或把缓存当运行库。\n另一个路径的资料（不匹配当前文件）：\n用途：路径位于当前用户临时目录，可能有应用或安装任务使用的文件；路径和文件名不能确认这个文件的具体内容。删除影响：清理正在使用的文件可能让当前任务失败。建议：先关闭相关应用或等待安装任务结束，使用 Windows 设置中的临时文件清理，保留需要的内容，跳过占用项。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "pip 下载响应或构建 wheel 的缓存",
+      "清理缓存不等于卸载已安装的 Python 包"
+    ],
+    "required_risk_caveats": [
+      "下次安装需要时可能重新下载或构建",
+      "建议用 pip cache purge 管理"
+    ]
+  },
+  {
+    "id": "main-distractor-03",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_distractor_003\n完整路径：D:\\Users\\R2_test_distractor_003\\.cache\\huggingface\\hub\\models--Example--round2_test_distractor_003\\blobs\\round2_test_distractor_003\n所在目录：hub\\models--Example--round2_test_distractor_003\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。\n另一个路径的资料（不匹配当前文件）：\n用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。",
+    "path": "D:\\Users\\R2_test_distractor_003\\.cache\\huggingface\\hub\\models--Example--round2_test_distractor_003\\blobs\\round2_test_distractor_003",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "huggingface-cache",
+    "polarity": "positive",
+    "evidence": "relevant_with_distractor",
+    "facts": "用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。\n另一个路径的资料（不匹配当前文件）：\n用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。",
+    "match_reason": "第一段适用资料匹配当前路径；第二段明确属于另一个路径，不应用于本文件。",
+    "must_abstain": false,
+    "reference": {
+      "minimal_supported_claims": [
+        "Hugging Face Hub 下载模型或数据资源的本地缓存"
+      ],
+      "required_risk_caveats": [
+        "项目可能需要重新下载，离线运行可能受影响",
+        "先确认依赖和下载条件，用缓存管理工具处理"
+      ],
+      "forbidden_claims": [
+        "猜测模型具体用途",
+        "保证任何资源都能重新下载",
+        "保证没有个人数据损失或本地修改",
+        "无条件删除",
+        "把另一家族用途或清理命令迁移到当前路径"
+      ],
+      "grading_note": "逐句核对语义、关系与条件性；不按关键词判断事实率。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "distractor_or_conflict",
+    "knowledge": "huggingface-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [
+      "https://huggingface.co/docs/huggingface_hub/guides/manage-cache"
+    ],
+    "distractor_family": "pytorch-package",
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_distractor_003\n完整路径：D:\\Users\\R2_test_distractor_003\\.cache\\huggingface\\hub\\models--Example--round2_test_distractor_003\\blobs\\round2_test_distractor_003\n所在目录：hub\\models--Example--round2_test_distractor_003\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存，不能只凭文件名确认具体任务。删除影响：依赖这些本地副本的项目可能需要重新下载，离线时可能无法运行；不能保证具体资源始终可以重新获取或用户没有本地修改。建议：确认依赖、下载条件与需保留的修改，再用 Hugging Face 缓存管理工具清理不需要的版本。\n另一个路径的资料（不匹配当前文件）：\n用途：这是当前 Python 环境的 PyTorch 安装包匹配路径，PyTorch 用于张量计算和机器学习；不能由文件名确认具体显卡、CUDA 配置或其他环境依赖。删除影响：单独删除包内的库或程序文件可能让当前环境中的 PyTorch 无法使用，不意味着所有环境都坏了或永远无法恢复。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不直接删 DLL。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "Hugging Face Hub 下载模型或数据资源的本地缓存"
+    ],
+    "required_risk_caveats": [
+      "项目可能需要重新下载，离线运行可能受影响",
+      "先确认依赖和下载条件，用缓存管理工具处理"
+    ]
+  },
+  {
+    "id": "main-conflict-00",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_conflict_000.whl\n完整路径：C:\\Users\\R2_test_conflict_000\\AppData\\Local\\pip\\cache\\wheels\\round2_test_conflict_000.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径只包含可再下载缓存，可以无条件清理。\n候选片段乙：这个路径也可能有唯一用户数据副本，来源未核验，删除后无法保证恢复。",
+    "path": "C:\\Users\\R2_test_conflict_000\\AppData\\Local\\pip\\cache\\wheels\\round2_test_conflict_000.whl",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "pip-cache",
+    "polarity": "negative",
+    "evidence": "conflict",
+    "facts": "没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径只包含可再下载缓存，可以无条件清理。\n候选片段乙：这个路径也可能有唯一用户数据副本，来源未核验，删除后无法保证恢复。",
+    "match_reason": "两份候选资料对同一路径有直接矛盾且未验证，不能选择一种当已确认事实。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：两份候选资料对同一路径有直接矛盾且未验证，不能选择一种当已确认事实。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "distractor_or_conflict",
+    "knowledge": "pip-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "conflict_unresolved": true,
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_conflict_000.whl\n完整路径：C:\\Users\\R2_test_conflict_000\\AppData\\Local\\pip\\cache\\wheels\\round2_test_conflict_000.whl\n所在目录：pip\\cache\\wheels\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径只包含可再下载缓存，可以无条件清理。\n候选片段乙：这个路径也可能有唯一用户数据副本，来源未核验，删除后无法保证恢复。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-conflict-01",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_conflict_001.bin\n完整路径：C:\\Users\\R2_test_conflict_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_conflict_001.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径的内容已经全部同步到云端，可以直接删除。\n候选片段乙：这个路径可能包含尚未同步且没有备份的修改，两份片段的来源均未核验。",
+    "path": "C:\\Users\\R2_test_conflict_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_conflict_001.bin",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "onenote-cache",
+    "polarity": "negative",
+    "evidence": "conflict",
+    "facts": "没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径的内容已经全部同步到云端，可以直接删除。\n候选片段乙：这个路径可能包含尚未同步且没有备份的修改，两份片段的来源均未核验。",
+    "match_reason": "两份候选资料对同一路径有直接矛盾且未验证，不能选择一种当已确认事实。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：两份候选资料对同一路径有直接矛盾且未验证，不能选择一种当已确认事实。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "distractor_or_conflict",
+    "knowledge": "onenote-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "conflict_unresolved": true,
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_conflict_001.bin\n完整路径：C:\\Users\\R2_test_conflict_001\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\round2_test_conflict_001.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径的内容已经全部同步到云端，可以直接删除。\n候选片段乙：这个路径可能包含尚未同步且没有备份的修改，两份片段的来源均未核验。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-conflict-02",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_conflict_002\n完整路径：D:\\Users\\R2_test_conflict_002\\.cache\\huggingface\\hub\\models--Example--round2_test_conflict_002\\blobs\\round2_test_conflict_002\n所在目录：hub\\models--Example--round2_test_conflict_002\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径的全部资源都能随时重新下载，删除没有影响。\n候选片段乙：这个路径可能有无法重新获取的本地修改，来源尚未核验。",
+    "path": "D:\\Users\\R2_test_conflict_002\\.cache\\huggingface\\hub\\models--Example--round2_test_conflict_002\\blobs\\round2_test_conflict_002",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "huggingface-cache",
+    "polarity": "negative",
+    "evidence": "conflict",
+    "facts": "没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径的全部资源都能随时重新下载，删除没有影响。\n候选片段乙：这个路径可能有无法重新获取的本地修改，来源尚未核验。",
+    "match_reason": "两份候选资料对同一路径有直接矛盾且未验证，不能选择一种当已确认事实。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：两份候选资料对同一路径有直接矛盾且未验证，不能选择一种当已确认事实。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "distractor_or_conflict",
+    "knowledge": "huggingface-cache",
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "conflict_unresolved": true,
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_conflict_002\n完整路径：D:\\Users\\R2_test_conflict_002\\.cache\\huggingface\\hub\\models--Example--round2_test_conflict_002\\blobs\\round2_test_conflict_002\n所在目录：hub\\models--Example--round2_test_conflict_002\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径的全部资源都能随时重新下载，删除没有影响。\n候选片段乙：这个路径可能有无法重新获取的本地修改，来源尚未核验。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  },
+  {
+    "id": "main-conflict-03",
+    "instruction": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。",
+    "input": "文件名：round2_test_conflict_003.js\n完整路径：D:\\Projects\\round2_test_conflict_003\\node_modules\\example-package\\round2_test_conflict_003.js\n所在目录：round2_test_conflict_003\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径完全没有手工修改，按锁文件一定能原样恢复。\n候选片段乙：这个路径可能有唯一的手工修改，候选来源未核验。",
+    "path": "D:\\Projects\\round2_test_conflict_003\\node_modules\\example-package\\round2_test_conflict_003.js",
+    "is_dir": false,
+    "size": "200 MB",
+    "group": "node-dependencies",
+    "polarity": "negative",
+    "evidence": "conflict",
+    "facts": "没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径完全没有手工修改，按锁文件一定能原样恢复。\n候选片段乙：这个路径可能有唯一的手工修改，候选来源未核验。",
+    "match_reason": "两份候选资料对同一路径有直接矛盾且未验证，不能选择一种当已确认事实。",
+    "must_abstain": true,
+    "reference": {
+      "minimal_supported_claims": [
+        "现有适用资料不足，明确无法确定该具体用途"
+      ],
+      "required_risk_caveats": [
+        "清理前通过创建它的软件或可靠记录确认",
+        "先备份需要保留的数据，不保证删除后能恢复"
+      ],
+      "forbidden_claims": [
+        "凭名字或扩展名赋予具体功能",
+        "把不相关资料迁移到当前路径",
+        "保证可直接删除或一定可以恢复"
+      ],
+      "grading_note": "应拒绝猜测具体用途，但可以描述已知的路径类别和保守核对步骤。理由：两份候选资料对同一路径有直接矛盾且未验证，不能选择一种当已确认事实。"
+    },
+    "split": "test",
+    "subset": "main48",
+    "stratum": "distractor_or_conflict",
+    "knowledge": "node-dependencies",
+    "knowledge_version": "round2-v2",
+    "source_urls": [],
+    "conflict_unresolved": true,
+    "messages": [
+      {
+        "role": "system",
+        "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+      },
+      {
+        "role": "user",
+        "content": "文件名：round2_test_conflict_003.js\n完整路径：D:\\Projects\\round2_test_conflict_003\\node_modules\\example-package\\round2_test_conflict_003.js\n所在目录：round2_test_conflict_003\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有经过核对的适用资料。以下两份候选片段对同一路径存在冲突，无法确认哪份描述成立；不应把任一候选说法当成已验证用途或安全结论。\n候选片段甲：这个路径完全没有手工修改，按锁文件一定能原样恢复。\n候选片段乙：这个路径可能有唯一的手工修改，候选来源未核验。"
+      }
+    ],
+    "minimal_supported_claims": [
+      "现有适用资料不足，明确无法确定该具体用途"
+    ],
+    "required_risk_caveats": [
+      "清理前通过创建它的软件或可靠记录确认",
+      "先备份需要保留的数据，不保证删除后能恢复"
+    ]
+  }
+]

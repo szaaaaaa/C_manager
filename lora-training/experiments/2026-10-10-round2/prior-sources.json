@@ -1,0 +1,89 @@
+[
+  {
+    "paper_id": "dettmers2023qlora",
+    "title": "QLoRA: Efficient Finetuning of Quantized LLMs",
+    "authors": [
+      "Tim Dettmers",
+      "Artidoro Pagnoni",
+      "Ari Holtzman",
+      "Luke Zettlemoyer"
+    ],
+    "year": 2023,
+    "venue": "arXiv:2305.14314",
+    "abstract": "QLoRA freezes a quantized pretrained model and trains low-rank adapters. NF4, double quantization and paged optimizers reduce training memory. Reported results concern the architectures and datasets studied in the paper, and do not establish Qwen3.5 quality.",
+    "url": "https://arxiv.org/abs/2305.14314",
+    "type": "paper"
+  },
+  {
+    "paper_id": "lewis2020rag",
+    "title": "Retrieval-Augmented Generation for Knowledge-Intensive NLP Tasks",
+    "authors": [
+      "Patrick Lewis",
+      "Ethan Perez",
+      "Aleksandra Piktus",
+      "Fabio Petroni",
+      "Vladimir Karpukhin",
+      "Naman Goyal",
+      "Heinrich Küttler",
+      "Mike Lewis",
+      "Wen-tau Yih",
+      "Tim Rocktäschel",
+      "Sebastian Riedel",
+      "Douwe Kiela"
+    ],
+    "year": 2020,
+    "venue": "NeurIPS 2020; arXiv:2005.11401",
+    "abstract": "Combines parametric generation with retrieved non-parametric knowledge. The paper evaluates dense Wikipedia retrieval and seq2seq generation; this local experiment uses a small path-pattern registry rather than reproducing that retrieval system.",
+    "url": "https://arxiv.org/abs/2005.11401",
+    "type": "paper"
+  },
+  {
+    "paper_id": "unsloth2026qwen35training",
+    "title": "Qwen3.5 Fine-tuning Guide",
+    "authors": [
+      "Unsloth"
+    ],
+    "year": null,
+    "venue": "Official documentation, accessed 2026-10-10",
+    "abstract": "The guide estimates BF16 LoRA memory of 10GB for 4B and 22GB for 9B, requires Transformers5, and cautions against Qwen3.5 QLoRA because of quantization differences. Therefore the proposed 8GB NF4 run is an empirical feasibility probe.",
+    "url": "https://unsloth.ai/docs/models/qwen3.5/fine-tune",
+    "type": "documentation"
+  },
+  {
+    "paper_id": "hf2026bnb",
+    "title": "Bitsandbytes quantization",
+    "authors": [
+      "Hugging Face"
+    ],
+    "year": null,
+    "venue": "Official Transformers documentation, accessed 2026-10-10",
+    "abstract": "Documents quantized linear layers, NF4 and nested quantization; quantized training is limited to additional parameters.",
+    "url": "https://huggingface.co/docs/transformers/quantization/bitsandbytes",
+    "type": "documentation"
+  },
+  {
+    "paper_id": "qwen35_4b_checkpoint",
+    "title": "Qwen3.5-4B",
+    "authors": [
+      "Qwen",
+      "Unsloth"
+    ],
+    "year": null,
+    "venue": "Hugging Face model card; revision3764fa359b9082ea5a1e4a5e3ac3aaf6e9671636",
+    "abstract": "Public instruction checkpoint with a language model and vision encoder. This experiment uses text inputs and a frozen language base with attention adapters.",
+    "url": "https://huggingface.co/unsloth/Qwen3.5-4B",
+    "type": "model_card"
+  },
+  {
+    "paper_id": "gemma4_e4b_qat",
+    "title": "Gemma4 E4B instruction QAT Q4_0 GGUF",
+    "authors": [
+      "Google"
+    ],
+    "year": null,
+    "venue": "Official Hugging Face model repository; revision4b4a2c1d584be7264f87aac328a1bc739ce81b6c",
+    "abstract": "Official quantization-aware-trained GGUF checkpoint. Effective parameter naming does not imply the same footprint as an ordinary4B checkpoint; text GGUF is5154941280bytes and vision projection is not used here.",
+    "url": "https://huggingface.co/google/gemma-4-E4B-it-qat-q4_0-gguf",
+    "type": "model_card"
+  }
+]

@@ -1,0 +1,23 @@
+{
+  "files": [
+    {
+      "original_source": "D:\\C_manager\\lora-training\\scripts\\finetune.py",
+      "original_sha256": "2e29569723f28a6d9559800703f711dcd9a66f4fb829f0fc44c4cfb6f3078eee",
+      "copied_functions": [
+        "format_for_chat"
+      ],
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\helpers\\formatting.py",
+      "helper_sha256": "2be5804b0f798164e3545a2d06e59a4218175274cd9f8edd754d1f0def4b368f"
+    },
+    {
+      "original_source": "D:\\C_manager\\lora-training\\scripts\\evaluate.py",
+      "original_sha256": "68cc9049e817acab216200e67ea635d842c81725434958caf3f314230c86d298",
+      "copied_functions": [
+        "check_response"
+      ],
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\helpers\\checks.py",
+      "helper_sha256": "dec8021f276ebd56e559c850f5f6e93783ca3d1a81d262c813810f939daff465"
+    }
+  ],
+  "source_only_read": true
+}

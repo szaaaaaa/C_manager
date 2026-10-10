@@ -1,0 +1,65 @@
+[
+  {
+    "paper_id": "npm-cache-v11-20261010",
+    "title": "npm-cache (CLI v11 documentation)",
+    "authors": [
+      "npm contributors"
+    ],
+    "year": 2025,
+    "venue": "Official npm documentation",
+    "abstract": "The configured npm cache contains an opaque content-addressed _cacache holding HTTP request and package-related data. Integrity is checked on insertion/extraction; verify checks and garbage collects. clean generally unnecessary except space reclamation, requires --force. Cache is not a persistent reliable package store. Windows default LocalAppData/npm-cache; configuration may change location.",
+    "url": "https://docs.npmjs.com/cli/v11/commands/npm-cache/",
+    "accessed_date": "2026-10-10",
+    "source_kind": "official_documentation",
+    "supports": "用途与缓存设计及工具；不证明任意同名文件是npm生成的，不保证具体缓存副本永远可以重新获得。"
+  },
+  {
+    "paper_id": "git-objects-progit-20261010",
+    "title": "Pro Git, 2nd edition: 10.2 Git Objects",
+    "authors": [
+      "Scott Chacon",
+      "Ben Straub"
+    ],
+    "year": 2014,
+    "venue": "Pro Git / official git-scm.com",
+    "abstract": "Git objects form a content-addressable object database under .git/objects; blobs represent stored content, trees organize entries and commits describe snapshots/history. Object files are repository data, not a generic disposable download cache.",
+    "url": "https://git-scm.com/book/en/v2/Git-Internals-Git-Objects",
+    "accessed_date": "2026-10-10",
+    "source_kind": "official_book",
+    "supports": "对象库用途；单独删除对象可能破坏仓库完整性是基于数据结构的保守推论，不保证远程含全部本地数据。"
+  },
+  {
+    "paper_id": "git-gc-20261010",
+    "title": "git-gc — Cleanup unnecessary files and optimize the local repository",
+    "authors": [
+      "Git contributors"
+    ],
+    "year": 2026,
+    "venue": "Official Git documentation (accessed version)",
+    "abstract": "git gc runs repository housekeeping and optimizes object storage. The documentation describes retention of referenced objects and dangers of pruning while another process writes to the repository. Use repository-aware maintenance instead of manually deleting arbitrary object files.",
+    "url": "https://git-scm.com/docs/git-gc",
+    "accessed_date": "2026-10-10",
+    "source_kind": "official_documentation",
+    "supports": "仓库内维护工具与并发写入风险；不构成对用户具体仓库删除安全的确认。"
+  },
+  {
+    "paper_id": "zhang2024raft-2403.10131",
+    "title": "RAFT: Adapting Language Model to Domain Specific RAG",
+    "authors": [
+      "Tianjun Zhang",
+      "Shishir G. Patil",
+      "Naman Jain",
+      "Sheng Shen",
+      "Matei Zaharia",
+      "Ion Stoica",
+      "Joseph E. Gonzalez"
+    ],
+    "year": 2024,
+    "venue": "arXiv:2403.10131",
+    "abstract": "Retrieval augmented fine-tuning trains domain-specific open-book answering with relevant and distractor documents, including document citations and chain-of-thought style targets. The paper reports evaluations on PubMed, HotpotQA and Gorilla. This experiment borrows distractor exposure only and does not reproduce RAFT, its reasoning targets, tasks or reported accuracy.",
+    "url": "https://arxiv.org/abs/2403.10131",
+    "accessed_date": "2026-10-10",
+    "source_kind": "research_paper",
+    "supports": "检索资料混合相关/干扰训练的研究动机；本轮拒猜负例和表达干预是本项目方案，不能归为RAFT原结论。"
+  }
+]

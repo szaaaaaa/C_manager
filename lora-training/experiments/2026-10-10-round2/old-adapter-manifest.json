@@ -1,0 +1,29 @@
+{
+  "experiment_id": "exp_013",
+  "selected_checkpoint": "D:\\small-model-experiments\\outputs\\exp_20261010_111944\\experiments\\exp_013\\checkpoints\\checkpoint-38",
+  "selected_checkpoint_step": 38,
+  "selected_checkpoint_validation_nll": 1.9347032308578491,
+  "selection_basis": "18 held-out pip-cache family samples, never 24 test cases",
+  "base_repo": "unsloth/Qwen3.5-4B",
+  "base_revision": "3764fa359b9082ea5a1e4a5e3ac3aaf6e9671636",
+  "files": [
+    {
+      "file": "adapter_model.safetensors",
+      "bytes": 3155176,
+      "sha256": "e027eb9d6a68d87f966a1be2ab54465d468bb082075553b164932ce6d0322d7e",
+      "selected_checkpoint_sha256": "e027eb9d6a68d87f966a1be2ab54465d468bb082075553b164932ce6d0322d7e"
+    },
+    {
+      "file": "adapter_config.json",
+      "bytes": 1234,
+      "sha256": "5a69e57998c34cb8ca29b6606c84a62f4cc66bf17adb91b146feb6c8986894f6",
+      "selected_checkpoint_sha256": "5a69e57998c34cb8ca29b6606c84a62f4cc66bf17adb91b146feb6c8986894f6"
+    }
+  ],
+  "published_weight_files": false,
+  "merge_or_gguf_export": false,
+  "adapter_tensor_storage_dtypes": [
+    "BF16"
+  ],
+  "adapter_tensor_count": 64
+}

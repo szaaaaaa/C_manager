@@ -1,0 +1,42 @@
+{
+  "status": "passed",
+  "gpu_execution": false,
+  "arms": [
+    {
+      "experiment": "exp_001",
+      "train_records": 160,
+      "validation_records": 32,
+      "maximum_tokenized_length": 413,
+      "prompt_padding_mask_valid": true,
+      "overlong_rejected": true
+    },
+    {
+      "experiment": "exp_002",
+      "train_records": 160,
+      "validation_records": 32,
+      "maximum_tokenized_length": 413,
+      "prompt_padding_mask_valid": true,
+      "overlong_rejected": true
+    },
+    {
+      "experiment": "exp_003",
+      "train_records": 160,
+      "validation_records": 32,
+      "maximum_tokenized_length": 439,
+      "prompt_padding_mask_valid": true,
+      "overlong_rejected": true
+    }
+  ],
+  "shared_validation_hash": "6aa827f8c960d7dbfb9156fd0208eb1f822931c98079e6a8333f2034b6d743b0",
+  "same_A_B_inputs": true,
+  "all_evaluation_inputs_equal": true,
+  "eval_cases": 72,
+  "eval_subsets": {
+    "main48": 48,
+    "historical24": 24
+  },
+  "eos_configuration": {
+    "tokenizer_eos_token": "<|im_end|>",
+    "actual_eos_token_id": 248046
+  }
+}

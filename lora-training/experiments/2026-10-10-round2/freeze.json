@@ -1,0 +1,145 @@
+{
+  "status": "approved",
+  "run_id": "exp_20261010_150741",
+  "project_id": "46bb9df518194783a69ee24582b3b7c6",
+  "frozen_at": "2026-10-10T15:24:42.101224+08:00",
+  "preflight": "Root file/hash/config/control checks and independent CPU data audit passed before GPU execution.",
+  "files": {
+    "plan.md": {
+      "bytes": 7982,
+      "sha256": "e1e3244e9de4654eccd95d3e3ca285df65a02cec42bd3a75be8ef65694b192af"
+    },
+    "rubric.md": {
+      "bytes": 11696,
+      "sha256": "faa7944c139b30606c4942f34dfeda5289044de31051e6c0052c68916f7d7b8a"
+    },
+    "review-protocol.md": {
+      "bytes": 1948,
+      "sha256": "cf2fe12432e6732b9ed55760cee1046922e187187aaef2a322350cf91f7f62f8"
+    },
+    "sources.json": {
+      "bytes": 3626,
+      "sha256": "09b84f87ff9bac166f5caa31282f0c6c74fd1260ef96e205a02bd1689c5d3680"
+    },
+    "data/manifest.json": {
+      "bytes": 5387,
+      "sha256": "9bf0a899a8b4b049f15dc244b92e859274ab876521222ef4cec81cc5a4b70dda"
+    },
+    "training_self_check.json": {
+      "bytes": 1068,
+      "sha256": "c8e7d8ddc91b072299f9da5ab3d8443e597cd401595ec7c69fc5fbc2b41edf0f"
+    },
+    "diagnostic_self_check.json": {
+      "bytes": 266,
+      "sha256": "b926931cff13a15f9e87906623c00e3cce298dade0474da486d4959cda933be2"
+    },
+    "data-audit.json": {
+      "bytes": 594613,
+      "sha256": "cdde2c662a14b81f1418544a8f2454dc9d23fd0efab9141a0a6fc77968907e24"
+    },
+    "preflight-review.md": {
+      "bytes": 7202,
+      "sha256": "c1554a4139e64c6fac4ce3ecf88308a34862ea994124c894dd95305a38f72d5d"
+    },
+    "experiments/exp_001/spec.md": {
+      "bytes": 2382,
+      "sha256": "fb9b77f63118e60e229684c750ec6cafd17a2c3fa8df3d57f77c269f36a48a21"
+    },
+    "experiments/exp_002/spec.md": {
+      "bytes": 2387,
+      "sha256": "a3102fac3c86ca1f04b76f46a44e681459dd0361aa2023cf1fb78e5130242ac3"
+    },
+    "experiments/exp_003/spec.md": {
+      "bytes": 2420,
+      "sha256": "5df72a198b11836e54ba622f6ad823a20e53c42bb69758815a6142d7b97f87f5"
+    },
+    "experiments/exp_004/spec.md": {
+      "bytes": 3532,
+      "sha256": "8e5a012b5b851ba3c3ed5d868c25f393de861d868069530bf14a270d72dd58e7"
+    },
+    "experiments/exp_005/spec.md": {
+      "bytes": 3452,
+      "sha256": "fea76c72ff34a5c628c1d98cf0c19177c992c2fcdd22a795b6730394e1c685c8"
+    },
+    "experiments/exp_006/spec.md": {
+      "bytes": 3452,
+      "sha256": "1fba0a3b8dee79ee6cda47759b29605d41b24ec9b7bde0f8cde268808f1dd4a1"
+    },
+    "experiments/exp_007/spec.md": {
+      "bytes": 3452,
+      "sha256": "362c9104880dd3fb0060b690f938f684342f8e13088ef7f46359d4683ce98cfd"
+    }
+  },
+  "data_files": {
+    "train_A.jsonl": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\train_A.jsonl",
+      "bytes": 455462,
+      "sha256": "edd9e4c1e6aab0079d93319e1beae6153b6f18a583dc4de980da7b505d9bb142"
+    },
+    "train_B.jsonl": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\train_B.jsonl",
+      "bytes": 452954,
+      "sha256": "f462472c7c869e16458ab9e2336061567d595a52fb1066fe11a68f211c049857"
+    },
+    "train_C.jsonl": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\train_C.jsonl",
+      "bytes": 472878,
+      "sha256": "704e415120d03262b556a0ac770aa6dadccb24e7a5af69e79d29c0668b77748d"
+    },
+    "validation.jsonl": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\validation.jsonl",
+      "bytes": 95528,
+      "sha256": "6aa827f8c960d7dbfb9156fd0208eb1f822931c98079e6a8333f2034b6d743b0"
+    },
+    "eval_cases.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\eval_cases.json",
+      "bytes": 354607,
+      "sha256": "577f4f5bb6976b2d0bf987747a8014759d201845a5dba943cf60565ad27bdc7f"
+    },
+    "eval_primary48.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\eval_primary48.json",
+      "bytes": 238339,
+      "sha256": "3f96a2a52f936e5b6f0ba5f4f3fd33233980fbac4c43361a8c190f6d5e00a8e2"
+    },
+    "eval_historical24.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\eval_historical24.json",
+      "bytes": 116271,
+      "sha256": "fdbb194472a65ada70c3933547715a82df2cc34370485d1bf8c8c3eb98d1368b"
+    },
+    "knowledge-v2.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\knowledge-v2.json",
+      "bytes": 13320,
+      "sha256": "a4421805b02693772630314f37cd94ac82d76e4c136e4892a5fb033d98485b0f"
+    },
+    "target_variants.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\target_variants.json",
+      "bytes": 9373,
+      "sha256": "41b55414fca21d88f15394d8be6507b4ec71c279c88e3894102a5f53bf6275fe"
+    },
+    "grading_rubric.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\grading_rubric.json",
+      "bytes": 3700,
+      "sha256": "8ebb39e89c70dffb77b7d13bafbb13136c81a4f8b1a32bda8d640d1737ece11b"
+    },
+    "self_check.json": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\self_check.json",
+      "bytes": 1065,
+      "sha256": "981cbdffbed94b1a8692e641f8fe5ef2a5fccb601d206e86a8bf3be5ac1ca961"
+    },
+    "build_data.py": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\build_data.py",
+      "bytes": 45946,
+      "sha256": "f4013c9983fc725307058e713e933741c1b4bdacd7e62af04ec86a95d70d5cf6"
+    }
+  },
+  "approved_gpu_runs": [
+    "exp_001",
+    "exp_002",
+    "exp_003",
+    "exp_004",
+    "exp_005",
+    "exp_006",
+    "exp_007"
+  ],
+  "conditions": "Refresh config from these fixed inputs; only then set data_freeze_approved true. Preserve data, protocol and terminal results. No test checkpoint selection."
+}
