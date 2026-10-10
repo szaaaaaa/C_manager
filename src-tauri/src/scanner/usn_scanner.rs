@@ -1,27 +1,27 @@
-//! Fast file enumeration via Windows FSCTL_ENUM_USN_DATA.
-//!
-//! Phase 1: Kernel enumerates ALL MFT entries in ~1-2 seconds (names, parents, attributes).
-//! Phase 2: Build full paths from the in-memory parent tree.
-//! Phase 3: Query file sizes via std::fs::metadata (only for non-directory files).
-
-use std::collections::HashMap;
-use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
+//! USN enumeration retained for explicit benchmarks; the application scans directory paths.
+use std::collections::{HashMap, HashSet};
+use std::ffi::OsString;
+use std::os::windows::ffi::{OsStrExt, OsStringExt};
+use std::path::{Path, PathBuf};
+use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Mutex;
+use std::time::Instant;
 use std::{mem, ptr};
 
 use rayon::prelude::*;
-
-use windows_sys::Win32::Foundation::{CloseHandle, GetLastError, ERROR_HANDLE_EOF, HANDLE, INVALID_HANDLE_VALUE};
+use windows_sys::Win32::Foundation::{
+    CloseHandle, GetLastError, ERROR_HANDLE_EOF, ERROR_MORE_DATA, HANDLE, INVALID_HANDLE_VALUE,
+};
 use windows_sys::Win32::Storage::FileSystem::{
-    CreateFileW, FILE_SHARE_DELETE, FILE_SHARE_READ, FILE_SHARE_WRITE, OPEN_EXISTING,
+    CreateFileW, FindClose, FindFirstFileNameW, FindNextFileNameW, FILE_SHARE_DELETE,
+    FILE_SHARE_READ, FILE_SHARE_WRITE, OPEN_EXISTING,
 };
 use windows_sys::Win32::System::IO::DeviceIoControl;
 
-use super::models::FileRecord;
-use super::{EventFn, ScanEvent};
+use super::models::ScanReport;
+use super::{entry_info, record_file, Collector, EventFn};
 
 const FSCTL_ENUM_USN_DATA: u32 = 0x000900b3;
-const FILE_ATTRIBUTE_DIRECTORY: u32 = 0x10;
 
 #[repr(C)]
 struct MftEnumDataV0 {
@@ -30,75 +30,201 @@ struct MftEnumDataV0 {
     high_usn: i64,
 }
 
-#[repr(C)]
-struct UsnRecordV2 {
-    record_length: u32,
-    major_version: u16,
-    minor_version: u16,
-    file_reference_number: u64,
-    parent_file_reference_number: u64,
-    usn: i64,
-    time_stamp: i64,
-    reason: u32,
-    source_info: u32,
-    security_id: u32,
-    file_attributes: u32,
-    file_name_length: u16,
-    file_name_offset: u16,
-}
-
-/// Compact MFT entry — names stored in a shared StringArena to avoid per-entry heap allocation.
 struct FileEntry {
-    name_offset: u32,
-    name_len: u16,
+    name: OsString,
     parent_ref: u64,
     is_dir: bool,
 }
 
-/// Arena allocator for file name strings. All names are appended into one contiguous buffer.
-struct StringArena {
-    buf: Vec<u8>,
+fn parse_records(
+    buffer: &[u8],
+    entries: &mut HashMap<u64, FileEntry>,
+) -> Result<(u64, u64), String> {
+    if buffer.len() < 8 {
+        return Err("USN response is missing its continuation reference".into());
+    }
+    let next = u64::from_le_bytes(buffer[..8].try_into().unwrap());
+    let mut offset = 8;
+    let mut count = 0;
+    while offset < buffer.len() {
+        let bytes = &buffer[offset..];
+        if bytes.len() < 8 {
+            return Err("Truncated USN header".into());
+        }
+        let len = u32::from_le_bytes(bytes[..4].try_into().unwrap()) as usize;
+        let version = u16::from_le_bytes(bytes[4..6].try_into().unwrap());
+        if version != 2 {
+            return Err(format!("Unsupported USN major version: {version}"));
+        }
+        if len < 60 || len > bytes.len() || !len.is_multiple_of(8) {
+            return Err("Invalid USN record length".into());
+        }
+        let bytes = &bytes[..len];
+        let name_len = u16::from_le_bytes(bytes[56..58].try_into().unwrap()) as usize;
+        let name_offset = u16::from_le_bytes(bytes[58..60].try_into().unwrap()) as usize;
+        if name_len == 0
+            || !name_len.is_multiple_of(2)
+            || name_offset < 60
+            || !name_offset.is_multiple_of(2)
+            || name_offset
+                .checked_add(name_len)
+                .is_none_or(|end| end > len)
+        {
+            return Err("Invalid USN filename bounds".into());
+        }
+        let name: Vec<u16> = bytes[name_offset..name_offset + name_len]
+            .chunks_exact(2)
+            .map(|b| u16::from_le_bytes([b[0], b[1]]))
+            .collect();
+        let id = u64::from_le_bytes(bytes[8..16].try_into().unwrap());
+        let parent_ref = u64::from_le_bytes(bytes[16..24].try_into().unwrap());
+        if name
+            .iter()
+            .any(|c| [0, b'\\' as u16, b'/' as u16, b':' as u16].contains(c))
+            || name == [46, 46]
+            || (name == [46] && id != parent_ref)
+        {
+            return Err("Invalid USN filename component".into());
+        }
+        let attributes = u32::from_le_bytes(bytes[52..56].try_into().unwrap());
+        entries.insert(
+            id,
+            FileEntry {
+                name: OsString::from_wide(&name),
+                parent_ref,
+                is_dir: attributes & 0x10 != 0,
+            },
+        );
+        count += 1;
+        offset += len;
+    }
+    Ok((next, count))
 }
 
-impl StringArena {
-    fn with_capacity(cap: usize) -> Self {
-        Self { buf: Vec::with_capacity(cap) }
+fn build_path(
+    id: u64,
+    entries: &HashMap<u64, FileEntry>,
+    cache: &mut HashMap<u64, PathBuf>,
+) -> Result<PathBuf, String> {
+    let mut current = id;
+    let mut chain = Vec::new();
+    let mut visited = HashSet::new();
+    let mut path = loop {
+        if let Some(path) = cache.get(&current) {
+            break path.clone();
+        }
+        if !visited.insert(current) {
+            return Err(format!("Parent cycle at file reference {current:#x}"));
+        }
+        let entry = entries
+            .get(&current)
+            .ok_or_else(|| format!("Missing parent reference {current:#x}"))?;
+        if current != id && !entry.is_dir {
+            return Err("Parent reference is not a directory".into());
+        }
+        chain.push((current, entry));
+        current = entry.parent_ref;
+    };
+    for (id, entry) in chain.into_iter().rev() {
+        path.push(&entry.name);
+        if entry.is_dir {
+            cache.insert(id, path.clone());
+        }
     }
+    Ok(path)
+}
 
-    fn push(&mut self, s: &str) -> (u32, u16) {
-        let offset = self.buf.len() as u32;
-        let len = s.len() as u16;
-        self.buf.extend_from_slice(s.as_bytes());
-        (offset, len)
+fn hard_link_paths(path: &Path, drive: &str) -> std::io::Result<Vec<PathBuf>> {
+    let native_path = path.canonicalize()?;
+    let wide: Vec<u16> = native_path
+        .as_os_str()
+        .encode_wide()
+        .chain(Some(0))
+        .collect();
+    let mut buffer = vec![0u16; 1024];
+    let handle = loop {
+        let mut length = buffer.len() as u32;
+        let handle =
+            unsafe { FindFirstFileNameW(wide.as_ptr(), 0, &mut length, buffer.as_mut_ptr()) };
+        if handle != INVALID_HANDLE_VALUE {
+            break handle;
+        }
+        let error = unsafe { GetLastError() };
+        if error == ERROR_MORE_DATA && length as usize > buffer.len() {
+            buffer.resize(length as usize, 0);
+        } else {
+            return Err(std::io::Error::from_raw_os_error(error as i32));
+        }
+    };
+    struct FindGuard(HANDLE);
+    impl Drop for FindGuard {
+        fn drop(&mut self) {
+            unsafe {
+                FindClose(self.0);
+            }
+        }
     }
-
-    fn get(&self, offset: u32, len: u16) -> &str {
-        let start = offset as usize;
-        let end = start + len as usize;
-        // SAFETY: we only store valid UTF-8 from String::from_utf16_lossy
-        unsafe { std::str::from_utf8_unchecked(&self.buf[start..end]) }
+    let _guard = FindGuard(handle);
+    let mut paths = Vec::new();
+    loop {
+        let end = buffer
+            .iter()
+            .position(|c| *c == 0)
+            .ok_or_else(|| std::io::Error::other("Unterminated hard-link path"))?;
+        if buffer.first() != Some(&(b'\\' as u16)) {
+            return Err(std::io::Error::other(
+                "Hard-link path is not volume-relative",
+            ));
+        }
+        let mut path = OsString::from(drive);
+        path.push(OsString::from_wide(&buffer[..end]));
+        paths.push(PathBuf::from(path));
+        loop {
+            let mut length = buffer.len() as u32;
+            if unsafe { FindNextFileNameW(handle, &mut length, buffer.as_mut_ptr()) } != 0 {
+                break;
+            }
+            let error = unsafe { GetLastError() };
+            if error == ERROR_HANDLE_EOF {
+                paths.sort();
+                paths.dedup();
+                return Ok(paths);
+            }
+            if error == ERROR_MORE_DATA && length as usize > buffer.len() {
+                buffer.resize(length as usize, 0);
+            } else {
+                return Err(std::io::Error::from_raw_os_error(error as i32));
+            }
+        }
     }
 }
 
-/// Scan a volume using FSCTL_ENUM_USN_DATA for fast enumeration.
 pub fn scan_usn(
-    drive_letter: &str, // e.g. "C:"
+    drive_letter: &str,
     min_size_bytes: u64,
-    max_depth: u32,
-    top_n: usize,
     cancel: &AtomicBool,
     on_event: &Option<EventFn>,
-) -> Result<Vec<FileRecord>, String> {
-    // Phase 1: Open volume and enumerate all MFT entries via USN
-    let volume_path: Vec<u16> = format!("\\\\.\\{}", drive_letter)
+) -> Result<ScanReport, String> {
+    if drive_letter.len() != 2
+        || !drive_letter.as_bytes()[0].is_ascii_alphabetic()
+        || drive_letter.as_bytes()[1] != b':'
+    {
+        return Err("USN requires a drive letter such as C:".into());
+    }
+    let collector = Mutex::new(Collector::new("usn", on_event));
+    if cancel.load(Ordering::Relaxed) {
+        return Ok(collector.into_inner().unwrap().finish(cancel));
+    }
+    let root = PathBuf::from(format!("{drive_letter}\\"));
+    let root_info = entry_info(&root).map_err(|e| e.to_string())?;
+    let volume_path: Vec<u16> = format!("\\\\.\\{drive_letter}")
         .encode_utf16()
-        .chain(std::iter::once(0))
+        .chain(Some(0))
         .collect();
-
     let handle = unsafe {
         CreateFileW(
             volume_path.as_ptr(),
-            0x80000000, // GENERIC_READ
+            0x80000000,
             FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
             ptr::null(),
             OPEN_EXISTING,
@@ -106,294 +232,246 @@ pub fn scan_usn(
             ptr::null_mut(),
         )
     };
-
     if handle == INVALID_HANDLE_VALUE {
         return Err(format!(
-            "Cannot open volume {}  (admin required)",
-            drive_letter
+            "无法打开 USN 卷（需要管理员权限）: {}",
+            std::io::Error::last_os_error()
         ));
     }
-
-    // RAII guard for the handle
     struct HandleGuard(HANDLE);
     impl Drop for HandleGuard {
         fn drop(&mut self) {
-            unsafe { CloseHandle(self.0); }
+            unsafe {
+                CloseHandle(self.0);
+            }
         }
     }
     let _guard = HandleGuard(handle);
-
-    // Enumerate all files — pre-allocate for typical C: drive (~1M entries)
-    const ESTIMATED_ENTRIES: usize = 1_000_000;
-    let mut entries: HashMap<u64, FileEntry> = HashMap::with_capacity(ESTIMATED_ENTRIES);
-    let mut arena = StringArena::with_capacity(ESTIMATED_ENTRIES * 20); // ~20 bytes avg name
+    let mut entries = HashMap::new();
     let mut input = MftEnumDataV0 {
         start_file_reference_number: 0,
         low_usn: 0,
         high_usn: i64::MAX,
     };
-    let mut buffer = vec![0u8; 128 * 1024]; // 128KB buffer
-    let mut enum_count: u64 = 0;
-
+    let mut buffer = vec![0u8; 128 * 1024];
     loop {
-        if cancel.load(Ordering::SeqCst) {
-            return Err("Scan cancelled".to_string());
+        if cancel.load(Ordering::Relaxed) {
+            return Ok(collector.into_inner().unwrap().finish(cancel));
         }
-
-        let mut bytes_returned: u32 = 0;
+        let started = Instant::now();
+        let mut bytes_returned = 0;
         let ok = unsafe {
             DeviceIoControl(
                 handle,
                 FSCTL_ENUM_USN_DATA,
-                &input as *const _ as *const std::ffi::c_void,
-                mem::size_of::<MftEnumDataV0>() as u32,
-                buffer.as_mut_ptr() as *mut std::ffi::c_void,
+                &input as *const _ as *const _,
+                mem::size_of_val(&input) as u32,
+                buffer.as_mut_ptr() as *mut _,
                 buffer.len() as u32,
                 &mut bytes_returned,
                 ptr::null_mut(),
             )
         };
-
+        let mut chunk = ScanReport::new("usn");
+        chunk.summary.timings.enumeration_ms = started.elapsed().as_secs_f64() * 1000.0;
         if ok == 0 {
             let error = unsafe { GetLastError() };
             if error != ERROR_HANDLE_EOF {
-                return Err(format!("USN enumeration failed: {}", std::io::Error::from_raw_os_error(error as i32)));
+                chunk.issue(
+                    &root,
+                    "usn_enumeration",
+                    std::io::Error::from_raw_os_error(error as i32),
+                );
             }
+            collector.lock().unwrap().merge(chunk);
             break;
         }
-        if bytes_returned <= 8 {
-            break;
-        }
-
-        // First 8 bytes = next StartFileReferenceNumber for pagination
-        input.start_file_reference_number =
-            unsafe { *(buffer.as_ptr() as *const u64) };
-
-        // Parse USN_RECORD_V2 entries after the first 8 bytes
-        let mut offset = 8usize;
-        while offset < bytes_returned as usize {
-            let record = unsafe { &*(buffer.as_ptr().add(offset) as *const UsnRecordV2) };
-
-            if record.record_length == 0 {
+        match buffer
+            .get(..bytes_returned as usize)
+            .ok_or_else(|| "USN response exceeds buffer".to_string())
+            .and_then(|b| parse_records(b, &mut entries))
+        {
+            Ok((next, count)) => {
+                chunk.summary.entries_scanned = count;
+                if next <= input.start_file_reference_number {
+                    chunk.issue(&root, "usn_enumeration", "USN continuation did not advance");
+                    collector.lock().unwrap().merge(chunk);
+                    break;
+                }
+                input.start_file_reference_number = next;
+            }
+            Err(error) => {
+                chunk.issue(&root, "usn_parse", error);
+                collector.lock().unwrap().merge(chunk);
                 break;
             }
-
-            // Extract UTF-16 file name
-            let name_byte_offset = record.file_name_offset as usize;
-            let name_char_count = record.file_name_length as usize / 2;
-            let name = if name_char_count > 0 && offset + name_byte_offset + name_char_count * 2 <= bytes_returned as usize {
-                let name_ptr = unsafe { buffer.as_ptr().add(offset + name_byte_offset) as *const u16 };
-                let name_slice = unsafe { std::slice::from_raw_parts(name_ptr, name_char_count) };
-                String::from_utf16_lossy(name_slice)
-            } else {
-                String::new()
-            };
-
-            // Lower 48 bits = MFT entry number
-            let file_ref = record.file_reference_number & 0x0000_FFFF_FFFF_FFFF;
-            let parent_ref = record.parent_file_reference_number & 0x0000_FFFF_FFFF_FFFF;
-            let is_dir = (record.file_attributes & FILE_ATTRIBUTE_DIRECTORY) != 0;
-
-            if !name.is_empty() {
-                let (name_offset, name_len) = arena.push(&name);
-                entries.insert(file_ref, FileEntry { name_offset, name_len, parent_ref, is_dir });
-            }
-
-            enum_count += 1;
-            if enum_count % 5000 == 0 {
-                if let Some(ref cb) = on_event {
-                    cb(ScanEvent::Progress(enum_count, 0));
-                }
-            }
-
-            offset += record.record_length as usize;
         }
+        collector.lock().unwrap().merge(chunk);
     }
 
-    if cancel.load(Ordering::SeqCst) {
-        return Err("Scan cancelled".to_string());
-    }
-
-    if let Some(ref cb) = on_event {
-        cb(ScanEvent::Progress(enum_count, 0));
-    }
-
-    // Phase 2: Build full paths (serial — uses mutable path_cache)
-    let mut path_cache: HashMap<u64, String> = HashMap::new();
-    path_cache.insert(5, drive_letter.to_string());
-
-    let mut file_entries: Vec<(String, String)> = Vec::new();
-    let mut path_count: u64 = 0;
-
-    // Collect non-directory IDs first to avoid borrow issues
-    let file_ids: Vec<u64> = entries.iter()
-        .filter(|(_, e)| !e.is_dir)
-        .map(|(id, _)| *id)
-        .collect();
-
-    for id in &file_ids {
-        if cancel.load(Ordering::SeqCst) {
-            return Err("Scan cancelled".to_string());
+    let mut cache = HashMap::from([(root_info.identity.1, root.clone())]);
+    let mut files = Vec::new();
+    for (&id, entry) in &entries {
+        if cancel.load(Ordering::Relaxed) {
+            return Ok(collector.into_inner().unwrap().finish(cancel));
         }
-        let path = build_path(*id, &entries, &arena, &mut path_cache);
-        if !path.is_empty() && path.matches('\\').count().saturating_sub(1) <= max_depth as usize {
-            let name = arena.get(entries[id].name_offset, entries[id].name_len).to_owned();
-            file_entries.push((name, path));
+        if entry.is_dir {
+            continue;
         }
-        path_count += 1;
-        if path_count % 50000 == 0 {
-            if let Some(ref cb) = on_event {
-                cb(ScanEvent::Progress(path_count, 0));
-            }
+        let start = Instant::now();
+        let path = build_path(id, &entries, &mut cache);
+        let mut chunk = ScanReport::new("usn");
+        chunk.summary.timings.path_ms = start.elapsed().as_secs_f64() * 1000.0;
+        match path {
+            Ok(path) => files.push((id, path)),
+            Err(error) => chunk.issue(
+                Path::new(&format!("file-reference:{id:#x}")),
+                "path_resolution",
+                error,
+            ),
         }
+        collector.lock().unwrap().merge(chunk);
     }
-
-    // Free the two largest allocations before Phase 3
-    drop(path_cache);
+    drop(cache);
     drop(entries);
-    drop(arena);
-
-    if cancel.load(Ordering::SeqCst) {
-        return Err("Scan cancelled".to_string());
-    }
-
-    let total_files = file_entries.len() as u64;
-    if let Some(ref cb) = on_event {
-        cb(ScanEvent::Progress(total_files, 0));
-    }
-
-    // Phase 3: Query file sizes in parallel, streaming FileFound events immediately
-    let num_threads = (std::thread::available_parallelism()
-        .map(|n| n.get())
-        .unwrap_or(4)
-        / 2)
-        .max(2);
-
     let pool = rayon::ThreadPoolBuilder::new()
-        .num_threads(num_threads)
+        .num_threads(4)
         .build()
-        .map_err(|e| format!("Failed to create thread pool: {}", e))?;
-
-    let matched_count = AtomicU64::new(0);
-    let checked_count = AtomicU64::new(0);
-    let files_collector: Mutex<Vec<FileRecord>> = Mutex::new(Vec::new());
-
+        .map_err(|e| e.to_string())?;
     pool.install(|| {
-        file_entries
-            .par_iter()
-            .for_each(|(name, path)| {
+        files.par_chunks(256).for_each(|files| {
+            let mut chunk = ScanReport::new("usn");
+            for (id, path) in files {
                 if cancel.load(Ordering::Relaxed) {
-                    return;
+                    break;
                 }
-
-                let checked = checked_count.fetch_add(1, Ordering::Relaxed);
-                if checked % 5000 == 0 {
-                    if let Some(ref cb) = on_event {
-                        let matched = matched_count.load(Ordering::Relaxed);
-                        cb(ScanEvent::Progress(checked, matched));
+                let started = Instant::now();
+                match entry_info(path) {
+                    Err(error) => chunk.issue(path, "metadata", error),
+                    Ok(info) if info.identity != (root_info.identity.0, *id) || info.is_dir => {
+                        chunk.issue(path, "file_changed", "文件标识或类型已改变，原记录大小未知");
+                    }
+                    Ok(info) => {
+                        if info.links > 1 && !info.is_link {
+                            match hard_link_paths(path, drive_letter) {
+                                Ok(paths) => {
+                                    if paths.len() != info.links as usize {
+                                        chunk.issue(
+                                            path,
+                                            "hard_links",
+                                            "硬链接数量在扫描期间发生变化",
+                                        );
+                                    }
+                                    for alias in paths {
+                                        record_file(&alias, &info, min_size_bytes, &mut chunk);
+                                    }
+                                }
+                                Err(error) => {
+                                    chunk.issue(path, "hard_links", error);
+                                    record_file(path, &info, min_size_bytes, &mut chunk);
+                                }
+                            }
+                        } else {
+                            record_file(path, &info, min_size_bytes, &mut chunk);
+                        }
                     }
                 }
-
-                let size = match std::fs::metadata(path).ok() {
-                    Some(m) => m.len(),
-                    None => return,
-                };
-                if size < min_size_bytes {
-                    return;
-                }
-
-                let record = FileRecord {
-                    path: path.clone(),
-                    name: name.clone(),
-                    size,
-                    is_dir: false,
-                };
-
-                matched_count.fetch_add(1, Ordering::Relaxed);
-
-                // Stream the file to frontend immediately
-                if let Some(ref cb) = on_event {
-                    cb(ScanEvent::FileFound(record.clone()));
-                }
-
-                files_collector.lock().unwrap().push(record);
-            });
+                chunk.summary.timings.metadata_ms += started.elapsed().as_secs_f64() * 1000.0;
+            }
+            collector.lock().unwrap().merge(chunk);
+        });
     });
-
-    if cancel.load(Ordering::SeqCst) {
-        return Err("Scan cancelled".to_string());
-    }
-
-    let mut files = files_collector.into_inner().unwrap();
-    if let Some(ref cb) = on_event {
-        cb(ScanEvent::Progress(total_files, matched_count.load(Ordering::Relaxed)));
-    }
-
-    // Partial sort: O(M + N log N) instead of O(M log M)
-    if files.len() > top_n {
-        files.select_nth_unstable_by(top_n, |a, b| b.size.cmp(&a.size));
-        files.truncate(top_n);
-    }
-    files.sort_unstable_by(|a, b| b.size.cmp(&a.size));
-
-    Ok(files)
-}
-
-fn build_path(
-    file_ref: u64,
-    entries: &HashMap<u64, FileEntry>,
-    arena: &StringArena,
-    cache: &mut HashMap<u64, String>,
-) -> String {
-    if let Some(cached) = cache.get(&file_ref) {
-        return cached.clone();
-    }
-
-    let entry = match entries.get(&file_ref) {
-        Some(e) => e,
-        None => return String::new(),
-    };
-
-    // Prevent infinite loops (self-referencing parents)
-    if entry.parent_ref == file_ref {
-        return String::new();
-    }
-
-    let parent_path = build_path(entry.parent_ref, entries, arena, cache);
-    if parent_path.is_empty() && entry.parent_ref != 5 {
-        // Parent not found and not root — orphaned entry
-        return String::new();
-    }
-
-    let name = arena.get(entry.name_offset, entry.name_len);
-    let full_path = if parent_path.is_empty() {
-        name.to_owned()
-    } else {
-        format!("{}\\{}", parent_path, name)
-    };
-
-    // Cache directories only: file paths are visited once and would duplicate the output allocation.
-    if entry.is_dir {
-        cache.insert(file_ref, full_path.clone());
-    }
-    full_path
+    Ok(collector.into_inner().unwrap().finish(cancel))
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
 
-    #[test]
-    fn reconstructed_files_do_not_duplicate_directory_cache() {
-        let mut arena = StringArena::with_capacity(64);
-        let mut entries = HashMap::new();
-        for (id, parent_ref, name, is_dir) in [(6, 5, "目录", true), (7, 6, "文件.bin", false)] {
-            let (name_offset, name_len) = arena.push(name);
-            entries.insert(id, FileEntry { name_offset, name_len, parent_ref, is_dir });
+    fn record(id: u64, parent: u64, name: &[u16]) -> Vec<u8> {
+        let len = (60 + name.len() * 2 + 7) & !7;
+        let mut bytes = vec![0; len];
+        bytes[..4].copy_from_slice(&(len as u32).to_le_bytes());
+        bytes[4..6].copy_from_slice(&2u16.to_le_bytes());
+        bytes[8..16].copy_from_slice(&id.to_le_bytes());
+        bytes[16..24].copy_from_slice(&parent.to_le_bytes());
+        bytes[56..58].copy_from_slice(&((name.len() * 2) as u16).to_le_bytes());
+        bytes[58..60].copy_from_slice(&60u16.to_le_bytes());
+        for (n, c) in name.iter().enumerate() {
+            bytes[60 + n * 2..62 + n * 2].copy_from_slice(&c.to_le_bytes());
         }
-        let mut cache = HashMap::from([(5, "C:".to_string())]);
-        assert_eq!(build_path(7, &entries, &arena, &mut cache), "C:\\目录\\文件.bin");
-        assert!(cache.contains_key(&6));
-        assert!(!cache.contains_key(&7));
+        bytes
+    }
+
+    #[test]
+    fn parser_checks_version_and_record_local_bounds_and_keeps_full_ids() {
+        let id = 0x000a_0000_0000_0007;
+        let mut bytes = 99u64.to_le_bytes().to_vec();
+        bytes.extend(record(id, 5, &[0xd800, 65]));
+        let mut entries = HashMap::new();
+        assert_eq!(parse_records(&bytes, &mut entries).unwrap(), (99, 1));
+        assert_eq!(
+            entries[&id].name.encode_wide().collect::<Vec<_>>(),
+            [0xd800, 65]
+        );
+        for len in 0..bytes.len() {
+            if len != 8 {
+                assert!(parse_records(&bytes[..len], &mut HashMap::new()).is_err());
+            }
+        }
+        let mut unsupported = bytes.clone();
+        unsupported[12..14].copy_from_slice(&3u16.to_le_bytes());
+        assert!(parse_records(&unsupported, &mut HashMap::new()).is_err());
+        let mut overrun = bytes.clone();
+        overrun[64..66].copy_from_slice(&100u16.to_le_bytes());
+        overrun.extend(record(9, 5, &[66; 100]));
+        assert!(parse_records(&overrun, &mut HashMap::new()).is_err());
+    }
+
+    #[test]
+    fn paths_are_iterative_and_reject_cycles_or_reused_parents() {
+        let mut entries = HashMap::new();
+        for id in 6..=206 {
+            entries.insert(
+                id,
+                FileEntry {
+                    name: OsString::from("deep"),
+                    parent_ref: id - 1,
+                    is_dir: true,
+                },
+            );
+        }
+        let mut cache = HashMap::from([(5, PathBuf::from("C:\\"))]);
+        let path = build_path(206, &entries, &mut cache).unwrap();
+        assert_eq!(path.components().count(), 203);
+        entries.get_mut(&6).unwrap().parent_ref = 206;
+        assert!(build_path(206, &entries, &mut HashMap::new()).is_err());
+        entries.get_mut(&6).unwrap().parent_ref = 0x000a_0000_0000_0005;
+        assert!(build_path(
+            206,
+            &entries,
+            &mut HashMap::from([(5, PathBuf::from("C:\\"))])
+        )
+        .is_err());
+    }
+
+    #[test]
+    fn hard_link_enumeration_returns_every_alias() {
+        let root = super::super::tests::Fixture::new();
+        let path = root.0.join("original.bin");
+        std::fs::write(&path, [0; 10]).unwrap();
+        let alias = root.0.join("alias.bin");
+        std::fs::hard_link(&path, &alias).unwrap();
+        let ordinary = path
+            .to_str()
+            .unwrap()
+            .strip_prefix("\\\\?\\")
+            .unwrap_or(path.to_str().unwrap());
+        let paths = hard_link_paths(&path, &ordinary[..2]).unwrap();
+        let actual: HashSet<_> = paths
+            .into_iter()
+            .map(|p| p.canonicalize().unwrap())
+            .collect();
+        assert_eq!(actual, HashSet::from([path, alias]));
     }
 }

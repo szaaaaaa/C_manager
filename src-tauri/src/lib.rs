@@ -5,14 +5,13 @@ pub mod scanner;
 #[cfg_attr(mobile, tauri::mobile_entry_point)]
 pub fn run() {
     tauri::Builder::default()
-        .manage(commands::scan::ScanCancel(std::sync::Arc::new(
-            std::sync::atomic::AtomicBool::new(false),
-        )))
+        .manage(commands::scan::ScanState::default())
         .manage(commands::local_llm::LocalLlmState::new())
         .invoke_handler(tauri::generate_handler![
             commands::admin::check_admin,
             commands::admin::relaunch_as_admin,
             commands::scan::scan_drive,
+            commands::scan::get_scan_results,
             commands::scan::cancel_scan,
             commands::drive::get_drive_info,
             commands::explain::explain_item,
