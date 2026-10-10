@@ -4,7 +4,7 @@
 
 新的独立实验目录为 `D:\small-model-experiments`，权重、缓存与产物均在 D 盘；原 `D:\C_manager` 作为只读代码和数据来源。本轮 [计划](experiments/2026-10-10/plan.md) 分为三部分：三个量化模型的无资料/RAG 对照、4B NF4 QLoRA 的可行性与检索感知 SFT、同 NF4 基座的微调前后评估。GGUF 部署量化与训练 NF4 是不同格式，跨运行时差异不能直接叫微调收益。
 
-目前只有 Qwen3.5-4B 两组完成：[阶段报告](experiments/2026-10-10/report-4b.md)、[逐条分析](experiments/2026-10-10/analysis-4b.md) 和原始 JSON 已保存。关键词为 10/24→18/24，严格资料忠实性为 2/24→14/24；明确资料矛盾的事后计数仍为 7→7。它们不是准确率，评审仅为可见配置的单助手复核。其他实验尚未完成，4B 也尚未通过可靠性目标。
+三种量化模型的六组推理均完成：[量化阶段报告](experiments/2026-10-10/report-quantized.md)、[逐条分析](experiments/2026-10-10/analysis-quantized.md)、[执行进度](experiments/2026-10-10/progress.md)。三个RAG条件严格资料忠实性为4B 14/24、9B 10/24、Gemma 17/24；未知拒猜为5/7、2/7、3/7，没有一组达成完整可靠性目标。9B关键词24/24不代表事实正确，Gemma的0资料矛盾/0危险主张仅对应当前定义和24个合成案例。评审为单助手可见配置复核，原始回答、SHA与理由全部保存；[4B阶段报告](experiments/2026-10-10/report-4b.md)保留。NF4训练和适配器效果仍待实测。
 
 Unsloth 当前估计 4B BF16 LoRA 约需 10GB，且不推荐 Qwen3.5 QLoRA；8GB 本机的 NF4 训练须先通过两步冒烟，结果未知。[官方训练指南](https://unsloth.ai/docs/models/qwen3.5/fine-tune)。下面的训练与部署步骤对应此前 0.8B 实验，不是本轮 4B 配置。
 

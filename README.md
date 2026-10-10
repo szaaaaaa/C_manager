@@ -14,7 +14,7 @@ Windows 桌面文件分析工具：扫描大文件，解释常见软件文件的
 
 ## 实验和验证
 
-2026-10-10 已完成 Qwen3.5-4B Q4_K_M 的无资料/RAG 两组 GPU 对照，各 24 条。关键词诊断为 10/24、18/24；单助手严格资料忠实性复核为 2/24、14/24，两者都不是事实准确率。RAG 减少了无依据补写，但 WebView2、OneNote 和 pip 的具体错误仍存在，未达到预定可靠性目标。见 [4B 阶段报告](lora-training/experiments/2026-10-10/report-4b.md) 和 [完整研究计划](lora-training/experiments/2026-10-10/plan.md)。9B、Gemma 与 NF4 微调仍待完成，不能把实验配置当成验证通过的应用模型。
+2026-10-10 已完成 Qwen3.5-4B Q4_K_M、Qwen3.5-9B Q4_K_M、Gemma 4 E4B 官方 QAT Q4_0 各自的无资料/RAG 对照，每组24条，共144条。三个RAG条件的单助手严格资料忠实性为14/24、10/24、17/24，未知拒猜为5/7、2/7、3/7；没有一组达到完整可靠性目标。9B RAG关键词24/24仍有未支持细节，不能叫准确率；Gemma此样本资料矛盾和危险主张为0，也不保证部署安全。见[量化阶段报告](lora-training/experiments/2026-10-10/report-quantized.md)、[逐条分析](lora-training/experiments/2026-10-10/analysis-quantized.md)和[研究进度](lora-training/experiments/2026-10-10/progress.md)。4B NF4微调尚未运行；此处没有微调收益结论，也没有替换应用模型。
 
 
 2026-10-09 四组 0.8B 实验的 [结果与结论](lora-training/experiments/2026-10-09/RESULTS.md) 已公开保存：基础模型、纯 SFT、基础模型＋RAG、检索感知 SFT＋RAG 的固定关键词检查为 8/24、5/24、13/24、21/24。它们不是事实准确率；新模型仍有 pip 删除影响混淆和模板重复。

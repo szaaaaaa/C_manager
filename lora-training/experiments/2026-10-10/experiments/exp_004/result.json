@@ -1,0 +1,1681 @@
+{
+  "experiment_id": "exp_004",
+  "status": "success",
+  "exit_code": 0,
+  "records": [
+    {
+      "id": "pip-body",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body",
+      "answer": "这个文件是 pip 缓存中存储的 Python 包下载响应，属于可清理的临时数据。删除它不会影响已安装的 Python 程序，但下次安装相关包时需要重新下载。建议直接使用 `pip cache purge` 命令安全清理，无需手动删除该文件。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：probe.body\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body\n所在目录：cache\\http-v2\\b\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+        }
+      ],
+      "seconds": 1.2931,
+      "input_tokens": 250,
+      "output_tokens": 59,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件是 pip 缓存中存储的 Python 包下载响应，属于可清理的临时数据。删除它不会影响已安装的 Python 程序，但下次安装相关包时需要重新下载。建议直接使用 `pip cache purge` 命令安全清理，无需手动删除该文件。"
+            }
+          }
+        ],
+        "created": 1791606477,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 59,
+          "prompt_tokens": 250,
+          "total_tokens": 309,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-otuTVgFDMgD09tZFZMWKsuCyG3v7uY3Q",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 250,
+          "prompt_ms": 221.419,
+          "prompt_per_token_ms": 0.885676,
+          "prompt_per_second": 1129.0810635040355,
+          "predicted_n": 59,
+          "predicted_ms": 1029.922,
+          "predicted_per_token_ms": 17.757275862068965,
+          "predicted_per_second": 56.31494423849573
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "pip-wheel",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl",
+      "answer": "这是 pip 下载的 NumPy 包缓存文件，用于加速后续安装，删除后不会卸载已安装的 NumPy 库，但下次安装时需重新下载。\n建议优先使用 `pip cache purge` 命令清理，若需手动删除该文件，请确保当前项目未正在运行依赖此缓存的安装任务。\n由于涉及 Python 开发环境，操作前请确认已备份相关项目配置，以免因网络问题导致安装失败。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：numpy.whl\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl\n所在目录：cache\\wheels\\ab\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+        }
+      ],
+      "seconds": 2.5696,
+      "input_tokens": 252,
+      "output_tokens": 94,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这是 pip 下载的 NumPy 包缓存文件，用于加速后续安装，删除后不会卸载已安装的 NumPy 库，但下次安装时需重新下载。\n建议优先使用 `pip cache purge` 命令清理，若需手动删除该文件，请确保当前项目未正在运行依赖此缓存的安装任务。\n由于涉及 Python 开发环境，操作前请确认已备份相关项目配置，以免因网络问题导致安装失败。"
+            }
+          }
+        ],
+        "created": 1791606480,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 94,
+          "prompt_tokens": 252,
+          "total_tokens": 346,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-L66avafd8WTc03BFouGPrTTVEvg0rM7T",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 252,
+          "prompt_ms": 753.946,
+          "prompt_per_token_ms": 2.9918492063492064,
+          "prompt_per_second": 334.24144434747313,
+          "predicted_n": 94,
+          "predicted_ms": 1734.967,
+          "predicted_per_token_ms": 18.65555913978495,
+          "predicted_per_second": 53.603325020014786
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-dll",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+      "answer": "这个文件是 Microsoft Edge WebView2 运行库的核心组件，为许多桌面应用提供嵌入网页的功能，删除后可能导致依赖它的应用无法启动或显示界面。虽然它位于 Edge 浏览器的相关目录中，但它是独立于浏览器主程序的运行环境，不能简单认定为闲置文件。建议保留该文件以确保系统稳定性，如需清理请通过 Windows 应用管理工具处理，切勿直接删除。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：msedge.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll\n所在目录：EdgeWebView\\Application\\146.0.3856.72\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+        }
+      ],
+      "seconds": 1.8085,
+      "input_tokens": 287,
+      "output_tokens": 85,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件是 Microsoft Edge WebView2 运行库的核心组件，为许多桌面应用提供嵌入网页的功能，删除后可能导致依赖它的应用无法启动或显示界面。虽然它位于 Edge 浏览器的相关目录中，但它是独立于浏览器主程序的运行环境，不能简单认定为闲置文件。建议保留该文件以确保系统稳定性，如需清理请通过 Windows 应用管理工具处理，切勿直接删除。"
+            }
+          }
+        ],
+        "created": 1791606482,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 85,
+          "prompt_tokens": 287,
+          "total_tokens": 372,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-pe7FBeIG4nOlLO8ASahYv9HehbwknCTD",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 287,
+          "prompt_ms": 243.526,
+          "prompt_per_token_ms": 0.8485226480836238,
+          "prompt_per_second": 1178.518926110559,
+          "predicted_n": 85,
+          "predicted_ms": 1470.395,
+          "predicted_per_token_ms": 17.50470238095238,
+          "predicted_per_second": 57.12750655436125
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-exe",
+      "path": "D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe",
+      "answer": "这是 Microsoft Edge WebView2 的运行库，专门让其他桌面软件能嵌入网页内容，独立于 Edge 浏览器存在。删除它可能导致依赖此组件的应用程序无法启动或界面显示异常，且无法判断当前是否闲置。建议保留该文件，如需清理请通过 Windows 应用管理统一处理，切勿直接按版本目录删除。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：msedgewebview2.exe\n完整路径：D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe\n所在目录：EdgeWebView\\Application\\146.1.234.5\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+        }
+      ],
+      "seconds": 1.5637,
+      "input_tokens": 286,
+      "output_tokens": 72,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这是 Microsoft Edge WebView2 的运行库，专门让其他桌面软件能嵌入网页内容，独立于 Edge 浏览器存在。删除它可能导致依赖此组件的应用程序无法启动或界面显示异常，且无法判断当前是否闲置。建议保留该文件，如需清理请通过 Windows 应用管理统一处理，切勿直接按版本目录删除。"
+            }
+          }
+        ],
+        "created": 1791606483,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 72,
+          "prompt_tokens": 286,
+          "total_tokens": 358,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-IUzEzFVLAhaEx5yi0lkdhkRxCcZjS5Vc",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 286,
+          "prompt_ms": 233.865,
+          "prompt_per_token_ms": 0.8177097902097903,
+          "prompt_per_second": 1222.9277574669147,
+          "predicted_n": 72,
+          "predicted_ms": 1246.422,
+          "predicted_per_token_ms": 17.55523943661972,
+          "predicted_per_second": 56.963051037289134
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-folder",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "answer": "这个文件夹是 OneNote 存储笔记内容的本地缓存，里面可能包含尚未同步到云端的修改。如果直接删除，未备份且未同步的笔记内容可能会永久丢失，无法保证从云端找回。建议先确认所有重要笔记已同步并备份，再考虑清理，切勿将其当作普通垃圾文件处理。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件夹的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件夹名：cache\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\n所在目录：Microsoft\\OneNote\\16.0\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。"
+        }
+      ],
+      "seconds": 1.4979,
+      "input_tokens": 267,
+      "output_tokens": 68,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件夹是 OneNote 存储笔记内容的本地缓存，里面可能包含尚未同步到云端的修改。如果直接删除，未备份且未同步的笔记内容可能会永久丢失，无法保证从云端找回。建议先确认所有重要笔记已同步并备份，再考虑清理，切勿将其当作普通垃圾文件处理。"
+            }
+          }
+        ],
+        "created": 1791606485,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 68,
+          "prompt_tokens": 267,
+          "total_tokens": 335,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-yjYcQSr1cUQYGxA4U1G2KoEQ5Koe0XPS",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 267,
+          "prompt_ms": 249.332,
+          "prompt_per_token_ms": 0.9338277153558052,
+          "prompt_per_second": 1070.8613415045,
+          "predicted_n": 68,
+          "predicted_ms": 1171.688,
+          "predicted_per_token_ms": 17.487880597014925,
+          "predicted_per_second": 57.18245812878513
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-file",
+      "path": "C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin",
+      "answer": "这个文件是 OneNote 的本地缓存，里面可能存着还没同步到云端的笔记修改，直接删除会导致这些未备份的内容永久丢失。建议你先在 OneNote 里确认所有重要笔记都已同步并备份，再考虑是否清理该缓存文件夹。如果不确定哪些内容已保存，千万不要随意删除，以免数据无法找回。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：section-007.bin\n完整路径：C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。"
+        }
+      ],
+      "seconds": 1.5945,
+      "input_tokens": 278,
+      "output_tokens": 73,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件是 OneNote 的本地缓存，里面可能存着还没同步到云端的笔记修改，直接删除会导致这些未备份的内容永久丢失。建议你先在 OneNote 里确认所有重要笔记都已同步并备份，再考虑是否清理该缓存文件夹。如果不确定哪些内容已保存，千万不要随意删除，以免数据无法找回。"
+            }
+          }
+        ],
+        "created": 1791606486,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 73,
+          "prompt_tokens": 278,
+          "total_tokens": 351,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-YubvUtVT9jzHxSmB9ppU8Ib5lCH96jqk",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 278,
+          "prompt_ms": 251.217,
+          "prompt_per_token_ms": 0.903658273381295,
+          "prompt_per_second": 1106.6130078776516,
+          "predicted_n": 73,
+          "predicted_ms": 1250.503,
+          "predicted_per_token_ms": 17.36809722222222,
+          "predicted_per_second": 57.57683108317214
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-base",
+      "path": "C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "answer": "这是 PyTorch 深度学习框架的核心组件，专门用于调用显卡加速张量计算，直接删除会导致当前 Python 环境中的 PyTorch 无法运行。由于该文件属于系统级库文件，建议不要手动删除，如需清理请通过 conda 或 pip 等包管理工具卸载整个 PyTorch 包。在操作前请务必确认当前项目依赖，并备份重要数据以防环境配置丢失。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：torch_cuda.dll\n完整路径：C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。"
+        }
+      ],
+      "seconds": 1.8529,
+      "input_tokens": 272,
+      "output_tokens": 89,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这是 PyTorch 深度学习框架的核心组件，专门用于调用显卡加速张量计算，直接删除会导致当前 Python 环境中的 PyTorch 无法运行。由于该文件属于系统级库文件，建议不要手动删除，如需清理请通过 conda 或 pip 等包管理工具卸载整个 PyTorch 包。在操作前请务必确认当前项目依赖，并备份重要数据以防环境配置丢失。"
+            }
+          }
+        ],
+        "created": 1791606488,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 89,
+          "prompt_tokens": 272,
+          "total_tokens": 361,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-w52hHAmbkjSsdTg988B6RVmqznfbJ5z2",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 272,
+          "prompt_ms": 234.598,
+          "prompt_per_token_ms": 0.8624926470588236,
+          "prompt_per_second": 1159.4301741702827,
+          "predicted_n": 89,
+          "predicted_ms": 1532.463,
+          "predicted_per_token_ms": 17.41435227272727,
+          "predicted_per_second": 57.42389865203923
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-env",
+      "path": "D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "answer": "这是 PyTorch 深度学习框架的核心组件，用于在 CPU 上进行张量计算和机器学习任务。直接删除该文件会导致当前 Python 环境中的 PyTorch 无法运行，进而影响依赖它的代码项目。建议先确认备份好相关数据，并通过 `pip uninstall torch` 等正规方式卸载整个包，而不是手动删除 DLL 文件。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：torch_cpu.dll\n完整路径：D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。"
+        }
+      ],
+      "seconds": 1.6023,
+      "input_tokens": 270,
+      "output_tokens": 76,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这是 PyTorch 深度学习框架的核心组件，用于在 CPU 上进行张量计算和机器学习任务。直接删除该文件会导致当前 Python 环境中的 PyTorch 无法运行，进而影响依赖它的代码项目。建议先确认备份好相关数据，并通过 `pip uninstall torch` 等正规方式卸载整个包，而不是手动删除 DLL 文件。"
+            }
+          }
+        ],
+        "created": 1791606490,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 76,
+          "prompt_tokens": 270,
+          "total_tokens": 346,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-N07rgs7Gkiiuv7tbwhO9L1EWChPx8rbO",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 270,
+          "prompt_ms": 229.344,
+          "prompt_per_token_ms": 0.8494222222222222,
+          "prompt_per_second": 1177.2708246128088,
+          "predicted_n": 76,
+          "predicted_ms": 1306.073,
+          "predicted_per_token_ms": 17.41430666666667,
+          "predicted_per_second": 57.42404903860656
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-weights",
+      "path": "C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+      "answer": "这是一个 Hugging Face 缓存的模型权重文件，用于让本地 AI 任务无需联网即可运行。删除它不会丢失个人数据，但会导致相关项目需要重新下载模型或暂时无法离线使用。建议先确认当前项目是否依赖此特定版本，再决定是否清理缓存。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：weights.safetensors\n完整路径：C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors\n所在目录：models--sample--tiny\\snapshots\\def456\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。"
+        }
+      ],
+      "seconds": 1.3597,
+      "input_tokens": 281,
+      "output_tokens": 60,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这是一个 Hugging Face 缓存的模型权重文件，用于让本地 AI 任务无需联网即可运行。删除它不会丢失个人数据，但会导致相关项目需要重新下载模型或暂时无法离线使用。建议先确认当前项目是否依赖此特定版本，再决定是否清理缓存。"
+            }
+          }
+        ],
+        "created": 1791606491,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 60,
+          "prompt_tokens": 281,
+          "total_tokens": 341,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-F4cEjIC4vkKOH81aICDtrnsC7aOrl9V2",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 281,
+          "prompt_ms": 241.568,
+          "prompt_per_token_ms": 0.8596725978647687,
+          "prompt_per_second": 1163.2335408663398,
+          "predicted_n": 60,
+          "predicted_ms": 1035.082,
+          "predicted_per_token_ms": 17.54376271186441,
+          "predicted_per_second": 57.00031495089277
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-blob",
+      "path": "D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67",
+      "answer": "这个文件是 Hugging Face 平台下载的模型资源缓存，属于 200 MB 的模型数据块。删除它不会导致系统崩溃，但相关 AI 任务在离线状态下可能无法运行，且需要重新下载才能恢复。建议先确认当前项目是否依赖该本地副本，再决定是否清理。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：a45b67\n完整路径：D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67\n所在目录：hub\\models--sample--encoder\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。"
+        }
+      ],
+      "seconds": 1.461,
+      "input_tokens": 271,
+      "output_tokens": 67,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件是 Hugging Face 平台下载的模型资源缓存，属于 200 MB 的模型数据块。删除它不会导致系统崩溃，但相关 AI 任务在离线状态下可能无法运行，且需要重新下载才能恢复。建议先确认当前项目是否依赖该本地副本，再决定是否清理。"
+            }
+          }
+        ],
+        "created": 1791606493,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 67,
+          "prompt_tokens": 271,
+          "total_tokens": 338,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-vgyGqrwz1d0QHsBZ5KzN8GBRzDxVYXR4",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 271,
+          "prompt_ms": 230.672,
+          "prompt_per_token_ms": 0.8511881918819189,
+          "prompt_per_second": 1174.8283276687246,
+          "predicted_n": 67,
+          "predicted_ms": 1150.465,
+          "predicted_per_token_ms": 17.431287878787877,
+          "predicted_per_second": 57.368107678199685
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-folder",
+      "path": "C:\\Users\\Eval\\Projects\\demo\\node_modules",
+      "answer": "这是位于 `demo` 项目下的 Node.js 依赖文件夹，里面存放着项目运行所需的第三方库，删除后项目将无法启动或构建，必须重新安装依赖才能恢复。由于该文件夹包含大量文件且可能涉及自定义修改，操作前请务必确认项目已停止运行，并备份好 `package.json`、`package-lock.json` 等关键配置文件。只有在确认备份无误且不再需要这些依赖时，才建议通过项目自带的包管理工具（如 npm 或 yarn）进行清理。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件夹的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件夹名：node_modules\n完整路径：C:\\Users\\Eval\\Projects\\demo\\node_modules\n所在目录：Eval\\Projects\\demo\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。"
+        }
+      ],
+      "seconds": 2.1541,
+      "input_tokens": 253,
+      "output_tokens": 107,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这是位于 `demo` 项目下的 Node.js 依赖文件夹，里面存放着项目运行所需的第三方库，删除后项目将无法启动或构建，必须重新安装依赖才能恢复。由于该文件夹包含大量文件且可能涉及自定义修改，操作前请务必确认项目已停止运行，并备份好 `package.json`、`package-lock.json` 等关键配置文件。只有在确认备份无误且不再需要这些依赖时，才建议通过项目自带的包管理工具（如 npm 或 yarn）进行清理。"
+            }
+          }
+        ],
+        "created": 1791606495,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 107,
+          "prompt_tokens": 253,
+          "total_tokens": 360,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-0E5TU2t95uQ0bg4h5RgJyCsa6cFfYIQN",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 253,
+          "prompt_ms": 208.039,
+          "prompt_per_token_ms": 0.8222885375494071,
+          "prompt_per_second": 1216.118131696461,
+          "predicted_n": 107,
+          "predicted_ms": 1852.39,
+          "predicted_per_token_ms": 17.47537735849057,
+          "predicted_per_second": 57.22337088841982
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-file",
+      "path": "D:\\Projects\\demo\\node_modules\\example-package\\main.js",
+      "answer": "这个文件位于 Node.js 项目的依赖目录中，是项目运行所必需的代码文件，直接删除会导致项目无法启动或构建。由于文件大小异常（200MB），建议先确认是否为误判或包含大量缓存数据，并务必备份项目依赖锁文件及任何自定义修改。请优先使用项目对应的包管理工具（如 npm 或 yarn）重新安装依赖，而不是手动删除该文件。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：main.js\n完整路径：D:\\Projects\\demo\\node_modules\\example-package\\main.js\n所在目录：demo\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。"
+        }
+      ],
+      "seconds": 2.1988,
+      "input_tokens": 255,
+      "output_tokens": 87,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件位于 Node.js 项目的依赖目录中，是项目运行所必需的代码文件，直接删除会导致项目无法启动或构建。由于文件大小异常（200MB），建议先确认是否为误判或包含大量缓存数据，并务必备份项目依赖锁文件及任何自定义修改。请优先使用项目对应的包管理工具（如 npm 或 yarn）重新安装依赖，而不是手动删除该文件。"
+            }
+          }
+        ],
+        "created": 1791606497,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 87,
+          "prompt_tokens": 255,
+          "total_tokens": 342,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-8L426fdbQ1Shkekm9E60oArOkSaHdUfT",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 255,
+          "prompt_ms": 565.174,
+          "prompt_per_token_ms": 2.21636862745098,
+          "prompt_per_second": 451.18848354666,
+          "predicted_n": 87,
+          "predicted_ms": 1528.085,
+          "predicted_per_token_ms": 17.76843023255814,
+          "predicted_per_second": 56.27959177663546
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin",
+      "answer": "这个文件位于临时目录，通常是安装程序运行过程中生成的进度记录，删除它不会导致系统崩溃，但可能会中断当前的安装任务。建议先关闭所有正在运行的安装程序，再尝试清理；如果不确定是否在用，可以先将其重命名备份，确认无误后再删除。由于涉及安装进度，操作前请确保重要数据已保存，避免任务失败导致文件丢失。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：install-progress.bin\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin\n所在目录：AppData\\Local\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。"
+        }
+      ],
+      "seconds": 1.7172,
+      "input_tokens": 259,
+      "output_tokens": 80,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件位于临时目录，通常是安装程序运行过程中生成的进度记录，删除它不会导致系统崩溃，但可能会中断当前的安装任务。建议先关闭所有正在运行的安装程序，再尝试清理；如果不确定是否在用，可以先将其重命名备份，确认无误后再删除。由于涉及安装进度，操作前请确保重要数据已保存，避免任务失败导致文件丢失。"
+            }
+          }
+        ],
+        "created": 1791606499,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 80,
+          "prompt_tokens": 259,
+          "total_tokens": 339,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-MDWN0Ctyt87T5AnIptHYOLN26YZjKWdY",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 259,
+          "prompt_ms": 224.445,
+          "prompt_per_token_ms": 0.8665830115830115,
+          "prompt_per_second": 1153.9575397090603,
+          "predicted_n": 80,
+          "predicted_ms": 1396.826,
+          "predicted_per_token_ms": 17.6813417721519,
+          "predicted_per_second": 56.55679375956633
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp-uppercase",
+      "path": "C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG",
+      "answer": "这个文件位于临时目录，通常是安装程序或应用运行时产生的会话日志，200MB 的大小说明可能包含大量临时数据。在删除前请务必确认当前没有正在进行的安装任务或相关程序运行，以免导致操作失败。如果确认无正在使用的程序，可以直接清理该文件以释放空间。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：SESSION.LOG\n完整路径：C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG\n所在目录：APPDATA\\LOCAL\\TEMP\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。"
+        }
+      ],
+      "seconds": 1.4424,
+      "input_tokens": 260,
+      "output_tokens": 66,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件位于临时目录，通常是安装程序或应用运行时产生的会话日志，200MB 的大小说明可能包含大量临时数据。在删除前请务必确认当前没有正在进行的安装任务或相关程序运行，以免导致操作失败。如果确认无正在使用的程序，可以直接清理该文件以释放空间。"
+            }
+          }
+        ],
+        "created": 1791606500,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 66,
+          "prompt_tokens": 260,
+          "total_tokens": 326,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-9ZLU6wm0osoUcyL2cTCOmFP0oX0hANuV",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 260,
+          "prompt_ms": 227.694,
+          "prompt_per_token_ms": 0.8757461538461538,
+          "prompt_per_second": 1141.8834049206394,
+          "predicted_n": 66,
+          "predicted_ms": 1135.336,
+          "predicted_per_token_ms": 17.466707692307693,
+          "predicted_per_second": 57.25177392419513
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp",
+      "path": "C:\\Windows\\Temp\\staging.tmp",
+      "answer": "这个文件位于 Windows 临时目录，通常是系统服务或安装任务产生的临时缓存，具体用途无法仅凭文件名确定。由于它占用 200 MB 空间且可能正在被使用，建议先通过 Windows 存储设置清理功能处理，避免直接删除导致系统任务中断。如果确认没有正在进行的安装或更新，再考虑手动清理，但请确保已备份重要数据以防万一。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：staging.tmp\n完整路径：C:\\Windows\\Temp\\staging.tmp\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。"
+        }
+      ],
+      "seconds": 1.7811,
+      "input_tokens": 242,
+      "output_tokens": 86,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件位于 Windows 临时目录，通常是系统服务或安装任务产生的临时缓存，具体用途无法仅凭文件名确定。由于它占用 200 MB 空间且可能正在被使用，建议先通过 Windows 存储设置清理功能处理，避免直接删除导致系统任务中断。如果确认没有正在进行的安装或更新，再考虑手动清理，但请确保已备份重要数据以防万一。"
+            }
+          }
+        ],
+        "created": 1791606502,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 86,
+          "prompt_tokens": 242,
+          "total_tokens": 328,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-IEKzOG2xyJg2m8MbgzCMcSKHEMDH7Gki",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 242,
+          "prompt_ms": 201.312,
+          "prompt_per_token_ms": 0.8318677685950414,
+          "prompt_per_second": 1202.1141312986806,
+          "predicted_n": 86,
+          "predicted_ms": 1485.651,
+          "predicted_per_token_ms": 17.47824705882353,
+          "predicted_per_second": 57.21397555684343
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp-file",
+      "path": "C:/Windows/Temp/update-progress.bin",
+      "answer": "这个文件位于 Windows 临时目录，通常是系统更新或安装任务产生的临时进度记录，目前无法确定其具体关联的软件。由于文件占用 200 MB 且处于临时目录，若确认当前没有正在进行的系统更新或安装，通常可以安全清理。建议优先使用 Windows 自带的存储清理功能来移除此类文件，避免手动删除可能正在使用的系统文件。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：update-progress.bin\n完整路径：C:/Windows/Temp/update-progress.bin\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。"
+        }
+      ],
+      "seconds": 1.9161,
+      "input_tokens": 241,
+      "output_tokens": 81,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件位于 Windows 临时目录，通常是系统更新或安装任务产生的临时进度记录，目前无法确定其具体关联的软件。由于文件占用 200 MB 且处于临时目录，若确认当前没有正在进行的系统更新或安装，通常可以安全清理。建议优先使用 Windows 自带的存储清理功能来移除此类文件，避免手动删除可能正在使用的系统文件。"
+            }
+          }
+        ],
+        "created": 1791606504,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 81,
+          "prompt_tokens": 241,
+          "total_tokens": 322,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-3xJCc1XimyMIiEYwoxompUXG15dXWzTr",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 241,
+          "prompt_ms": 444.224,
+          "prompt_per_token_ms": 1.843253112033195,
+          "prompt_per_second": 542.5190894683764,
+          "predicted_n": 81,
+          "predicted_ms": 1400.77,
+          "predicted_per_token_ms": 17.509625,
+          "predicted_per_second": 57.11144584764094
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-archive",
+      "path": "C:\\Users\\Eval\\Documents\\archive.bin",
+      "answer": "这个位于文档文件夹的 200MB 归档文件具体包含什么内容无法确定，因为通用命名方式无法直接识别其内部数据。在删除前请务必确认是否已备份重要信息，以免误删关键资料。建议先联系创建该文件的软件或人员核实用途，切勿直接清理。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：archive.bin\n完整路径：C:\\Users\\Eval\\Documents\\archive.bin\n所在目录：Users\\Eval\\Documents\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "seconds": 1.4501,
+      "input_tokens": 234,
+      "output_tokens": 65,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个位于文档文件夹的 200MB 归档文件具体包含什么内容无法确定，因为通用命名方式无法直接识别其内部数据。在删除前请务必确认是否已备份重要信息，以免误删关键资料。建议先联系创建该文件的软件或人员核实用途，切勿直接清理。"
+            }
+          }
+        ],
+        "created": 1791606505,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 65,
+          "prompt_tokens": 234,
+          "total_tokens": 299,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-jTc45YHbB3Tnqd3x95qiBvIEy93wQPqX",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 234,
+          "prompt_ms": 230.96,
+          "prompt_per_token_ms": 0.987008547008547,
+          "prompt_per_second": 1013.1624523727053,
+          "predicted_n": 65,
+          "predicted_ms": 1125.687,
+          "predicted_per_token_ms": 17.588859375,
+          "predicted_per_second": 56.85416994244404
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-microsoft",
+      "path": "C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat",
+      "answer": "无法确定该文件的具体用途，因为\"UnlistedProduct\"目录通常存放未正式列出的软件组件，且没有资料能证实它属于系统核心或可安全删除。由于文件体积较大且可能包含重要数据，建议先备份相关目录再尝试清理，切勿直接删除以免导致程序异常。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：payload.dat\n完整路径：C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat\n所在目录：Program Files\\Microsoft\\UnlistedProduct\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "seconds": 1.7899,
+      "input_tokens": 240,
+      "output_tokens": 65,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "无法确定该文件的具体用途，因为\"UnlistedProduct\"目录通常存放未正式列出的软件组件，且没有资料能证实它属于系统核心或可安全删除。由于文件体积较大且可能包含重要数据，建议先备份相关目录再尝试清理，切勿直接删除以免导致程序异常。"
+            }
+          }
+        ],
+        "created": 1791606507,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 65,
+          "prompt_tokens": 240,
+          "total_tokens": 305,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-hFmArQgTMLaRxyqHjBd9nYvu5rGzWYgC",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 240,
+          "prompt_ms": 575.811,
+          "prompt_per_token_ms": 2.3992125,
+          "prompt_per_second": 416.80343029223127,
+          "predicted_n": 65,
+          "predicted_ms": 1125.102,
+          "predicted_per_token_ms": 17.57971875,
+          "predicted_per_second": 56.88373143057251
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-cache",
+      "path": "C:\\Users\\Eval\\Documents\\cache\\journal.db",
+      "answer": "这个位于 Documents 缓存目录下的 journal.db 文件用途无法确定，因为缺乏具体的软件关联资料。由于它可能包含重要数据且删除后无法保证恢复，建议您在清理前务必确认备份。如果不确定来源，请谨慎删除并联系相关软件支持。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：journal.db\n完整路径：C:\\Users\\Eval\\Documents\\cache\\journal.db\n所在目录：Eval\\Documents\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "seconds": 1.3084,
+      "input_tokens": 236,
+      "output_tokens": 57,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个位于 Documents 缓存目录下的 journal.db 文件用途无法确定，因为缺乏具体的软件关联资料。由于它可能包含重要数据且删除后无法保证恢复，建议您在清理前务必确认备份。如果不确定来源，请谨慎删除并联系相关软件支持。"
+            }
+          }
+        ],
+        "created": 1791606508,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 57,
+          "prompt_tokens": 236,
+          "total_tokens": 293,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-vTc5ATrjhOYasi2Zg23na0lYUgSwNuR9",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 236,
+          "prompt_ms": 232.49,
+          "prompt_per_token_ms": 0.9851271186440679,
+          "prompt_per_second": 1015.0974235450986,
+          "predicted_n": 57,
+          "predicted_ms": 982.223,
+          "predicted_per_token_ms": 17.53969642857143,
+          "predicted_per_second": 57.01352951417346
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-download",
+      "path": "C:\\Users\\Eval\\Downloads\\family-backup.zip",
+      "answer": "这个文件位于下载文件夹，是一个 200MB 的压缩包，但仅凭文件名无法确定其具体包含的软件或个人数据。由于没有匹配的资料，无法确认删除后是否可恢复，也不建议随意删除。在清理前，请务必确认该备份是否重要，并优先进行数据备份。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：family-backup.zip\n完整路径：C:\\Users\\Eval\\Downloads\\family-backup.zip\n所在目录：Users\\Eval\\Downloads\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "seconds": 1.437,
+      "input_tokens": 238,
+      "output_tokens": 65,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件位于下载文件夹，是一个 200MB 的压缩包，但仅凭文件名无法确定其具体包含的软件或个人数据。由于没有匹配的资料，无法确认删除后是否可恢复，也不建议随意删除。在清理前，请务必确认该备份是否重要，并优先进行数据备份。"
+            }
+          }
+        ],
+        "created": 1791606510,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 65,
+          "prompt_tokens": 238,
+          "total_tokens": 303,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-bk2BXgacWTojRT7i2DEOH2KRDvRlxVVu",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 238,
+          "prompt_ms": 230.515,
+          "prompt_per_token_ms": 0.9685504201680671,
+          "prompt_per_second": 1032.4707719671171,
+          "predicted_n": 65,
+          "predicted_ms": 1120.799,
+          "predicted_per_token_ms": 17.512484375,
+          "predicted_per_second": 57.10212089768103
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "cache-prefix-nearmiss",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body",
+      "answer": "这个文件位于 pip 缓存备份目录中，但仅凭\"saved.body\"文件名无法确定其具体用途或内容。由于没有匹配的资料说明，删除它可能会导致 pip 缓存数据丢失，且无法保证能恢复。建议您在清理前确认该文件是否包含重要数据，若不确定则先备份再操作。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：saved.body\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body\n所在目录：Local\\pip\\cache-backup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "seconds": 1.5356,
+      "input_tokens": 243,
+      "output_tokens": 68,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件位于 pip 缓存备份目录中，但仅凭\"saved.body\"文件名无法确定其具体用途或内容。由于没有匹配的资料说明，删除它可能会导致 pip 缓存数据丢失，且无法保证能恢复。建议您在清理前确认该文件是否包含重要数据，若不确定则先备份再操作。"
+            }
+          }
+        ],
+        "created": 1791606511,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 68,
+          "prompt_tokens": 243,
+          "total_tokens": 311,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-KjEZPbiM8bSw54IiDtTp0fhAbVYilYEI",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 243,
+          "prompt_ms": 210.224,
+          "prompt_per_token_ms": 0.865119341563786,
+          "prompt_per_second": 1155.9098865971537,
+          "predicted_n": 68,
+          "predicted_ms": 1169.123,
+          "predicted_per_token_ms": 17.449597014925374,
+          "predicted_per_second": 57.30791370967811
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-onnx",
+      "path": "D:\\Research\\Shared\\network.onnx",
+      "answer": "这个 `network.onnx` 文件位于研究共享目录中，通常用于存储机器学习模型，但具体用途无法仅凭文件名确定。由于没有匹配的资料说明其具体功能，删除前请务必确认是否会影响相关研究项目，并建议先备份该文件以防数据丢失。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：network.onnx\n完整路径：D:\\Research\\Shared\\network.onnx\n所在目录：D:\\Research\\Shared\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "seconds": 1.4258,
+      "input_tokens": 234,
+      "output_tokens": 59,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个 `network.onnx` 文件位于研究共享目录中，通常用于存储机器学习模型，但具体用途无法仅凭文件名确定。由于没有匹配的资料说明其具体功能，删除前请务必确认是否会影响相关研究项目，并建议先备份该文件以防数据丢失。"
+            }
+          }
+        ],
+        "created": 1791606513,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 59,
+          "prompt_tokens": 234,
+          "total_tokens": 293,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-365gpv4XHkNp8Swlr20d50RVqbiLgSeV",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 234,
+          "prompt_ms": 232.953,
+          "prompt_per_token_ms": 0.995525641025641,
+          "prompt_per_second": 1004.4944688413542,
+          "predicted_n": 59,
+          "predicted_ms": 1012.313,
+          "predicted_per_token_ms": 17.453672413793104,
+          "predicted_per_second": 57.29453242228441
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-with-distractor",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll",
+      "answer": "这个文件是 Microsoft Edge WebView2 运行库的核心组件，为许多桌面应用提供嵌入网页的运行环境，删除后可能导致依赖它的应用无法启动或显示界面。由于它属于系统级运行库且独立于浏览器本身，建议保留并通过 Windows 应用管理工具处理，切勿直接删除该目录。在操作前请确认没有正在使用的程序依赖此组件，以免引发系统异常。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：lib.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll\n所在目录：EdgeWebView\\Application\\146.0.3856.72\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。\n另一个路径的资料（可能不相关）：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+        }
+      ],
+      "seconds": 1.7983,
+      "input_tokens": 349,
+      "output_tokens": 83,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "这个文件是 Microsoft Edge WebView2 运行库的核心组件，为许多桌面应用提供嵌入网页的运行环境，删除后可能导致依赖它的应用无法启动或显示界面。由于它属于系统级运行库且独立于浏览器本身，建议保留并通过 Windows 应用管理工具处理，切勿直接删除该目录。在操作前请确认没有正在使用的程序依赖此组件，以免引发系统异常。"
+            }
+          }
+        ],
+        "created": 1791606515,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 83,
+          "prompt_tokens": 349,
+          "total_tokens": 432,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-vOAF4BoR86a4PjEPs9Cgpwx7sn4TZVt1",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 349,
+          "prompt_ms": 255.469,
+          "prompt_per_token_ms": 0.7320028653295129,
+          "prompt_per_second": 1366.1148710802486,
+          "predicted_n": 83,
+          "predicted_ms": 1440.884,
+          "predicted_per_token_ms": 17.571756097560975,
+          "predicted_per_second": 56.90950832960876
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-missing-evidence",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin",
+      "answer": "无法确定该文件的具体用途，因为 OneNote 官方文档未明确说明 cache 目录下 pending.bin 的作用，且仅凭文件名和大小不能推断其内容。由于它位于缓存目录且体积较大，删除后可能会影响 OneNote 的临时保存功能或导致数据丢失，但无法保证能恢复。建议在清理前备份重要笔记，并尝试通过 OneNote 软件确认是否可安全删除该缓存文件。",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：pending.bin\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "seconds": 2.034,
+      "input_tokens": 251,
+      "output_tokens": 90,
+      "finish_reason": "stop",
+      "truncated": false,
+      "thinking_leak": false,
+      "raw_response": {
+        "choices": [
+          {
+            "finish_reason": "stop",
+            "index": 0,
+            "message": {
+              "role": "assistant",
+              "content": "无法确定该文件的具体用途，因为 OneNote 官方文档未明确说明 cache 目录下 pending.bin 的作用，且仅凭文件名和大小不能推断其内容。由于它位于缓存目录且体积较大，删除后可能会影响 OneNote 的临时保存功能或导致数据丢失，但无法保证能恢复。建议在清理前备份重要笔记，并尝试通过 OneNote 软件确认是否可安全删除该缓存文件。"
+            }
+          }
+        ],
+        "created": 1791606517,
+        "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+        "system_fingerprint": "b11539-10a60cf30",
+        "object": "chat.completion",
+        "usage": {
+          "completion_tokens": 90,
+          "prompt_tokens": 251,
+          "total_tokens": 341,
+          "prompt_tokens_details": {
+            "cached_tokens": 0
+          }
+        },
+        "id": "chatcmpl-zFr53iWRlwTVOwXdyP1klRQ1UMWm8j7M",
+        "timings": {
+          "cache_n": 0,
+          "prompt_n": 251,
+          "prompt_ms": 368.4,
+          "prompt_per_token_ms": 1.4677290836653385,
+          "prompt_per_second": 681.3246471226928,
+          "predicted_n": 90,
+          "predicted_ms": 1575.956,
+          "predicted_per_token_ms": 17.707370786516854,
+          "predicted_per_second": 56.47365789400212
+        }
+      },
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    }
+  ],
+  "metrics": {
+    "completed_cases": 24,
+    "cue_pass_count": 24,
+    "cue_pass_denominator": 24,
+    "empty_answer_count": 0,
+    "truncated_answer_count": 0,
+    "thinking_leak_count": 0,
+    "latency_median_seconds": 1.5984,
+    "fact_grounded_or_calibrated_count_review": null,
+    "unsafe_claim_count_review": null,
+    "naturalness_mean_review": null,
+    "unknown_abstention_count_review": null,
+    "peak_gpu_used_mib": 5069
+  },
+  "review_status": "pending",
+  "terminated_by_driver": true,
+  "configuration_path": "D:\\small-model-experiments\\outputs\\exp_20261010_111944\\experiments\\exp_004\\executed_config.json",
+  "model_load_seconds": 5.6535,
+  "warmup_response": {
+    "choices": [
+      {
+        "finish_reason": "stop",
+        "index": 0,
+        "message": {
+          "role": "assistant",
+          "content": "准备好了"
+        }
+      }
+    ],
+    "created": 1791606476,
+    "model": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf",
+    "system_fingerprint": "b11539-10a60cf30",
+    "object": "chat.completion",
+    "usage": {
+      "completion_tokens": 2,
+      "prompt_tokens": 18,
+      "total_tokens": 20,
+      "prompt_tokens_details": {
+        "cached_tokens": 0
+      }
+    },
+    "id": "chatcmpl-KlT3sW9f9JlEPOTwStSYDgmjeeOgX2TM",
+    "timings": {
+      "cache_n": 0,
+      "prompt_n": 18,
+      "prompt_ms": 97.321,
+      "prompt_per_token_ms": 5.406722222222222,
+      "prompt_per_second": 184.95494292084956,
+      "predicted_n": 2,
+      "predicted_ms": 29.197,
+      "predicted_per_token_ms": 29.197,
+      "predicted_per_second": 34.25009418775902
+    }
+  },
+  "warmup_seconds": 0.1531,
+  "server_termination_reason": "controlled cleanup after success",
+  "server_exit_code": 1,
+  "gpu_measurement_note": "nvidia-smi total device usage sampled at 1Hz, includes desktop/background use; not process-only allocation",
+  "gpu_samples": [
+    {
+      "elapsed_seconds": 6.481,
+      "gpu_used_mib": 13
+    },
+    {
+      "elapsed_seconds": 7.577,
+      "gpu_used_mib": 25
+    },
+    {
+      "elapsed_seconds": 8.75,
+      "gpu_used_mib": 2043
+    },
+    {
+      "elapsed_seconds": 9.845,
+      "gpu_used_mib": 4886
+    },
+    {
+      "elapsed_seconds": 10.938,
+      "gpu_used_mib": 4886
+    },
+    {
+      "elapsed_seconds": 12.033,
+      "gpu_used_mib": 5036
+    },
+    {
+      "elapsed_seconds": 13.134,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 14.225,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 15.331,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 16.439,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 17.548,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 18.652,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 19.746,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 20.872,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 21.981,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 23.09,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 24.179,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 25.277,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 26.376,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 27.472,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 28.56,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 29.66,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 30.752,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 31.861,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 32.957,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 34.071,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 35.172,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 36.287,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 37.384,
+      "gpu_used_mib": 5065
+    },
+    {
+      "elapsed_seconds": 38.476,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 39.565,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 40.654,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 41.747,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 42.886,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 43.971,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 45.069,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 46.197,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 47.294,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 48.418,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 49.511,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 50.626,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 51.717,
+      "gpu_used_mib": 5069
+    },
+    {
+      "elapsed_seconds": 52.828,
+      "gpu_used_mib": 5069
+    }
+  ],
+  "elapsed_seconds": 54.0123,
+  "automatic_targets_met": true
+}

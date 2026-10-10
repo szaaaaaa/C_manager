@@ -1,0 +1,9 @@
+{
+  "status": "passed",
+  "cpu_only": true,
+  "gpu_execution": false,
+  "negative_cases": 2,
+  "positive_cases": 5,
+  "raw_decode_skip_special_tokens": false,
+  "leak_blocks_success": true
+}

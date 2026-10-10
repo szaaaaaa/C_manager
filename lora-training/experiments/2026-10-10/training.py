@@ -21,6 +21,24 @@ sys.path.insert(0, str(RUN))
 from inference import load_inputs, messages_for, sha256, write_json
 
 
+def has_thinking_leak(raw_output):
+    return any(marker in raw_output.lower() for marker in (
+        '<think>', '</think>', '<|channel>thought', '<|channel|>thought', '[think]', '[/think]'))
+
+
+def thinking_self_check():
+    assert not has_thinking_leak('这是缓存，确认后可以清理。<|im_end|>')
+    assert not has_thinking_leak('The word thought alone is ordinary prose.')
+    for raw in ['<think>隐藏推理</think>答案', '</think>答案', '<|channel>thought分析',
+                '<|channel|>thought分析', '[THINK]分析[/THINK]']:
+        assert has_thinking_leak(raw), raw
+    write_json(RUN / 'training_thinking_self_check.json', {
+        'status': 'passed', 'cpu_only': True, 'gpu_execution': False,
+        'negative_cases': 2, 'positive_cases': 5,
+        'raw_decode_skip_special_tokens': False, 'leak_blocks_success': True})
+    print('CPU thinking-leak self-check passed: raw special tokens retained; leaks block success.', flush=True)
+
+
 def samples_and_split(config):
     load_inputs(config)
     finetune = importlib.import_module('finetune')
@@ -56,6 +74,7 @@ def tokenized_samples(config, tokenizer):
 
 
 def self_check(model_path):
+    thinking_self_check()
     from transformers import AutoTokenizer, DataCollatorForSeq2Seq
     config = json.loads((RUN / 'experiments/exp_007/config.json').read_text(encoding='utf-8'))
     tokenizer = AutoTokenizer.from_pretrained(str(model_path), local_files_only=True)
@@ -233,10 +252,13 @@ def run_evaluation(config, directory, model, tokenizer, torch, FastLanguageModel
         torch.cuda.synchronize()
         seconds = time.perf_counter() - start
         output = generated[0][inputs.input_ids.shape[1]:]
+        raw_output = tokenizer.decode(output, skip_special_tokens=False)
+        thinking_leak = has_thinking_leak(raw_output)
         answer = tokenizer.decode(output, skip_special_tokens=True).strip()
         eos = model.generation_config.eos_token_id
         eos_ids = set(eos if isinstance(eos, list) else [eos])
         record = {'id': case['id'], 'path': case['path'], 'messages': messages, 'answer': answer,
+            'raw_output': raw_output, 'thinking_leak': thinking_leak,
             'seconds': seconds, 'input_tokens': inputs.input_ids.shape[1], 'output_tokens': len(output),
             'truncated': len(output) >= 256 and int(output[-1]) not in eos_ids,
             **evaluator.check_response(case, answer)}
@@ -246,10 +268,14 @@ def run_evaluation(config, directory, model, tokenizer, torch, FastLanguageModel
         report['metrics'].update({'completed_cases': len(report['records']),
             'cue_pass_count': sum(row['cue_pass'] for row in report['records']),
             'empty_answer_count': sum(not row['answer'] for row in report['records']),
+            'thinking_leak_count': sum(row['thinking_leak'] for row in report['records']),
             'truncated_answer_count': sum(row['truncated'] for row in report['records']),
             'latency_median_seconds': statistics.median(row['seconds'] for row in report['records'])})
         print(json.dumps(record, ensure_ascii=False), flush=True)
         save()
+        if thinking_leak:
+            raise RuntimeError('Unexpected thinking marker in raw generated tokens despite thinking disabled')
+    assert report['metrics']['thinking_leak_count'] == 0
     report['status'] = 'success'
 
 
@@ -341,11 +367,14 @@ def run(experiment, model_path):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument('--self-check', action='store_true')
+    parser.add_argument('--self-check-thinking', action='store_true')
     parser.add_argument('--experiment', choices=['exp_007', 'exp_008', 'exp_009', 'exp_010'])
     parser.add_argument('--model-path', type=Path, default=ROOT / 'models/qwen35-4b-training')
     args = parser.parse_args()
     assert ROOT.resolve().drive.lower() == 'd:' and Path.cwd().resolve() == ROOT.resolve()
-    if args.self_check:
+    if args.self_check_thinking:
+        thinking_self_check()
+    elif args.self_check:
         self_check(args.model_path.resolve())
     else:
         assert args.experiment, '--experiment is required for GPU execution'
