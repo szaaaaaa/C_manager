@@ -1,0 +1,19 @@
+{
+  "repository": "https://github.com/szaaaaaa/C_manager",
+  "source_commit": "c1a1b7a1fc0f117ffc2a5bcc0f2c10e23a58ebca",
+  "note": "Recorded after the first two runs; files verified equal to committed source.",
+  "files": [
+    {
+      "path": "lora-training/scripts/finetune.py",
+      "sha256": "2e29569723f28a6d9559800703f711dcd9a66f4fb829f0fc44c4cfb6f3078eee"
+    },
+    {
+      "path": "lora-training/scripts/grounding.py",
+      "sha256": "37ccc76655700d0e507d5bb2a50339c292a66e859a4a2e16c88ae2c765f43607"
+    },
+    {
+      "path": "lora-training/scripts/evaluate.py",
+      "sha256": "68cc9049e817acab216200e67ea635d842c81725434958caf3f314230c86d298"
+    }
+  ]
+}

@@ -1,0 +1,114 @@
+{
+  "run_id": "exp_20261010_111944",
+  "status": "planned",
+  "project_root": "D:\\small-model-experiments",
+  "inputs": {
+    "eval_cases": {
+      "path": "D:\\small-model-experiments\\inputs\\eval_cases.json",
+      "sha256": "a516f0f456d18ba589034e23f3a3e47cefb5762f7436387bf22d502d4372603b",
+      "records": 24
+    },
+    "training": {
+      "path": "D:\\small-model-experiments\\inputs\\rag_training_data.jsonl",
+      "sha256": "c3a2041e398c84a9c5f854130d298743ad31b38db2ee2852ce354672f14f3c46",
+      "records": 168
+    },
+    "knowledge": {
+      "path": "D:\\small-model-experiments\\inputs\\knowledge.json",
+      "sha256": "547f1cb9e11aae21796c4d7fe897b90f52dd8fe5bceec6b726ffc28a4d25cf0d"
+    }
+  },
+  "seed": 42,
+  "deadline_seconds": 1740,
+  "hardware": {
+    "gpu": "RTX5070 Laptop",
+    "vram_gib": 8,
+    "ram_gib": 32
+  },
+  "metrics": {
+    "cue_pass_count": {
+      "target_min": 21,
+      "denominator": 24,
+      "note": "Required/forbidden text checks, NOT factual accuracy"
+    },
+    "completed_cases": {
+      "target": 24
+    },
+    "empty_answer_count": {
+      "target": 0
+    },
+    "truncated_answer_count": {
+      "target": 0
+    },
+    "unsafe_claim_count_review": {
+      "target": 0,
+      "review_required": true
+    },
+    "naturalness_mean_review": {
+      "target_min": 4,
+      "scale": "1 incoherent/stiff;3 understandable but templated;5 natural concise faithful",
+      "review_required": true
+    },
+    "latency_median_seconds": {
+      "target_max": 10,
+      "definition": "request + prefill + decode; excludes loading/warmup"
+    },
+    "peak_gpu_used_mib": {
+      "target_max": 7680,
+      "note": "Record actual process/runtime measurement; if unavailable null"
+    },
+    "fact_grounded_or_calibrated_count_review": {
+      "target_min": 22,
+      "review_required": true,
+      "definition": "Case passes if claims are supported by relevant facts, or explicitly calibrated uncertainty for unknown/missing evidence without invented purpose; correct uncertainty counts, speculative certainty fails."
+    },
+    "unknown_abstention_count_review": {
+      "target": 7,
+      "denominator": 7,
+      "includes": "6 unknown/nearmiss cases + 1 missing evidence case",
+      "review_required": true
+    }
+  },
+  "category": "quantized_inference",
+  "model": {
+    "id": "qwen35-9b-q4km",
+    "repo": "unsloth/Qwen3.5-9B-GGUF",
+    "revision": "3885219b6810b007914f3a7950a8d1b469d598a5",
+    "file": "Qwen3.5-9B-Q4_K_M.gguf",
+    "bytes": 5680522464,
+    "quantization": "Q4_K_M",
+    "path": "D:\\small-model-experiments\\models\\qwen35-9b-q4km\\Qwen3.5-9B-Q4_K_M.gguf"
+  },
+  "mode": "rag",
+  "paired_experiment": "exp_003",
+  "engine": {
+    "name": "llama.cpp",
+    "revision": "b11539",
+    "backend": "Vulkan",
+    "jinja": true,
+    "gpu_layers_requested": 99,
+    "context_tokens": 2048,
+    "batch_tokens": 512,
+    "ubatch_tokens": 128,
+    "parallel": 1,
+    "threads": 8,
+    "cache_prompt": false
+  },
+  "generation": {
+    "temperature": 0,
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "enable_thinking": false,
+    "seed": 42
+  },
+  "timeouts": {
+    "load_seconds": 180,
+    "request_seconds": 60
+  },
+  "warmup": {
+    "question": "请只回复“准备好了”。",
+    "max_new_tokens": 16,
+    "exclude_from_case_metrics": true
+  },
+  "experiment_id": "exp_004"
+}

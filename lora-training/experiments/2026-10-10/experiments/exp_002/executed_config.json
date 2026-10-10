@@ -1,0 +1,259 @@
+{
+  "run_id": "exp_20261010_111944",
+  "status": "planned",
+  "project_root": "D:\\small-model-experiments",
+  "inputs": {
+    "eval_cases": {
+      "path": "D:\\small-model-experiments\\inputs\\eval_cases.json",
+      "sha256": "a516f0f456d18ba589034e23f3a3e47cefb5762f7436387bf22d502d4372603b",
+      "records": 24
+    },
+    "training": {
+      "path": "D:\\small-model-experiments\\inputs\\rag_training_data.jsonl",
+      "sha256": "c3a2041e398c84a9c5f854130d298743ad31b38db2ee2852ce354672f14f3c46",
+      "records": 168
+    },
+    "knowledge": {
+      "path": "D:\\small-model-experiments\\inputs\\knowledge.json",
+      "sha256": "547f1cb9e11aae21796c4d7fe897b90f52dd8fe5bceec6b726ffc28a4d25cf0d"
+    }
+  },
+  "seed": 42,
+  "deadline_seconds": 1740,
+  "hardware": {
+    "gpu": "RTX5070 Laptop",
+    "vram_gib": 8,
+    "ram_gib": 32
+  },
+  "metrics": {
+    "cue_pass_count": {
+      "target_min": 21,
+      "denominator": 24,
+      "note": "Required/forbidden text checks, NOT factual accuracy"
+    },
+    "completed_cases": {
+      "target": 24
+    },
+    "empty_answer_count": {
+      "target": 0
+    },
+    "truncated_answer_count": {
+      "target": 0
+    },
+    "unsafe_claim_count_review": {
+      "target": 0,
+      "review_required": true
+    },
+    "naturalness_mean_review": {
+      "target_min": 4,
+      "scale": "1 incoherent/stiff;3 understandable but templated;5 natural concise faithful",
+      "review_required": true
+    },
+    "latency_median_seconds": {
+      "target_max": 10,
+      "definition": "request + prefill + decode; excludes loading/warmup"
+    },
+    "peak_gpu_used_mib": {
+      "target_max": 7680,
+      "note": "Record actual process/runtime measurement; if unavailable null"
+    },
+    "fact_grounded_or_calibrated_count_review": {
+      "target_min": 22,
+      "review_required": true,
+      "definition": "Case passes if claims are supported by relevant facts, or explicitly calibrated uncertainty for unknown/missing evidence without invented purpose; correct uncertainty counts, speculative certainty fails."
+    },
+    "unknown_abstention_count_review": {
+      "target": 7,
+      "denominator": 7,
+      "includes": "6 unknown/nearmiss cases + 1 missing evidence case",
+      "review_required": true
+    }
+  },
+  "category": "quantized_inference",
+  "model": {
+    "id": "qwen35-4b-q4km",
+    "repo": "unsloth/Qwen3.5-4B-GGUF",
+    "revision": "e87f176479d0855a907a41277aca2f8ee7a09523",
+    "file": "Qwen3.5-4B-Q4_K_M.gguf",
+    "bytes": 2740937888,
+    "quantization": "Q4_K_M",
+    "path": "D:\\small-model-experiments\\models\\qwen35-4b-q4km\\Qwen3.5-4B-Q4_K_M.gguf"
+  },
+  "mode": "rag",
+  "paired_experiment": "exp_001",
+  "engine": {
+    "name": "llama.cpp",
+    "revision": "b11539",
+    "backend": "Vulkan",
+    "jinja": true,
+    "gpu_layers_requested": 99,
+    "context_tokens": 2048,
+    "batch_tokens": 512,
+    "ubatch_tokens": 128,
+    "parallel": 1,
+    "threads": 8,
+    "cache_prompt": false
+  },
+  "generation": {
+    "temperature": 0,
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "enable_thinking": false,
+    "seed": 42
+  },
+  "timeouts": {
+    "load_seconds": 180,
+    "request_seconds": 60
+  },
+  "warmup": {
+    "question": "请只回复“准备好了”。",
+    "max_new_tokens": 16,
+    "exclude_from_case_metrics": true
+  },
+  "experiment_id": "exp_002",
+  "actual_command": [
+    "D:\\small-model-experiments\\cache\\tools\\llama-b11539\\llama-server.exe",
+    "--model",
+    "D:\\small-model-experiments\\models\\qwen35-4b-q4km\\Qwen3.5-4B-Q4_K_M.gguf",
+    "--host",
+    "127.0.0.1",
+    "--port",
+    "60214",
+    "--device",
+    "Vulkan1",
+    "--split-mode",
+    "none",
+    "--gpu-layers",
+    "99",
+    "--ctx-size",
+    "2048",
+    "--batch-size",
+    "512",
+    "--ubatch-size",
+    "128",
+    "--parallel",
+    "1",
+    "--threads",
+    "8",
+    "--jinja",
+    "--reasoning",
+    "off",
+    "--chat-template-kwargs",
+    "{\"enable_thinking\":false}",
+    "--no-cache-prompt",
+    "--fit",
+    "off",
+    "--offline",
+    "--no-webui",
+    "--no-agent",
+    "--no-mmproj",
+    "--timeout",
+    "60",
+    "--seed",
+    "42",
+    "--log-colors",
+    "off"
+  ],
+  "actual_device": "Vulkan1",
+  "model_sha256": "00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4",
+  "runtime_sha256": "5b92164b26a620b56d38470d29ff9b36390b87ee19bc21f25b487d61482f6723",
+  "source_scripts": "D:\\C_manager\\lora-training\\scripts",
+  "adaptations": [
+    "Explicit Vulkan1 selects NVIDIA rather than default Intel Vulkan0",
+    "fit off prevents implicit context/offload changes",
+    "reasoning off plus enable_thinking false",
+    "Model GGUF metadata chat template; no external template override"
+  ],
+  "runtime_version": "version: 0.6.0-dev (build 11539, commit 10a60cf30)\nbuilt with Clang 20.1.8 for Windows x86_64\n",
+  "server_props": {
+    "default_generation_settings": {
+      "params": {
+        "seed": 42,
+        "temperature": 0.800000011920929,
+        "dynatemp_range": 0.0,
+        "dynatemp_exponent": 1.0,
+        "top_k": 40,
+        "top_p": 0.949999988079071,
+        "min_p": 0.05000000074505806,
+        "top_n_sigma": -1.0,
+        "xtc_probability": 0.0,
+        "xtc_threshold": 0.10000000149011612,
+        "typical_p": 1.0,
+        "repeat_last_n": 64,
+        "repeat_penalty": 1.0,
+        "presence_penalty": 0.0,
+        "frequency_penalty": 0.0,
+        "dry_multiplier": 0.0,
+        "dry_base": 1.75,
+        "dry_allowed_length": 2,
+        "dry_penalty_last_n": 64,
+        "mirostat": 0,
+        "mirostat_tau": 5.0,
+        "mirostat_eta": 0.10000000149011612,
+        "adaptive_target": -1.0,
+        "adaptive_decay": 0.8999999761581421,
+        "max_tokens": -1,
+        "n_predict": -1,
+        "n_keep": 0,
+        "n_discard": 0,
+        "ignore_eos": false,
+        "stream": false,
+        "n_probs": 0,
+        "min_keep": 0,
+        "chat_format": "Content-only",
+        "reasoning_format": "none",
+        "reasoning_in_content": false,
+        "generation_prompt": "",
+        "samplers": [
+          "penalties",
+          "dry",
+          "top_n_sigma",
+          "top_k",
+          "typ_p",
+          "top_p",
+          "min_p",
+          "xtc",
+          "temperature"
+        ],
+        "speculative.types": "none",
+        "timings_per_token": false,
+        "post_sampling_probs": false,
+        "backend_sampling": false,
+        "lora": []
+      },
+      "n_ctx": 2048
+    },
+    "total_slots": 1,
+    "model_alias": "D:\\small-model-experiments\\models\\qwen35-4b-q4km\\Qwen3.5-4B-Q4_K_M.gguf",
+    "model_ftype": "Q4_K - Medium",
+    "model_path": "D:\\small-model-experiments\\models\\qwen35-4b-q4km\\Qwen3.5-4B-Q4_K_M.gguf",
+    "modalities": {
+      "vision": false,
+      "video": false,
+      "audio": false
+    },
+    "media_marker": "<__media_yEiwVWwpQreKVTGKUjZ5it9YAIThawdf__>",
+    "endpoint_slots": true,
+    "endpoint_props": false,
+    "endpoint_metrics": false,
+    "ui": false,
+    "ui_settings": {},
+    "chat_template": "{%- set image_count = namespace(value=0) %}\n{%- set video_count = namespace(value=0) %}\n{%- macro render_content(content, do_vision_count, is_system_content=false) %}\n    {%- if content is string %}\n        {{- content }}\n    {%- elif content is iterable and content is not mapping %}\n        {%- for item in content %}\n            {%- if 'image' in item or 'image_url' in item or item.type == 'image' %}\n                {%- if is_system_content %}\n                    {{- raise_exception('System message cannot contain images.') }}\n                {%- endif %}\n                {%- if do_vision_count %}\n                    {%- set image_count.value = image_count.value + 1 %}\n                {%- endif %}\n                {%- if add_vision_id %}\n                    {{- 'Picture ' ~ image_count.value ~ ': ' }}\n                {%- endif %}\n                {{- '<|vision_start|><|image_pad|><|vision_end|>' }}\n            {%- elif 'video' in item or item.type == 'video' %}\n                {%- if is_system_content %}\n                    {{- raise_exception('System message cannot contain videos.') }}\n                {%- endif %}\n                {%- if do_vision_count %}\n                    {%- set video_count.value = video_count.value + 1 %}\n                {%- endif %}\n                {%- if add_vision_id %}\n                    {{- 'Video ' ~ video_count.value ~ ': ' }}\n                {%- endif %}\n                {{- '<|vision_start|><|video_pad|><|vision_end|>' }}\n            {%- elif 'text' in item %}\n                {{- item.text }}\n            {%- else %}\n                {{- raise_exception('Unexpected item type in content.') }}\n            {%- endif %}\n        {%- endfor %}\n    {%- elif content is none or content is undefined %}\n        {{- '' }}\n    {%- else %}\n        {{- raise_exception('Unexpected content type.') }}\n    {%- endif %}\n{%- endmacro %}\n{%- if not messages %}\n    {{- raise_exception('No messages provided.') }}\n{%- endif %}\n{%- if tools and tools is iterable and tools is not mapping %}\n    {{- '<|im_start|>system\\n' }}\n    {{- \"# Tools\\n\\nYou have access to the following functions:\\n\\n<tools>\" }}\n    {%- for tool in tools %}\n        {{- \"\\n\" }}\n        {{- tool | tojson }}\n    {%- endfor %}\n    {{- \"\\n</tools>\" }}\n    {{- '\\n\\nIf you choose to call a function ONLY reply in the following format with NO suffix:\\n\\n<tool_call>\\n<function=example_function_name>\\n<parameter=example_parameter_1>\\nvalue_1\\n</parameter>\\n<parameter=example_parameter_2>\\nThis is the value for the second parameter\\nthat can span\\nmultiple lines\\n</parameter>\\n</function>\\n</tool_call>\\n\\n<IMPORTANT>\\nReminder:\\n- Function calls MUST follow the specified format: an inner <function=...></function> block must be nested within <tool_call></tool_call> XML tags\\n- Required parameters MUST be specified\\n- You may provide optional reasoning for your function call in natural language BEFORE the function call, but NOT after\\n- If there is no function call available, answer the question like normal with your current knowledge and do not tell the user about function calls\\n</IMPORTANT>' }}\n    {%- if messages[0].role == 'system' %}\n        {%- set content = render_content(messages[0].content, false, true)|trim %}\n        {%- if content %}\n            {{- '\\n\\n' + content }}\n        {%- endif %}\n    {%- endif %}\n    {{- '<|im_end|>\\n' }}\n{%- else %}\n    {%- if messages[0].role == 'system' %}\n        {%- set content = render_content(messages[0].content, false, true)|trim %}\n        {{- '<|im_start|>system\\n' + content + '<|im_end|>\\n' }}\n    {%- endif %}\n{%- endif %}\n{%- set ns = namespace(multi_step_tool=true, last_query_index=messages|length - 1) %}\n{%- for message in messages[::-1] %}\n    {%- set index = (messages|length - 1) - loop.index0 %}\n    {%- if ns.multi_step_tool and message.role == \"user\" %}\n        {%- set content = render_content(message.content, false)|trim %}\n        {%- if not(content.startswith('<tool_response>') and content.endswith('</tool_response>')) %}\n            {%- set ns.multi_step_tool = false %}\n            {%- set ns.last_query_index = index %}\n        {%- endif %}\n    {%- endif %}\n{%- endfor %}\n{%- if ns.multi_step_tool %}\n    {{- raise_exception('No user query found in messages.') }}\n{%- endif %}\n{%- for message in messages %}\n    {%- set content = render_content(message.content, true)|trim %}\n    {%- if message.role == \"system\" %}\n        {%- if not loop.first %}\n            {{- raise_exception('System message must be at the beginning.') }}\n        {%- endif %}\n    {%- elif message.role == \"user\" %}\n        {{- '<|im_start|>' + message.role + '\\n' + content + '<|im_end|>' + '\\n' }}\n    {%- elif message.role == \"assistant\" %}\n        {%- set reasoning_content = '' %}\n        {%- if message.reasoning_content is string %}\n            {%- set reasoning_content = message.reasoning_content %}\n        {%- else %}\n            {%- if '</think>' in content %}\n                {%- set reasoning_content = content.split('</think>')[0].rstrip('\\n').split('<think>')[-1].lstrip('\\n') %}\n                {%- set content = content.split('</think>')[-1].lstrip('\\n') %}\n            {%- endif %}\n        {%- endif %}\n        {%- set reasoning_content = reasoning_content|trim %}\n        {%- if loop.index0 > ns.last_query_index %}\n            {{- '<|im_start|>' + message.role + '\\n<think>\\n' + reasoning_content + '\\n</think>\\n\\n' + content }}\n        {%- else %}\n            {{- '<|im_start|>' + message.role + '\\n' + content }}\n        {%- endif %}\n        {%- if message.tool_calls and message.tool_calls is iterable and message.tool_calls is not mapping %}\n            {%- for tool_call in message.tool_calls %}\n                {%- if tool_call.function is defined %}\n                    {%- set tool_call = tool_call.function %}\n                {%- endif %}\n                {%- if loop.first %}\n                    {%- if content|trim %}\n                        {{- '\\n\\n<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                    {%- else %}\n                        {{- '<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                    {%- endif %}\n                {%- else %}\n                    {{- '\\n<tool_call>\\n<function=' + tool_call.name + '>\\n' }}\n                {%- endif %}\n                {%- if tool_call.arguments is mapping %}\n                    {%- for args_name in tool_call.arguments %}\n                        {%- set args_value = tool_call.arguments[args_name] %}\n                        {{- '<parameter=' + args_name + '>\\n' }}\n                        {%- set args_value = args_value | tojson | safe if args_value is mapping or (args_value is sequence and args_value is not string) else args_value | string %}\n                        {{- args_value }}\n                        {{- '\\n</parameter>\\n' }}\n                    {%- endfor %}\n                {%- endif %}\n                {{- '</function>\\n</tool_call>' }}\n            {%- endfor %}\n        {%- endif %}\n        {{- '<|im_end|>\\n' }}\n    {%- elif message.role == \"tool\" %}\n        {%- if loop.previtem and loop.previtem.role != \"tool\" %}\n            {{- '<|im_start|>user' }}\n        {%- endif %}\n        {{- '\\n<tool_response>\\n' }}\n        {{- content }}\n        {{- '\\n</tool_response>' }}\n        {%- if not loop.last and loop.nextitem.role != \"tool\" %}\n            {{- '<|im_end|>\\n' }}\n        {%- elif loop.last %}\n            {{- '<|im_end|>\\n' }}\n        {%- endif %}\n    {%- else %}\n        {{- raise_exception('Unexpected message role.') }}\n    {%- endif %}\n{%- endfor %}\n{%- if add_generation_prompt %}\n    {{- '<|im_start|>assistant\\n' }}\n    {%- if enable_thinking is defined and enable_thinking is true %}\n        {{- '<think>\\n' }}\n    {%- else %}\n        {{- '<think>\\n\\n</think>\\n\\n' }}\n    {%- endif %}\n{%- endif %}",
+    "chat_template_caps": {
+      "supports_object_arguments": true,
+      "supports_parallel_tool_calls": true,
+      "supports_preserve_reasoning": false,
+      "supports_reasoning_effort": false,
+      "supports_string_content": true,
+      "supports_system_role": true,
+      "supports_tool_calls": true,
+      "supports_tools": true,
+      "supports_typed_content": true
+    },
+    "bos_token": ",",
+    "eos_token": "<|im_end|>",
+    "build_info": "b11539-10a60cf30",
+    "is_sleeping": false,
+    "cors_proxy_enabled": false
+  }
+}

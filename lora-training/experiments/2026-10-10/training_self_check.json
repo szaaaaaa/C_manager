@@ -1,0 +1,18 @@
+{
+  "status": "passed",
+  "cpu_only": true,
+  "gpu_execution": false,
+  "train_records": 150,
+  "validation_records": 18,
+  "held_out_groups": [
+    "pip-cache"
+  ],
+  "maximum_tokenized_length": 429,
+  "prompt_and_padding_mask_valid": true,
+  "source_helpers": [
+    "finetune.load_training_data",
+    "finetune.format_for_chat",
+    "grounding.build_sample",
+    "evaluate.check_response"
+  ]
+}

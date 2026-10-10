@@ -1,0 +1,8 @@
+{
+  "status": "passed",
+  "frozen_cases": 24,
+  "input_answer_leak": false,
+  "device": "Vulkan1",
+  "thinking_off": true,
+  "model_or_gpu_execution": false
+}
