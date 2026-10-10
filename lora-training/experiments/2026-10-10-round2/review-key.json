@@ -1,0 +1,2018 @@
+[
+  {
+    "review_id": "r0001",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-01",
+    "answer_sha256": "41567b282072ede74428d5c82150a8f592064fb2fcf7de7f475dfe197f6fc371"
+  },
+  {
+    "review_id": "r0002",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-08",
+    "answer_sha256": "76a1b8aad218d862fb2b5cd818f5ee18466f6fec37a1ca9d5f78663484052d4c"
+  },
+  {
+    "review_id": "r0003",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "torch-env",
+    "answer_sha256": "426fbe5f5d8cec1d54dd8ced5e6f124229d222a02942057d36de35142b546ea2"
+  },
+  {
+    "review_id": "r0004",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "unknown-archive",
+    "answer_sha256": "2fb9846008f93263acc35a1e187d91c1998e0cbc54cf1566b47dbb521a9d9e06"
+  },
+  {
+    "review_id": "r0005",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-11",
+    "answer_sha256": "6eeaf1c0c25f1e443009c6af205b6a00fc52a86aa8d48f86057d92479bfb96e2"
+  },
+  {
+    "review_id": "r0006",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-new-git-objects-00",
+    "answer_sha256": "a9ce7ba858a2012d17fac676f9c2715041d1d344bc59bf2fcbb093d7cb93caa5"
+  },
+  {
+    "review_id": "r0007",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-conflict-03",
+    "answer_sha256": "1d78401a59e38ef67c8f13197dc94af83825277849452cc0b0e584aea1918017"
+  },
+  {
+    "review_id": "r0008",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "unknown-download",
+    "answer_sha256": "efd33ea98d2113fb0cf0f6080f03b297a794fed778f17b516aefb0bd192da405"
+  },
+  {
+    "review_id": "r0009",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "webview-exe",
+    "answer_sha256": "56799315a74bf72a0bbaac7f530592cb71b00b9982f5b7bac3ccbbafa74a6359"
+  },
+  {
+    "review_id": "r0010",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "onenote-missing-evidence",
+    "answer_sha256": "3f0f3d83baf1a934b8afee2ee79fbb937021fa70560888707b6f4efe98ebce66"
+  },
+  {
+    "review_id": "r0011",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "torch-env",
+    "answer_sha256": "24ef9c334275b16482c2c37a69a0523e6305d76421c17a6060958dc0d13f35ef"
+  },
+  {
+    "review_id": "r0012",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "torch-env",
+    "answer_sha256": "24ef9c334275b16482c2c37a69a0523e6305d76421c17a6060958dc0d13f35ef"
+  },
+  {
+    "review_id": "r0013",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-conflict-02",
+    "answer_sha256": "146520f2638504150b9d11eeb08594923f414ce6bea7ab26117115824c1dc54e"
+  },
+  {
+    "review_id": "r0014",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "node-folder",
+    "answer_sha256": "9d01db3c7be2fc02b1ecb2ec97e1b148ad5de01dca3291e8018b0ce8e480f2f7"
+  },
+  {
+    "review_id": "r0015",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-04",
+    "answer_sha256": "a804a9498921dad6a829769f39fcd4e27aa092550121b908ab33da9c5b80f38c"
+  },
+  {
+    "review_id": "r0016",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-01",
+    "answer_sha256": "8a44ed003dd2726d3f858b2460cb166869c2fdadf2fe474c2ed31367f1ab0dde"
+  },
+  {
+    "review_id": "r0017",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-11",
+    "answer_sha256": "a2d9aed7f705c326514c8a0edf983ac21f7f20a6aba97842d517a34da8e943e0"
+  },
+  {
+    "review_id": "r0018",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "unknown-microsoft",
+    "answer_sha256": "e0adebb4356fddfb723a7a258493344a6c90abd46a45a356d9759e9f616644e4"
+  },
+  {
+    "review_id": "r0019",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-15",
+    "answer_sha256": "0cc670bf5806ff5fb0b863e7f49e5441297a966bccbf4a74c70c97ebd10e552f"
+  },
+  {
+    "review_id": "r0020",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-new-npm-cache-00",
+    "answer_sha256": "00f7d54ac5d260c132a7f8360b5937a3464be3caf56c30161d8c3b44a45f50d3"
+  },
+  {
+    "review_id": "r0021",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "onenote-folder",
+    "answer_sha256": "da6c102b06684684874598cdd3331090ab7a7da3e56aaf453c967243026593ef"
+  },
+  {
+    "review_id": "r0022",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "onenote-file",
+    "answer_sha256": "863c1237d74b9f32b276cf7c406ce1554615b562e3fc18b5561f57751f5ab6d6"
+  },
+  {
+    "review_id": "r0023",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "webview-exe",
+    "answer_sha256": "f6465188120eac5a2e188c1fc312c4d636dcb1df3c60b3dff303804e5ad23b76"
+  },
+  {
+    "review_id": "r0024",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-new-npm-cache-02",
+    "answer_sha256": "6b1a074dbbe09d4d01f12b5f3a828719dea533aca062166bbaff854b8ea9db40"
+  },
+  {
+    "review_id": "r0025",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-12",
+    "answer_sha256": "b6bfd8079d3473c75d23b36a26b080440e52f53844bcf6c66f1b7aac6ce4cf96"
+  },
+  {
+    "review_id": "r0026",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-new-npm-cache-02",
+    "answer_sha256": "f9f87e119537f760eda5e48303f82495144174f6b627209547a6a271779b312f"
+  },
+  {
+    "review_id": "r0027",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-00",
+    "answer_sha256": "5a017fbb6e7321e447bb331a205f54c556c0189bfad4be6427a24037c1001bb0"
+  },
+  {
+    "review_id": "r0028",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-06",
+    "answer_sha256": "5048a1fef8737c7bde1e1579692d5b04a53f192ba191ff74fc5eb0b54f1412d2"
+  },
+  {
+    "review_id": "r0029",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-new-git-objects-00",
+    "answer_sha256": "71bf56f402b4d225474431dcdc4f2b95cf57134b68224d25eeba2be9cde0b930"
+  },
+  {
+    "review_id": "r0030",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-02",
+    "answer_sha256": "2d02c425ed857713c0ad31f2789d68ed3b299ea9f7ca93ae39d433e469e59b14"
+  },
+  {
+    "review_id": "r0031",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-conflict-02",
+    "answer_sha256": "675dd9556e6613feb3e9dd0feba1018797b11b1987036ca70c2fbea23a96e85c"
+  },
+  {
+    "review_id": "r0032",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-conflict-00",
+    "answer_sha256": "1c2bf86d891cb336b90d71e47f5816a70b81e1622bca1c34bdb19ae88f6c7535"
+  },
+  {
+    "review_id": "r0033",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-05",
+    "answer_sha256": "68b69b250fc445ab775e956ccc7f664025eacccf38f136fcd2a88f48b6ba3079"
+  },
+  {
+    "review_id": "r0034",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "torch-base",
+    "answer_sha256": "ee8122ee1933b1771beafcaaeb754ff3a3104c2031877c29b035d559a134f6fa"
+  },
+  {
+    "review_id": "r0035",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-02",
+    "answer_sha256": "fff3fc29252b365374093ed6b87ff0c0f4b67fb59021bd061ea2ced627fb29f9"
+  },
+  {
+    "review_id": "r0036",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-15",
+    "answer_sha256": "c10963b67273b4d1b92872f2fc8f7446b12d35e527e21551d45bf3b0242b31c2"
+  },
+  {
+    "review_id": "r0037",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "webview-with-distractor",
+    "answer_sha256": "a5626cae878ea0cbf9c61a3a2e98487f6ce99a56db5d608bfd35e53b9fc1b709"
+  },
+  {
+    "review_id": "r0038",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "webview-exe",
+    "answer_sha256": "f6465188120eac5a2e188c1fc312c4d636dcb1df3c60b3dff303804e5ad23b76"
+  },
+  {
+    "review_id": "r0039",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-09",
+    "answer_sha256": "1e6d0ee92459193663448025795cd059471202c676558fd01517a7602d4ef4ea"
+  },
+  {
+    "review_id": "r0040",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-14",
+    "answer_sha256": "5dda6fdca92076836460211981ddba11061ab221de162075ff003e208261b08b"
+  },
+  {
+    "review_id": "r0041",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-03",
+    "answer_sha256": "746c4d117e62815276105d6e7cae6f65ab74c3809c8d5f5259aad203b65f6da2"
+  },
+  {
+    "review_id": "r0042",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "windows-temp-file",
+    "answer_sha256": "9ecb6c7f5528dc42686e5fdc67b44100a2c58005d195dbc3ab4684225d2b544e"
+  },
+  {
+    "review_id": "r0043",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-05",
+    "answer_sha256": "7f12d0bf0826b7da036a72e9a6d530cd6a2c08444e447deab66102933d8f4646"
+  },
+  {
+    "review_id": "r0044",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "unknown-archive",
+    "answer_sha256": "2fb9846008f93263acc35a1e187d91c1998e0cbc54cf1566b47dbb521a9d9e06"
+  },
+  {
+    "review_id": "r0045",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-distractor-00",
+    "answer_sha256": "75b7537fbba4866e8a0bca48b3f6c9d98724f1284fc7f4dd5d321e2716107d05"
+  },
+  {
+    "review_id": "r0046",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-02",
+    "answer_sha256": "fff3fc29252b365374093ed6b87ff0c0f4b67fb59021bd061ea2ced627fb29f9"
+  },
+  {
+    "review_id": "r0047",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-11",
+    "answer_sha256": "1bc6281074420e30156a685e077d6342f78b98a91bf4d95d819f6a349c9258e1"
+  },
+  {
+    "review_id": "r0048",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-02",
+    "answer_sha256": "2d02c425ed857713c0ad31f2789d68ed3b299ea9f7ca93ae39d433e469e59b14"
+  },
+  {
+    "review_id": "r0049",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "user-temp-uppercase",
+    "answer_sha256": "d23f0e8986ab989f8a2d33f5e6812768485a231618b09c6da7fe49a278ff151f"
+  },
+  {
+    "review_id": "r0050",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "node-folder",
+    "answer_sha256": "8bfd926a9c1faa24b9d4e76346ce7df83f755f2929bc73a3da51fcefb64e4b5d"
+  },
+  {
+    "review_id": "r0051",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "hf-weights",
+    "answer_sha256": "36c32a26d26cde101b752043ac93b2bf4512174ad2e4dc92ed3e687aec36aaa9"
+  },
+  {
+    "review_id": "r0052",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-12",
+    "answer_sha256": "9e5a4eb873476ee526d52be48bdc0defa676222b5a510eab52c2688f346244f0"
+  },
+  {
+    "review_id": "r0053",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-03",
+    "answer_sha256": "cc1800430d8e00ababb6d51015c90993d83f359fb4cedc4ac358927305f9e428"
+  },
+  {
+    "review_id": "r0054",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "onenote-file",
+    "answer_sha256": "79bebd5575167dadfbf3ceea02d24758202024b39289cf18786421ba382b3cd4"
+  },
+  {
+    "review_id": "r0055",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-01",
+    "answer_sha256": "dd324aab51b67cb66a47b7070d9025a3577ff347040e054f087a915058cd6230"
+  },
+  {
+    "review_id": "r0056",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-14",
+    "answer_sha256": "99c9eaaf58c29863bd5a4ca8891d1c60c0f754975f448a0d4339458797bcc345"
+  },
+  {
+    "review_id": "r0057",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-distractor-03",
+    "answer_sha256": "7c83987c8482a3a97c8ffc7cca7f6afe7c71095750267962dfebaac4069b2b5c"
+  },
+  {
+    "review_id": "r0058",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "node-folder",
+    "answer_sha256": "9d01db3c7be2fc02b1ecb2ec97e1b148ad5de01dca3291e8018b0ce8e480f2f7"
+  },
+  {
+    "review_id": "r0059",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "node-file",
+    "answer_sha256": "a9ca5cf06ed28441891cfeecf6719f61ea62ff940ea2333ee096713b4c246cb9"
+  },
+  {
+    "review_id": "r0060",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "onenote-file",
+    "answer_sha256": "79bebd5575167dadfbf3ceea02d24758202024b39289cf18786421ba382b3cd4"
+  },
+  {
+    "review_id": "r0061",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-07",
+    "answer_sha256": "39ead327717266a5e68daf92f08a3547c6eaca0aa8772f10cc2572928eba88cf"
+  },
+  {
+    "review_id": "r0062",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-07",
+    "answer_sha256": "a5317af200508fbce71dff957230223e8c448558c6117fd3acf771dec80ebb3c"
+  },
+  {
+    "review_id": "r0063",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "unknown-cache",
+    "answer_sha256": "fff3fc29252b365374093ed6b87ff0c0f4b67fb59021bd061ea2ced627fb29f9"
+  },
+  {
+    "review_id": "r0064",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-01",
+    "answer_sha256": "687f2043e253edc75c0cca1658208154e26cd489ea9ad5c7d738b43c0cec9893"
+  },
+  {
+    "review_id": "r0065",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-new-git-objects-02",
+    "answer_sha256": "c91ca9b2238c5180c0da4ed6603d134e8f5508443586eb72ae670632495cd944"
+  },
+  {
+    "review_id": "r0066",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-06",
+    "answer_sha256": "e60304ac36477dadd45f519e3fbb5f3d80c0cfbf3e53af079858ef381e08ff72"
+  },
+  {
+    "review_id": "r0067",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-new-git-objects-03",
+    "answer_sha256": "c91ca9b2238c5180c0da4ed6603d134e8f5508443586eb72ae670632495cd944"
+  },
+  {
+    "review_id": "r0068",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-07",
+    "answer_sha256": "a5317af200508fbce71dff957230223e8c448558c6117fd3acf771dec80ebb3c"
+  },
+  {
+    "review_id": "r0069",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "hf-blob",
+    "answer_sha256": "a4e924f3cd733ffb5518b369663bf8e957df0de45279907ed31e07bee0660f8b"
+  },
+  {
+    "review_id": "r0070",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "cache-prefix-nearmiss",
+    "answer_sha256": "6c11b69059c8209f33cbf3a45c5dd7298640a55e5a60f09c14d8654f7a950e3a"
+  },
+  {
+    "review_id": "r0071",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "webview-with-distractor",
+    "answer_sha256": "98768262947d9635ce9c3396ad3f9b84137b288f9355702756bc6d98dd2ee2cf"
+  },
+  {
+    "review_id": "r0072",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "unknown-cache",
+    "answer_sha256": "f4fe3fdb3fe8b2c332cf5438dd6f44ce125c46bc0b4564f27d1acd554e7b5cd7"
+  },
+  {
+    "review_id": "r0073",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "onenote-missing-evidence",
+    "answer_sha256": "34e613b471acee5d0040a92fef35e48474cf45cd31b40e35cc1a64602aa4e2d3"
+  },
+  {
+    "review_id": "r0074",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-new-npm-cache-03",
+    "answer_sha256": "84b548d037f47509992513b88cc485264f7cd13846e2b185aa2e79d8bac6ea09"
+  },
+  {
+    "review_id": "r0075",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-new-git-objects-01",
+    "answer_sha256": "1e0a0ea261cde410bf0e6b903cf693440abd04d69c8535b510625ce428a637c3"
+  },
+  {
+    "review_id": "r0076",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "pip-wheel",
+    "answer_sha256": "1cf01f5399eb86f569a7e5afa68c431ddf740263287b344497008c11b3fd9d78"
+  },
+  {
+    "review_id": "r0077",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "unknown-download",
+    "answer_sha256": "5baf4d90ef045f6dc801a7e3e9f1006ffca45ed98a324665f7e21b5698a910ee"
+  },
+  {
+    "review_id": "r0078",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-12",
+    "answer_sha256": "92e638b769b997ecdd599635c498d01ccddf4b0af1d0fef7b869910101d1f24d"
+  },
+  {
+    "review_id": "r0079",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "torch-base",
+    "answer_sha256": "ee91898a41c4715a6b2ee0f7dfe33df7c59aa54508907dc73c3de0eb00ef367f"
+  },
+  {
+    "review_id": "r0080",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "unknown-onnx",
+    "answer_sha256": "1dadcb5903e3b0dc6b5512e9e9e18ddec7713839da58f069c821367a6d7cc2e1"
+  },
+  {
+    "review_id": "r0081",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-distractor-03",
+    "answer_sha256": "a3e857462efdf58997012954dc98f676c7d6f1fd7d6732cb211f42e572e1cf48"
+  },
+  {
+    "review_id": "r0082",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-distractor-02",
+    "answer_sha256": "9fcd342338bab8edf27c90d35272ed4bb64092c3e9d1243d8e8d03a8aa9feb15"
+  },
+  {
+    "review_id": "r0083",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-08",
+    "answer_sha256": "20e8837aa102fbe05fbca04364b08177f473cf2c02e9bbcfe13c54ee2ce47371"
+  },
+  {
+    "review_id": "r0084",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-new-git-objects-00",
+    "answer_sha256": "0df929d41b9ea82361731eed9b956531686a7a59e56b01d1ff1a50a274959ab7"
+  },
+  {
+    "review_id": "r0085",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-new-npm-cache-00",
+    "answer_sha256": "00f7d54ac5d260c132a7f8360b5937a3464be3caf56c30161d8c3b44a45f50d3"
+  },
+  {
+    "review_id": "r0086",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-distractor-03",
+    "answer_sha256": "b4fa916bde077676e7e638b9995407afc6723b5aba40a0e9be97f965c12e65ef"
+  },
+  {
+    "review_id": "r0087",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "pip-wheel",
+    "answer_sha256": "aeb622077a2f9b5d825478139d62f1318ed16cbbbc0f8885d296713b725fa527"
+  },
+  {
+    "review_id": "r0088",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-02",
+    "answer_sha256": "4906a48c7432c25e066ec7a59388cfc6878264a45fabb3645cb3c6b100af4b54"
+  },
+  {
+    "review_id": "r0089",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-12",
+    "answer_sha256": "92e638b769b997ecdd599635c498d01ccddf4b0af1d0fef7b869910101d1f24d"
+  },
+  {
+    "review_id": "r0090",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-03",
+    "answer_sha256": "8c9946dd3eb2c6ff76f4f1ac4c5c36add24b1e620d95c32d363050e635e5abc2"
+  },
+  {
+    "review_id": "r0091",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-conflict-02",
+    "answer_sha256": "99fabdd0ba021ddef452caf0e150b40f34222b75a345a791847e4ae3998ef58d"
+  },
+  {
+    "review_id": "r0092",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "onenote-missing-evidence",
+    "answer_sha256": "3f0f3d83baf1a934b8afee2ee79fbb937021fa70560888707b6f4efe98ebce66"
+  },
+  {
+    "review_id": "r0093",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-06",
+    "answer_sha256": "f85e174aae96f27533e27b0d1d86013f8a337ef22b468b59a47eca48bf316621"
+  },
+  {
+    "review_id": "r0094",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-14",
+    "answer_sha256": "7cdc681e1e02f5f79e50412b17bd356946697edf47acc2526740c5358fd69c8f"
+  },
+  {
+    "review_id": "r0095",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-02",
+    "answer_sha256": "2d02c425ed857713c0ad31f2789d68ed3b299ea9f7ca93ae39d433e469e59b14"
+  },
+  {
+    "review_id": "r0096",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "hf-weights",
+    "answer_sha256": "e5806e56850d63984e48c4ad1a0842af10faec9a528255af32b9d4f102949728"
+  },
+  {
+    "review_id": "r0097",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "unknown-onnx",
+    "answer_sha256": "98f39fa3ae9f3b1b277d32ca52d0a80164276b8b6fe3dd6daff81526ca1809e4"
+  },
+  {
+    "review_id": "r0098",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-08",
+    "answer_sha256": "f4e320e74313799921ac4909339a80302665e914fe125bee16c13709958e9b0a"
+  },
+  {
+    "review_id": "r0099",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-14",
+    "answer_sha256": "ec42f38600fa1bae78bf0a8dbf519be4d7c9578a81d274775e743c02a7eeecfd"
+  },
+  {
+    "review_id": "r0100",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-06",
+    "answer_sha256": "aeb6b863dde4a756c5e5f6445546399c7fe8ed8fe4288b3eaf88abe1df4cba3f"
+  },
+  {
+    "review_id": "r0101",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-14",
+    "answer_sha256": "0265a01c609521a77bce41df988ec3bafad31e9315e2c33331f43b2bb722ad06"
+  },
+  {
+    "review_id": "r0102",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "windows-temp-file",
+    "answer_sha256": "03d6a3d016ed1949d3135c9aea49ec3483d1ec75a2f1d6958476647503215569"
+  },
+  {
+    "review_id": "r0103",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-conflict-00",
+    "answer_sha256": "2622d95c813db47e2856b5c2ea02d16504824e64f08150351a1ce5308a723399"
+  },
+  {
+    "review_id": "r0104",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-06",
+    "answer_sha256": "7f2f18b03d3af4f4cecaa2ea5f621aeb9208f12ca5cd98e162d0a9c4432d4281"
+  },
+  {
+    "review_id": "r0105",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-00",
+    "answer_sha256": "5a017fbb6e7321e447bb331a205f54c556c0189bfad4be6427a24037c1001bb0"
+  },
+  {
+    "review_id": "r0106",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-11",
+    "answer_sha256": "a2d9aed7f705c326514c8a0edf983ac21f7f20a6aba97842d517a34da8e943e0"
+  },
+  {
+    "review_id": "r0107",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "unknown-cache",
+    "answer_sha256": "6f220f2d346a2aed84b9d80411bb5e5e67a4fa9e23c5d8ebb4e7255efe5ea490"
+  },
+  {
+    "review_id": "r0108",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-new-npm-cache-01",
+    "answer_sha256": "6199f9ac771acea5a4bf330cbcdce6368bc8727a524684626aad969677110fc1"
+  },
+  {
+    "review_id": "r0109",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "unknown-archive",
+    "answer_sha256": "2fb9846008f93263acc35a1e187d91c1998e0cbc54cf1566b47dbb521a9d9e06"
+  },
+  {
+    "review_id": "r0110",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "cache-prefix-nearmiss",
+    "answer_sha256": "86c8c7367e644fd4d57addb5b38cd1c980c835b1acdc7744fb30b77b349ba9b7"
+  },
+  {
+    "review_id": "r0111",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-07",
+    "answer_sha256": "8612d7ee769ce22f4c84e4b9dc0ef80a6a3c3972bc0043f03ce48aa4590832ad"
+  },
+  {
+    "review_id": "r0112",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-03",
+    "answer_sha256": "2d02c425ed857713c0ad31f2789d68ed3b299ea9f7ca93ae39d433e469e59b14"
+  },
+  {
+    "review_id": "r0113",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-new-npm-cache-03",
+    "answer_sha256": "740e1ab27be41d17aa5aca65d713e4405449b840106136246de49f3b8de15915"
+  },
+  {
+    "review_id": "r0114",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-01",
+    "answer_sha256": "687f2043e253edc75c0cca1658208154e26cd489ea9ad5c7d738b43c0cec9893"
+  },
+  {
+    "review_id": "r0115",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-new-git-objects-02",
+    "answer_sha256": "3d650c96403e79b0bf80c02af0c66e41da667fdd6a194878f9ad1511339bcb78"
+  },
+  {
+    "review_id": "r0116",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-09",
+    "answer_sha256": "d33e84f0cfb9ee6402c321e46ed577920ec35b24b064a427cb9fd885b8d8497c"
+  },
+  {
+    "review_id": "r0117",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-new-git-objects-03",
+    "answer_sha256": "37ea7c63561b7b0f2ba8bd98bb03e9ce93cd20f5d20c5a506d4187440c882ca2"
+  },
+  {
+    "review_id": "r0118",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-10",
+    "answer_sha256": "1bc6281074420e30156a685e077d6342f78b98a91bf4d95d819f6a349c9258e1"
+  },
+  {
+    "review_id": "r0119",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-00",
+    "answer_sha256": "c3e8b1d969a6bf1827f66acb5c3ba696b1d7f56daff5b35c391e249498247d1d"
+  },
+  {
+    "review_id": "r0120",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "hf-blob",
+    "answer_sha256": "c04151846bd8032881c3f86159e01a9a3a7e470ffda32c1ff523fa5832b676ec"
+  },
+  {
+    "review_id": "r0121",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-06",
+    "answer_sha256": "eec0d32d0c0d24e553094abc6fd44e08909f8b101257f73c270dea4aa93a01f5"
+  },
+  {
+    "review_id": "r0122",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-05",
+    "answer_sha256": "77d89efff6ff7ecf0e1ce3de7616e6909c0cb6a6a3adc5efca9d7dc46b46ba7d"
+  },
+  {
+    "review_id": "r0123",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-04",
+    "answer_sha256": "a804a9498921dad6a829769f39fcd4e27aa092550121b908ab33da9c5b80f38c"
+  },
+  {
+    "review_id": "r0124",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "node-file",
+    "answer_sha256": "6de4374e713ce9cfc8f6d8c24523580c641e8f4f44ce517ea4b2d2f432273e34"
+  },
+  {
+    "review_id": "r0125",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-03",
+    "answer_sha256": "b6c86ba44133003eac61694aa89eed6cf0d0233a7efddc0e7365d2b5ed8d2472"
+  },
+  {
+    "review_id": "r0126",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-13",
+    "answer_sha256": "b6bfd8079d3473c75d23b36a26b080440e52f53844bcf6c66f1b7aac6ce4cf96"
+  },
+  {
+    "review_id": "r0127",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-10",
+    "answer_sha256": "a2d9aed7f705c326514c8a0edf983ac21f7f20a6aba97842d517a34da8e943e0"
+  },
+  {
+    "review_id": "r0128",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "onenote-folder",
+    "answer_sha256": "c6b3bc66dcb11d87117f59088795b54a732bd837d43c420eb5a8e924f294f519"
+  },
+  {
+    "review_id": "r0129",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-conflict-02",
+    "answer_sha256": "25223d0115e4de72e729b610ed31b8d51e2584cea18a752d752cd510488271bf"
+  },
+  {
+    "review_id": "r0130",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "onenote-folder",
+    "answer_sha256": "1c3acb69b71f33b73dfc2ae851e8f744bf8bae10f7640f588f289afb18c05094"
+  },
+  {
+    "review_id": "r0131",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-04",
+    "answer_sha256": "7f12d0bf0826b7da036a72e9a6d530cd6a2c08444e447deab66102933d8f4646"
+  },
+  {
+    "review_id": "r0132",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-15",
+    "answer_sha256": "e74558c21bc4f9a8d2e01c7a903c96e474bb4f5f126d6c210adbb74db343f1d5"
+  },
+  {
+    "review_id": "r0133",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-conflict-00",
+    "answer_sha256": "2e2edb061b7aba7ebf527df1a3210c11c1d1d719676ee88890bbf1e7490478ac"
+  },
+  {
+    "review_id": "r0134",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "hf-weights",
+    "answer_sha256": "661560c099e33201fc016b82f635ebf886d4eb148030567a81d3c6f997fe1e54"
+  },
+  {
+    "review_id": "r0135",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-14",
+    "answer_sha256": "c10963b67273b4d1b92872f2fc8f7446b12d35e527e21551d45bf3b0242b31c2"
+  },
+  {
+    "review_id": "r0136",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-00",
+    "answer_sha256": "651d01f102f6e3cae0f257b182bfc1d3a373c4694a3849739e3ccc0218b0abfb"
+  },
+  {
+    "review_id": "r0137",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "unknown-onnx",
+    "answer_sha256": "1e10ac6432b5b6ae47a6de1c489d39344cc83689f83f9edfb8c32cd3a13c993b"
+  },
+  {
+    "review_id": "r0138",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "unknown-archive",
+    "answer_sha256": "2fb9846008f93263acc35a1e187d91c1998e0cbc54cf1566b47dbb521a9d9e06"
+  },
+  {
+    "review_id": "r0139",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-conflict-01",
+    "answer_sha256": "0d73060075af6f3423ffa973517c516a83250569f4bd26e21c9f09bd983d8ef4"
+  },
+  {
+    "review_id": "r0140",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-distractor-03",
+    "answer_sha256": "8e85fa94d2cff9ab7d7bfd3f8a42d3d609b1887a40162e73ff01cd1ddbfa43cc"
+  },
+  {
+    "review_id": "r0141",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-distractor-01",
+    "answer_sha256": "9edb46df4783b5e23cf6542cd54d1d26dcfbc87f9c1b68c595ce300f2ef6bf8d"
+  },
+  {
+    "review_id": "r0142",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "user-temp",
+    "answer_sha256": "36d1be07937f82db572c3fe74b918368c21ca5b66ab064f715e293d051922a0b"
+  },
+  {
+    "review_id": "r0143",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "onenote-file",
+    "answer_sha256": "863c1237d74b9f32b276cf7c406ce1554615b562e3fc18b5561f57751f5ab6d6"
+  },
+  {
+    "review_id": "r0144",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-14",
+    "answer_sha256": "5d2c4c46815c382dd165b36fa3f52b708ec5ce28dca5524d2cea218738836553"
+  },
+  {
+    "review_id": "r0145",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-01",
+    "answer_sha256": "ab8be6640c8681c1b6fb4fcd64db6e86526ddc2925f10a7c68e1e6eb9fcb86ed"
+  },
+  {
+    "review_id": "r0146",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-15",
+    "answer_sha256": "99c9eaaf58c29863bd5a4ca8891d1c60c0f754975f448a0d4339458797bcc345"
+  },
+  {
+    "review_id": "r0147",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-00",
+    "answer_sha256": "5a017fbb6e7321e447bb331a205f54c556c0189bfad4be6427a24037c1001bb0"
+  },
+  {
+    "review_id": "r0148",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-new-npm-cache-01",
+    "answer_sha256": "fea4e52b823a9e84aabbabe5eccee4145053a6b368e0b710e8555daf910ebbde"
+  },
+  {
+    "review_id": "r0149",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-distractor-01",
+    "answer_sha256": "d0f024c21c5a8029f1bf6f3efdc55c6f37040b969b46f6a6c1d5a4bf4907a166"
+  },
+  {
+    "review_id": "r0150",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-new-git-objects-01",
+    "answer_sha256": "3d650c96403e79b0bf80c02af0c66e41da667fdd6a194878f9ad1511339bcb78"
+  },
+  {
+    "review_id": "r0151",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "cache-prefix-nearmiss",
+    "answer_sha256": "0286b020a3c4b6b7df1dc623183a723521ce967dc5b991017526f314a0e86467"
+  },
+  {
+    "review_id": "r0152",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "windows-temp",
+    "answer_sha256": "b7228b3da0de52de4bff37ecd4df1ed4a4464245615e5b7daf7315ff0efa7af8"
+  },
+  {
+    "review_id": "r0153",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-13",
+    "answer_sha256": "602431a87cfd8ab11d15f4a5242f41e3b9ce1e76bfe6ec716fff1026ca687fc8"
+  },
+  {
+    "review_id": "r0154",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-conflict-01",
+    "answer_sha256": "30dc300866a4c64659d7bd8448a60a889def7e58979c3f309d9c69818beccb37"
+  },
+  {
+    "review_id": "r0155",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-08",
+    "answer_sha256": "ca6956cbf2531cc86879b29de4075f388bc84b8ccd6db07d709a0087726514b4"
+  },
+  {
+    "review_id": "r0156",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "webview-dll",
+    "answer_sha256": "f39dc70d77a4ed2316b368984bfef58f68731376ee77d3608b604eff175e8a68"
+  },
+  {
+    "review_id": "r0157",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "windows-temp",
+    "answer_sha256": "88e937244cdd730d3b75e4415c8f686a3f92594fc7ba7e0561c5fcbf487b805a"
+  },
+  {
+    "review_id": "r0158",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-11",
+    "answer_sha256": "1bc6281074420e30156a685e077d6342f78b98a91bf4d95d819f6a349c9258e1"
+  },
+  {
+    "review_id": "r0159",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "torch-env",
+    "answer_sha256": "24ef9c334275b16482c2c37a69a0523e6305d76421c17a6060958dc0d13f35ef"
+  },
+  {
+    "review_id": "r0160",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "webview-with-distractor",
+    "answer_sha256": "272da5f7d4c0cbb618edf6d0457c97ea1f3fb2a84b5aeb1d482cbb0c8e6c8634"
+  },
+  {
+    "review_id": "r0161",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "pip-body",
+    "answer_sha256": "2a3c0c7024f566e10000e571bd6d831289c8442450e243237634a3c2de0610ea"
+  },
+  {
+    "review_id": "r0162",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "node-folder",
+    "answer_sha256": "8fc92133d503eeb5e7f9b8c5aba26fb80f725624689545ffae9ca8af7b2662bc"
+  },
+  {
+    "review_id": "r0163",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "user-temp",
+    "answer_sha256": "a56280ec5f87edde20fd6ed1042a3482cfc39df2e1e52bf0602f81dde88f24d5"
+  },
+  {
+    "review_id": "r0164",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-new-git-objects-01",
+    "answer_sha256": "c91ca9b2238c5180c0da4ed6603d134e8f5508443586eb72ae670632495cd944"
+  },
+  {
+    "review_id": "r0165",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-11",
+    "answer_sha256": "7ec72e8fe2acd39d9823fc9d922880647ff6ec6e3afbe633038ba09342aa9df5"
+  },
+  {
+    "review_id": "r0166",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "unknown-download",
+    "answer_sha256": "bdc585421300fac7ce397be1079c8894b8f9cd78886b69c7b5ebf57a205a4281"
+  },
+  {
+    "review_id": "r0167",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-15",
+    "answer_sha256": "1a3a3bb1fe59e88dfde9de58fd2438d0c95413c23ffdefe85f58f39a05f87dca"
+  },
+  {
+    "review_id": "r0168",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "windows-temp",
+    "answer_sha256": "a21bc825d2102a592a82437f980019a3062c481d817582f198b0545b462d936d"
+  },
+  {
+    "review_id": "r0169",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-06",
+    "answer_sha256": "f85e174aae96f27533e27b0d1d86013f8a337ef22b468b59a47eca48bf316621"
+  },
+  {
+    "review_id": "r0170",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "unknown-cache",
+    "answer_sha256": "fff3fc29252b365374093ed6b87ff0c0f4b67fb59021bd061ea2ced627fb29f9"
+  },
+  {
+    "review_id": "r0171",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "user-temp-uppercase",
+    "answer_sha256": "bde79b7fa002ff9721aec8693b639bd4fcd59844fdd2931037b0810f2289d775"
+  },
+  {
+    "review_id": "r0172",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-13",
+    "answer_sha256": "a552e1b10edd3a59b9de667cb10338dfd99e9da58464b2b96831f0ce02363c03"
+  },
+  {
+    "review_id": "r0173",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-12",
+    "answer_sha256": "caabcf4b9b1fd942be828e773967fec56728daac5c96fb6ff89677adbf5ba2e6"
+  },
+  {
+    "review_id": "r0174",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "webview-dll",
+    "answer_sha256": "0f0c5ccd9c110dca8c2e7863b01e52744933f26ec1795d6aed52451d2d231f77"
+  },
+  {
+    "review_id": "r0175",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "webview-with-distractor",
+    "answer_sha256": "affa9ea209a559270a3d581e982d0e88bfd77eb9e31b5c8472b9661a49fa8de3"
+  },
+  {
+    "review_id": "r0176",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-conflict-03",
+    "answer_sha256": "ef9b3bee66b1ea7c8a04afebb35b9133259dba14998977999d216cb0f546f6e1"
+  },
+  {
+    "review_id": "r0177",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-conflict-01",
+    "answer_sha256": "6c5011371b0766d4b8f100ee04a95aa820af563d4b478beee8322629e1071e66"
+  },
+  {
+    "review_id": "r0178",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-07",
+    "answer_sha256": "4a5ad9a070454a304d7332bbc54d56f9c94113ab795f5e88158f52a9cfb8fcee"
+  },
+  {
+    "review_id": "r0179",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-09",
+    "answer_sha256": "654a1b772fddb6e2394eb575f21533e20037bb7993097ad76f23ccf29beb64ab"
+  },
+  {
+    "review_id": "r0180",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "webview-exe",
+    "answer_sha256": "f6465188120eac5a2e188c1fc312c4d636dcb1df3c60b3dff303804e5ad23b76"
+  },
+  {
+    "review_id": "r0181",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-new-npm-cache-02",
+    "answer_sha256": "9e25733b50cea2231346ec06c47f2df24610118f0befd4f5d27b46f887af642f"
+  },
+  {
+    "review_id": "r0182",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-new-npm-cache-00",
+    "answer_sha256": "a58eeaa86e80384356dfe8c10e93ee5435a956a60a1deb81bd7801ae2cae8b43"
+  },
+  {
+    "review_id": "r0183",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-12",
+    "answer_sha256": "57904871e3f60416cf2f04b70ac98cce21660e193e09b38dfd013709ecad759a"
+  },
+  {
+    "review_id": "r0184",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-conflict-00",
+    "answer_sha256": "2622d95c813db47e2856b5c2ea02d16504824e64f08150351a1ce5308a723399"
+  },
+  {
+    "review_id": "r0185",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-07",
+    "answer_sha256": "7f2f18b03d3af4f4cecaa2ea5f621aeb9208f12ca5cd98e162d0a9c4432d4281"
+  },
+  {
+    "review_id": "r0186",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-08",
+    "answer_sha256": "2420c93f4493d5953200104d2308048059442411d605c3612b290b39ce93574d"
+  },
+  {
+    "review_id": "r0187",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "unknown-microsoft",
+    "answer_sha256": "1a9f01ebaf4e8456638f1ad373514bb32eed7eb99f61b0ae23d88ac05a07c952"
+  },
+  {
+    "review_id": "r0188",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-05",
+    "answer_sha256": "7f12d0bf0826b7da036a72e9a6d530cd6a2c08444e447deab66102933d8f4646"
+  },
+  {
+    "review_id": "r0189",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-14",
+    "answer_sha256": "7cdc681e1e02f5f79e50412b17bd356946697edf47acc2526740c5358fd69c8f"
+  },
+  {
+    "review_id": "r0190",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-04",
+    "answer_sha256": "7f12d0bf0826b7da036a72e9a6d530cd6a2c08444e447deab66102933d8f4646"
+  },
+  {
+    "review_id": "r0191",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-00",
+    "answer_sha256": "4b37c0159a888807445e9638d27555fc93ac80ca50cd2347b596d81397d481a5"
+  },
+  {
+    "review_id": "r0192",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "pip-body",
+    "answer_sha256": "9696780795def27901d3d86a89554a929511af03823497df0460de323d83d78f"
+  },
+  {
+    "review_id": "r0193",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-distractor-01",
+    "answer_sha256": "ce043031befd4c4598ce443f9fd4542a883480ea1212fb32beb328e912bb7d09"
+  },
+  {
+    "review_id": "r0194",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-distractor-00",
+    "answer_sha256": "90d3da8516fd0b7c35a19a479d96d686fc596e26413ce9f4105c35db51536871"
+  },
+  {
+    "review_id": "r0195",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-05",
+    "answer_sha256": "68b69b250fc445ab775e956ccc7f664025eacccf38f136fcd2a88f48b6ba3079"
+  },
+  {
+    "review_id": "r0196",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-distractor-02",
+    "answer_sha256": "7ef7a3a5247cd67c663db93e16ef07874e3978b48666486c63d8c51449910667"
+  },
+  {
+    "review_id": "r0197",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "unknown-microsoft",
+    "answer_sha256": "b15a91241ad85c78f6f6150b69827be2c8c557b9ef0b99f6b6e57429032a16c9"
+  },
+  {
+    "review_id": "r0198",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-05",
+    "answer_sha256": "c34cef8f84ac2237a8c09094fe6bf8918d71d9c6aba27549616f239938c66533"
+  },
+  {
+    "review_id": "r0199",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "pip-body",
+    "answer_sha256": "9696780795def27901d3d86a89554a929511af03823497df0460de323d83d78f"
+  },
+  {
+    "review_id": "r0200",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-03",
+    "answer_sha256": "2d02c425ed857713c0ad31f2789d68ed3b299ea9f7ca93ae39d433e469e59b14"
+  },
+  {
+    "review_id": "r0201",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "pip-wheel",
+    "answer_sha256": "b55ad39985bd003981543d6922c30f8e35ff53574bf0195e785a5fb8e843d04d"
+  },
+  {
+    "review_id": "r0202",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-distractor-00",
+    "answer_sha256": "ac79ddbc811ea1165ff5fcd89821c43ed479cd31226cfa1f5720c76ea62c3a55"
+  },
+  {
+    "review_id": "r0203",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-05",
+    "answer_sha256": "7f12d0bf0826b7da036a72e9a6d530cd6a2c08444e447deab66102933d8f4646"
+  },
+  {
+    "review_id": "r0204",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-10",
+    "answer_sha256": "4071abd31549e7f141993dd8b69a7a96de7b148fd6539143ccb987639573e1ba"
+  },
+  {
+    "review_id": "r0205",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-new-git-objects-00",
+    "answer_sha256": "ee2591abf08ab83245bcdf1b28a14aef691070127e3e0fdd5372030f6e978405"
+  },
+  {
+    "review_id": "r0206",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-01",
+    "answer_sha256": "dd324aab51b67cb66a47b7070d9025a3577ff347040e054f087a915058cd6230"
+  },
+  {
+    "review_id": "r0207",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-new-git-objects-03",
+    "answer_sha256": "37ea7c63561b7b0f2ba8bd98bb03e9ce93cd20f5d20c5a506d4187440c882ca2"
+  },
+  {
+    "review_id": "r0208",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-11",
+    "answer_sha256": "6eeaf1c0c25f1e443009c6af205b6a00fc52a86aa8d48f86057d92479bfb96e2"
+  },
+  {
+    "review_id": "r0209",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-new-npm-cache-01",
+    "answer_sha256": "a58eeaa86e80384356dfe8c10e93ee5435a956a60a1deb81bd7801ae2cae8b43"
+  },
+  {
+    "review_id": "r0210",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "node-file",
+    "answer_sha256": "25dab4a4e59ce798a90ac4c2fb4fa95e3d133fc153e31b0b3a950dae9b9a6e3b"
+  },
+  {
+    "review_id": "r0211",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "hf-blob",
+    "answer_sha256": "c04151846bd8032881c3f86159e01a9a3a7e470ffda32c1ff523fa5832b676ec"
+  },
+  {
+    "review_id": "r0212",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-10",
+    "answer_sha256": "b4c493b5ae762f6dd3f0cdab8de3025da18feab26d269e73ecdd454205c7f3aa"
+  },
+  {
+    "review_id": "r0213",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-new-git-objects-02",
+    "answer_sha256": "ee2591abf08ab83245bcdf1b28a14aef691070127e3e0fdd5372030f6e978405"
+  },
+  {
+    "review_id": "r0214",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-09",
+    "answer_sha256": "4a5e0fbaad11d0c6477725c9f574383c6da586b812aa55acae6184c8d617715b"
+  },
+  {
+    "review_id": "r0215",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-05",
+    "answer_sha256": "ca1a0761f25b434426cd478d3b9888edb426bbf81c3fcd9ae453a642db034045"
+  },
+  {
+    "review_id": "r0216",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-02",
+    "answer_sha256": "fff3fc29252b365374093ed6b87ff0c0f4b67fb59021bd061ea2ced627fb29f9"
+  },
+  {
+    "review_id": "r0217",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-distractor-02",
+    "answer_sha256": "4a4011899d07a1fac240a70c32cea11f19807f65e843c118d9294c8940b3450b"
+  },
+  {
+    "review_id": "r0218",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "hf-weights",
+    "answer_sha256": "2c86319e0300aa3ee57304cc5917246732702f241aaf2ba1fd47334d6f901861"
+  },
+  {
+    "review_id": "r0219",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-07",
+    "answer_sha256": "7f2f18b03d3af4f4cecaa2ea5f621aeb9208f12ca5cd98e162d0a9c4432d4281"
+  },
+  {
+    "review_id": "r0220",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-distractor-02",
+    "answer_sha256": "40d0cf142d90522dbadaa185de4bbf9fc4ab9d8edc720793ea4761f1f1249286"
+  },
+  {
+    "review_id": "r0221",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "user-temp-uppercase",
+    "answer_sha256": "625fdca5c491edadbac5f67dc00d3526ad469ffc6fba9bcdb0905af82775ea82"
+  },
+  {
+    "review_id": "r0222",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-distractor-01",
+    "answer_sha256": "d0f024c21c5a8029f1bf6f3efdc55c6f37040b969b46f6a6c1d5a4bf4907a166"
+  },
+  {
+    "review_id": "r0223",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-03",
+    "answer_sha256": "2d02c425ed857713c0ad31f2789d68ed3b299ea9f7ca93ae39d433e469e59b14"
+  },
+  {
+    "review_id": "r0224",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-new-npm-cache-01",
+    "answer_sha256": "7ca0c64dc8ad5624c7e6a2889a23395307c6535c4ab574f86167ed3e3f563505"
+  },
+  {
+    "review_id": "r0225",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "user-temp",
+    "answer_sha256": "e3c885ab097faffe4a95286cfa02a65f7ec12bb50f68c3c3f10982f457b6774a"
+  },
+  {
+    "review_id": "r0226",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-10",
+    "answer_sha256": "5a82187d73fcb21bc210cd322ec5de088670b0c72645acffeab094e263c99344"
+  },
+  {
+    "review_id": "r0227",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-12",
+    "answer_sha256": "602431a87cfd8ab11d15f4a5242f41e3b9ce1e76bfe6ec716fff1026ca687fc8"
+  },
+  {
+    "review_id": "r0228",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-04",
+    "answer_sha256": "a804a9498921dad6a829769f39fcd4e27aa092550121b908ab33da9c5b80f38c"
+  },
+  {
+    "review_id": "r0229",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-04",
+    "answer_sha256": "7f12d0bf0826b7da036a72e9a6d530cd6a2c08444e447deab66102933d8f4646"
+  },
+  {
+    "review_id": "r0230",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-12",
+    "answer_sha256": "bfcfef2711cb5a1c1a22421cd513445fc5955510d86280c2018170bb356dae7d"
+  },
+  {
+    "review_id": "r0231",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-new-git-objects-03",
+    "answer_sha256": "c91ca9b2238c5180c0da4ed6603d134e8f5508443586eb72ae670632495cd944"
+  },
+  {
+    "review_id": "r0232",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-08",
+    "answer_sha256": "2420c93f4493d5953200104d2308048059442411d605c3612b290b39ce93574d"
+  },
+  {
+    "review_id": "r0233",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-07",
+    "answer_sha256": "e82cbe2cd691f360f938b660e4249c40aca6f0616101ab14d39c61a0955efe50"
+  },
+  {
+    "review_id": "r0234",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-11",
+    "answer_sha256": "7bbb518f966e996561ac65b1ddfc4b10e2580b01889fcf5bb60bf535f51f7c6c"
+  },
+  {
+    "review_id": "r0235",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "user-temp",
+    "answer_sha256": "331c1660541fab225be35ca0a2d293dbc18087e71e3fec60db44c61780bebd73"
+  },
+  {
+    "review_id": "r0236",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-10",
+    "answer_sha256": "d63ba33db317492743fc9faaf6473ef5d4d9cdc72c399bb743bff7064401ce03"
+  },
+  {
+    "review_id": "r0237",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "onenote-missing-evidence",
+    "answer_sha256": "a50ede78a42a5ea11a505df4905466212bf9a4aed6c0bf702ee3416512dbf168"
+  },
+  {
+    "review_id": "r0238",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "unknown-microsoft",
+    "answer_sha256": "b15a91241ad85c78f6f6150b69827be2c8c557b9ef0b99f6b6e57429032a16c9"
+  },
+  {
+    "review_id": "r0239",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "unknown-onnx",
+    "answer_sha256": "98f39fa3ae9f3b1b277d32ca52d0a80164276b8b6fe3dd6daff81526ca1809e4"
+  },
+  {
+    "review_id": "r0240",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-conflict-03",
+    "answer_sha256": "4d105976ca11746a4ccfe9fc9b771162bf2a6a92d3397311c1b4c15102b49b7f"
+  },
+  {
+    "review_id": "r0241",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-09",
+    "answer_sha256": "a479e63121beab28606b59dc9c2a20b4d28b24ba8746504d82c9b9c64ccb4988"
+  },
+  {
+    "review_id": "r0242",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-conflict-01",
+    "answer_sha256": "1524c29a1d81c1191fa4123aff2207b97bf21e0dfec49f8128dfb1029c5d904c"
+  },
+  {
+    "review_id": "r0243",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-13",
+    "answer_sha256": "57904871e3f60416cf2f04b70ac98cce21660e193e09b38dfd013709ecad759a"
+  },
+  {
+    "review_id": "r0244",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-09",
+    "answer_sha256": "7f785c4b3a16bda764b61160c34c7c86f156e2eb61a7f92df728db6ae40ab0b8"
+  },
+  {
+    "review_id": "r0245",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "torch-base",
+    "answer_sha256": "6feb018315e1a7eab3160d235c4913521a46a8b2243aef7ef89556d78a076e39"
+  },
+  {
+    "review_id": "r0246",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-new-git-objects-01",
+    "answer_sha256": "2838599b446732162981698c55d376047e076dda6c60b7e5710d9f8e1b494fe5"
+  },
+  {
+    "review_id": "r0247",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-10",
+    "answer_sha256": "1bc6281074420e30156a685e077d6342f78b98a91bf4d95d819f6a349c9258e1"
+  },
+  {
+    "review_id": "r0248",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "pip-wheel",
+    "answer_sha256": "7dd10017312e39ce9a0584646e523632a2bc7d9062c54735de2ac2338e747cb0"
+  },
+  {
+    "review_id": "r0249",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "cache-prefix-nearmiss",
+    "answer_sha256": "86c8c7367e644fd4d57addb5b38cd1c980c835b1acdc7744fb30b77b349ba9b7"
+  },
+  {
+    "review_id": "r0250",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "windows-temp",
+    "answer_sha256": "5bbcb8fb9b6fe8eb47a18271d7f5c218b58b3870c4b16269015ad28a06685e43"
+  },
+  {
+    "review_id": "r0251",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-15",
+    "answer_sha256": "0cc670bf5806ff5fb0b863e7f49e5441297a966bccbf4a74c70c97ebd10e552f"
+  },
+  {
+    "review_id": "r0252",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "onenote-folder",
+    "answer_sha256": "8cdb8127220d60189d9b9a79bb57a4fff670f01830a769f304d5f604cf370176"
+  },
+  {
+    "review_id": "r0253",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-04",
+    "answer_sha256": "74206637a60518b0693adbb13ff2d428941b7deb586ca98f3796c1863332b288"
+  },
+  {
+    "review_id": "r0254",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-00",
+    "answer_sha256": "82b213d5afb0720d76429268c00b3d7373cb0e96ae2e2d0bb3870a0e28f6aabd"
+  },
+  {
+    "review_id": "r0255",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-distractor-00",
+    "answer_sha256": "41692cddc1290ac8448204ecdd0659f09f3bf3174f3e149463ca39a3b0e47bf6"
+  },
+  {
+    "review_id": "r0256",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-abstain-13",
+    "answer_sha256": "57904871e3f60416cf2f04b70ac98cce21660e193e09b38dfd013709ecad759a"
+  },
+  {
+    "review_id": "r0257",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-new-npm-cache-02",
+    "answer_sha256": "f06199162606aeabcd088bf25b27e82949a9f1043e644e2c3999f5ff6efacfc2"
+  },
+  {
+    "review_id": "r0258",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "user-temp-uppercase",
+    "answer_sha256": "d23f0e8986ab989f8a2d33f5e6812768485a231618b09c6da7fe49a278ff151f"
+  },
+  {
+    "review_id": "r0259",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "pip-body",
+    "answer_sha256": "b74a466989f22c8b9deaa124879c403d1fdaf306496d0e86e870f3f8146e5dc0"
+  },
+  {
+    "review_id": "r0260",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-abstain-13",
+    "answer_sha256": "40481cb0a676c877f44492efa1d6a1d94df2ab6ec0f8635083a2b2cfaec07a44"
+  },
+  {
+    "review_id": "r0261",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "windows-temp-file",
+    "answer_sha256": "73ba9d8e6bf0d44123a8dc134d662252039495fd3d43f9d4cca998f8bbe49c1b"
+  },
+  {
+    "review_id": "r0262",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-08",
+    "answer_sha256": "af4f772becb0617445121481ab3fbeed31e33ab6a8515e691faa86c8d3dda2ad"
+  },
+  {
+    "review_id": "r0263",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-09",
+    "answer_sha256": "3b34fd53a5260e3efcc3133a8e5599dfed05ac3332ae226a7f43185463872c57"
+  },
+  {
+    "review_id": "r0264",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-known-13",
+    "answer_sha256": "1573039c7a6ee665e177fec4851067e6adb800793f24622f480d9428d585f0ed"
+  },
+  {
+    "review_id": "r0265",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-00",
+    "answer_sha256": "ab8be6640c8681c1b6fb4fcd64db6e86526ddc2925f10a7c68e1e6eb9fcb86ed"
+  },
+  {
+    "review_id": "r0266",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "webview-dll",
+    "answer_sha256": "4a699576b0bbacd3c84da3d1d8d0b88174d6264c2e83ef7635a03eb2d46f5d65"
+  },
+  {
+    "review_id": "r0267",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-new-npm-cache-03",
+    "answer_sha256": "2512c6bcc5cffb939ae3c3d548ea707bd80a9b0ca8eac5d6550a84f29eee963a"
+  },
+  {
+    "review_id": "r0268",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-15",
+    "answer_sha256": "99c9eaaf58c29863bd5a4ca8891d1c60c0f754975f448a0d4339458797bcc345"
+  },
+  {
+    "review_id": "r0269",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-09",
+    "answer_sha256": "20e8837aa102fbe05fbca04364b08177f473cf2c02e9bbcfe13c54ee2ce47371"
+  },
+  {
+    "review_id": "r0270",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "node-file",
+    "answer_sha256": "37d259ad4af9d2d6a8e97c1f9a9d8ec09190909db0119df0669724aba894dcde"
+  },
+  {
+    "review_id": "r0271",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-conflict-03",
+    "answer_sha256": "6a561079eb8c2398737d1f83034ccc5e80c961b936d1d1af4f100fbbcb2af9dd"
+  },
+  {
+    "review_id": "r0272",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-08",
+    "answer_sha256": "cc41a703232666d8ca17554f9e5754a8ab6b33608c3e26933c3cffbffbc8d0d4"
+  },
+  {
+    "review_id": "r0273",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-abstain-03",
+    "answer_sha256": "9b5295c647c084678917a20bb5345dee06c12ffc3ab134ebc1f54d75d5d62904"
+  },
+  {
+    "review_id": "r0274",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-new-npm-cache-03",
+    "answer_sha256": "00f7d54ac5d260c132a7f8360b5937a3464be3caf56c30161d8c3b44a45f50d3"
+  },
+  {
+    "review_id": "r0275",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "unknown-download",
+    "answer_sha256": "6d8f3621fb07f5b9d3428ee52fedff368ae55669207e4ed6494032c5f5792f16"
+  },
+  {
+    "review_id": "r0276",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-new-git-objects-02",
+    "answer_sha256": "c91ca9b2238c5180c0da4ed6603d134e8f5508443586eb72ae670632495cd944"
+  },
+  {
+    "review_id": "r0277",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-02",
+    "answer_sha256": "2d02c425ed857713c0ad31f2789d68ed3b299ea9f7ca93ae39d433e469e59b14"
+  },
+  {
+    "review_id": "r0278",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-06",
+    "answer_sha256": "7f2f18b03d3af4f4cecaa2ea5f621aeb9208f12ca5cd98e162d0a9c4432d4281"
+  },
+  {
+    "review_id": "r0279",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "windows-temp-file",
+    "answer_sha256": "3813db5f7b4fc7787fdaac4e0997c07c1d23beea71e43f3478bd32706b46b5cd"
+  },
+  {
+    "review_id": "r0280",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "torch-base",
+    "answer_sha256": "020e8af1a92a4789d23fe50b9a245840854819f92833348d58bb975e89570414"
+  },
+  {
+    "review_id": "r0281",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-new-npm-cache-00",
+    "answer_sha256": "1d86f015da48960e210191af20e497dc58ea5ab73c9c024249714acbb0cec46a"
+  },
+  {
+    "review_id": "r0282",
+    "experiment_id": "exp_007",
+    "arm": "C",
+    "case_id": "main-known-10",
+    "answer_sha256": "a2d9aed7f705c326514c8a0edf983ac21f7f20a6aba97842d517a34da8e943e0"
+  },
+  {
+    "review_id": "r0283",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "hf-blob",
+    "answer_sha256": "c04151846bd8032881c3f86159e01a9a3a7e470ffda32c1ff523fa5832b676ec"
+  },
+  {
+    "review_id": "r0284",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-01",
+    "answer_sha256": "04514846c789a45a9d852b192e30681b6dda846c8ec829e2fad2faa143f6ec05"
+  },
+  {
+    "review_id": "r0285",
+    "experiment_id": "exp_004",
+    "arm": "previous_adapter",
+    "case_id": "main-known-04",
+    "answer_sha256": "5e43fd8c9ace5abee1d6620c36011b15d9532ee76db016931146c15c2f866079"
+  },
+  {
+    "review_id": "r0286",
+    "experiment_id": "exp_006",
+    "arm": "B",
+    "case_id": "main-known-13",
+    "answer_sha256": "602431a87cfd8ab11d15f4a5242f41e3b9ce1e76bfe6ec716fff1026ca687fc8"
+  },
+  {
+    "review_id": "r0287",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "webview-dll",
+    "answer_sha256": "2585463a0e38ec79616fa3b9f9919531d76b2f3651cbbf12d21f46b6d4413ca5"
+  },
+  {
+    "review_id": "r0288",
+    "experiment_id": "exp_005",
+    "arm": "A",
+    "case_id": "main-abstain-15",
+    "answer_sha256": "0cc670bf5806ff5fb0b863e7f49e5441297a966bccbf4a74c70c97ebd10e552f"
+  }
+]

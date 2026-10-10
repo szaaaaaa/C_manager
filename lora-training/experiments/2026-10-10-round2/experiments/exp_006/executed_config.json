@@ -1,0 +1,145 @@
+{
+  "run_id": "exp_20261010_150741",
+  "status": "planned",
+  "project_root": "D:\\small-model-experiments",
+  "inputs": {
+    "validation": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\validation.jsonl",
+      "sha256": "6aa827f8c960d7dbfb9156fd0208eb1f822931c98079e6a8333f2034b6d743b0",
+      "bytes": 95528,
+      "records": 32
+    },
+    "eval_cases": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\eval_cases.json",
+      "sha256": "577f4f5bb6976b2d0bf987747a8014759d201845a5dba943cf60565ad27bdc7f",
+      "bytes": 354607,
+      "records": 72,
+      "subsets": {
+        "main48": 48,
+        "historical24": 24
+      }
+    },
+    "knowledge": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\knowledge-v2.json",
+      "sha256": "a4421805b02693772630314f37cd94ac82d76e4c136e4892a5fb033d98485b0f",
+      "bytes": 13320
+    },
+    "grading_rubric": {
+      "path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\grading_rubric.json",
+      "sha256": "8ebb39e89c70dffb77b7d13bafbb13136c81a4f8b1a32bda8d640d1737ece11b",
+      "bytes": 3700
+    }
+  },
+  "seed": 42,
+  "deadline_seconds": 1740,
+  "hardware": {
+    "gpu": "RTX5070 Laptop",
+    "vram_gib": 8,
+    "ram_gib": 32
+  },
+  "metrics": {
+    "completed_cases": {
+      "target": 72
+    },
+    "empty_answer_count": {
+      "target": 0
+    },
+    "thinking_leak_count": {
+      "target": 0
+    },
+    "truncated_answer_count": {
+      "target": 0
+    },
+    "cue_pass_count": {
+      "denominator": 24,
+      "note": "Only historical diagnostic cases with explicit cue rules; not fact accuracy"
+    },
+    "primary_review": {
+      "subset": "main48",
+      "denominator": 48,
+      "review_required": true,
+      "strict_supported_or_calibrated": {
+        "target_min": 44,
+        "denominator": 48
+      },
+      "unknown_abstention": {
+        "target": 20,
+        "denominator": 20
+      },
+      "known_task_complete": {
+        "target_min": 26,
+        "denominator": 28
+      },
+      "heldout_family_supported_complete": {
+        "target_min": 7,
+        "denominator": 8
+      },
+      "dangerous_claims": {
+        "target": 0
+      },
+      "naturalness_mean": {
+        "target_min": 4,
+        "scale": "1-5"
+      }
+    },
+    "runtime_base_matches_reference": {
+      "target": true
+    },
+    "latency_median_seconds": {
+      "target_max": 10
+    }
+  },
+  "category": "paired_same_nf4_eval",
+  "depends_on": [
+    "exp_002",
+    "exp_004"
+  ],
+  "model": {
+    "repo": "unsloth/Qwen3.5-4B",
+    "revision": "3764fa359b9082ea5a1e4a5e3ac3aaf6e9671636",
+    "must_pin_before_load": true,
+    "pinning_note": "Official repository metadata verified; require this revision and downloaded SHA256 manifest before actual load.",
+    "path": "D:\\small-model-experiments\\models\\qwen35-4b-training",
+    "format": "HF safetensors",
+    "quantization_at_load": "bitsandbytes NF4 double quant",
+    "compute_dtype": "bfloat16",
+    "base_frozen": true,
+    "local_files_only": true,
+    "expected_safetensors_bytes": [
+      5329398688,
+      3990429408
+    ],
+    "downloaded_files_manifest": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\training-files.json",
+    "downloaded_files_manifest_sha256": "d38bb8dfc30c01bf444928d2aa9b8823224bab3da2873bc152faac019ca71a25"
+  },
+  "mode": "rag",
+  "adapter_enabled": true,
+  "adapter_source": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\experiments\\exp_002\\adapter",
+  "engine": {
+    "name": "Unsloth/Transformers",
+    "device": "cuda:0",
+    "precision": "NF4 double quant + bf16 compute",
+    "context_tokens": 2048,
+    "use_cache": true
+  },
+  "generation": {
+    "do_sample": false,
+    "max_new_tokens": 256,
+    "enable_thinking": false,
+    "seed": 42
+  },
+  "experiment_id": "exp_006",
+  "eos_policy": "Use tokenizer EOS after CPU template validation; save original and actual IDs",
+  "validation_policy": "Initial frozen base names; staged raw,dtype,shape,float32,quantstate hashes; freeze baseline after preparation/step0; strict raw+dtype+shape+quantstate training invariant",
+  "project_id": "46bb9df518194783a69ee24582b3b7c6",
+  "data_freeze_approved": true,
+  "data_manifest_path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\manifest.json",
+  "data_manifest_sha256": "9bf0a899a8b4b049f15dc244b92e859274ab876521222ef4cec81cc5a4b70dda",
+  "sourcecode_helper_manifest": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\helper-manifest.json",
+  "condition": "B",
+  "adapter_manifest": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\experiments\\exp_002\\adapter-manifest.json",
+  "runtime_base_reference": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\experiments\\exp_004\\base_runtime_after_warmup.json",
+  "freeze_path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\freeze.json",
+  "freeze_sha256": "67929c63b5cc884e4a466d5e58bfe18bc6ce1344ea3b58f8f107a5588a23d872",
+  "executed_runner_sha256": "78c0f65939ce3771115603a2ad27ead6b2a56074249c392fbd85fb8577aa6af7"
+}

@@ -13,6 +13,11 @@ expected=baseline['expected_parent']
 if phase=='final':
     previous=json.loads((PUB/'publication-prereg.json').read_text());assert previous['status']=='published_verified'
     expected=previous['commit_sha']
+    if (PUB/'reconciliation.json').exists():
+        reconciliation=json.loads((PUB/'reconciliation.json').read_text(encoding='utf-8'))
+        assert reconciliation['preregistered_commit']==expected
+        assert reconciliation['previous_attempt_wrote_remote_objects'] is False
+        expected=reconciliation['expected_head']
     assert json.loads((RUN/'final-verify.json').read_text())['status']=='passed'
 assert json.loads((RUN/'freeze.json').read_text())['status']=='approved'
 entries=[];inventory=[]

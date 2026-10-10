@@ -1,0 +1,134 @@
+{
+  "status": "passed",
+  "frozen_protocol_files": 16,
+  "training": {
+    "exp_001": {
+      "steps": 40,
+      "frozen_base_parameters": 723,
+      "frozen_quant_states": 346,
+      "changed_lora_tensors": 64,
+      "selected_step": 40,
+      "selected_nll": 2.5631814002990723,
+      "elapsed_seconds": 790.7053949000547
+    },
+    "exp_002": {
+      "steps": 40,
+      "frozen_base_parameters": 723,
+      "frozen_quant_states": 346,
+      "changed_lora_tensors": 64,
+      "selected_step": 40,
+      "selected_nll": 2.53952693939209,
+      "elapsed_seconds": 787.9390997999581
+    },
+    "exp_003": {
+      "steps": 40,
+      "frozen_base_parameters": 723,
+      "frozen_quant_states": 346,
+      "changed_lora_tensors": 64,
+      "selected_step": 40,
+      "selected_nll": 2.536159038543701,
+      "elapsed_seconds": 717.6860664999112
+    }
+  },
+  "evaluation": {
+    "exp_004": {
+      "cases": 72,
+      "subsets": {
+        "main48": {
+          "completed_cases": 48,
+          "cue_checked_cases": 0,
+          "cue_pass_count": 0
+        },
+        "historical24": {
+          "completed_cases": 24,
+          "cue_checked_cases": 24,
+          "cue_pass_count": 19
+        }
+      },
+      "median_seconds": 7.7479796500410885,
+      "elapsed_seconds": 611.8014579999726
+    },
+    "exp_005": {
+      "cases": 72,
+      "subsets": {
+        "main48": {
+          "completed_cases": 48,
+          "cue_checked_cases": 0,
+          "cue_pass_count": 0
+        },
+        "historical24": {
+          "completed_cases": 24,
+          "cue_checked_cases": 24,
+          "cue_pass_count": 18
+        }
+      },
+      "median_seconds": 7.173549600003753,
+      "elapsed_seconds": 582.8480122999754
+    },
+    "exp_006": {
+      "cases": 72,
+      "subsets": {
+        "main48": {
+          "completed_cases": 48,
+          "cue_checked_cases": 0,
+          "cue_pass_count": 0
+        },
+        "historical24": {
+          "completed_cases": 24,
+          "cue_checked_cases": 24,
+          "cue_pass_count": 17
+        }
+      },
+      "median_seconds": 6.781611050013453,
+      "elapsed_seconds": 570.8085732000181
+    },
+    "exp_007": {
+      "cases": 72,
+      "subsets": {
+        "main48": {
+          "completed_cases": 48,
+          "cue_checked_cases": 0,
+          "cue_pass_count": 0
+        },
+        "historical24": {
+          "completed_cases": 24,
+          "cue_checked_cases": 24,
+          "cue_pass_count": 17
+        }
+      },
+      "median_seconds": 6.8944458499900065,
+      "elapsed_seconds": 587.2825863000471
+    }
+  },
+  "limits": "Arithmetic, bytes, parameter and quant-state checks do not verify semantic truth, all hidden runtime buffers, physical file contents or deletion safety.",
+  "matched_training_base": {
+    "conditions": 3,
+    "parameters": 723,
+    "quant_states": 346,
+    "fields": [
+      "dtype",
+      "shape",
+      "raw_sha256",
+      "float32_value_sha256",
+      "quant_state_sha256",
+      "device",
+      "requires_grad"
+    ],
+    "lora_initial_hashes_persisted": false
+  },
+  "historical_repeat_exact_answers": 24,
+  "matched_evaluation_base": {
+    "parameters": 723,
+    "quant_states": 346,
+    "same_input_messages": 72,
+    "same_fields": [
+      "dtype",
+      "shape",
+      "raw_sha256",
+      "float32_value_sha256",
+      "quant_state_sha256",
+      "device",
+      "requires_grad"
+    ]
+  }
+}

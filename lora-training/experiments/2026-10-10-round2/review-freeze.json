@@ -1,0 +1,15 @@
+{
+  "status": "passed",
+  "reviewed_answers": 288,
+  "review_sha256": "f4370a3826468ac25b1cff2df5a097f0f9775cb121329833135670c9a8b3a56e",
+  "review_revisions_sha256": "8f02cd58664776dbf4e8d7b5f5fc00bac7fb5d07cf57d35a7545d1616b661405",
+  "package_sha256": "0bdd5962c6e3a757fda8cbaa3910de0488eb930ff2c8f69fbb9054095745baab",
+  "rubric_sha256": "faa7944c139b30606c4942f34dfeda5289044de31051e6c0052c68916f7d7b8a",
+  "frozen_at_utc": "2026-10-10T09:37:06.387534+00:00",
+  "condition_mapping_read": false,
+  "caveat_items": {
+    "main48": 400,
+    "historical24": 192
+  },
+  "limits": "Validates identifiers, original quotes, bytes and arithmetic, not the correctness of semantic judgments; same-assistant condition masking is not independent human blinding."
+}

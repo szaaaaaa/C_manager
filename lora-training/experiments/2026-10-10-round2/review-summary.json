@@ -1,0 +1,272 @@
+{
+  "status": "passed",
+  "review_sha256": "f4370a3826468ac25b1cff2df5a097f0f9775cb121329833135670c9a8b3a56e",
+  "review_freeze_sha256": "c7562c6ad263ae463e66d8d7d25f7735e80505aec912c2b1b3ff1fec16487f54",
+  "conditions": {
+    "exp_004": {
+      "main48": {
+        "reviewed_cases": 48,
+        "strict_count": 31,
+        "unknown_abstention_count": 14,
+        "unknown_denominator": 20,
+        "unsafe_claim_count": 2,
+        "naturalness_sum": 177,
+        "naturalness_denominator": 48,
+        "necessary_caveats_covered": 60,
+        "necessary_caveats_denominator": 100,
+        "all_caveats_covered_cases": 16,
+        "error_kinds": {
+          "reference_contradiction": 4,
+          "unsupported_extra": 13,
+          "calibrated_or_supported": 31
+        },
+        "risk_assessment": {
+          "misleading": 5,
+          "incomplete": 18,
+          "adequate": 25
+        },
+        "caveat_status": {
+          "covered": 60,
+          "omitted": 3,
+          "partial": 37
+        },
+        "naturalness_mean": 3.6875,
+        "known_task_complete_count": 23,
+        "known_task_complete_denominator": 28,
+        "heldout_strict_count": 7,
+        "heldout_task_complete_count": 7,
+        "heldout_supported_complete_count": 6,
+        "heldout_denominator": 8,
+        "all_quality_targets_met": false
+      },
+      "historical24": {
+        "reviewed_cases": 24,
+        "strict_count": 13,
+        "unknown_abstention_count": 6,
+        "unknown_denominator": 7,
+        "unsafe_claim_count": 0,
+        "naturalness_sum": 93,
+        "naturalness_denominator": 24,
+        "necessary_caveats_covered": 25,
+        "necessary_caveats_denominator": 48,
+        "all_caveats_covered_cases": 6,
+        "error_kinds": {
+          "unsupported_extra": 7,
+          "calibrated_or_supported": 13,
+          "reference_contradiction": 4
+        },
+        "risk_assessment": {
+          "incomplete": 9,
+          "adequate": 12,
+          "misleading": 3
+        },
+        "caveat_status": {
+          "partial": 20,
+          "covered": 25,
+          "omitted": 1,
+          "misleading": 2
+        },
+        "naturalness_mean": 3.875
+      }
+    },
+    "exp_005": {
+      "main48": {
+        "reviewed_cases": 48,
+        "strict_count": 28,
+        "unknown_abstention_count": 10,
+        "unknown_denominator": 20,
+        "unsafe_claim_count": 2,
+        "naturalness_sum": 175,
+        "naturalness_denominator": 48,
+        "necessary_caveats_covered": 57,
+        "necessary_caveats_denominator": 100,
+        "all_caveats_covered_cases": 15,
+        "error_kinds": {
+          "calibrated_or_supported": 28,
+          "unsupported_extra": 16,
+          "reference_contradiction": 4
+        },
+        "risk_assessment": {
+          "adequate": 26,
+          "incomplete": 18,
+          "misleading": 4
+        },
+        "caveat_status": {
+          "covered": 57,
+          "partial": 42,
+          "omitted": 1
+        },
+        "naturalness_mean": 3.6458333333333335,
+        "known_task_complete_count": 21,
+        "known_task_complete_denominator": 28,
+        "heldout_strict_count": 6,
+        "heldout_task_complete_count": 5,
+        "heldout_supported_complete_count": 3,
+        "heldout_denominator": 8,
+        "all_quality_targets_met": false
+      },
+      "historical24": {
+        "reviewed_cases": 24,
+        "strict_count": 14,
+        "unknown_abstention_count": 6,
+        "unknown_denominator": 7,
+        "unsafe_claim_count": 0,
+        "naturalness_sum": 89,
+        "naturalness_denominator": 24,
+        "necessary_caveats_covered": 22,
+        "necessary_caveats_denominator": 48,
+        "all_caveats_covered_cases": 2,
+        "error_kinds": {
+          "calibrated_or_supported": 14,
+          "unsupported_extra": 7,
+          "reference_contradiction": 3
+        },
+        "risk_assessment": {
+          "adequate": 12,
+          "incomplete": 10,
+          "misleading": 2
+        },
+        "caveat_status": {
+          "covered": 22,
+          "partial": 24,
+          "omitted": 1,
+          "misleading": 1
+        },
+        "naturalness_mean": 3.7083333333333335
+      }
+    },
+    "exp_006": {
+      "main48": {
+        "reviewed_cases": 48,
+        "strict_count": 25,
+        "unknown_abstention_count": 8,
+        "unknown_denominator": 20,
+        "unsafe_claim_count": 1,
+        "naturalness_sum": 177,
+        "naturalness_denominator": 48,
+        "necessary_caveats_covered": 46,
+        "necessary_caveats_denominator": 100,
+        "all_caveats_covered_cases": 10,
+        "error_kinds": {
+          "calibrated_or_supported": 25,
+          "unsupported_extra": 19,
+          "reference_contradiction": 4
+        },
+        "risk_assessment": {
+          "incomplete": 27,
+          "adequate": 20,
+          "misleading": 1
+        },
+        "caveat_status": {
+          "partial": 51,
+          "covered": 46,
+          "misleading": 1,
+          "omitted": 2
+        },
+        "naturalness_mean": 3.6875,
+        "known_task_complete_count": 24,
+        "known_task_complete_denominator": 28,
+        "heldout_strict_count": 6,
+        "heldout_task_complete_count": 7,
+        "heldout_supported_complete_count": 5,
+        "heldout_denominator": 8,
+        "all_quality_targets_met": false
+      },
+      "historical24": {
+        "reviewed_cases": 24,
+        "strict_count": 13,
+        "unknown_abstention_count": 6,
+        "unknown_denominator": 7,
+        "unsafe_claim_count": 0,
+        "naturalness_sum": 90,
+        "naturalness_denominator": 24,
+        "necessary_caveats_covered": 23,
+        "necessary_caveats_denominator": 48,
+        "all_caveats_covered_cases": 4,
+        "error_kinds": {
+          "calibrated_or_supported": 13,
+          "reference_contradiction": 4,
+          "unsupported_extra": 7
+        },
+        "risk_assessment": {
+          "adequate": 11,
+          "incomplete": 11,
+          "misleading": 2
+        },
+        "caveat_status": {
+          "covered": 23,
+          "partial": 22,
+          "misleading": 2,
+          "omitted": 1
+        },
+        "naturalness_mean": 3.75
+      }
+    },
+    "exp_007": {
+      "main48": {
+        "reviewed_cases": 48,
+        "strict_count": 29,
+        "unknown_abstention_count": 10,
+        "unknown_denominator": 20,
+        "unsafe_claim_count": 0,
+        "naturalness_sum": 178,
+        "naturalness_denominator": 48,
+        "necessary_caveats_covered": 49,
+        "necessary_caveats_denominator": 100,
+        "all_caveats_covered_cases": 11,
+        "error_kinds": {
+          "unsupported_extra": 16,
+          "reference_contradiction": 3,
+          "calibrated_or_supported": 29
+        },
+        "risk_assessment": {
+          "adequate": 21,
+          "misleading": 1,
+          "incomplete": 26
+        },
+        "caveat_status": {
+          "covered": 49,
+          "partial": 48,
+          "omitted": 3
+        },
+        "naturalness_mean": 3.7083333333333335,
+        "known_task_complete_count": 23,
+        "known_task_complete_denominator": 28,
+        "heldout_strict_count": 8,
+        "heldout_task_complete_count": 6,
+        "heldout_supported_complete_count": 6,
+        "heldout_denominator": 8,
+        "all_quality_targets_met": false
+      },
+      "historical24": {
+        "reviewed_cases": 24,
+        "strict_count": 15,
+        "unknown_abstention_count": 6,
+        "unknown_denominator": 7,
+        "unsafe_claim_count": 0,
+        "naturalness_sum": 92,
+        "naturalness_denominator": 24,
+        "necessary_caveats_covered": 20,
+        "necessary_caveats_denominator": 48,
+        "all_caveats_covered_cases": 3,
+        "error_kinds": {
+          "calibrated_or_supported": 15,
+          "unsupported_extra": 6,
+          "reference_contradiction": 3
+        },
+        "risk_assessment": {
+          "incomplete": 13,
+          "adequate": 10,
+          "misleading": 1
+        },
+        "caveat_status": {
+          "omitted": 1,
+          "partial": 26,
+          "covered": 20,
+          "misleading": 1
+        },
+        "naturalness_mean": 3.8333333333333335
+      }
+    }
+  }
+}

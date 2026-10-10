@@ -1,13 +1,37 @@
-# Runner review before GPU freeze
+# Runner review
+
+## Pre-freeze review (historical)
 
 Only new RUN files are editable. Base safetensors/model/tokenizer are reused read-only; old RUN, ROOT inputs and C_manager stay read-only. Helper copies contain the existing answer-only masking formatter and cue checker without old project-relative imports.
 
 Changes: explicit160-row per-arm files/shared32-row validation; file hashes plus disjoint train/validation IDs and normalized paths; only instruction/input/output tokenized. Max40 steps, checkpoint/evaluate20/40, selection by validation NLL. A/B input sequence equality and all4 conditions'72 frozen messages verified on CPU. Evaluation consumes exact instruction/input and asserts equality to supplied messages; it never re-retrieves or substitutes legacy facts. Legacy historical24 is diagnostic; main48 has no keyword cues, so cue_checked=false and cue_pass=null rather than fake passes.
 
-Retained: NF4 double quant, bf16 compute, rank8 q/k/v/o, LR5e-5, seed42, batch1/accum4, seq768, answer-only labels, serialized GPU lock,1740s watchdog, local-only weights, strict723-base+quantstate freeze checks after preparation, raw special-token/EOS248046 checks, no thinking, identical16-token warmup/greedy256 output. Requires_root data_freeze_approved gate currentlyfalse.
+Retained: NF4 double quant, bf16 compute, rank8 q/k/v/o, LR5e-5, seed42, batch1/accum4, seq768, answer-only labels, serialized GPU lock,1740s watchdog, local-only weights, strict723-base+quantstate freeze checks after preparation, raw special-token/EOS248046 checks, no thinking, identical16-token warmup/greedy256 output. At pre-freeze preparation, the root data_freeze_approved gate was false; approved execution subsequently changed only the allowed run-config approval/freeze/model-manifest fields.
 
 Every condition saves normalized runtime base states after warmup. Conditions005/006/007 must exactly match condition004 reference on dtype/shape/raw/F32 values/quantstate before test generation. Input counts come from configuration, not stale24/168 literals. Adapter hashes and selected checkpoint/NLL are saved. The existing num_items_in_batch accumulation warning is retained and observed log snippets are recorded; no new loss implementation is introduced.
 
-CPU checks passed: maximum A/B length413 and C439; all prompt/padding masks; explicit overlong rejection; type-only vs real numeric changes; name normalization collision rejection; template EOS; file counts/hashes/splits. GPU was not started and no experiment result.json exists.
+CPU checks passed: maximum A/B length413 and C439; all prompt/padding masks; explicit overlong rejection; type-only vs real numeric changes; name normalization collision rejection; template EOS; file counts/hashes/splits. At this pre-freeze review point, GPU was not yet started and no experiment result.json existed. Actual execution is documented below.
 
 Risks/boundaries: prior loading allocator peak exceeded7168MiB and could recur;40 steps/72 cases are each bounded but total wall time is substantial. A/B change output lengths/expression; B/C hard-negative replacement changes input distribution even with equal counts. Shared validation styles overlap training variants, and historical24 is already familiar: primary48 must remain separate. This is synthetic-data/single-seed evidence, not broad-generalization or independent-user satisfaction. No optimizer/loss change, install, download, merge/export or GUI deployment is included. Single-condition failures preserve result and stop dependent conditions instead of silently changing parameters.
+
+## Actual execution verification
+
+Root freeze SHA67929c63b5cc884e4a466d5e58bfe18bc6ce1344ea3b58f8f107a5588a23d872 was verified before approval. All7 processes and7 device observers exited0, with strict single-GPU serialization and1740s per-run watchdog. No run failed, timed out or was retried. The CPU-only verify_executions.py subsequently exited0 and saved run-verification.json; it hashes frozen files again and independently checks terminal artifacts. It performs no semantic scoring and does not read anonymous review packages or score mappings.
+
+| Experiment | Native session / exit | Observer / exit | Reported seconds | Fixed output |
+|---|---|---|---:|---|
+|001 A train|38343 /0|18956 /0|790.705|40 steps, selected40,32-validation NLL2.563181400|
+|002 B train|36416 /0|99843 /0|787.939|40 steps, selected40,32-validation NLL2.539526939|
+|003 C train|40296 /0|9312 /0|717.686|40 steps, selected40,32-validation NLL2.536159039|
+|004 old adapter|26465 /0|31081 /0|611.801|72/72, historical cue19/24|
+|005 A adapter|24416 /0|51416 /0|582.848|72/72, historical cue18/24|
+|006 B adapter|5043 /0|39614 /0|570.809|72/72, historical cue17/24|
+|007 C adapter|51466 /0|99868 /0|587.283|72/72, historical cue17/24|
+
+Training checks: all3 fresh runs used346 actual NF4/double-quant/BF16 Linear4bit modules,160 train rows and the same32 validation rows,40 finite nonzero gradient observations,723 frozen base parameters with0 training-period changes, and64 changed LoRA tensors. The optimizer contains only LoRA parameters. Each selected40 adapter exactly matches selected-checkpoint weight/config SHA and is saved in BF16 without merge/export. All3 have identical723 base states before the first optimizer on dtype/shape/raw/F32 numerical/quantstate/requires_grad; root independently verifies additional state fields. Each run's203 preparation dtype changes preserve float32-normalized values and are excluded from the strict training-period baseline. NLL is model-selection evidence, not factual correctness or naturalness.
+
+Adapter-config SHA differs across A/B/C because target_modules is serialized in a different list order. Independently sorting that list makes all3 JSON objects exactly equal; rank8, alpha8, q/k/v/o, dropout0 and the remaining adapter configuration are equal. The serialized files and hashes are preserved unchanged. LoRA initial tensors were cloned only in memory for within-run update checks. Initial LoRA hashes were not persisted, so independent across-arm equality of initial LoRA values is unverified. The recipe uses the same seed, but that does not replace missing initial-state evidence.
+
+Evaluation checks:288 total records, with the exact72 frozen message pairs in the same order per condition (historical24 plus primary48). All outputs have a nonempty answer, terminate in raw <|im_end|> with tokenizer EOS248046, and have no thought marker or token truncation. Config EOS248044 was explicitly superseded by248046 in every warmup/generation. All4 adapters run in FP32. All4 conditions' normalized723 base runtime names and dtype/shape/raw/F32 numerical/quantstate states after warmup are exactly equal;005/006/007 store passed runtime_base_comparison.json before any test generation. This comparison is saved in its own evidence file rather than duplicated in result.metrics. Source-name wrappers are excluded, with one-to-one normalized names asserted. Primary48 records have cue_checked=false and cue_pass=null; historical cue scores are diagnostics only. Blinded semantic quality review remains a separate parent-owned stage.
+
+Resource boundaries: loading allocated peaks8091.86–8130.70MiB and reserved peaks8166–8208MiB exceed the7168MiB design goal. Loaded live allocation is about3166–3171MiB, training peaks3840–3847MiB and inference peaks3318–3326MiB. Sparse device-total samples vary4828–7878MiB and are not interchangeable with allocator phase peaks. No ample-VRAM claim is supported. The environment's num_items_in_batch accumulation warning and FLA/FlashAttention fallback warnings are retained in real logs. Import/first-forward/first-optimizer times and cache inventory are recorded, but there is no isolated cold-compiler measurement; reused D-drive caches and uncontrolled residual CPU/disk work affect timing. Sum of per-run reported elapsed time is4649.071s, excluding gaps between runs. No new download/install, GGUF conversion, merged model, additional seed/version, or product GUI deployment was performed.

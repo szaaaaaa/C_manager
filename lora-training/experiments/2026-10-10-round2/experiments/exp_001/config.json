@@ -1,6 +1,6 @@
 {
   "run_id": "exp_20261010_150741",
-  "status": "awaiting_root_data_freeze",
+  "status": "planned",
   "project_root": "D:\\small-model-experiments",
   "inputs": {
     "validation": {
@@ -80,7 +80,9 @@
     "expected_safetensors_bytes": [
       5329398688,
       3990429408
-    ]
+    ],
+    "downloaded_files_manifest": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\training-files.json",
+    "downloaded_files_manifest_sha256": "d38bb8dfc30c01bf444928d2aa9b8823224bab3da2873bc152faac019ca71a25"
   },
   "split": {
     "method": "Explicit frozen train/validation JSONL files; no auto group split",
@@ -135,9 +137,11 @@
   "eos_policy": "Use tokenizer EOS after CPU template validation; save original and actual IDs",
   "validation_policy": "Initial frozen base names; staged raw,dtype,shape,float32,quantstate hashes; freeze baseline after preparation/step0; strict raw+dtype+shape+quantstate training invariant",
   "project_id": "46bb9df518194783a69ee24582b3b7c6",
-  "data_freeze_approved": false,
+  "data_freeze_approved": true,
   "data_manifest_path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\data\\manifest.json",
   "data_manifest_sha256": "9bf0a899a8b4b049f15dc244b92e859274ab876521222ef4cec81cc5a4b70dda",
   "sourcecode_helper_manifest": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\helper-manifest.json",
-  "arm": "A"
+  "arm": "A",
+  "freeze_path": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\freeze.json",
+  "freeze_sha256": "67929c63b5cc884e4a466d5e58bfe18bc6ce1344ea3b58f8f107a5588a23d872"
 }

@@ -1,0 +1,22 @@
+{
+  "files": [
+    {
+      "file": "adapter_model.safetensors",
+      "bytes": 3155176,
+      "sha256": "93e1da70f578c59defaf7fba7a6527f5f55cd82e336158bf00be748a05d13351"
+    },
+    {
+      "file": "adapter_config.json",
+      "bytes": 1234,
+      "sha256": "ed95c8c5a3a3e8a3c9ad7c5b08ec4c287e131d0c59721dc43b2f056ae68d46f8"
+    }
+  ],
+  "selected_checkpoint": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\experiments\\exp_001\\checkpoints\\checkpoint-40",
+  "selected_checkpoint_step": 40,
+  "selected_checkpoint_validation_nll": 2.5631814002990723,
+  "adapter_storage_dtypes": [
+    "BF16"
+  ],
+  "selection_basis": "Only shared validation NLL; evaluation cases never used for selection",
+  "base_revision": "3764fa359b9082ea5a1e4a5e3ac3aaf6e9671636"
+}

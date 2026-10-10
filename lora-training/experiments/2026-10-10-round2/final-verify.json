@@ -1,0 +1,50 @@
+{
+  "status": "passed",
+  "scope": "Artifact consistency and arithmetic, not independent semantic scoring or model quality acceptance",
+  "run_id": "exp_20261010_150741",
+  "checked_at_utc": "2026-10-10T10:18:22.872790+00:00",
+  "frozen_inputs_unchanged": true,
+  "matrix_cases": 72,
+  "reviewed_answers": 288,
+  "verified_examples": 15,
+  "paired_comparisons": 8,
+  "local_document_links_checked": 93,
+  "native_and_observer_exit_codes": [
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0,
+    0
+  ],
+  "all_quality_targets_met": {
+    "exp_004": false,
+    "exp_005": false,
+    "exp_006": false,
+    "exp_007": false
+  },
+  "document_sha256": {
+    "analysis.md": "657a66b3269922c08ca536634b1e4072ef5dafc9e3dee4e5f4b75db13dc5eab7",
+    "report.md": "044fbb4a102b0b2e4f0ca0269ebe66cb7a720091cbaba0f9ee5c29b809b05ee2",
+    "progress.md": "6953db2d349837c6ee4720c81b5135e8f0d3d3b04a258735f8554109325ce1ce",
+    "publication/README.md": "f9d199bcbda8c63786a90e98d26c734c037ed35c18cc106bbf3b9e4854e56717",
+    "publication/training-README.md": "29cb6411424c95328b56450d9276b1ff6e3241b2728b1fefe3ac2b6fdfc348b3"
+  },
+  "evidence_sha256": "d449ca59bb05e5faefd133ae766e2051c8a119a2670bd1363b8354cb2ef11d5a",
+  "review_sha256": "f4370a3826468ac25b1cff2df5a097f0f9775cb121329833135670c9a8b3a56e",
+  "review_revisions_sha256": "8f02cd58664776dbf4e8d7b5f5fc00bac7fb5d07cf57d35a7545d1616b661405",
+  "limitations": [
+    "same-assistant semantic ratings, no independent human review",
+    "single seed and synthetic test inputs",
+    "no GGUF export or application integration",
+    "Windows shared GPU memory/paging not measured"
+  ]
+}

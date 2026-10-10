@@ -1,0 +1,11 @@
+{
+  "experiment_session_id": 40296,
+  "experiment_actual_exit_code": 0,
+  "observer_session_id": 9312,
+  "observer_actual_exit_code": 0,
+  "exit_evidence": "Unified exec write_stdin final completion reports",
+  "device_total_sparse_peak_mib": 7852.0,
+  "device_sample_count": 138,
+  "scope": "nvidia-smi approximately 5s sparse device total",
+  "hard_deadline_seconds": 1740
+}

@@ -1,0 +1,12 @@
+{
+  "reference": "D:\\small-model-experiments\\outputs\\exp_20261010_150741\\experiments\\exp_004\\base_runtime_after_warmup.json",
+  "base_parameters": 723,
+  "mismatches": {
+    "dtype": [],
+    "shape": [],
+    "raw_sha256": [],
+    "float32_value_sha256": [],
+    "quant_state_sha256": []
+  },
+  "status": "passed"
+}

@@ -1,0 +1,29 @@
+{
+  "reference": "exp_001/base_after_step0_before_training.json",
+  "scope": "Frozen base immediately before the first optimizer; same original frozen names; exclude LoRA",
+  "fields_compared": [
+    "dtype",
+    "shape",
+    "raw_sha256",
+    "float32_value_sha256",
+    "quant_state_sha256",
+    "requires_grad"
+  ],
+  "base_parameter_count": 723,
+  "comparisons": {
+    "exp_002": {
+      "name_set_matches": true,
+      "changed_count": 0,
+      "changed_names": [],
+      "match": true
+    },
+    "exp_003": {
+      "name_set_matches": true,
+      "changed_count": 0,
+      "changed_names": [],
+      "match": true
+    }
+  },
+  "lora_initial_hashes_saved": false,
+  "lora_initial_comparability_note": "LoRA initial tensors were cloned in memory for per-run update checks, but initial hashes were not persisted. No independent across-arm initial-LoRA hash comparison is available."
+}
