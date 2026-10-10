@@ -9,6 +9,7 @@ import {
   checkAdmin,
   explainItem,
   fetchDriveInfo,
+  getScanResults,
   relaunchAsAdmin,
   scanDrive,
 } from './api';
@@ -37,7 +38,6 @@ const DEFAULT_SETTINGS: AppSettings = {
 const DEFAULT_CONFIG: ScanConfig = {
   root: 'C:\\',
   min_size_mb: 10,
-  max_depth: 3,
 };
 
 function loadSettings(): AppSettings {
@@ -62,6 +62,8 @@ export default function App() {
   const [driveInfo, setDriveInfo] = useState<DriveInfo | null>(null);
   const [scanConfig, setScanConfig] = useState<ScanConfig>(DEFAULT_CONFIG);
   const [scanning, setScanning] = useState(false);
+  const scanRunningRef = useRef(false);
+  const [scanRun, setScanRun] = useState(0);
   const [progress, setProgress] = useState<ScanProgress | null>(null);
   const [results, setResults] = useState<ScanItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<ScanItem | null>(null);
@@ -103,16 +105,15 @@ export default function App() {
     const batch = fileBatchRef.current;
     if (batch.length === 0) return;
     fileBatchRef.current = [];
-    setResults(prev => {
-      const next = [...prev, ...batch];
-      next.sort((a, b) => b.size - a.size);
-      return next;
-    });
+    setResults(prev => [...prev, ...batch]);
   }, []);
 
   const handleStartScan = useCallback(async (config: ScanConfig) => {
-    if (scanning) return;
+    if (scanRunningRef.current) return;
+    scanRunningRef.current = true;
+    setScanRun(run => run + 1);
     setScanning(true);
+    setBackendError(null);
     explainRequestRef.current += 1;
     setExplainLoading(false);
     setResults([]);
@@ -120,23 +121,22 @@ export default function App() {
     setSelectedItem(null);
     setExplanation(null);
     setExplainError(null);
-    setProgress({ running: true, progress: 0, current_path: '正在扫描 MFT...', result_count: 0, error: null });
+    setProgress({ status: 'running', engine: 'directory', entries_scanned: 0, files_matched: 0,
+      issues: [], excluded_links: [], elapsed_ms: 0, error: null });
     setView('results');
 
     try {
-      await scanDrive(config.root, config.min_size_mb, config.max_depth, (msg) => {
+      const completion = await scanDrive(config.root, config.min_size_mb, (msg) => {
         if (msg.type === 'progress') {
           setProgress(p => p ? {
             ...p,
-            progress: msg.entries_scanned,
-            current_path: `已扫描 ${msg.entries_scanned.toLocaleString()} 条记录`,
-            result_count: msg.files_matched,
+            entries_scanned: msg.entries_scanned,
+            files_matched: msg.files_matched,
           } : p);
-        } else if (msg.type === 'file') {
-          fileBatchRef.current.push(msg as unknown as ScanItem);
-          // Flush batch every 200ms to avoid per-file re-render
+        } else if (msg.type === 'files') {
+          fileBatchRef.current.push(...msg.files);
           if (!flushTimerRef.current) {
-            flushTimerRef.current = setTimeout(flushFileBatch, 200);
+            flushTimerRef.current = setTimeout(flushFileBatch, 500);
           }
         }
       });
@@ -145,27 +145,43 @@ export default function App() {
         clearTimeout(flushTimerRef.current);
         flushTimerRef.current = null;
       }
-      flushFileBatch();
-      setProgress(prev => prev ? { ...prev, running: false } : null);
+      if (!completion.stream_verified) {
+        // Reload the complete retained result if a batch is missing, repeated or undelivered.
+        const restored: ScanItem[] = [];
+        while (restored.length < completion.summary.files_matched) {
+          const page = await getScanResults(completion.scan_id, restored.length);
+          if (page.length === 0) throw new Error('扫描结果核对失败：后端结果不完整');
+          restored.push(...page);
+        }
+        if (restored.length !== completion.summary.files_matched
+            || new Set(restored.map(item => item.path)).size !== restored.length) {
+          throw new Error('扫描结果核对失败：数量不一致或路径重复');
+        }
+        fileBatchRef.current = [];
+        setResults(restored);
+      } else {
+        flushFileBatch();
+      }
+      setProgress({ ...completion.summary, error: completion.transport_error });
     } catch (e: unknown) {
       const msg = e instanceof Error ? e.message : String(e);
-      if (!msg.includes('cancelled')) {
-        setBackendError(`扫描失败: ${msg}`);
-      }
+      setBackendError(`扫描失败: ${msg}`);
       // Flush remaining on error too
       if (flushTimerRef.current) {
         clearTimeout(flushTimerRef.current);
         flushTimerRef.current = null;
       }
       flushFileBatch();
-      setProgress(null);
+      setProgress(prev => prev ? { ...prev, status: 'failed', error: msg } : null);
     } finally {
+      setResults(prev => [...prev].sort((a, b) => b.size - a.size || a.path.localeCompare(b.path)));
+      scanRunningRef.current = false;
       setScanning(false);
     }
-  }, [scanning, flushFileBatch]);
+  }, [flushFileBatch]);
 
   const handleStopScan = useCallback(() => {
-    cancelScan().catch(() => {});
+    cancelScan().catch(e => setBackendError(`无法停止扫描: ${String(e)}`));
   }, []);
 
   const handleItemClick = useCallback(async (item: ScanItem) => {
@@ -223,7 +239,7 @@ export default function App() {
       <Sidebar
         currentView={view}
         onViewChange={setView}
-        hasResults={results.length > 0 || scanning}
+        hasResults={progress !== null || scanning}
         settings={settings}
         onSettingsChange={setSettings}
         showSettings={showSettings}
@@ -291,6 +307,7 @@ export default function App() {
                 style={{ height: '100%', overflow: 'hidden', display: 'flex', flexDirection: 'column', position: 'relative' }}
               >
                 <ScanResults
+                  key={scanRun}
                   items={results}
                   progress={progress}
                   onItemClick={handleItemClick}
@@ -410,9 +427,9 @@ function AdminDialog({ onClose, onElevate }: { onClose: () => void; onElevate: (
       {/* Body */}
       <div style={{ padding: '20px 24px 24px', textAlign: 'center' }}>
         <div style={{ fontSize: 13, color: 'var(--text-secondary)', lineHeight: 1.8, marginBottom: 22 }}>
-          你的个人文件无需提权即可完整扫描。
+          扫描会遍历所选目录的全部层级，并报告无法读取的位置。
           <br />
-          <strong style={{ color: 'var(--accent-cyan)' }}>管理员权限</strong>可额外访问系统保护目录（Windows Installer 缓存、WinSxS 等），这些通常是不可删除的系统文件。
+          <strong style={{ color: 'var(--accent-cyan)' }}>管理员权限</strong>可能扩大可访问范围；实际覆盖情况以扫描报告为准。
         </div>
         <div style={{ display: 'flex', gap: 10 }}>
           <button

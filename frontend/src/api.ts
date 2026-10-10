@@ -1,5 +1,5 @@
 import { invoke, Channel } from '@tauri-apps/api/core';
-import type { DriveInfo, ExplainResponse, LocalModelStatus, ModelInfo } from './types';
+import type { DriveInfo, ExplainResponse, LocalModelStatus, ModelInfo, ScanItem, ScanSummary } from './types';
 
 export async function checkAdmin(): Promise<boolean> {
   return invoke<boolean>('check_admin');
@@ -15,22 +15,49 @@ export async function fetchDriveInfo(drive = 'C:\\'): Promise<DriveInfo> {
 
 export type ScanMessage =
   | { type: 'progress'; entries_scanned: number; files_matched: number }
-  | { type: 'file'; path: string; name: string; size: number; size_human: string; is_dir: boolean; children_count: number; safety: string };
+  | { type: 'files'; sequence: number; files: ScanItem[] };
+
+interface ScanCompletion {
+  scan_id: number;
+  summary: ScanSummary;
+  batches_sent: number;
+  transport_error: string | null;
+}
 
 export async function scanDrive(
   root: string,
   minSizeMb: number,
-  maxDepth: number,
   onMessage: (msg: ScanMessage) => void,
-): Promise<void> {
+): Promise<ScanCompletion & { stream_verified: boolean }> {
   const channel = new Channel<ScanMessage>();
-  channel.onmessage = onMessage;
-  return invoke<void>('scan_drive', {
-    root,
-    minSizeMb,
-    maxDepth,
-    onEvent: channel,
-  });
+  let batches = 0;
+  let files = 0;
+  let valid = true;
+  let accepting = true;
+  channel.onmessage = (message) => {
+    if (!accepting) return;
+    if (message.type === 'files') {
+      if (message.sequence !== batches) {
+        valid = false;
+        return;
+      }
+      batches += 1;
+      files += message.files.length;
+    }
+    onMessage(message);
+  };
+  try {
+    const completion = await invoke<ScanCompletion>('scan_drive', { root, minSizeMb, onEvent: channel });
+    return { ...completion, stream_verified: valid && !completion.transport_error
+      && batches === completion.batches_sent && files === completion.summary.files_matched };
+  } finally {
+    // Any late channel messages are superseded by the retained backend result pages.
+    accepting = false;
+  }
+}
+
+export async function getScanResults(scanId: number, offset: number): Promise<ScanItem[]> {
+  return invoke<ScanItem[]>('get_scan_results', { scanId, offset, limit: 1000 });
 }
 
 export async function explainItem(

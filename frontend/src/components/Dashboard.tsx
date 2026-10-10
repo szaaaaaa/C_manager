@@ -229,12 +229,12 @@ export function Dashboard({ driveInfo, onStartScan, scanning, scanConfig, onConf
               fontSize: 13, fontWeight: 600,
               color: isAdmin ? 'rgba(0,220,120,0.9)' : 'rgba(255,180,60,0.9)',
             }}>
-              {isAdmin ? '完整扫描模式' : '标准扫描模式'}
+              {isAdmin ? '管理员权限' : '普通用户权限'}
             </div>
             <div style={{ fontSize: 11, color: 'var(--text-muted)', marginTop: 2 }}>
               {isAdmin
-                ? '管理员权限已获取，可访问所有系统保护目录，扫描结果完整'
-                : '个人文件已完整覆盖。提权后可额外扫描系统保护目录（通常为不可删除的系统文件）'
+                ? '扫描全部层级；无法读取的位置会在扫描报告中列出'
+                : '扫描全部层级；提权可能扩大可访问范围，实际覆盖情况以报告为准'
               }
             </div>
           </div>
@@ -293,28 +293,21 @@ export function Dashboard({ driveInfo, onStartScan, scanning, scanConfig, onConf
           </div>
           <div>
             <label style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              最小大小 (MB)
+              最小大小 (MiB，0 表示全部文件)
             </label>
             <input
               type="number"
               value={scanConfig.min_size_mb}
               onChange={(e) => onConfigChange({ ...scanConfig, min_size_mb: Number(e.target.value) })}
               style={inputStyle}
-              min={1}
+              min={0}
             />
           </div>
           <div>
             <label style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              扫描深度
+              扫描范围
             </label>
-            <input
-              type="number"
-              value={scanConfig.max_depth}
-              onChange={(e) => onConfigChange({ ...scanConfig, max_depth: Number(e.target.value) })}
-              style={inputStyle}
-              min={1}
-              max={6}
-            />
+            <div style={{ ...inputStyle, lineHeight: 1.5 }}>全部层级 · 不跟随目录链接</div>
           </div>
         </div>
 

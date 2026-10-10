@@ -24,18 +24,30 @@ export interface ExplainResponse {
   backend_used: string;
 }
 
-export interface ScanProgress {
-  running: boolean;
-  progress: number;
-  current_path: string;
-  result_count: number;
+export interface ScanIssue {
+  path: string;
+  stage: string;
+  error: string;
+}
+
+export interface ScanSummary {
+  status: 'completed' | 'partial' | 'cancelled' | 'failed';
+  engine: string;
+  entries_scanned: number;
+  files_matched: number;
+  issues: ScanIssue[];
+  excluded_links: string[];
+  elapsed_ms: number;
+}
+
+export interface ScanProgress extends Omit<ScanSummary, 'status'> {
+  status: ScanSummary['status'] | 'running';
   error: string | null;
 }
 
 export interface ScanConfig {
   root: string;
   min_size_mb: number;
-  max_depth: number;
 }
 
 export type ModelSource = 'local' | 'api';

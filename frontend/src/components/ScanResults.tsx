@@ -68,6 +68,12 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
   const [deleting, setDeleting] = useState(false);
   const [deleteResult, setDeleteResult] = useState<{ succeeded: number; failed: number } | null>(null);
+  const [page, setPage] = useState(0);
+  const running = progress?.status === 'running';
+  const statusText = progress ? {
+    running: '正在扫描全部层级…', completed: '扫描完成', partial: '扫描部分完成 · 存在未覆盖范围',
+    cancelled: '扫描已取消 · 结果不完整', failed: '扫描失败 · 结果不完整',
+  }[progress.status] : '尚未开始扫描';
 
   // Category counts
   const categoryCounts = useMemo(() => {
@@ -84,6 +90,9 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
     () => activeCategory === '全部' ? items : items.filter(i => getCategory(i) === activeCategory),
     [items, activeCategory],
   );
+  const pageCount = Math.max(1, Math.ceil(filteredItems.length / 100));
+  const currentPage = Math.min(page, pageCount - 1);
+  const visibleItems = filteredItems.slice(currentPage * 100, (currentPage + 1) * 100);
 
   // Selection helpers
   const allFilteredChecked = filteredItems.length > 0 && filteredItems.every(i => checkedPaths.has(i.path));
@@ -156,22 +165,7 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
     }
   };
 
-  const maxSize = items[0]?.size ?? 1;
-
-  // ── Empty state ──
-  if (!progress?.running && items.length === 0) {
-    return (
-      <div style={{
-        flex: 1, display: 'flex', flexDirection: 'column',
-        alignItems: 'center', justifyContent: 'center', gap: 12,
-        color: 'var(--text-muted)', padding: 48,
-      }}>
-        <AlertTriangle size={40} style={{ opacity: 0.3 }} />
-        <span style={{ fontSize: 15 }}>扫描完成，没有找到大文件</span>
-        <span style={{ fontSize: 13 }}>尝试降低最小文件大小阈值</span>
-      </div>
-    );
-  }
+  const maxSize = useMemo(() => items.reduce((size, item) => Math.max(size, item.size), 1), [items]);
 
   return (
     <div style={{ display: 'flex', flexDirection: 'column', height: '100%' }}>
@@ -186,18 +180,18 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
                   <span style={{ color: 'var(--accent-cyan)' }}>{formatTotalSize(checkedTotalSize)}</span>
                 </h2>
                 <p style={{ fontSize: 12, color: 'var(--text-muted)', marginTop: 4 }}>
-                  请继续勾选需要清理的文件
+                  逻辑大小合计（含硬链接别名），不代表可释放空间
                 </p>
               </>
             ) : (
               <>
                 <h2 style={{ fontSize: 16, fontWeight: 600, color: 'var(--text-primary)', margin: 0 }}>
-                  {progress?.running ? '正在扫描...' : '扫描结果'}
+                  {statusText}
                 </h2>
                 <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 3 }}>
-                  {progress?.running
-                    ? `已扫描 ${(progress.progress || 0).toLocaleString()} 条记录 · 找到 ${items.length} 个大文件`
-                    : `找到 ${items.length} 个大文件 · 勾选后可批量操作`
+                  {running
+                    ? `已检查 ${(progress.entries_scanned || 0).toLocaleString()} 条记录 · 找到 ${progress.files_matched} 个匹配文件`
+                    : `显示 ${items.length} 个匹配文件 · 逻辑大小 · ${((progress?.elapsed_ms ?? 0) / 1000).toFixed(1)} 秒`
                   }
                 </p>
               </>
@@ -205,7 +199,7 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
-            {progress?.running && (
+            {running && (
               <>
                 <motion.div
                   style={{ width: 7, height: 7, borderRadius: '50%', background: 'var(--accent-cyan)' }}
@@ -233,7 +227,7 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
               </>
             )}
 
-            {checkedPaths.size > 0 && !progress?.running && (
+            {checkedPaths.size > 0 && !running && (
               <>
                 <motion.button
                   onClick={handleCopyPaths}
@@ -288,6 +282,28 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
           </div>
         </div>
 
+        {progress && !running && progress.status !== 'completed' && (
+          <p role="status" style={{ color: 'var(--yellow)', fontSize: 13, marginTop: 12 }}>
+            {statusText}。已发现的文件保留在下方，未覆盖位置可能仍有大文件。
+          </p>
+        )}
+        {progress?.error && <p role="alert" style={{ color: '#ff8888', fontSize: 12 }}>{progress.error}</p>}
+        {!!progress?.issues.length && (
+          <details style={{ fontSize: 12, color: 'var(--yellow)', marginTop: 8 }}>
+            <summary>查看 {progress.issues.length} 条未解决问题</summary>
+            <textarea aria-label="未覆盖范围详情" readOnly rows={6}
+              value={progress.issues.map(issue => `${issue.path}\n[${issue.stage}] ${issue.error}`).join('\n\n')}
+              style={{ width: '100%', marginTop: 8, background: 'var(--glass)', color: 'var(--text-secondary)' }} />
+          </details>
+        )}
+        {!!progress?.excluded_links.length && (
+          <details style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 8 }}>
+            <summary>未跟随 {progress.excluded_links.length} 个链接；目标需在其实际位置扫描</summary>
+            <textarea aria-label="未跟随的链接" readOnly rows={4} value={progress.excluded_links.join('\n')}
+              style={{ width: '100%', marginTop: 8, background: 'var(--glass)', color: 'var(--text-secondary)' }} />
+          </details>
+        )}
+
         {/* ── Category tabs ── */}
         <div style={{
           display: 'flex', gap: 4, marginTop: 16, paddingBottom: 12,
@@ -300,7 +316,7 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
             return (
               <button
                 key={cat}
-                onClick={() => setActiveCategory(cat)}
+                onClick={() => { setActiveCategory(cat); setPage(0); }}
                 style={{
                   padding: '6px 14px', borderRadius: 6,
                   background: isActive ? 'rgba(0,212,255,0.1)' : 'transparent',
@@ -344,6 +360,7 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
       }}>
         <span
           onClick={toggleAll}
+          title="选择当前分类的全部页"
           style={{ cursor: 'pointer', display: 'flex', justifyContent: 'center' }}
         >
           <Checkbox checked={allFilteredChecked} indeterminate={someFilteredChecked && !allFilteredChecked} />
@@ -351,14 +368,20 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
         <span />
         <span>名称 / 路径</span>
         <span style={{ textAlign: 'center' }}>磁盘</span>
-        <span style={{ textAlign: 'right' }}>大小</span>
+        <span style={{ textAlign: 'right' }}>逻辑大小</span>
         <span style={{ textAlign: 'center' }}>安全</span>
         <span />
       </div>
 
       {/* ── List ── */}
       <div style={{ flex: 1, overflowY: 'auto', padding: '4px 0' }}>
-        {filteredItems.map((item, i) => (
+        {filteredItems.length === 0 && (
+          <div role="status" style={{ padding: 48, textAlign: 'center', color: 'var(--text-muted)' }}>
+            <AlertTriangle size={32} style={{ opacity: 0.4 }} />
+            <p>{progress?.status === 'completed' ? '所选范围内没有匹配此筛选条件的文件' : '当前没有可显示的匹配文件'}</p>
+          </div>
+        )}
+        {visibleItems.map((item, i) => (
           <ResultRow
             key={item.path}
             item={item}
@@ -373,6 +396,14 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
           />
         ))}
       </div>
+
+      <nav aria-label="扫描结果分页" style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', gap: 16, padding: 12 }}>
+        <button disabled={currentPage === 0} onClick={() => setPage(currentPage - 1)}>上一页</button>
+        <span style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
+          第 {currentPage + 1} / {pageCount} 页 · 共 {filteredItems.length} 条 · 每页 100 条
+        </span>
+        <button disabled={currentPage + 1 >= pageCount} onClick={() => setPage(currentPage + 1)}>下一页</button>
+      </nav>
 
       {/* ── Delete confirmation dialog ── */}
       {showDeleteConfirm && (
