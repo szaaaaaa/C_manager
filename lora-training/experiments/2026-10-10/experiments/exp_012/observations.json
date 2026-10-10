@@ -1,0 +1,16 @@
+{
+  "model_session": 12964,
+  "model_exit_code": 0,
+  "observer_session": 33203,
+  "observer_exit_code": 0,
+  "device_total_sampled_peak_mib": 4720.0,
+  "device_total_sample_count": 10,
+  "device_sample_scope": "Sparse device total, observer began after model load",
+  "overall_cuda_reserved_peak_mib": 8150.0,
+  "reserved_result_field_note": "peak_reserved_gpu_mib in original exp012 runner is post-reset counter; overall includes loading_peak_reserved_gpu_mib",
+  "preparation_changed_base_count": 203,
+  "preparation_float32_numeric_changes": 0,
+  "training_base_changes": 0,
+  "changed_lora_parameters": 64,
+  "old_exp011_exact_failing_component_known": false
+}

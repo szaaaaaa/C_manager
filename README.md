@@ -14,7 +14,7 @@ Windows 桌面文件分析工具：扫描大文件，解释常见软件文件的
 
 ## 实验和验证
 
-2026-10-10 已完成 Qwen3.5-4B Q4_K_M、Qwen3.5-9B Q4_K_M、Gemma 4 E4B 官方 QAT Q4_0 各自的无资料/RAG 对照，每组24条，共144条。三个RAG条件的单助手严格资料忠实性为14/24、10/24、17/24，未知拒猜为5/7、2/7、3/7；没有一组达到完整可靠性目标。9B RAG关键词24/24仍有未支持细节，不能叫准确率；Gemma此样本资料矛盾和危险主张为0，也不保证部署安全。见[量化阶段报告](lora-training/experiments/2026-10-10/report-quantized.md)、[逐条分析](lora-training/experiments/2026-10-10/analysis-quantized.md)和[研究进度](lora-training/experiments/2026-10-10/progress.md)。4B NF4微调尚未运行；此处没有微调收益结论，也没有替换应用模型。
+2026-10-10 已完成三种量化模型的六组无资料/RAG对照，以及Qwen3.5-4B按NF4加载的检索感知LoRA训练与同基座RAG配对评测。三种GGUF的RAG严格资料忠实性为14/24、10/24、17/24；NF4配对在微调后从13/24提高到17/24，未知拒猜仍为6/7，自然度3.67→3.83，关键词23/24→19/24。38步训练验证NLL2.2960→1.9347，但这不是事实准确率；全部条件仍未达完整可靠性目标。评审为单助手可见配置复核，150条训练数据只有8种目标答案，也没有独立新知识泛化证明。见[完整报告](lora-training/experiments/2026-10-10/report.md)、[最终分析](lora-training/experiments/2026-10-10/analysis.md)与[研究计划和进度](lora-training/experiments/2026-10-10/progress.md)。本轮适配器尚未导出GGUF或用于应用集成，运行加载峰超过预设7GB显存目标。
 
 
 2026-10-09 四组 0.8B 实验的 [结果与结论](lora-training/experiments/2026-10-09/RESULTS.md) 已公开保存：基础模型、纯 SFT、基础模型＋RAG、检索感知 SFT＋RAG 的固定关键词检查为 8/24、5/24、13/24、21/24。它们不是事实准确率；新模型仍有 pip 删除影响混淆和模板重复。

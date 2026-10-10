@@ -4,7 +4,13 @@
 
 新的独立实验目录为 `D:\small-model-experiments`，权重、缓存与产物均在 D 盘；原 `D:\C_manager` 作为只读代码和数据来源。本轮 [计划](experiments/2026-10-10/plan.md) 分为三部分：三个量化模型的无资料/RAG 对照、4B NF4 QLoRA 的可行性与检索感知 SFT、同 NF4 基座的微调前后评估。GGUF 部署量化与训练 NF4 是不同格式，跨运行时差异不能直接叫微调收益。
 
-三种量化模型的六组推理均完成：[量化阶段报告](experiments/2026-10-10/report-quantized.md)、[逐条分析](experiments/2026-10-10/analysis-quantized.md)、[执行进度](experiments/2026-10-10/progress.md)。三个RAG条件严格资料忠实性为4B 14/24、9B 10/24、Gemma 17/24；未知拒猜为5/7、2/7、3/7，没有一组达成完整可靠性目标。9B关键词24/24不代表事实正确，Gemma的0资料矛盾/0危险主张仅对应当前定义和24个合成案例。评审为单助手可见配置复核，原始回答、SHA与理由全部保存；[4B阶段报告](experiments/2026-10-10/report-4b.md)保留。NF4训练和适配器效果仍待实测。
+三种量化模型的六组推理和4B检索感知NF4 LoRA训练、同基座RAG配对评估均已完成。见[完整报告](experiments/2026-10-10/report.md)、[最终逐条分析](experiments/2026-10-10/analysis.md)、[研究计划与进度](experiments/2026-10-10/progress.md)；[量化阶段报告](experiments/2026-10-10/report-quantized.md)和[4B阶段报告](experiments/2026-10-10/report-4b.md)保留为历史阶段。
+
+三个GGUF的RAG严格资料忠实性为4B14/24、9B10/24、Gemma17/24，未知拒猜5/7、2/7、3/7。NF4同基座配对在加入checkpoint38适配器后，严格资料忠实性13/24→17/24、未知拒猜6/7→6/7、危险主张0→0、自然度3.67→3.83；关键词反而23/24→19/24。没有条件达成完整目标，0危险主张不保证真实文件删除安全，关键词和验证NLL不是事实准确率。
+
+正式训练150条、目标group留出18条，38步NLL2.2960→1.9347，训练期间723基座参数及量化状态不变，64个LoRA张量更新。初始007/011失败及008—010阻塞记录保留，012追加诊断区分准备期dtype转换和训练更新，013—015是条件执行的独立追加实验。150条训练仅110条唯一路径、8种目标答案；测试精确路径无重叠，但所有8类事实都有训练输入曝光，pip事实也在其他目标组干扰样本中出现，不能称知识完全留出。[数据审计](experiments/2026-10-10/data-audit.json)、[失败诊断](experiments/2026-10-10/failure-analysis.md)、[用途来源支持范围](experiments/2026-10-10/knowledge-source-audit.md)可核对。
+
+4B正式训练CUDA allocated加载峰8163.07MiB、训练阶段峰3814.54MiB，分阶段口径不能混用；未OOM不代表7168MiB总峰目标达成。适配器存储BF16，PEFT推理加载为FP32；NF4 CUDA与GGUF Vulkan结果不能用于隔离微调作用。本轮尚未导出新GGUF或做应用集成。权重、缓存及结果在D盘，GitHub只保存研究证据与权重SHA清单，复现需要恢复报告说明的本机目录布局和环境。
 
 Unsloth 当前估计 4B BF16 LoRA 约需 10GB，且不推荐 Qwen3.5 QLoRA；8GB 本机的 NF4 训练须先通过两步冒烟，结果未知。[官方训练指南](https://unsloth.ai/docs/models/qwen3.5/fine-tune)。下面的训练与部署步骤对应此前 0.8B 实验，不是本轮 4B 配置。
 

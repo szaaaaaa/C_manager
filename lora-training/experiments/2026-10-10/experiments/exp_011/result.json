@@ -1,0 +1,101 @@
+{
+  "experiment_id": "exp_011",
+  "status": "failed",
+  "exit_code": 1,
+  "actual_steps": 2,
+  "elapsed_seconds": 181.03789789997973,
+  "metrics": {
+    "out_of_memory": false,
+    "actual_nf4_double_quant_bf16_linear_modules": 346,
+    "gradient_observations": [
+      {
+        "step": 1,
+        "post_clip_grad_norm": 0.9982059727775778
+      },
+      {
+        "step": 2,
+        "post_clip_grad_norm": 0.9994378520949735
+      }
+    ],
+    "maximum_tokenized_length": 429,
+    "prompt_mask_valid": true,
+    "trainable_parameters": 1572864,
+    "train_records": 8,
+    "validation_records": 18,
+    "held_out_groups": [
+      "pip-cache"
+    ],
+    "heldout_eval_loss_step0": 2.2960197925567627,
+    "peak_allocated_gpu_mib": 8128.20068359375,
+    "peak_reserved_gpu_mib": 8190.0
+  },
+  "training_logs": [
+    {
+      "step": 0,
+      "eval_loss": 2.2960197925567627,
+      "eval_model_preparation_time": 0.0532,
+      "eval_runtime": 57.8487,
+      "eval_samples_per_second": 0.311,
+      "eval_steps_per_second": 0.311,
+      "epoch": 0
+    },
+    {
+      "step": 1,
+      "loss": 2.0580434799194336,
+      "grad_norm": 1.1015625,
+      "learning_rate": 5e-05,
+      "epoch": 0.5
+    },
+    {
+      "step": 2,
+      "loss": 1.9541826248168945,
+      "grad_norm": 1.2421875,
+      "learning_rate": 2.5e-05,
+      "epoch": 1.0
+    },
+    {
+      "step": 2,
+      "train_runtime": 50.9771,
+      "train_samples_per_second": 0.157,
+      "train_steps_per_second": 0.039,
+      "total_flos": 65402785631232.0,
+      "train_loss": 2.006113052368164,
+      "epoch": 1.0
+    },
+    {
+      "step": 2,
+      "eval_loss": 2.2931411266326904,
+      "eval_model_preparation_time": 0.0532,
+      "eval_runtime": 16.3224,
+      "eval_samples_per_second": 1.103,
+      "eval_steps_per_second": 1.103,
+      "epoch": 1.0
+    }
+  ],
+  "records": [],
+  "review_status": "pending",
+  "configuration_path": "D:\\small-model-experiments\\outputs\\exp_20261010_111944\\experiments\\exp_011\\executed_config.json",
+  "compile_cache_files_before": {
+    "D:\\small-model-experiments\\cache\\cuda": 0,
+    "D:\\small-model-experiments\\cache\\inductor": 0,
+    "D:\\small-model-experiments\\cache\\triton": 0,
+    "D:\\small-model-experiments\\cache\\unsloth": 31
+  },
+  "timing_scope": "Import/first forward/first optimizer timings include possible cold compilation; no isolated compiler timer. Serial GPU; residual CPU/disk background load is not controlled.",
+  "unsloth_import_seconds_including_patch_compile": 16.582138700061478,
+  "versions": {
+    "torch": "2.10.0+cu128",
+    "unsloth": "2026.3.10",
+    "trl": "0.24.0",
+    "transformers": "5.3.0",
+    "peft": "0.18.1",
+    "bitsandbytes": "0.49.2"
+  },
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "model_load_seconds": 13.568591599934734,
+  "training_setup_seconds": 9.172693699947558,
+  "first_heldout_evaluation_seconds_including_any_cold_compile": 57.91665379994083,
+  "first_optimizer_step_seconds_including_any_cold_compile": 38.37027079996187,
+  "error": "",
+  "traceback": "Traceback (most recent call last):\n  File \"D:\\small-model-experiments\\outputs\\exp_20261010_111944\\training.py\", line 371, in run\n    run_training(config, directory, model, tokenizer, torch, FastLanguageModel, report, save)\n  File \"D:\\small-model-experiments\\outputs\\exp_20261010_111944\\training.py\", line 222, in run_training\n    assert changed_base == 0 and changed_lora > 0\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError\n"
+}

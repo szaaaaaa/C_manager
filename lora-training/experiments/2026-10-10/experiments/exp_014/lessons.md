@@ -1,0 +1,7 @@
+# exp_014 actual paired inference
+
+Model session15178 and device observer85592 exited0. All24 frozen cases completed in263.10s, automatic cue checks23/24, median tokenizer+prefill+decode latency7.6188s. Empty/truncated/thinking-leak counts are all0. Raw special tokens are retained; all outputs end at explicit tokenizer EOS248046 (<|im_end|>) rather than original model config248044. This is a text/keyword diagnostic, not factual accuracy or expert/human review.
+
+exp_015/paired_base_comparison.json independently verifies723 one-to-one normalized frozen base parameter names, exact dtype/shape/raw hash/float32 numeric hash/quantization-state hash equality, and identical24 messages/input-token counts, generation/engine config and executed runner across014/015. Source_name wrapper differences are excluded. The only implemented treatment is addition of the selected013 adapter; stored BF16 adapters run inFP32 due PEFT loading. Both conditions use the same16-token warmup prompt and greedy settings.
+
+Overall loading allocator peak8129.20MiB exceeds the7168MiB target; post-load allocator peak3316.14MiB includes warmup/state hashing/all cases. Sparse nvidia-smi samples are device totals, not exact allocator/decode peaks. No GGUF conversion, GUI deployment, extra tuning, blinded human review or independent CPU-load control was performed. Interpret fact/risk/naturalness only after per-case review; training NLL and cue counts alone cannot support improvement claims.

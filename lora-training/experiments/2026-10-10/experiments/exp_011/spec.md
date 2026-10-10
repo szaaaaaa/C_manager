@@ -1,0 +1,3 @@
+# exp_011: single compatibility rerun of exp_007
+
+Same preregistered base revision, data, 8 smoke records, 2 optimizer steps, NF4 double quant bf16, rank8 attention-only adapter, seq768, batch1/accum4 and 1200-second hard deadline as exp_007. The sole API compatibility change removes unsupported `save_safetensors` from SFTConfig; adapter saving is explicitly safetensors. exp_007 original failure and runner snapshot are preserved. This is not a hyperparameter sweep. Actual finite loss/gradients, adapter change, frozen-base parameter hashes, masks and device checks must pass before downstream training.

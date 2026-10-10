@@ -1,0 +1,2060 @@
+{
+  "run_id": "exp_20261010_111944",
+  "auditor": "Codex single assistant; CPU JSON/hash audit; no GPU and no source mutations",
+  "audit_scope": "exact normalized path overlap, target-group split, shared facts and repeated target templates; not content-based independence or generalization accuracy",
+  "frozen_input_files": {
+    "eval_cases.json": {
+      "path": "D:\\small-model-experiments\\inputs\\eval_cases.json",
+      "bytes": 6585,
+      "sha256": "a516f0f456d18ba589034e23f3a3e47cefb5762f7436387bf22d502d4372603b",
+      "matches_frozen_expected": true
+    },
+    "rag_training_data.jsonl": {
+      "path": "D:\\small-model-experiments\\inputs\\rag_training_data.jsonl",
+      "bytes": 260487,
+      "sha256": "c3a2041e398c84a9c5f854130d298743ad31b38db2ee2852ce354672f14f3c46",
+      "matches_frozen_expected": true
+    },
+    "knowledge.json": {
+      "path": "D:\\small-model-experiments\\inputs\\knowledge.json",
+      "bytes": 8162,
+      "sha256": "547f1cb9e11aae21796c4d7fe897b90f52dd8fe5bceec6b726ffc28a4d25cf0d",
+      "matches_frozen_expected": true
+    }
+  },
+  "normalization": {
+    "path_extraction": "exactly one line matching ^完整路径：(.*)$ in each training input; strip outer whitespace",
+    "path_normalization": "replace / with backslash; Unicode casefold; no filesystem resolution, content reads, symlink checks, dot-segment collapse, or brand-prefix fuzzy equivalence",
+    "notes": "This models exact Windows path-string overlap after slash/case normalization, not semantic/contents overlap."
+  },
+  "split": {
+    "implementation_reference": "experiments/exp_013/executed_training.py:49-55 and72-73",
+    "method": "random.Random(42).shuffle(sorted(unique target group labels)); hold first max(1,len(groups)//10)",
+    "ordered_group_labels": [
+      "huggingface-cache",
+      "node-dependencies",
+      "onenote-cache",
+      "pip-cache",
+      "pytorch-package",
+      "unknown",
+      "user-temp",
+      "webview2",
+      "windows-temp"
+    ],
+    "shuffled_group_labels": [
+      "pip-cache",
+      "user-temp",
+      "webview2",
+      "pytorch-package",
+      "windows-temp",
+      "onenote-cache",
+      "unknown",
+      "huggingface-cache",
+      "node-dependencies"
+    ],
+    "held_out_target_groups": [
+      "pip-cache"
+    ],
+    "train_count": 150,
+    "validation_count": 18,
+    "test_count": 24,
+    "holdout_applies_only_to_target_group": true,
+    "holdout_does_not_exclude_fact_mentions_or_similar_software_paths": true
+  },
+  "summary": {
+    "all": {
+      "records": 168,
+      "unique_normalized_paths": 124,
+      "duplicate_path_extra_records": 44,
+      "repeated_normalized_path_count": 16,
+      "unique_exact_target_answers": 9,
+      "unique_exact_instruction_strings": 3,
+      "group_counts": {
+        "webview2": 18,
+        "onenote-cache": 18,
+        "pip-cache": 18,
+        "pytorch-package": 18,
+        "huggingface-cache": 18,
+        "node-dependencies": 18,
+        "user-temp": 18,
+        "windows-temp": 18,
+        "unknown": 24
+      },
+      "evidence_counts": {
+        "relevant": 96,
+        "mixed": 16,
+        "irrelevant": 16,
+        "missing": 40
+      }
+    },
+    "train": {
+      "records": 150,
+      "unique_normalized_paths": 110,
+      "duplicate_path_extra_records": 40,
+      "repeated_normalized_path_count": 14,
+      "unique_exact_target_answers": 8,
+      "unique_exact_instruction_strings": 3,
+      "group_counts": {
+        "webview2": 18,
+        "onenote-cache": 18,
+        "pytorch-package": 18,
+        "huggingface-cache": 18,
+        "node-dependencies": 18,
+        "user-temp": 18,
+        "windows-temp": 18,
+        "unknown": 24
+      },
+      "evidence_counts": {
+        "relevant": 84,
+        "mixed": 14,
+        "irrelevant": 14,
+        "missing": 38
+      }
+    },
+    "validation": {
+      "records": 18,
+      "unique_normalized_paths": 14,
+      "duplicate_path_extra_records": 4,
+      "repeated_normalized_path_count": 2,
+      "unique_exact_target_answers": 2,
+      "unique_exact_instruction_strings": 1,
+      "group_counts": {
+        "pip-cache": 18
+      },
+      "evidence_counts": {
+        "relevant": 12,
+        "mixed": 2,
+        "irrelevant": 2,
+        "missing": 2
+      }
+    }
+  },
+  "exact_overlap": {
+    "test_train_case_count": 0,
+    "test_validation_case_count": 0,
+    "train_validation_unique_path_count": 0,
+    "train_validation_paths": [],
+    "test_records": [
+      {
+        "id": "pip-body",
+        "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body",
+        "normalized_path": "c:\\users\\eval\\appdata\\local\\pip\\cache\\http-v2\\b\\probe.body",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "pip-wheel",
+        "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl",
+        "normalized_path": "c:\\users\\eval\\appdata\\local\\pip\\cache\\wheels\\ab\\numpy.whl",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "webview-dll",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+        "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\146.0.3856.72\\msedge.dll",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "webview-exe",
+        "path": "D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe",
+        "normalized_path": "d:\\program files\\microsoft\\edgewebview\\application\\146.1.234.5\\msedgewebview2.exe",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "onenote-folder",
+        "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+        "normalized_path": "c:\\users\\eval\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "onenote-file",
+        "path": "C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin",
+        "normalized_path": "c:\\users\\测试用户\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\section-007.bin",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "torch-base",
+        "path": "C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+        "normalized_path": "c:\\users\\eval\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "torch-env",
+        "path": "D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+        "normalized_path": "d:\\python\\envs\\analytics\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "hf-weights",
+        "path": "C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+        "normalized_path": "c:\\users\\eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "hf-blob",
+        "path": "D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67",
+        "normalized_path": "d:\\users\\eval\\.cache\\huggingface\\hub\\models--sample--encoder\\blobs\\a45b67",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "node-folder",
+        "path": "C:\\Users\\Eval\\Projects\\demo\\node_modules",
+        "normalized_path": "c:\\users\\eval\\projects\\demo\\node_modules",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "node-file",
+        "path": "D:\\Projects\\demo\\node_modules\\example-package\\main.js",
+        "normalized_path": "d:\\projects\\demo\\node_modules\\example-package\\main.js",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "user-temp",
+        "path": "C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin",
+        "normalized_path": "c:\\users\\eval\\appdata\\local\\temp\\install-progress.bin",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "user-temp-uppercase",
+        "path": "C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG",
+        "normalized_path": "c:\\users\\eval\\appdata\\local\\temp\\session.log",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "windows-temp",
+        "path": "C:\\Windows\\Temp\\staging.tmp",
+        "normalized_path": "c:\\windows\\temp\\staging.tmp",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "windows-temp-file",
+        "path": "C:/Windows/Temp/update-progress.bin",
+        "normalized_path": "c:\\windows\\temp\\update-progress.bin",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "unknown-archive",
+        "path": "C:\\Users\\Eval\\Documents\\archive.bin",
+        "normalized_path": "c:\\users\\eval\\documents\\archive.bin",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "unknown-microsoft",
+        "path": "C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat",
+        "normalized_path": "c:\\program files\\microsoft\\unlistedproduct\\payload.dat",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "unknown-cache",
+        "path": "C:\\Users\\Eval\\Documents\\cache\\journal.db",
+        "normalized_path": "c:\\users\\eval\\documents\\cache\\journal.db",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "unknown-download",
+        "path": "C:\\Users\\Eval\\Downloads\\family-backup.zip",
+        "normalized_path": "c:\\users\\eval\\downloads\\family-backup.zip",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "cache-prefix-nearmiss",
+        "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body",
+        "normalized_path": "c:\\users\\eval\\appdata\\local\\pip\\cache-backup\\saved.body",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "unknown-onnx",
+        "path": "D:\\Research\\Shared\\network.onnx",
+        "normalized_path": "d:\\research\\shared\\network.onnx",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "webview-with-distractor",
+        "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll",
+        "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\146.0.3856.72\\lib.dll",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      },
+      {
+        "id": "onenote-missing-evidence",
+        "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin",
+        "normalized_path": "c:\\users\\eval\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\pending.bin",
+        "exact_train_matching_lines": [],
+        "exact_validation_matching_lines": []
+      }
+    ]
+  },
+  "pip_knowledge_exposure": {
+    "pip_target_group_training_rows": 0,
+    "pip_target_group_validation_rows": 18,
+    "pip_positive_target_answer_training_rows": 0,
+    "pip_positive_target_answer_validation_rows": 14,
+    "pip_facts_in_other_group_training_rows": 4,
+    "pip_facts_other_group_training_breakdown": {
+      "onenote-cache_mixed": 2,
+      "onenote-cache_irrelevant": 2
+    },
+    "pip_facts_other_group_training_records": [
+      {
+        "line_1_based": 25,
+        "group": "onenote-cache",
+        "evidence": "mixed",
+        "partition": "train",
+        "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+        "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+        "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e",
+        "pip_facts_sha256": "58e58d2959e5de1d24744d8aa74739fef02c6dc6e58871ab15ecec7cd0054826",
+        "pip_facts_role": "distractor_other_target_group",
+        "pip_positive_target_answer": false,
+        "has_related_target_facts": true
+      },
+      {
+        "line_1_based": 26,
+        "group": "onenote-cache",
+        "evidence": "irrelevant",
+        "partition": "train",
+        "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+        "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+        "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db",
+        "pip_facts_sha256": "58e58d2959e5de1d24744d8aa74739fef02c6dc6e58871ab15ecec7cd0054826",
+        "pip_facts_role": "distractor_other_target_group",
+        "pip_positive_target_answer": false,
+        "has_related_target_facts": false
+      },
+      {
+        "line_1_based": 34,
+        "group": "onenote-cache",
+        "evidence": "mixed",
+        "partition": "train",
+        "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+        "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+        "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e",
+        "pip_facts_sha256": "58e58d2959e5de1d24744d8aa74739fef02c6dc6e58871ab15ecec7cd0054826",
+        "pip_facts_role": "distractor_other_target_group",
+        "pip_positive_target_answer": false,
+        "has_related_target_facts": true
+      },
+      {
+        "line_1_based": 35,
+        "group": "onenote-cache",
+        "evidence": "irrelevant",
+        "partition": "train",
+        "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+        "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+        "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db",
+        "pip_facts_sha256": "58e58d2959e5de1d24744d8aa74739fef02c6dc6e58871ab15ecec7cd0054826",
+        "pip_facts_role": "distractor_other_target_group",
+        "pip_positive_target_answer": false,
+        "has_related_target_facts": false
+      }
+    ],
+    "unknown_pip_cache_backup_training_rows": 4,
+    "unknown_pip_cache_backup_training_records": [
+      {
+        "line_1_based": 150,
+        "group": "unknown",
+        "evidence": "missing",
+        "partition": "train",
+        "full_path": "C:\\Users\\TrainA\\AppData\\Local\\pip\\cache-backup\\entry.body",
+        "normalized_path": "c:\\users\\traina\\appdata\\local\\pip\\cache-backup\\entry.body",
+        "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+      },
+      {
+        "line_1_based": 156,
+        "group": "unknown",
+        "evidence": "missing",
+        "partition": "train",
+        "full_path": "C:\\Users\\TrainB\\AppData\\Local\\pip\\cache-backup\\entry.body",
+        "normalized_path": "c:\\users\\trainb\\appdata\\local\\pip\\cache-backup\\entry.body",
+        "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+      },
+      {
+        "line_1_based": 162,
+        "group": "unknown",
+        "evidence": "missing",
+        "partition": "train",
+        "full_path": "C:\\Users\\TrainC\\AppData\\Local\\pip\\cache-backup\\entry.body",
+        "normalized_path": "c:\\users\\trainc\\appdata\\local\\pip\\cache-backup\\entry.body",
+        "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+      },
+      {
+        "line_1_based": 168,
+        "group": "unknown",
+        "evidence": "missing",
+        "partition": "train",
+        "full_path": "C:\\Users\\TrainD\\AppData\\Local\\pip\\cache-backup\\entry.body",
+        "normalized_path": "c:\\users\\traind\\appdata\\local\\pip\\cache-backup\\entry.body",
+        "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+      }
+    ],
+    "finding": "Only pip-cache target labels/answers are held out. Pip facts occur as distractors in four OneNote training rows and pip/cache-backup names occur in four unknown training rows. It is not a pip-knowledge or software-name holdout."
+  },
+  "facts_exposure_by_registry_entry": {
+    "webview2": {
+      "all_rows": 18,
+      "train_rows": 18,
+      "validation_rows": 0,
+      "facts_sha256": "307cf6b941600825f9289cbc0c92efb427927ad33684181cb4f56fb2db4cb9be"
+    },
+    "onenote-cache": {
+      "all_rows": 18,
+      "train_rows": 18,
+      "validation_rows": 0,
+      "facts_sha256": "38f8eaa7722ab0638362e2cca37a108f5efec35479dce655cd42b353d6f1ff96"
+    },
+    "pip-cache": {
+      "all_rows": 18,
+      "train_rows": 4,
+      "validation_rows": 14,
+      "facts_sha256": "58e58d2959e5de1d24744d8aa74739fef02c6dc6e58871ab15ecec7cd0054826"
+    },
+    "pytorch-package": {
+      "all_rows": 18,
+      "train_rows": 14,
+      "validation_rows": 4,
+      "facts_sha256": "d522d1fc47913b80c42652f95eb7b8375aedbd2ef605dd668eef0a3c0c686bbc"
+    },
+    "huggingface-cache": {
+      "all_rows": 18,
+      "train_rows": 18,
+      "validation_rows": 0,
+      "facts_sha256": "8824cbda218b00e8407e8b689b81b0bdcce18d68645c7ba3cad7cb329b2eaef6"
+    },
+    "node-dependencies": {
+      "all_rows": 18,
+      "train_rows": 18,
+      "validation_rows": 0,
+      "facts_sha256": "1c1bb0446277178de75eb1336e614e56e747a39fc19d5814a99691505347872b"
+    },
+    "user-temp": {
+      "all_rows": 18,
+      "train_rows": 18,
+      "validation_rows": 0,
+      "facts_sha256": "ddc2fcf9d5860f87fe3eb364bb6b750987ee39a5571f63bcf8a21e5bd8e02655"
+    },
+    "windows-temp": {
+      "all_rows": 18,
+      "train_rows": 18,
+      "validation_rows": 0,
+      "facts_sha256": "3bcfe12a5aaf1f2c05caeb1ce22761ddfef047e5cdca55b02483c58e12ee550d"
+    }
+  },
+  "target_answer_templates": [
+    {
+      "reference_answer_id": "webview2",
+      "answer_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58",
+      "all_count": 14,
+      "train_count": 14,
+      "validation_count": 0,
+      "text": "这是 WebView2 的运行库，桌面软件用它来显示网页界面。即使你不用 Edge 浏览器，也可能有其他应用依赖它；直接删掉会影响这些应用。建议保留，通过系统应用管理处理，别按版本号猜哪些文件可以删。"
+    },
+    {
+      "reference_answer_id": "unknown_template",
+      "answer_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db",
+      "all_count": 56,
+      "train_count": 52,
+      "validation_count": 4,
+      "text": "仅凭这个文件名和路径，无法确定它的具体用途，也不能保证删除后能恢复。如果要清理，先通过创建它的软件确认内容，并备份需要保留的数据。"
+    },
+    {
+      "reference_answer_id": "onenote-cache",
+      "answer_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e",
+      "all_count": 14,
+      "train_count": 14,
+      "validation_count": 0,
+      "text": "先确认笔记已经同步并做好备份。这个 OneNote 缓存可能留着还没上传的笔记修改，直接删除会丢失这些内容，云端也未必有副本。要腾空间，先在 OneNote 中检查同步状态，再管理不再需要的笔记本。"
+    },
+    {
+      "reference_answer_id": "pip-cache",
+      "answer_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436",
+      "all_count": 14,
+      "train_count": 0,
+      "validation_count": 14,
+      "text": "这是 pip 下载或构建 Python 包时留下的缓存副本，和已经装好的包是分开的。清理后，现有 Python 包还能使用，只是下次安装可能需要重新下载或构建。可以用 pip cache purge 清理。"
+    },
+    {
+      "reference_answer_id": "pytorch-package",
+      "answer_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039",
+      "all_count": 14,
+      "train_count": 14,
+      "validation_count": 0,
+      "text": "这是当前 Python 环境里的 PyTorch 文件，机器学习和张量计算代码可能会用到它。单独删掉库文件，可能让这个环境中的 PyTorch 无法运行。先确认项目还用不用，再通过这个环境的包管理工具卸载。"
+    },
+    {
+      "reference_answer_id": "huggingface-cache",
+      "answer_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c",
+      "all_count": 14,
+      "train_count": 14,
+      "validation_count": 0,
+      "text": "这是 Hugging Face 下载资源的本地缓存，项目可能正从这里读取模型或数据。删掉后通常需要重新下载，离线运行也可能受影响。先确认哪些版本还在用，再通过 Hugging Face 的缓存管理工具清理。"
+    },
+    {
+      "reference_answer_id": "node-dependencies",
+      "answer_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8",
+      "all_count": 14,
+      "train_count": 14,
+      "validation_count": 0,
+      "text": "这是 Node.js 项目的依赖文件，运行或构建项目时可能会用到。删除后需要按项目的依赖声明和锁文件重新安装，目录里手工改过的内容则未必能恢复。先确认项目状态并保留这些文件，再用项目的包管理工具处理。"
+    },
+    {
+      "reference_answer_id": "user-temp",
+      "answer_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe",
+      "all_count": 14,
+      "train_count": 14,
+      "validation_count": 0,
+      "text": "它位于当前用户的临时目录，不过路径本身不能说明这个文件里是什么。应用或安装程序可能还在使用它，贸然清理会让当前任务失败。先关闭相关任务，再用 Windows 的临时文件清理功能处理，并跳过仍被占用的文件。"
+    },
+    {
+      "reference_answer_id": "windows-temp",
+      "answer_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6",
+      "all_count": 14,
+      "train_count": 14,
+      "validation_count": 0,
+      "text": "这是 Windows 临时目录中的文件，系统服务或安装任务可能还在使用它。先等相关任务结束，优先通过 Windows 的存储清理功能处理。被占用的文件应跳过，别强行删除。"
+    }
+  ],
+  "normalized_training_path_records": [
+    {
+      "line_1_based": 1,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.0\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.0\\msedge.dll",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 2,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.1\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.1\\msedge.dll",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 3,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.2\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.2\\msedge.dll",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 4,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.3\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.3\\msedge.dll",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 5,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.4\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.4\\msedge.dll",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 6,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.5\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.5\\msedge.dll",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 7,
+      "group": "webview2",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.1000.1\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\145.0.1000.1\\msedge.dll",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 8,
+      "group": "webview2",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.1000.1\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\145.0.1000.1\\msedge.dll",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 9,
+      "group": "webview2",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.1000.1\\msedge.dll",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\145.0.1000.1\\msedge.dll",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 10,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.0\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.0\\msedgewebview2.exe",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 11,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.1\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.1\\msedgewebview2.exe",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 12,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.2\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.2\\msedgewebview2.exe",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 13,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.3\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.3\\msedgewebview2.exe",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 14,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.4\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.4\\msedgewebview2.exe",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 15,
+      "group": "webview2",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\144.0.900.5\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\144.0.900.5\\msedgewebview2.exe",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 16,
+      "group": "webview2",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.1000.1\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\145.0.1000.1\\msedgewebview2.exe",
+      "output_sha256": "bfded7f4c2848f04eba4756f1920a9a4fac94753cca3b7afff2eb5fbd87d3e58"
+    },
+    {
+      "line_1_based": 17,
+      "group": "webview2",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.1000.1\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\145.0.1000.1\\msedgewebview2.exe",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 18,
+      "group": "webview2",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\145.0.1000.1\\msedgewebview2.exe",
+      "normalized_path": "c:\\program files (x86)\\microsoft\\edgewebview\\application\\145.0.1000.1\\msedgewebview2.exe",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 19,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\train0\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 20,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\train1\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 21,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\train2\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 22,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\train3\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 23,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\train4\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 24,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\train5\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 25,
+      "group": "onenote-cache",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 26,
+      "group": "onenote-cache",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 27,
+      "group": "onenote-cache",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 28,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\train0\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 29,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\train1\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 30,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\train2\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 31,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\train3\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 32,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\train4\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 33,
+      "group": "onenote-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\train5\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 34,
+      "group": "onenote-cache",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "e52c13ceb869735a1b99be7d724c739a40395e6b6a5dcd765ddc993439e3854e"
+    },
+    {
+      "line_1_based": 35,
+      "group": "onenote-cache",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 36,
+      "group": "onenote-cache",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\chunk.bin",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\microsoft\\onenote\\16.0\\cache\\chunk.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 37,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train0\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\train0\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 38,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train1\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\train1\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 39,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train2\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\train2\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 40,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train3\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\train3\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 41,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train4\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\train4\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 42,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train5\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\train5\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 43,
+      "group": "pip-cache",
+      "evidence": "mixed",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 44,
+      "group": "pip-cache",
+      "evidence": "irrelevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 45,
+      "group": "pip-cache",
+      "evidence": "missing",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\pip\\cache\\http-v2\\a\\download.body",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\pip\\cache\\http-v2\\a\\download.body",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 46,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train0\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\train0\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 47,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train1\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\train1\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 48,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train2\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\train2\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 49,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train3\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\train3\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 50,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train4\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\train4\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 51,
+      "group": "pip-cache",
+      "evidence": "relevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Train5\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\train5\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 52,
+      "group": "pip-cache",
+      "evidence": "mixed",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "619651329b179843952413aa6c6e740f2b13f44fc278e14574a1fc17f99cb436"
+    },
+    {
+      "line_1_based": 53,
+      "group": "pip-cache",
+      "evidence": "irrelevant",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 54,
+      "group": "pip-cache",
+      "evidence": "missing",
+      "partition": "validation",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\pip\\cache\\wheels\\package.whl",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\pip\\cache\\wheels\\package.whl",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 55,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\train0\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 56,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\train1\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 57,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\train2\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 58,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\train3\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 59,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\train4\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 60,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\train5\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 61,
+      "group": "pytorch-package",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\training\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 62,
+      "group": "pytorch-package",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\training\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 63,
+      "group": "pytorch-package",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "normalized_path": "c:\\users\\training\\miniforge3\\lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 64,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\train0\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 65,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\train1\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 66,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\train2\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 67,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\train3\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 68,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\train4\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 69,
+      "group": "pytorch-package",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\train5\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 70,
+      "group": "pytorch-package",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\training\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "13d4872fb2b560d8793257e46992aaa160e1c497306af6b64b55f78d911ae039"
+    },
+    {
+      "line_1_based": 71,
+      "group": "pytorch-package",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\training\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 72,
+      "group": "pytorch-package",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\miniforge3\\envs\\research\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "normalized_path": "c:\\users\\training\\miniforge3\\envs\\research\\lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 73,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\.cache\\huggingface\\hub\\models--Train0--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\train0\\.cache\\huggingface\\hub\\models--train0--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 74,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\.cache\\huggingface\\hub\\models--Train1--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\train1\\.cache\\huggingface\\hub\\models--train1--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 75,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\.cache\\huggingface\\hub\\models--Train2--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\train2\\.cache\\huggingface\\hub\\models--train2--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 76,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\.cache\\huggingface\\hub\\models--Train3--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\train3\\.cache\\huggingface\\hub\\models--train3--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 77,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\.cache\\huggingface\\hub\\models--Train4--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\train4\\.cache\\huggingface\\hub\\models--train4--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 78,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\.cache\\huggingface\\hub\\models--Train5--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\train5\\.cache\\huggingface\\hub\\models--train5--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 79,
+      "group": "huggingface-cache",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\.cache\\huggingface\\hub\\models--Training--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\training\\.cache\\huggingface\\hub\\models--training--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 80,
+      "group": "huggingface-cache",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\.cache\\huggingface\\hub\\models--Training--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\training\\.cache\\huggingface\\hub\\models--training--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 81,
+      "group": "huggingface-cache",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\.cache\\huggingface\\hub\\models--Training--Model\\snapshots\\abc\\model.safetensors",
+      "normalized_path": "c:\\users\\training\\.cache\\huggingface\\hub\\models--training--model\\snapshots\\abc\\model.safetensors",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 82,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\.cache\\huggingface\\hub\\models--Train0--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\train0\\.cache\\huggingface\\hub\\models--train0--model\\blobs\\123abc",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 83,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\.cache\\huggingface\\hub\\models--Train1--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\train1\\.cache\\huggingface\\hub\\models--train1--model\\blobs\\123abc",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 84,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\.cache\\huggingface\\hub\\models--Train2--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\train2\\.cache\\huggingface\\hub\\models--train2--model\\blobs\\123abc",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 85,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\.cache\\huggingface\\hub\\models--Train3--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\train3\\.cache\\huggingface\\hub\\models--train3--model\\blobs\\123abc",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 86,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\.cache\\huggingface\\hub\\models--Train4--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\train4\\.cache\\huggingface\\hub\\models--train4--model\\blobs\\123abc",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 87,
+      "group": "huggingface-cache",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\.cache\\huggingface\\hub\\models--Train5--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\train5\\.cache\\huggingface\\hub\\models--train5--model\\blobs\\123abc",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 88,
+      "group": "huggingface-cache",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\.cache\\huggingface\\hub\\models--Training--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\training\\.cache\\huggingface\\hub\\models--training--model\\blobs\\123abc",
+      "output_sha256": "cd852a799766977a2e5016b491bd37853342126d1bebafffdcec16e2b17c5e2c"
+    },
+    {
+      "line_1_based": 89,
+      "group": "huggingface-cache",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\.cache\\huggingface\\hub\\models--Training--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\training\\.cache\\huggingface\\hub\\models--training--model\\blobs\\123abc",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 90,
+      "group": "huggingface-cache",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\.cache\\huggingface\\hub\\models--Training--Model\\blobs\\123abc",
+      "normalized_path": "c:\\users\\training\\.cache\\huggingface\\hub\\models--training--model\\blobs\\123abc",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 91,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\train0\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 92,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\train1\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 93,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\train2\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 94,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\train3\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 95,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\train4\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 96,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\train5\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 97,
+      "group": "node-dependencies",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\training\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 98,
+      "group": "node-dependencies",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\training\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 99,
+      "group": "node-dependencies",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\Projects\\sample\\node_modules\\package\\index.js",
+      "normalized_path": "c:\\users\\training\\projects\\sample\\node_modules\\package\\index.js",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 100,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\train0\\projects\\sample\\node_modules",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 101,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\train1\\projects\\sample\\node_modules",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 102,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\train2\\projects\\sample\\node_modules",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 103,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\train3\\projects\\sample\\node_modules",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 104,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\train4\\projects\\sample\\node_modules",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 105,
+      "group": "node-dependencies",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\train5\\projects\\sample\\node_modules",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 106,
+      "group": "node-dependencies",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\training\\projects\\sample\\node_modules",
+      "output_sha256": "5956bb695765172640cee3d1c2208755439c3edcf4c693c36157281a158468e8"
+    },
+    {
+      "line_1_based": 107,
+      "group": "node-dependencies",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\training\\projects\\sample\\node_modules",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 108,
+      "group": "node-dependencies",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\Projects\\sample\\node_modules",
+      "normalized_path": "c:\\users\\training\\projects\\sample\\node_modules",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 109,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\train0\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 110,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\train1\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 111,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\train2\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 112,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\train3\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 113,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\train4\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 114,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\train5\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 115,
+      "group": "user-temp",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 116,
+      "group": "user-temp",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 117,
+      "group": "user-temp",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Temp\\session.tmp",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\temp\\session.tmp",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 118,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train0\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\train0\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 119,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train1\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\train1\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 120,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train2\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\train2\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 121,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train3\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\train3\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 122,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train4\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\train4\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 123,
+      "group": "user-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Train5\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\train5\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 124,
+      "group": "user-temp",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "71a4e4f24bcefc9a67dc00271309f8879f9f1ca38475bea08152abe052319fbe"
+    },
+    {
+      "line_1_based": 125,
+      "group": "user-temp",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 126,
+      "group": "user-temp",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\Training\\AppData\\Local\\Temp\\setup.bin",
+      "normalized_path": "c:\\users\\training\\appdata\\local\\temp\\setup.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 127,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 128,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 129,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 130,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 131,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 132,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 133,
+      "group": "windows-temp",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 134,
+      "group": "windows-temp",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 135,
+      "group": "windows-temp",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\install.tmp",
+      "normalized_path": "c:\\windows\\temp\\install.tmp",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 136,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 137,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 138,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 139,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 140,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 141,
+      "group": "windows-temp",
+      "evidence": "relevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 142,
+      "group": "windows-temp",
+      "evidence": "mixed",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "13e7018001f62e5718b2c32b9122810747997b51f270ae14fd4c36ded59bb5a6"
+    },
+    {
+      "line_1_based": 143,
+      "group": "windows-temp",
+      "evidence": "irrelevant",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 144,
+      "group": "windows-temp",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Windows\\Temp\\task.log",
+      "normalized_path": "c:\\windows\\temp\\task.log",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 145,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainA\\Documents\\collection.bin",
+      "normalized_path": "c:\\users\\traina\\documents\\collection.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 146,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainA\\Documents\\cache\\entry.db",
+      "normalized_path": "c:\\users\\traina\\documents\\cache\\entry.db",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 147,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainA\\Downloads\\backup.zip",
+      "normalized_path": "c:\\users\\traina\\downloads\\backup.zip",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 148,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainA\\AppData\\Local\\UnlistedApp\\data.db",
+      "normalized_path": "c:\\users\\traina\\appdata\\local\\unlistedapp\\data.db",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 149,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainA\\AppData\\Local\\Microsoft\\UnlistedApp\\unknown.bin",
+      "normalized_path": "c:\\users\\traina\\appdata\\local\\microsoft\\unlistedapp\\unknown.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 150,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainA\\AppData\\Local\\pip\\cache-backup\\entry.body",
+      "normalized_path": "c:\\users\\traina\\appdata\\local\\pip\\cache-backup\\entry.body",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 151,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainB\\Documents\\collection.bin",
+      "normalized_path": "c:\\users\\trainb\\documents\\collection.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 152,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainB\\Documents\\cache\\entry.db",
+      "normalized_path": "c:\\users\\trainb\\documents\\cache\\entry.db",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 153,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainB\\Downloads\\backup.zip",
+      "normalized_path": "c:\\users\\trainb\\downloads\\backup.zip",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 154,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainB\\AppData\\Local\\UnlistedApp\\data.db",
+      "normalized_path": "c:\\users\\trainb\\appdata\\local\\unlistedapp\\data.db",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 155,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainB\\AppData\\Local\\Microsoft\\UnlistedApp\\unknown.bin",
+      "normalized_path": "c:\\users\\trainb\\appdata\\local\\microsoft\\unlistedapp\\unknown.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 156,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainB\\AppData\\Local\\pip\\cache-backup\\entry.body",
+      "normalized_path": "c:\\users\\trainb\\appdata\\local\\pip\\cache-backup\\entry.body",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 157,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainC\\Documents\\collection.bin",
+      "normalized_path": "c:\\users\\trainc\\documents\\collection.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 158,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainC\\Documents\\cache\\entry.db",
+      "normalized_path": "c:\\users\\trainc\\documents\\cache\\entry.db",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 159,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainC\\Downloads\\backup.zip",
+      "normalized_path": "c:\\users\\trainc\\downloads\\backup.zip",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 160,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainC\\AppData\\Local\\UnlistedApp\\data.db",
+      "normalized_path": "c:\\users\\trainc\\appdata\\local\\unlistedapp\\data.db",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 161,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainC\\AppData\\Local\\Microsoft\\UnlistedApp\\unknown.bin",
+      "normalized_path": "c:\\users\\trainc\\appdata\\local\\microsoft\\unlistedapp\\unknown.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 162,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainC\\AppData\\Local\\pip\\cache-backup\\entry.body",
+      "normalized_path": "c:\\users\\trainc\\appdata\\local\\pip\\cache-backup\\entry.body",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 163,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainD\\Documents\\collection.bin",
+      "normalized_path": "c:\\users\\traind\\documents\\collection.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 164,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainD\\Documents\\cache\\entry.db",
+      "normalized_path": "c:\\users\\traind\\documents\\cache\\entry.db",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 165,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainD\\Downloads\\backup.zip",
+      "normalized_path": "c:\\users\\traind\\downloads\\backup.zip",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 166,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainD\\AppData\\Local\\UnlistedApp\\data.db",
+      "normalized_path": "c:\\users\\traind\\appdata\\local\\unlistedapp\\data.db",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 167,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainD\\AppData\\Local\\Microsoft\\UnlistedApp\\unknown.bin",
+      "normalized_path": "c:\\users\\traind\\appdata\\local\\microsoft\\unlistedapp\\unknown.bin",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    },
+    {
+      "line_1_based": 168,
+      "group": "unknown",
+      "evidence": "missing",
+      "partition": "train",
+      "full_path": "C:\\Users\\TrainD\\AppData\\Local\\pip\\cache-backup\\entry.body",
+      "normalized_path": "c:\\users\\traind\\appdata\\local\\pip\\cache-backup\\entry.body",
+      "output_sha256": "5539ec1754624b37e0b8e30cc7e761e0c732b76dbe2e2f6ea2c55bb4a7fac1db"
+    }
+  ],
+  "limitations": [
+    "No exact normalized test-path overlap is evidence only of path-string separation, not independently sourced knowledge or unseen file contents.",
+    "All eight registry facts occur in training inputs, including held-out pip facts as distractors. Test RAG uses the same frozen facts registry.",
+    "168 synthesized examples reuse nine exact answer texts, including eight known-type reference templates and one uncertainty template; training150 has only eight unique target texts.",
+    "The dataset consists of synthetic username/version/path variants and context variants of eight file families; 168 rows contain only124 unique normalized paths, with110 in training and14 in validation.",
+    "Train/test instruction framing and path categories share templates; holding out a target group and avoiding test checkpoint selection do not demonstrate independent new-knowledge generalization.",
+    "This audit does not inspect physical user-file contents, creation software, near-duplicate sentence semantics, or memorizeability through pretraining. Test24 small cases remain a descriptive closed-domain evaluation."
+  ],
+  "interpretation": "The family split tests behavior when the pip positive target-answer template is absent from SFT targets, with pip facts still visible as distractors and at test time through RAG. Report it as a target-group holdout, not fact-isolated or independent-knowledge generalization."
+}

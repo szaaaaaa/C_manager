@@ -1,0 +1,11 @@
+{
+  "model_session": 88535,
+  "model_exit_code": 0,
+  "observer_session": 82191,
+  "observer_exit_code": 0,
+  "device_total_sample_count": 41,
+  "device_total_sampled_peak_mib": 5020.0,
+  "device_sampling_scope": "Sparse nvidia-smi device totals; not exact per-process or allocator peaks",
+  "post_load_peak_allocated_gpu_mib": 3319.59716796875,
+  "post_load_peak_scope": "Includes warmup, state hashing and 24 cases; exact decode-only peak not measured"
+}

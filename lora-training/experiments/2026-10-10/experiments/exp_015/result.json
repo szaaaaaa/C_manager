@@ -1,0 +1,655 @@
+{
+  "experiment_id": "exp_015",
+  "status": "success",
+  "exit_code": 0,
+  "actual_steps": 0,
+  "elapsed_seconds": 231.75340220006183,
+  "metrics": {
+    "out_of_memory": false,
+    "loading_peak_allocated_gpu_mib": 8128.20068359375,
+    "loading_peak_reserved_gpu_mib": 8192.0,
+    "loaded_allocated_gpu_mib": 3173.548828125,
+    "loaded_reserved_gpu_mib": 4806.0,
+    "actual_nf4_double_quant_bf16_linear_modules": 346,
+    "completed_cases": 24,
+    "cue_pass_count": 19,
+    "empty_answer_count": 0,
+    "thinking_leak_count": 0,
+    "truncated_answer_count": 0,
+    "latency_median_seconds": 7.370045899995603,
+    "post_load_peak_allocated_gpu_mib": 3319.59716796875,
+    "peak_allocated_gpu_mib": 8128.20068359375,
+    "post_load_peak_reserved_gpu_mib": 4834.0,
+    "peak_reserved_gpu_mib": 8192.0
+  },
+  "training_logs": [],
+  "records": [
+    {
+      "id": "pip-body",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：probe.body\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\http-v2\\b\\probe.body\n所在目录：cache\\http-v2\\b\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+        }
+      ],
+      "answer": "这是 pip 缓存的 Python 包下载响应文件，属于可清理的临时数据。删除不会影响已安装的包，下次需要时会自动重新下载。建议用 `pip cache purge` 命令清理即可。",
+      "raw_output": "这是 pip 缓存的 Python 包下载响应文件，属于可清理的临时数据。删除不会影响已安装的包，下次需要时会自动重新下载。建议用 `pip cache purge` 命令清理即可。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 8.329930800013244,
+      "input_tokens": 250,
+      "output_tokens": 45,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "pip-wheel",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：numpy.whl\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache\\wheels\\ab\\numpy.whl\n所在目录：cache\\wheels\\ab\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+        }
+      ],
+      "answer": "这是 pip 缓存的 numpy 包文件，属于可清理的临时数据。删除不会影响已安装的 Python 包，下次使用时会重新下载。建议用 `pip cache purge` 清理，但别误删运行库。",
+      "raw_output": "这是 pip 缓存的 numpy 包文件，属于可清理的临时数据。删除不会影响已安装的 Python 包，下次使用时会重新下载。建议用 `pip cache purge` 清理，但别误删运行库。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.088565099984407,
+      "input_tokens": 252,
+      "output_tokens": 49,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-dll",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：msedge.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\msedge.dll\n所在目录：EdgeWebView\\Application\\146.0.3856.72\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+        }
+      ],
+      "answer": "这个文件是 Edge 浏览器的运行库，用于让桌面应用嵌入网页内容。删除它可能导致依赖该功能的应用无法启动或显示异常。建议保留它，并通过 Windows 应用管理来处理相关组件，不要直接删除。",
+      "raw_output": "这个文件是 Edge 浏览器的运行库，用于让桌面应用嵌入网页内容。删除它可能导致依赖该功能的应用无法启动或显示异常。建议保留它，并通过 Windows 应用管理来处理相关组件，不要直接删除。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 6.439000700018369,
+      "input_tokens": 287,
+      "output_tokens": 49,
+      "truncated": false,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "WebView"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-exe",
+      "path": "D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：msedgewebview2.exe\n完整路径：D:/Program Files/Microsoft/EdgeWebView/Application/146.1.234.5/msedgewebview2.exe\n所在目录：EdgeWebView\\Application\\146.1.234.5\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。"
+        }
+      ],
+      "answer": "这个文件是 WebView2 运行库，用于让桌面应用嵌入网页内容，即使你不用 Edge 浏览器也可能被其他软件依赖。删除它可能导致某些应用无法启动或界面异常，建议先确认备份再处理。",
+      "raw_output": "这个文件是 WebView2 运行库，用于让桌面应用嵌入网页内容，即使你不用 Edge 浏览器也可能被其他软件依赖。删除它可能导致某些应用无法启动或界面异常，建议先确认备份再处理。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 6.447873799945228,
+      "input_tokens": 286,
+      "output_tokens": 48,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-folder",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件夹的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件夹名：cache\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\n所在目录：Microsoft\\OneNote\\16.0\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。"
+        }
+      ],
+      "answer": "这个文件夹是 OneNote 本地缓存笔记内容，可能包含尚未同步的修改。删除前请确认所有需要保留的笔记已同步并备份，否则未同步内容可能丢失且无法从云端恢复。建议先通过 OneNote 应用管理笔记本，不要将 cache 当作无条件可删的临时文件。",
+      "raw_output": "这个文件夹是 OneNote 本地缓存笔记内容，可能包含尚未同步的修改。删除前请确认所有需要保留的笔记已同步并备份，否则未同步内容可能丢失且无法从云端恢复。建议先通过 OneNote 应用管理笔记本，不要将 cache 当作无条件可删的临时文件。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 8.655114199966192,
+      "input_tokens": 267,
+      "output_tokens": 67,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-file",
+      "path": "C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：section-007.bin\n完整路径：C:\\Users\\测试用户\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\section-007.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：OneNote 在本地缓存笔记内容，可能包括尚未同步的修改。删除影响：未同步且未备份的内容可能丢失，不能保证从云端恢复。建议：先确认所有需要保留的笔记已同步并备份，再在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。"
+        }
+      ],
+      "answer": "这个文件是 OneNote 本地缓存的笔记内容，可能包含尚未同步的修改。删除前请先确认所有需要保留的笔记已同步并备份，否则无法保证从云端恢复。建议直接在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。",
+      "raw_output": "这个文件是 OneNote 本地缓存的笔记内容，可能包含尚未同步的修改。删除前请先确认所有需要保留的笔记已同步并备份，否则无法保证从云端恢复。建议直接在 OneNote 内管理笔记本，不要把 cache 当作无条件可删的临时文件。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.915613200049847,
+      "input_tokens": 278,
+      "output_tokens": 61,
+      "truncated": false,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "丢失",
+          "丢"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-base",
+      "path": "C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：torch_cuda.dll\n完整路径：C:\\Users\\Eval\\miniforge3\\Lib\\site-packages\\torch\\lib\\torch_cuda.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。"
+        }
+      ],
+      "answer": "这是 PyTorch 深度学习库的 CUDA 计算组件，用于加速张量运算。单独删除该文件会导致当前 Python 环境中的 PyTorch 无法正常工作。建议先确认项目依赖，通过包管理工具卸载重装，不要直接删除 DLL 文件。",
+      "raw_output": "这是 PyTorch 深度学习库的 CUDA 计算组件，用于加速张量运算。单独删除该文件会导致当前 Python 环境中的 PyTorch 无法正常工作。建议先确认项目依赖，通过包管理工具卸载重装，不要直接删除 DLL 文件。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.666402400005609,
+      "input_tokens": 272,
+      "output_tokens": 57,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "torch-env",
+      "path": "D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：torch_cpu.dll\n完整路径：D:\\Python\\envs\\analytics\\Lib\\site-packages\\torch\\lib\\torch_cpu.dll\n所在目录：site-packages\\torch\\lib\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：当前 Python 环境安装的 PyTorch 包文件，用于张量计算和机器学习。删除影响：单独删除包内的库或程序文件可能让这个环境中的 PyTorch 无法使用；不据此猜测显卡型号或所有其他环境的依赖。建议：确认当前环境和项目依赖后，用该环境的包管理工具卸载，不要直接删 DLL。"
+        }
+      ],
+      "answer": "这是你当前 Python 环境里安装的 PyTorch 包文件，用于张量计算和机器学习。单独删除它会让这个环境中的 PyTorch 无法使用，建议先用包管理工具卸载，不要直接删 DLL。涉及机器学习环境，先确认备份再操作。",
+      "raw_output": "这是你当前 Python 环境里安装的 PyTorch 包文件，用于张量计算和机器学习。单独删除它会让这个环境中的 PyTorch 无法使用，建议先用包管理工具卸载，不要直接删 DLL。涉及机器学习环境，先确认备份再操作。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.982908700010739,
+      "input_tokens": 270,
+      "output_tokens": 59,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-weights",
+      "path": "C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：weights.safetensors\n完整路径：C:\\Users\\Eval\\.cache\\huggingface\\hub\\models--sample--tiny\\snapshots\\def456\\weights.safetensors\n所在目录：models--sample--tiny\\snapshots\\def456\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。"
+        }
+      ],
+      "answer": "这是 Hugging Face 缓存的模型权重文件，通常用于本地运行 AI 模型。删除它可能导致依赖该缓存的任务需要重新下载，离线时可能无法运行。建议先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。",
+      "raw_output": "这是 Hugging Face 缓存的模型权重文件，通常用于本地运行 AI 模型。删除它可能导致依赖该缓存的任务需要重新下载，离线时可能无法运行。建议先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.909471100079827,
+      "input_tokens": 281,
+      "output_tokens": 60,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "hf-blob",
+      "path": "D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：a45b67\n完整路径：D:/Users/Eval/.cache/huggingface/hub/models--sample--encoder/blobs/a45b67\n所在目录：hub\\models--sample--encoder\\blobs\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：Hugging Face Hub 下载的模型、数据集等资源的本地缓存。删除影响：依赖本地副本的任务可能需要重新下载，离线时可能无法运行；不能只凭文件名判断具体模型用途。建议：先确认项目依赖和下载条件，通过 Hugging Face 的缓存管理工具清理不再需要的版本。"
+        }
+      ],
+      "answer": "这是 Hugging Face 缓存的模型文件，删除后依赖该模型的任务可能需要重新下载。由于文件名无法确认具体用途，建议先检查项目依赖和下载条件。清理前请确认备份，避免影响离线运行。",
+      "raw_output": "这是 Hugging Face 缓存的模型文件，删除后依赖该模型的任务可能需要重新下载。由于文件名无法确认具体用途，建议先检查项目依赖和下载条件。清理前请确认备份，避免影响离线运行。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 6.506794600049034,
+      "input_tokens": 271,
+      "output_tokens": 48,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-folder",
+      "path": "C:\\Users\\Eval\\Projects\\demo\\node_modules",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件夹的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件夹名：node_modules\n完整路径：C:\\Users\\Eval\\Projects\\demo\\node_modules\n所在目录：Eval\\Projects\\demo\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。"
+        }
+      ],
+      "answer": "这是 Node.js 项目的依赖包存放目录，删除后项目将无法运行或构建。建议先确认项目已停止运行，并检查依赖声明、锁文件及修改记录是否有备份。",
+      "raw_output": "这是 Node.js 项目的依赖包存放目录，删除后项目将无法运行或构建。建议先确认项目已停止运行，并检查依赖声明、锁文件及修改记录是否有备份。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 5.444427800015546,
+      "input_tokens": 253,
+      "output_tokens": 40,
+      "truncated": false,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "安装"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "node-file",
+      "path": "D:\\Projects\\demo\\node_modules\\example-package\\main.js",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：main.js\n完整路径：D:\\Projects\\demo\\node_modules\\example-package\\main.js\n所在目录：demo\\node_modules\\example-package\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：JavaScript/Node.js 项目的依赖目录。删除影响：项目可能无法运行或构建，需要依照项目的依赖声明和锁文件重新安装；不能保证私改文件可以恢复。建议：确认项目不在运行且依赖声明、锁文件和需要保留的修改已有备份，再用项目对应的包管理工具处理。"
+        }
+      ],
+      "answer": "这个文件位于 Node.js 项目的依赖目录中，删除它可能导致项目无法运行或构建失败。建议先确认项目已停止运行，并检查依赖声明、锁文件以及需要保留的修改是否有备份。再使用项目对应的包管理工具处理，而不是直接删除。",
+      "raw_output": "这个文件位于 Node.js 项目的依赖目录中，删除它可能导致项目无法运行或构建失败。建议先确认项目已停止运行，并检查依赖声明、锁文件以及需要保留的修改是否有备份。再使用项目对应的包管理工具处理，而不是直接删除。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.594810900045559,
+      "input_tokens": 255,
+      "output_tokens": 58,
+      "truncated": false,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "安装"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：install-progress.bin\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Temp\\install-progress.bin\n所在目录：AppData\\Local\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。"
+        }
+      ],
+      "answer": "这个文件位于临时目录，通常是安装程序或应用运行时的缓存或进度记录。建议先关闭相关应用和安装任务，再尝试清理。由于无法确定具体用途，清理前请确保没有正在使用的程序，并优先使用系统自带的临时文件清理工具。",
+      "raw_output": "这个文件位于临时目录，通常是安装程序或应用运行时的缓存或进度记录。建议先关闭相关应用和安装任务，再尝试清理。由于无法确定具体用途，清理前请确保没有正在使用的程序，并优先使用系统自带的临时文件清理工具。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.488914799992926,
+      "input_tokens": 259,
+      "output_tokens": 57,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "user-temp-uppercase",
+      "path": "C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：SESSION.LOG\n完整路径：C:/USERS/EVAL/APPDATA/LOCAL/TEMP/SESSION.LOG\n所在目录：APPDATA\\LOCAL\\TEMP\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：当前用户的临时目录，可能含应用或安装程序正在使用的文件；具体文件内容仍无法仅凭路径确认。删除影响：清理正在使用的临时文件可能使任务失败。建议：先关闭应用和安装任务，优先使用 Windows 设置中的临时文件清理，保留需要的文件并跳过占用项。"
+        }
+      ],
+      "answer": "这个文件位于系统临时目录，通常是应用运行或安装时产生的缓存或残留。清理前请先关闭相关应用，并确认没有正在进行的安装任务。建议优先使用 Windows 自带的临时文件清理功能，避免手动删除正在使用的文件导致任务失败。",
+      "raw_output": "这个文件位于系统临时目录，通常是应用运行或安装时产生的缓存或残留。清理前请先关闭相关应用，并确认没有正在进行的安装任务。建议优先使用 Windows 自带的临时文件清理功能，避免手动删除正在使用的文件导致任务失败。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.139041499933228,
+      "input_tokens": 260,
+      "output_tokens": 55,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp",
+      "path": "C:\\Windows\\Temp\\staging.tmp",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：staging.tmp\n完整路径：C:\\Windows\\Temp\\staging.tmp\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。"
+        }
+      ],
+      "answer": "这是 Windows 临时目录下的文件，可能来自系统服务或安装任务，但无法确定具体内容。建议先检查是否正在使用，再考虑清理。优先使用 Windows 存储设置清理功能，跳过被占用的文件。",
+      "raw_output": "这是 Windows 临时目录下的文件，可能来自系统服务或安装任务，但无法确定具体内容。建议先检查是否正在使用，再考虑清理。优先使用 Windows 存储设置清理功能，跳过被占用的文件。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 6.369691999978386,
+      "input_tokens": 242,
+      "output_tokens": 48,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "windows-temp-file",
+      "path": "C:/Windows/Temp/update-progress.bin",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是可清理。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：update-progress.bin\n完整路径：C:/Windows/Temp/update-progress.bin\n所在目录：C:\\Windows\\Temp\n大小：200 MB\n初步分类：疑似可清理的缓存、临时文件或残留，仍需确认是否在用或需要保留\n\n用途资料：\n用途：Windows 的临时目录，可能包含系统服务或安装任务使用的临时文件，不能由此确认具体内容。删除影响：在使用中的文件不应清理。建议：优先使用 Windows 存储设置的清理功能，等待安装任务结束，并跳过被占用的文件。"
+        }
+      ],
+      "answer": "这个文件位于 Windows 临时目录，通常是系统更新或安装任务产生的临时缓存。建议先检查相关软件是否仍在运行，确认没有正在使用的任务后再删除。如果不确定是否被占用，优先使用 Windows 自带的存储清理功能处理会更安全。",
+      "raw_output": "这个文件位于 Windows 临时目录，通常是系统更新或安装任务产生的临时缓存。建议先检查相关软件是否仍在运行，确认没有正在使用的任务后再删除。如果不确定是否被占用，优先使用 Windows 自带的存储清理功能处理会更安全。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 9.12974739994388,
+      "input_tokens": 241,
+      "output_tokens": 54,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-archive",
+      "path": "C:\\Users\\Eval\\Documents\\archive.bin",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：archive.bin\n完整路径：C:\\Users\\Eval\\Documents\\archive.bin\n所在目录：Users\\Eval\\Documents\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "answer": "这个文件的具体用途无法确定，仅凭文件名和位置无法判断它包含什么内容。建议先通过创建该文件的软件确认其用途，并在删除前备份需要保留的数据。",
+      "raw_output": "这个文件的具体用途无法确定，仅凭文件名和位置无法判断它包含什么内容。建议先通过创建该文件的软件确认其用途，并在删除前备份需要保留的数据。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.251176999998279,
+      "input_tokens": 234,
+      "output_tokens": 39,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-microsoft",
+      "path": "C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：payload.dat\n完整路径：C:\\Program Files\\Microsoft\\UnlistedProduct\\payload.dat\n所在目录：Program Files\\Microsoft\\UnlistedProduct\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "answer": "无法确定这个文件的具体用途，仅凭文件名和目录信息无法判断它是否安全。建议先通过创建该软件的官方渠道确认其内容，并在删除前备份需要保留的数据。",
+      "raw_output": "无法确定这个文件的具体用途，仅凭文件名和目录信息无法判断它是否安全。建议先通过创建该软件的官方渠道确认其内容，并在删除前备份需要保留的数据。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 6.519403200014494,
+      "input_tokens": 240,
+      "output_tokens": 40,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-cache",
+      "path": "C:\\Users\\Eval\\Documents\\cache\\journal.db",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：journal.db\n完整路径：C:\\Users\\Eval\\Documents\\cache\\journal.db\n所在目录：Eval\\Documents\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "answer": "这个文件的具体用途无法确定，仅凭文件名和位置无法判断它属于哪个软件或包含什么数据。建议先通过创建该文件的软件确认其内容，并在删除前备份需要保留的数据。",
+      "raw_output": "这个文件的具体用途无法确定，仅凭文件名和位置无法判断它属于哪个软件或包含什么数据。建议先通过创建该文件的软件确认其内容，并在删除前备份需要保留的数据。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 6.076381199993193,
+      "input_tokens": 236,
+      "output_tokens": 43,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-download",
+      "path": "C:\\Users\\Eval\\Downloads\\family-backup.zip",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：family-backup.zip\n完整路径：C:\\Users\\Eval\\Downloads\\family-backup.zip\n所在目录：Users\\Eval\\Downloads\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "answer": "仅凭文件名和大小无法确定这个压缩包的具体用途或内容。建议先通过创建它的软件确认其用途，并在清理前备份需要保留的数据。",
+      "raw_output": "仅凭文件名和大小无法确定这个压缩包的具体用途或内容。建议先通过创建它的软件确认其用途，并在清理前备份需要保留的数据。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 4.536150300060399,
+      "input_tokens": 238,
+      "output_tokens": 33,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "cache-prefix-nearmiss",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：saved.body\n完整路径：C:\\Users\\Eval\\AppData\\Local\\pip\\cache-backup\\saved.body\n所在目录：Local\\pip\\cache-backup\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "answer": "这个文件位于 pip 的缓存备份目录中，但仅凭现有信息无法确定其具体用途或内容。由于没有匹配的资料，不能保证删除后能恢复相关数据，建议先通过创建该文件的软件确认其重要性。在清理前，请务必备份需要保留的数据，避免误删重要信息。",
+      "raw_output": "这个文件位于 pip 的缓存备份目录中，但仅凭现有信息无法确定其具体用途或内容。由于没有匹配的资料，不能保证删除后能恢复相关数据，建议先通过创建该文件的软件确认其重要性。在清理前，请务必备份需要保留的数据，避免误删重要信息。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 8.556532999966294,
+      "input_tokens": 243,
+      "output_tokens": 66,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "unknown-onnx",
+      "path": "D:\\Research\\Shared\\network.onnx",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：network.onnx\n完整路径：D:\\Research\\Shared\\network.onnx\n所在目录：D:\\Research\\Shared\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "answer": "无法确定这个文件的具体用途，仅凭名称和位置无法判断它属于什么软件或个人数据。建议先通过创建该文件的软件确认其作用，并在删除前备份需要保留的数据。",
+      "raw_output": "无法确定这个文件的具体用途，仅凭名称和位置无法判断它属于什么软件或个人数据。建议先通过创建该文件的软件确认其作用，并在删除前备份需要保留的数据。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 5.536603800021112,
+      "input_tokens": 234,
+      "output_tokens": 41,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "webview-with-distractor",
+      "path": "C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：lib.dll\n完整路径：C:\\Program Files (x86)\\Microsoft\\EdgeWebView\\Application\\146.0.3856.72\\lib.dll\n所在目录：EdgeWebView\\Application\\146.0.3856.72\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n用途：WebView2 Runtime 给桌面应用提供嵌入网页的运行环境，独立于 Edge 浏览器。删除影响：依赖它的应用可能无法启动或显示界面；是否使用 Edge 浏览器不能判断它是否闲置。建议：保留运行库，通过 Windows 应用管理处理，不能按版本目录名直接认定旧版可删。\n另一个路径的资料（可能不相关）：\n用途：pip 缓存 Python 包的下载响应和构建的 wheel。删除影响：清理缓存不卸载已安装的 Python 包，下次需要重新下载或构建。建议：使用 pip cache purge 清理；不要把下载缓存当作已安装的运行库。"
+        }
+      ],
+      "answer": "这个文件是 Edge 浏览器的运行库，用于让桌面应用嵌入网页内容，删除它可能导致依赖该功能的应用无法启动。由于它属于系统运行环境的一部分，建议保留并避免手动删除。如果你不确定是否使用相关应用，可以先备份重要数据再考虑处理。",
+      "raw_output": "这个文件是 Edge 浏览器的运行库，用于让桌面应用嵌入网页内容，删除它可能导致依赖该功能的应用无法启动。由于它属于系统运行环境的一部分，建议保留并避免手动删除。如果你不确定是否使用相关应用，可以先备份重要数据再考虑处理。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 7.6920344000682235,
+      "input_tokens": 349,
+      "output_tokens": 59,
+      "truncated": false,
+      "cue_pass": false,
+      "missing_cues": [
+        [
+          "WebView"
+        ]
+      ],
+      "forbidden_phrases": []
+    },
+    {
+      "id": "onenote-missing-evidence",
+      "path": "C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin",
+      "messages": [
+        {
+          "role": "system",
+          "content": "你是一个帮普通用户看懂电脑文件的助手。根据完整路径解释这个文件的用途、删除影响和处理建议。\n像懂电脑的朋友一样，用两到四句自然中文回答，不用固定标签或重复安全判定。\n优先依据用途资料，不补写资料没有说明的具体功能或恢复保证；没有匹配资料时明确说无法确定。\n规则判定是看看再删。路径不足以确认用途时直说无法确定，不要编造软件名、功能或恢复方式。涉及个人数据时先提醒确认备份。"
+        },
+        {
+          "role": "user",
+          "content": "文件名：pending.bin\n完整路径：C:\\Users\\Eval\\AppData\\Local\\Microsoft\\OneNote\\16.0\\cache\\pending.bin\n所在目录：OneNote\\16.0\\cache\n大小：200 MB\n初步分类：用途或删除影响需要确认，可能包含软件或个人数据\n\n用途资料：\n没有匹配到可核对的用途资料。仅凭文件名、扩展名、体积或软件品牌目录不能确定内容，也不能保证删除后可恢复；应明确说明无法确定，建议通过创建它的软件确认，并在清理前备份需要保留的数据。"
+        }
+      ],
+      "answer": "这个文件位于 OneNote 的缓存目录中，但仅凭现有信息无法确定其具体用途或内容。由于没有匹配的资料，不能保证删除后能恢复数据，建议先通过 OneNote 软件确认其作用。在清理前，请务必备份可能包含的个人数据。",
+      "raw_output": "这个文件位于 OneNote 的缓存目录中，但仅凭现有信息无法确定其具体用途或内容。由于没有匹配的资料，不能保证删除后能恢复数据，建议先通过 OneNote 软件确认其作用。在清理前，请务必备份可能包含的个人数据。<|im_end|>",
+      "thinking_leak": false,
+      "seconds": 8.132412099977955,
+      "input_tokens": 251,
+      "output_tokens": 60,
+      "truncated": false,
+      "cue_pass": true,
+      "missing_cues": [],
+      "forbidden_phrases": []
+    }
+  ],
+  "review_status": "pending",
+  "configuration_path": "D:\\small-model-experiments\\outputs\\exp_20261010_111944\\experiments\\exp_015\\executed_config.json",
+  "compile_cache_files_before": {
+    "D:\\small-model-experiments\\cache\\cuda": 0,
+    "D:\\small-model-experiments\\cache\\inductor": 0,
+    "D:\\small-model-experiments\\cache\\triton": 1039,
+    "D:\\small-model-experiments\\cache\\unsloth": 31
+  },
+  "timing_scope": "Import/first forward/first optimizer timings include possible cold compilation; no isolated compiler timer. Serial GPU; residual CPU/disk background load is not controlled.",
+  "unsloth_import_seconds_including_patch_compile": 16.39935710001737,
+  "versions": {
+    "torch": "2.10.0+cu128",
+    "unsloth": "2026.3.10",
+    "trl": "0.24.0",
+    "transformers": "5.3.0",
+    "peft": "0.18.1",
+    "bitsandbytes": "0.49.2"
+  },
+  "gpu": "NVIDIA GeForce RTX 5070 Laptop GPU",
+  "eos_configuration": {
+    "original_generation_eos_token_id": 248044,
+    "original_text_config_eos_token_id": 248044,
+    "tokenizer_eos_token": "<|im_end|>",
+    "actual_eos_token_id": 248046
+  },
+  "model_load_seconds": 13.208801600034349,
+  "warmup_seconds": 9.308784399996512,
+  "adapter_runtime_dtypes": [
+    "torch.float32"
+  ]
+}

@@ -1,0 +1,13 @@
+# exp_011 actual outcome
+
+Single permitted API compatibility rerun, unified exec session 8626, exit 1 after 181.04 seconds. Two optimizer steps actually ran (50.98 seconds), losses 2.05804348 and 1.95418262, finite nonzero post-clip gradient norms 0.99820597 and 0.99943785. Held-out validation NLL changed 2.29601979 to 2.29314113; this is not a factual quality score.
+
+The final `changed_base == 0 and changed_lora > 0` assertion failed. The runner originally persisted individual counts only after this assertion, so the surviving process result does not distinguish a frozen-base hash mismatch from a missing adapter change. No adapter was saved. This smoke failed its mandatory validation gate; it cannot establish a correct/frozen-base fine-tuning run. NLL/gradients alone do not verify the gate. No further GPU rerun was attempted within the allowed one-retry budget.
+
+The original actual runner is preserved in `executed_training.py`. A future run should persist both individual counts and changed names before raising. Baseline hashes also include dtype and tensor shape, so lazy dtype/layout transformations could produce a hash mismatch even without an optimizer change; this is an unverified possibility, not an identified cause. Static installed Unsloth code has dtype conversion preparation; no changed tensor names/values were saved by this failed run.
+
+Actual 346 Linear4bit modules passed NF4/double-quant/bf16 and all samples fit at <=429 tokens with prompt/padding labels=-100. Exactly 1,572,864 LoRA parameters were trainable at setup. No OOM was reported. Overall CUDA peak allocated8128.20MiB/reserved8190MiB exceeded the7168MiB target. Separate CUDA loading and training peaks were not captured in this executed runner. Device-total nvidia-smi readings after loading were4550MiB and4694MiB; subsequent sparse sampled totals are in observations.json and cannot replace allocator peaks or prove ample VRAM margin.
+
+Phase timings: warmed-cache Unsloth import16.58s, loading13.57s, setup9.17s, first held-out evaluation57.92s, first optimizer step38.37s; these include compilation/execution rather than isolated compiler time. exp_007 had populated31 Unsloth cache files. No simultaneous model GPU jobs; downloads finished before this run. A CPU-only SFTConfig signature self-check and GPU telemetry observer ran in the background, and overall desktop CPU/disk load was not controlled. fla/causal-conv fast path was absent, using Torch fallback; FlashAttention2 reported broken, using Xformers. Unsloth warned Qwen3_5 does not accept num_items_in_batch, affecting accumulation loss normalization.
+
+exp_008/009/010 were not run because mandatory smoke evidence failed; there is no trained quality comparison or deployable adapter from this run.

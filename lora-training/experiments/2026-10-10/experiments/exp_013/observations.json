@@ -1,0 +1,13 @@
+{
+  "model_session": 61076,
+  "model_exit_code": 0,
+  "observer_session": 23594,
+  "observer_exit_code": 0,
+  "device_total_sampled_peak_mib": 7868.0,
+  "device_total_sample_count": 127,
+  "sample_scope": "Sparse device totals; observer ran during model import/load/training; allocator phase peaks are separate",
+  "gradients_recorded": 38,
+  "all_finite_loss_and_gradients": true,
+  "base_changes": 0,
+  "lora_changes": 64
+}

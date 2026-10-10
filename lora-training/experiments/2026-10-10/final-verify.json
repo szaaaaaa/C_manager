@@ -1,0 +1,30 @@
+{
+  "status": "passed",
+  "gpu_execution": false,
+  "paired_cases_verified": 48,
+  "matched_base_parameters": 723,
+  "matched_quant_states": 346,
+  "identical_messages_generation_engine_inputs": true,
+  "adapter_matches_selected_checkpoint_manifest": true,
+  "review_arithmetic": {
+    "exp_014": {
+      "grounded_or_calibrated_count": 13,
+      "unsafe_claim_count": 0,
+      "unknown_abstention_count": 6,
+      "naturalness_sum": 88,
+      "cue_pass_count": 23,
+      "naturalness_mean": 3.666667,
+      "latency_median_seconds": 7.618816450005397
+    },
+    "exp_015": {
+      "grounded_or_calibrated_count": 17,
+      "unsafe_claim_count": 0,
+      "unknown_abstention_count": 6,
+      "naturalness_sum": 92,
+      "cue_pass_count": 19,
+      "naturalness_mean": 3.833333,
+      "latency_median_seconds": 7.370045899995603
+    }
+  },
+  "limits": "Validates saved evidence and arithmetic; cannot automate semantic correctness or prove all non-parameter runtime state equality."
+}

@@ -1,0 +1,45 @@
+{
+  "status": "verified",
+  "paired_experiments": [
+    "exp_014",
+    "exp_015"
+  ],
+  "base_parameters": 723,
+  "normalized_names_one_to_one": true,
+  "source_name_wrapper_differences_excluded": true,
+  "base_state_mismatch_counts": {
+    "dtype": 0,
+    "shape": 0,
+    "raw_sha256": 0,
+    "float32_value_sha256": 0,
+    "quant_state_sha256": 0
+  },
+  "changed_names_by_field": {
+    "dtype": [],
+    "shape": [],
+    "raw_sha256": [],
+    "float32_value_sha256": [],
+    "quant_state_sha256": []
+  },
+  "base_requires_grad_false": true,
+  "same_24_messages_and_input_token_counts": true,
+  "same_generation_and_engine_config": true,
+  "same_executed_runner_sha256": "98c68de26a0aaba990b91d979bcad6050f9bbf78aecc503cb20cbb963368ae10",
+  "same_eos_configuration": {
+    "original_generation_eos_token_id": 248044,
+    "original_text_config_eos_token_id": 248044,
+    "tokenizer_eos_token": "<|im_end|>",
+    "actual_eos_token_id": 248046
+  },
+  "all_48_outputs_end_at_tokenizer_eos": true,
+  "adapter_storage_dtypes": [
+    "BF16"
+  ],
+  "adapter_runtime_dtypes": [
+    "torch.float32"
+  ],
+  "selected_checkpoint_step": 38,
+  "selected_checkpoint_validation_nll": 1.9347032308578491,
+  "adapter_manifest_sha256": "8d54a4acc100f4770112c5163fd6dcd725bbd8141e1c6d85724adb76607fd168",
+  "interpretation_limit": "Matched NF4 base runtime/prompt conditions for implemented adapter comparison; cue counts are not factual accuracy and no GGUF adapter deployment was tested."
+}

@@ -1,0 +1,17 @@
+{
+  "status": "observed",
+  "process_session": 8626,
+  "gpu_observer_session": 12442,
+  "gpu_observer_exit_code": 0,
+  "device_total_sample_count": 12,
+  "device_total_sampled_peak_mib": 4760.0,
+  "measurement_scope": "nvidia-smi device totals sampled after loading; not exact per-process CUDA training peak",
+  "loading_complete_device_total_observation_mib": 4550,
+  "trainer_constructing_device_total_observation_mib": 4694,
+  "isolated_training_torch_peak_mib": null,
+  "isolated_loading_torch_peak_mib": null,
+  "base_unchanged_verified": false,
+  "adapter_change_verified": false,
+  "individual_changed_parameter_counts": null,
+  "validation_limit": "Original code raised a joint base/LoRA assertion before persisting individual counts; exact failing component is unknown."
+}

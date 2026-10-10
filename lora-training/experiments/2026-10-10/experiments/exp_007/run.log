@@ -1,0 +1,49 @@
+W1010 12:56:57.176000 77672 site-packages\torch\distributed\elastic\multiprocessing\redirects.py:29] NOTE: Redirects are currently not supported in Windows or MacOs.
+The fast path is not available because one of the required library is not installed. Falling back to torch implementation. To install follow https://github.com/fla-org/flash-linear-attention#installation and https://github.com/Dao-AILab/causal-conv1d
+🦥 Unsloth: Will patch your computer to enable 2x faster free finetuning.
+Unsloth: Your Flash Attention 2 installation seems to be broken. Using Xformers instead. No performance changes will be seen.
+🦥 Unsloth Zoo will now patch everything to make training faster!
+==((====))==  Unsloth 2026.3.10: Fast Qwen3_5 patching. Transformers: 5.3.0.
+   \\   /|    NVIDIA GeForce RTX 5070 Laptop GPU. Num GPUs = 1. Max memory: 7.96 GB. Platform: Windows.
+O^O/ \_/ \    Torch: 2.10.0+cu128. CUDA: 12.0. CUDA Toolkit: 12.8. Triton: 3.6.0
+\        /    Bfloat16 = TRUE. FA [Xformers = 0.0.35. FA2 = False]
+ "-____-"     Free license: http://github.com/unslothai/unsloth
+Unsloth: Fast downloading is enabled - ignore downloading bars which are red colored!
+Unsloth: QLoRA and full finetuning all not selected. Switching to 16bit LoRA.
+
+Loading weights:   0%|          | 0/723 [00:00<?, ?it/s]
+Loading weights:   0%|          | 1/723 [00:00<08:11,  1.47it/s]
+Loading weights:   1%|          | 6/723 [00:01<01:42,  6.99it/s]
+Loading weights:   1%|          | 7/723 [00:01<01:39,  7.18it/s]
+Loading weights:   1%|          | 8/723 [00:01<01:55,  6.17it/s]
+Loading weights:   1%|          | 9/723 [00:01<01:49,  6.54it/s]
+Loading weights:   2%|▏         | 11/723 [00:01<01:43,  6.85it/s]
+Loading weights:   2%|▏         | 12/723 [00:01<01:43,  6.90it/s]
+Loading weights:   2%|▏         | 13/723 [00:02<02:01,  5.84it/s]
+Loading weights:   2%|▏         | 14/723 [00:02<01:58,  6.00it/s]
+Loading weights:   3%|▎         | 20/723 [00:02<00:54, 12.93it/s]
+Loading weights:   3%|▎         | 22/723 [00:02<01:07, 10.41it/s]
+Loading weights:   3%|▎         | 24/723 [00:03<01:04, 10.85it/s]
+Loading weights:   4%|▎         | 26/723 [00:03<01:16,  9.06it/s]
+Loading weights:   4%|▍         | 28/723 [00:03<01:39,  6.99it/s]
+Loading weights:   5%|▍         | 35/723 [00:03<00:50, 13.55it/s]
+Loading weights:   5%|▌         | 39/723 [00:04<00:41, 16.55it/s]
+Loading weights:   7%|▋         | 51/723 [00:04<00:20, 32.25it/s]
+Loading weights:   8%|▊         | 60/723 [00:04<00:15, 41.52it/s]
+Loading weights:   9%|▉         | 66/723 [00:04<00:14, 44.18it/s]
+Loading weights:  29%|██▉       | 209/723 [00:04<00:01, 347.05it/s]
+Loading weights:  52%|█████▏    | 379/723 [00:04<00:00, 662.11it/s]
+Loading weights:  86%|████████▌ | 622/723 [00:04<00:00, 1105.96it/s]
+Loading weights: 100%|██████████| 723/723 [00:04<00:00, 151.39it/s] 
+Unsloth: Making `model.base_model.model.model.language_model` require gradients
+Loaded 168 training samples
+Traceback (most recent call last):
+  File "D:\small-model-experiments\outputs\exp_20261010_111944\training.py", line 367, in run
+    run_training(config, directory, model, tokenizer, torch, FastLanguageModel, report, save)
+  File "D:\small-model-experiments\outputs\exp_20261010_111944\training.py", line 196, in run_training
+    callbacks=[RecordTraining()], args=SFTConfig(
+                                       ^^^^^^^^^^
+  File "D:\small-model-experiments\cache\unsloth\UnslothSFTTrainer.py", line 585, in __init__
+    super().__init__(
+TypeError: SFTConfig.__init__() got an unexpected keyword argument 'save_safetensors'
+

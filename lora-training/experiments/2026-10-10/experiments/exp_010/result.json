@@ -1,0 +1,15 @@
+{
+  "experiment_id": "exp_010",
+  "status": "blocked",
+  "exit_code": null,
+  "actual_steps": 0,
+  "elapsed_seconds": 0,
+  "gpu_execution": false,
+  "metrics": {},
+  "reason": "Mandatory NF4 smoke gate failed: exp_007 API construction failed; sole compatibility retry exp_011 ran 2 steps but base/adapter joint validation failed. No adapter exists.",
+  "blocking_experiments": [
+    "exp_007",
+    "exp_011"
+  ],
+  "configuration_path": "outputs\\exp_20261010_111944\\experiments\\exp_010\\config.json"
+}
