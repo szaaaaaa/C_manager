@@ -31,6 +31,10 @@ export interface ScanIssue {
 }
 
 export interface ScanSummary {
+  mft_bulk?: { block_bytes: number; bytes_read: number; read_calls: number; record_fallbacks: number; prefetch_buffers?: number; names_omitted?: number; read_ms?: number; parse_ms?: number; pipeline_wall_ms?: number } | null;
+  size_filtered?: number;
+  mft_records?: { base_records: number; extension_records: number; logical_entries: number } | null;
+  verification?: { total: number; checked: number; path_errors: number; hard_link_queries: number; workers: number };
   status: 'completed' | 'partial' | 'cancelled' | 'failed';
   engine: string;
   entries_scanned: number;
@@ -48,6 +52,7 @@ export interface ScanProgress extends Omit<ScanSummary, 'status'> {
 export interface ScanConfig {
   root: string;
   min_size_mb: number;
+  engine: 'mft_dual';
 }
 
 export type ModelSource = 'local' | 'api';

@@ -38,6 +38,7 @@ const DEFAULT_SETTINGS: AppSettings = {
 const DEFAULT_CONFIG: ScanConfig = {
   root: 'C:\\',
   min_size_mb: 10,
+  engine: 'mft_dual',
 };
 
 function loadSettings(): AppSettings {
@@ -61,6 +62,7 @@ export default function App() {
   const [view, setView] = useState<View>('dashboard');
   const [driveInfo, setDriveInfo] = useState<DriveInfo | null>(null);
   const [scanConfig, setScanConfig] = useState<ScanConfig>(DEFAULT_CONFIG);
+  const [activeScanConfig, setActiveScanConfig] = useState<ScanConfig>(DEFAULT_CONFIG);
   const [scanning, setScanning] = useState(false);
   const scanRunningRef = useRef(false);
   const [scanRun, setScanRun] = useState(0);
@@ -111,6 +113,7 @@ export default function App() {
   const handleStartScan = useCallback(async (config: ScanConfig) => {
     if (scanRunningRef.current) return;
     scanRunningRef.current = true;
+    setActiveScanConfig(config);
     setScanRun(run => run + 1);
     setScanning(true);
     setBackendError(null);
@@ -121,7 +124,7 @@ export default function App() {
     setSelectedItem(null);
     setExplanation(null);
     setExplainError(null);
-    setProgress({ status: 'running', engine: 'directory', entries_scanned: 0, files_matched: 0,
+    setProgress({ status: 'running', engine: config.engine, entries_scanned: 0, files_matched: 0,
       issues: [], excluded_links: [], elapsed_ms: 0, error: null });
     setView('results');
 
@@ -133,13 +136,15 @@ export default function App() {
             entries_scanned: msg.entries_scanned,
             files_matched: msg.files_matched,
           } : p);
+        } else if (msg.type === 'verification') {
+          setProgress(p => p ? { ...p, verification: msg.verification } : p);
         } else if (msg.type === 'files') {
           fileBatchRef.current.push(...msg.files);
           if (!flushTimerRef.current) {
             flushTimerRef.current = setTimeout(flushFileBatch, 500);
           }
         }
-      });
+      }, config.engine);
       // Flush any remaining files
       if (flushTimerRef.current) {
         clearTimeout(flushTimerRef.current);
@@ -308,6 +313,7 @@ export default function App() {
               >
                 <ScanResults
                   key={scanRun}
+                  config={activeScanConfig}
                   items={results}
                   progress={progress}
                   onItemClick={handleItemClick}

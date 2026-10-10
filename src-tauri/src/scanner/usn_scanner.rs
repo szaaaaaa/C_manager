@@ -1,41 +1,32 @@
-//! USN enumeration retained for explicit benchmarks; the application scans directory paths.
+//! NTFS enumeration followed by current metadata verification.
+#[cfg(test)]
+use super::EventFn;
 use std::collections::{HashMap, HashSet};
 use std::ffi::OsString;
-use std::os::windows::ffi::{OsStrExt, OsStringExt};
+use std::os::windows::ffi::OsStrExt;
+use std::os::windows::ffi::OsStringExt;
 use std::path::{Path, PathBuf};
 use std::sync::atomic::{AtomicBool, Ordering};
 use std::sync::Mutex;
 use std::time::Instant;
-use std::{mem, ptr};
 
 use rayon::prelude::*;
 use windows_sys::Win32::Foundation::{
-    CloseHandle, GetLastError, ERROR_HANDLE_EOF, ERROR_MORE_DATA, HANDLE, INVALID_HANDLE_VALUE,
+    GetLastError, ERROR_HANDLE_EOF, ERROR_MORE_DATA, HANDLE, INVALID_HANDLE_VALUE,
 };
-use windows_sys::Win32::Storage::FileSystem::{
-    CreateFileW, FindClose, FindFirstFileNameW, FindNextFileNameW, FILE_SHARE_DELETE,
-    FILE_SHARE_READ, FILE_SHARE_WRITE, OPEN_EXISTING,
-};
-use windows_sys::Win32::System::IO::DeviceIoControl;
+use windows_sys::Win32::Storage::FileSystem::{FindClose, FindFirstFileNameW, FindNextFileNameW};
 
 use super::models::ScanReport;
-use super::{entry_info, record_file, Collector, EventFn};
+use super::{entry_info, record_file, Collector};
 
-const FSCTL_ENUM_USN_DATA: u32 = 0x000900b3;
-
-#[repr(C)]
-struct MftEnumDataV0 {
-    start_file_reference_number: u64,
-    low_usn: i64,
-    high_usn: i64,
+#[derive(Clone)]
+pub(super) struct FileEntry {
+    pub(super) name: OsString,
+    pub(super) parent_ref: u64,
+    pub(super) is_dir: bool,
 }
 
-struct FileEntry {
-    name: OsString,
-    parent_ref: u64,
-    is_dir: bool,
-}
-
+#[cfg(test)]
 fn parse_records(
     buffer: &[u8],
     entries: &mut HashMap<u64, FileEntry>,
@@ -120,7 +111,7 @@ fn build_path(
             .get(&current)
             .ok_or_else(|| format!("Missing parent reference {current:#x}"))?;
         if current != id && !entry.is_dir {
-            return Err("Parent reference is not a directory".into());
+            return Err(format!("Parent reference {current:#x} is not a directory"));
         }
         chain.push((current, entry));
         current = entry.parent_ref;
@@ -134,7 +125,7 @@ fn build_path(
     Ok(path)
 }
 
-fn hard_link_paths(path: &Path, drive: &str) -> std::io::Result<Vec<PathBuf>> {
+pub(super) fn hard_link_paths(path: &Path, drive: &str) -> std::io::Result<Vec<PathBuf>> {
     let native_path = path.canonicalize()?;
     let wide: Vec<u16> = native_path
         .as_os_str()
@@ -199,165 +190,106 @@ fn hard_link_paths(path: &Path, drive: &str) -> std::io::Result<Vec<PathBuf>> {
     }
 }
 
-pub fn scan_usn(
+pub(super) fn verify_entries(
+    entries: HashMap<u64, FileEntry>,
+    root_info: super::EntryInfo,
     drive_letter: &str,
     min_size_bytes: u64,
     cancel: &AtomicBool,
-    on_event: &Option<EventFn>,
+    collector: Mutex<Collector<'_>>,
 ) -> Result<ScanReport, String> {
-    if drive_letter.len() != 2
-        || !drive_letter.as_bytes()[0].is_ascii_alphabetic()
-        || drive_letter.as_bytes()[1] != b':'
-    {
-        return Err("USN requires a drive letter such as C:".into());
-    }
-    let collector = Mutex::new(Collector::new("usn", on_event));
-    if cancel.load(Ordering::Relaxed) {
-        return Ok(collector.into_inner().unwrap().finish(cancel));
-    }
+    verify_entries_with_workers(
+        entries,
+        root_info,
+        drive_letter,
+        min_size_bytes,
+        cancel,
+        collector,
+        4,
+    )
+}
+
+fn verify_entries_with_workers(
+    entries: HashMap<u64, FileEntry>,
+    root_info: super::EntryInfo,
+    drive_letter: &str,
+    min_size_bytes: u64,
+    cancel: &AtomicBool,
+    collector: Mutex<Collector<'_>>,
+    workers: usize,
+) -> Result<ScanReport, String> {
+    let started = Instant::now();
     let root = PathBuf::from(format!("{drive_letter}\\"));
-    let root_info = entry_info(&root).map_err(|e| e.to_string())?;
-    let volume_path: Vec<u16> = format!("\\\\.\\{drive_letter}")
-        .encode_utf16()
-        .chain(Some(0))
-        .collect();
-    let handle = unsafe {
-        CreateFileW(
-            volume_path.as_ptr(),
-            0x80000000,
-            FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
-            ptr::null(),
-            OPEN_EXISTING,
-            0,
-            ptr::null_mut(),
-        )
-    };
-    if handle == INVALID_HANDLE_VALUE {
-        return Err(format!(
-            "无法打开 USN 卷（需要管理员权限）: {}",
-            std::io::Error::last_os_error()
-        ));
-    }
-    struct HandleGuard(HANDLE);
-    impl Drop for HandleGuard {
-        fn drop(&mut self) {
-            unsafe {
-                CloseHandle(self.0);
-            }
-        }
-    }
-    let _guard = HandleGuard(handle);
-    let mut entries = HashMap::new();
-    let mut input = MftEnumDataV0 {
-        start_file_reference_number: 0,
-        low_usn: 0,
-        high_usn: i64::MAX,
-    };
-    let mut buffer = vec![0u8; 128 * 1024];
-    loop {
-        if cancel.load(Ordering::Relaxed) {
-            return Ok(collector.into_inner().unwrap().finish(cancel));
-        }
-        let started = Instant::now();
-        let mut bytes_returned = 0;
-        let ok = unsafe {
-            DeviceIoControl(
-                handle,
-                FSCTL_ENUM_USN_DATA,
-                &input as *const _ as *const _,
-                mem::size_of_val(&input) as u32,
-                buffer.as_mut_ptr() as *mut _,
-                buffer.len() as u32,
-                &mut bytes_returned,
-                ptr::null_mut(),
-            )
-        };
-        let mut chunk = ScanReport::new("usn");
-        chunk.summary.timings.enumeration_ms = started.elapsed().as_secs_f64() * 1000.0;
-        if ok == 0 {
-            let error = unsafe { GetLastError() };
-            if error != ERROR_HANDLE_EOF {
-                chunk.issue(
-                    &root,
-                    "usn_enumeration",
-                    std::io::Error::from_raw_os_error(error as i32),
-                );
-            }
-            collector.lock().unwrap().merge(chunk);
-            break;
-        }
-        match buffer
-            .get(..bytes_returned as usize)
-            .ok_or_else(|| "USN response exceeds buffer".to_string())
-            .and_then(|b| parse_records(b, &mut entries))
-        {
-            Ok((next, count)) => {
-                chunk.summary.entries_scanned = count;
-                if next <= input.start_file_reference_number {
-                    chunk.issue(&root, "usn_enumeration", "USN continuation did not advance");
-                    collector.lock().unwrap().merge(chunk);
-                    break;
-                }
-                input.start_file_reference_number = next;
-            }
-            Err(error) => {
-                chunk.issue(&root, "usn_parse", error);
-                collector.lock().unwrap().merge(chunk);
+    let mut cache = HashMap::from([(root_info.identity.1, root)]);
+    let mut initial = ScanReport::new("verification");
+    initial.summary.verification.total = entries.values().filter(|e| !e.is_dir).count() as u64;
+    initial.summary.verification.workers = workers;
+    collector.lock().unwrap().merge(initial);
+    let mut candidates = entries.iter().filter(|(_, entry)| !entry.is_dir);
+    // par_bridge pulls bounded batches: cached path building overlaps handle verification.
+    let batches = std::iter::from_fn(|| {
+        let mut files = Vec::with_capacity(256);
+        let mut chunk = ScanReport::new("verification");
+        let start = Instant::now();
+        let mut consumed = 0;
+        for (&id, _) in candidates.by_ref().take(256) {
+            if cancel.load(Ordering::Relaxed) {
                 break;
             }
+            consumed += 1;
+            match build_path(id, &entries, &mut cache) {
+                Ok(path) => files.push((id, path)),
+                Err(error) => {
+                    chunk.summary.verification.path_errors += 1;
+                    chunk.issue(
+                        Path::new(&format!("file-reference:{id:#x}")),
+                        "path_resolution",
+                        error,
+                    );
+                }
+            }
         }
-        collector.lock().unwrap().merge(chunk);
-    }
-
-    let mut cache = HashMap::from([(root_info.identity.1, root.clone())]);
-    let mut files = Vec::new();
-    for (&id, entry) in &entries {
-        if cancel.load(Ordering::Relaxed) {
-            return Ok(collector.into_inner().unwrap().finish(cancel));
+        if consumed == 0 {
+            return None;
         }
-        if entry.is_dir {
-            continue;
-        }
-        let start = Instant::now();
-        let path = build_path(id, &entries, &mut cache);
-        let mut chunk = ScanReport::new("usn");
         chunk.summary.timings.path_ms = start.elapsed().as_secs_f64() * 1000.0;
-        match path {
-            Ok(path) => files.push((id, path)),
-            Err(error) => chunk.issue(
-                Path::new(&format!("file-reference:{id:#x}")),
-                "path_resolution",
-                error,
-            ),
-        }
         collector.lock().unwrap().merge(chunk);
-    }
-    drop(cache);
-    drop(entries);
+        Some(files)
+    });
     let pool = rayon::ThreadPoolBuilder::new()
-        .num_threads(4)
+        .num_threads(workers)
         .build()
         .map_err(|e| e.to_string())?;
     pool.install(|| {
-        files.par_chunks(256).for_each(|files| {
-            let mut chunk = ScanReport::new("usn");
+        batches.par_bridge().for_each(|files| {
+            let mut chunk = ScanReport::new("verification");
             for (id, path) in files {
                 if cancel.load(Ordering::Relaxed) {
                     break;
                 }
-                let started = Instant::now();
-                match entry_info(path) {
-                    Err(error) => chunk.issue(path, "metadata", error),
-                    Ok(info) if info.identity != (root_info.identity.0, *id) || info.is_dir => {
-                        chunk.issue(path, "file_changed", "文件标识或类型已改变，原记录大小未知");
+                let start = Instant::now();
+                let info = entry_info(&path);
+                chunk.summary.timings.metadata_ms += start.elapsed().as_secs_f64() * 1000.0;
+                chunk.summary.verification.checked += 1;
+                match info {
+                    Err(error) => chunk.issue(&path, "metadata", error),
+                    Ok(info) if info.identity != (root_info.identity.0, id) || info.is_dir => {
+                        chunk.issue(
+                            &path,
+                            "file_changed",
+                            "文件标识或类型已改变，原记录大小未知",
+                        );
                     }
                     Ok(info) => {
-                        if info.links > 1 && !info.is_link {
-                            match hard_link_paths(path, drive_letter) {
+                        // Size is current handle metadata; all files still receive this check.
+                        if info.size >= min_size_bytes && info.links > 1 && !info.is_link {
+                            let start = Instant::now();
+                            chunk.summary.verification.hard_link_queries += 1;
+                            match hard_link_paths(&path, drive_letter) {
                                 Ok(paths) => {
                                     if paths.len() != info.links as usize {
                                         chunk.issue(
-                                            path,
+                                            &path,
                                             "hard_links",
                                             "硬链接数量在扫描期间发生变化",
                                         );
@@ -367,26 +299,265 @@ pub fn scan_usn(
                                     }
                                 }
                                 Err(error) => {
-                                    chunk.issue(path, "hard_links", error);
-                                    record_file(path, &info, min_size_bytes, &mut chunk);
+                                    chunk.issue(&path, "hard_links", error);
+                                    record_file(&path, &info, min_size_bytes, &mut chunk);
                                 }
                             }
+                            chunk.summary.timings.hard_links_ms +=
+                                start.elapsed().as_secs_f64() * 1000.0;
                         } else {
-                            record_file(path, &info, min_size_bytes, &mut chunk);
+                            record_file(&path, &info, min_size_bytes, &mut chunk);
                         }
                     }
                 }
-                chunk.summary.timings.metadata_ms += started.elapsed().as_secs_f64() * 1000.0;
             }
             collector.lock().unwrap().merge(chunk);
         });
     });
-    Ok(collector.into_inner().unwrap().finish(cancel))
+    let mut collector = collector.into_inner().unwrap();
+    let mut timing = ScanReport::new("verification");
+    timing.summary.timings.verification_wall_ms = started.elapsed().as_secs_f64() * 1000.0;
+    collector.merge(timing);
+    Ok(collector.finish(cancel))
 }
 
 #[cfg(test)]
 mod tests {
     use super::*;
+
+    fn fixture_entries(
+        paths: &[(PathBuf, u64)],
+    ) -> (HashMap<u64, FileEntry>, super::super::EntryInfo, String) {
+        let first = paths[0].0.to_string_lossy();
+        let drive = first.strip_prefix(r"\\?\").unwrap_or(&first)[..2].to_string();
+        let root = PathBuf::from(format!("{drive}\\"));
+        let root_info = entry_info(&root).unwrap();
+        let mut entries = HashMap::new();
+        for (path, _) in paths {
+            let mut current = path.as_path();
+            loop {
+                let info = entry_info(current).unwrap();
+                if info.identity == root_info.identity || entries.contains_key(&info.identity.1) {
+                    break;
+                }
+                let parent = current.parent().unwrap();
+                let parent_info = entry_info(parent).unwrap();
+                entries.insert(
+                    info.identity.1,
+                    FileEntry {
+                        name: current.file_name().unwrap().to_owned(),
+                        parent_ref: parent_info.identity.1,
+                        is_dir: info.is_dir,
+                    },
+                );
+                current = parent;
+            }
+        }
+        (entries, root_info, drive)
+    }
+
+    fn expected(paths: &[(PathBuf, u64)], min: u64) -> Vec<(String, u64)> {
+        let mut files: Vec<_> = paths
+            .iter()
+            .filter(|(_, size)| *size >= min)
+            .map(|(path, size)| {
+                let text = path.to_str().unwrap();
+                (
+                    text.strip_prefix(r"\\?\").unwrap_or(text).to_string(),
+                    *size,
+                )
+            })
+            .collect();
+        files.sort();
+        files
+    }
+
+    fn pairs(root: &Path, count: usize) -> Vec<(PathBuf, u64)> {
+        let mut paths = Vec::new();
+        for n in 0..count {
+            let dir = root.join(format!("目录{}", n % 32));
+            std::fs::create_dir_all(&dir).unwrap();
+            let path = dir.join(format!("{n}.bin"));
+            let alias = dir.join(format!("{n}-alias.bin"));
+            std::fs::write(&path, [0; 8]).unwrap();
+            std::fs::hard_link(&path, &alias).unwrap();
+            // Grow through an alias, so directory-entry sizes must not be trusted.
+            let size = if n % 128 == 0 { 64 * 1024 * 1024 } else { 8 };
+            std::fs::OpenOptions::new()
+                .write(true)
+                .open(&alias)
+                .unwrap()
+                .set_len(size)
+                .unwrap();
+            paths.push((path, size));
+            paths.push((alias, size));
+        }
+        paths
+    }
+
+    #[test]
+    fn pipelined_verification_preserves_aliases_errors_cancellation_and_skips_small_link_queries() {
+        let fixture = super::super::tests::Fixture::new();
+        let paths = pairs(&fixture.0, 520);
+        let (entries, root_info, drive) = fixture_entries(&paths);
+        let root = PathBuf::from(format!("{drive}\\"));
+        for min in [0, 1024] {
+            let report = verify_entries_with_workers(
+                entries.clone(),
+                entry_info(&root).unwrap(),
+                &drive,
+                min,
+                &AtomicBool::new(false),
+                Mutex::new(Collector::new("usn", &None)),
+                2,
+            )
+            .unwrap();
+            let mut actual: Vec<_> = report
+                .files
+                .iter()
+                .map(|f| (f.path.clone(), f.size))
+                .collect();
+            actual.sort();
+            assert_eq!(actual, expected(&paths, min));
+            assert!(report.summary.issues.is_empty());
+            assert_eq!(report.summary.verification.checked, 520);
+            assert_eq!(
+                report.summary.verification.hard_link_queries,
+                if min == 0 { 520 } else { 5 }
+            );
+        }
+        let mut broken = entries.clone();
+        broken.insert(
+            u64::MAX,
+            FileEntry {
+                name: "orphan".into(),
+                parent_ref: u64::MAX - 1,
+                is_dir: false,
+            },
+        );
+        let removed_id = entry_info(&paths[2].0).unwrap().identity.1;
+        std::fs::remove_file(&paths[2].0).unwrap();
+        std::fs::remove_file(&paths[3].0).unwrap();
+        assert!(broken.contains_key(&removed_id));
+        let report = verify_entries_with_workers(
+            broken,
+            root_info,
+            &drive,
+            1024,
+            &AtomicBool::new(false),
+            Mutex::new(Collector::new("mft", &None)),
+            4,
+        )
+        .unwrap();
+        assert_eq!(report.summary.engine, "mft");
+        assert_eq!(report.summary.verification.path_errors, 1);
+        assert!(report.summary.issues.iter().any(|e| e.stage == "metadata"));
+        assert_eq!(
+            report.summary.status,
+            super::super::models::ScanStatus::Partial
+        );
+        let cancel = std::sync::Arc::new(AtomicBool::new(false));
+        let signal = cancel.clone();
+        let delivered = std::sync::Arc::new(std::sync::atomic::AtomicUsize::new(0));
+        let count = delivered.clone();
+        let events: Option<EventFn> = Some(Box::new(move |event| {
+            if let super::super::ScanEvent::FilesFound(files) = event {
+                count.fetch_add(files.len(), Ordering::Relaxed);
+                signal.store(true, Ordering::Relaxed);
+            }
+        }));
+        let report = verify_entries_with_workers(
+            entries.clone(),
+            entry_info(&root).unwrap(),
+            &drive,
+            0,
+            &cancel,
+            Mutex::new(Collector::new("usn", &events)),
+            1,
+        )
+        .unwrap();
+        assert_eq!(
+            report.summary.status,
+            super::super::models::ScanStatus::Cancelled
+        );
+        assert!(!report.files.is_empty());
+        assert_eq!(report.files.len(), delivered.load(Ordering::Relaxed));
+        assert!(report.summary.verification.checked < 520);
+        let report = verify_entries_with_workers(
+            entries,
+            entry_info(&root).unwrap(),
+            &drive,
+            0,
+            &cancel,
+            Mutex::new(Collector::new("usn", &None)),
+            4,
+        )
+        .unwrap();
+        assert_eq!(
+            report.summary.status,
+            super::super::models::ScanStatus::Cancelled
+        );
+        assert!(report.files.is_empty());
+    }
+
+    #[test]
+    #[ignore = "Windows filesystem benchmark; builds a known hard-link fixture"]
+    fn verification_worker_benchmark() {
+        let fixture = super::super::tests::Fixture::new();
+        let paths = if let Some(root) = std::env::var_os("SCAN_VERIFY_ROOT") {
+            let mut paths = Vec::new();
+            let mut dirs = vec![PathBuf::from(root).canonicalize().unwrap()];
+            while let Some(dir) = dirs.pop() {
+                for entry in std::fs::read_dir(dir).unwrap() {
+                    let entry = entry.unwrap();
+                    let metadata = std::fs::symlink_metadata(entry.path()).unwrap();
+                    if metadata.file_type().is_symlink() {
+                        continue;
+                    }
+                    if metadata.is_dir() {
+                        dirs.push(entry.path());
+                    } else if metadata.is_file() {
+                        paths.push((entry.path(), metadata.len()));
+                    }
+                }
+            }
+            paths
+        } else {
+            pairs(&fixture.0, 4096)
+        };
+        assert!(!paths.is_empty());
+        let (entries, _, drive) = fixture_entries(&paths);
+        let root = PathBuf::from(format!("{drive}\\"));
+        for min in [0, 16 * 1024 * 1024] {
+            for (round, order) in [[2, 4, 8], [8, 2, 4], [4, 8, 2]].iter().enumerate() {
+                for &workers in order {
+                    let report = verify_entries_with_workers(
+                        entries.clone(),
+                        entry_info(&root).unwrap(),
+                        &drive,
+                        min,
+                        &AtomicBool::new(false),
+                        Mutex::new(Collector::new("usn", &None)),
+                        workers,
+                    )
+                    .unwrap();
+                    let mut actual: Vec<_> = report
+                        .files
+                        .iter()
+                        .map(|f| (f.path.clone(), f.size))
+                        .collect();
+                    actual.sort();
+                    assert_eq!(actual, expected(&paths, min));
+                    assert!(report.summary.issues.is_empty());
+                    println!(
+                        "{}",
+                        serde_json::json!({"round": round, "workers": workers, "min_bytes": min,
+                        "matched": report.files.len(), "timings": report.summary.timings, "verification": report.summary.verification})
+                    );
+                }
+            }
+        }
+    }
 
     fn record(id: u64, parent: u64, name: &[u16]) -> Vec<u8> {
         let len = (60 + name.len() * 2 + 7) & !7;

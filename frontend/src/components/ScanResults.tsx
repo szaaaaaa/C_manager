@@ -6,7 +6,7 @@ import {
 } from 'lucide-react';
 import { SafetyBadge } from './SafetyBadge';
 import { openInExplorer, deleteToRecycleBin } from '../api';
-import type { ScanItem, ScanProgress, FileCategory } from '../types';
+import type { ScanConfig, ScanItem, ScanProgress, FileCategory } from '../types';
 
 // ── Extension → Category mapping ──
 
@@ -54,6 +54,7 @@ const CATEGORIES: FileCategory[] = ['全部', '文档', '图片', '压缩包', '
 // ── Props ──
 
 interface Props {
+  config?: ScanConfig;
   items: ScanItem[];
   progress: ScanProgress | null;
   onItemClick: (item: ScanItem) => void;
@@ -62,7 +63,8 @@ interface Props {
   onItemsDeleted?: (deletedPaths: string[]) => void;
 }
 
-export function ScanResults({ items, progress, onItemClick, selectedPath, onStopScan, onItemsDeleted }: Props) {
+export function ScanResults({ config, items, progress, onItemClick, selectedPath, onStopScan, onItemsDeleted }: Props) {
+  const [reportMessage, setReportMessage] = useState('');
   const [checkedPaths, setCheckedPaths] = useState<Set<string>>(new Set());
   const [activeCategory, setActiveCategory] = useState<FileCategory>('全部');
   const [showDeleteConfirm, setShowDeleteConfirm] = useState(false);
@@ -70,8 +72,13 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
   const [deleteResult, setDeleteResult] = useState<{ succeeded: number; failed: number } | null>(null);
   const [page, setPage] = useState(0);
   const running = progress?.status === 'running';
+  const issueCounts = useMemo(() => {
+    const counts: Record<string, number> = {};
+    for (const issue of progress?.issues ?? []) counts[issue.stage] = (counts[issue.stage] ?? 0) + 1;
+    return Object.entries(counts).map(([stage, count]) => `${stage}: ${count}`).join(' · ');
+  }, [progress?.issues]);
   const statusText = progress ? {
-    running: '正在扫描全部层级…', completed: '扫描完成', partial: '扫描部分完成 · 存在未覆盖范围',
+    running: progress?.verification?.workers ? '正在还原路径并核验文件…' : progress?.engine === 'directory' ? '正在扫描全部层级…' : '正在枚举文件记录…', completed: '扫描结果', partial: '扫描结果',
     cancelled: '扫描已取消 · 结果不完整', failed: '扫描失败 · 结果不完整',
   }[progress.status] : '尚未开始扫描';
 
@@ -137,6 +144,18 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
     navigator.clipboard.writeText(text);
   };
 
+  const handleCopyReport = async () => {
+    try {
+      await navigator.clipboard.writeText(JSON.stringify({
+        config, summary: progress, displayed_files: items.length,
+        files: items.map(({ path, size }) => ({ path, size })),
+      }, null, 2));
+      setReportMessage('报告已复制，可粘贴保存为 JSON；包含全部当前结果，不限于本页。');
+    } catch (e) {
+      setReportMessage(`报告复制失败：${String(e)}`);
+    }
+  };
+
   const handleDelete = async () => {
     setDeleting(true);
     setDeleteResult(null);
@@ -189,6 +208,7 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
                   {statusText}
                 </h2>
                 <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 3 }}>
+                  {progress && `${({ mft_dual: 'MFT 双读取 worker（2 线程）' } as Record<string, string>)[progress.engine] ?? progress.engine} · `}
                   {running
                     ? `已检查 ${(progress.entries_scanned || 0).toLocaleString()} 条记录 · 找到 ${progress.files_matched} 个匹配文件`
                     : `显示 ${items.length} 个匹配文件 · 逻辑大小 · ${((progress?.elapsed_ms ?? 0) / 1000).toFixed(1)} 秒`
@@ -199,6 +219,11 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
           </div>
 
           <div style={{ display: 'flex', alignItems: 'center', gap: 8 }}>
+            {progress && !running && (
+              <button onClick={handleCopyReport} style={{ padding: '8px 12px', borderRadius: 6,
+                border: '1px solid var(--border)', background: 'var(--glass)',
+                color: 'var(--accent-cyan)', cursor: 'pointer' }}>复制扫描报告</button>
+            )}
             {running && (
               <>
                 <motion.div
@@ -282,15 +307,48 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
           </div>
         </div>
 
-        {progress && !running && progress.status !== 'completed' && (
-          <p role="status" style={{ color: 'var(--yellow)', fontSize: 13, marginTop: 12 }}>
-            {statusText}。已发现的文件保留在下方，未覆盖位置可能仍有大文件。
+        {config && <p style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 8 }}>
+          {config.root} · ≥ {config.min_size_mb} MiB · {progress?.entries_scanned.toLocaleString() ?? 0} 条已检查记录
+        </p>}
+        {reportMessage && <p role="status" style={{ fontSize: 12, color: 'var(--text-secondary)' }}>{reportMessage}</p>}
+        {progress && !running && (progress.status === 'cancelled' || progress.status === 'failed') && (
+          <p role="status" style={{ color: 'var(--text-secondary)', fontSize: 12, marginTop: 8 }}>
+            扫描未完整结束，已发现的文件保留在下方。
           </p>
         )}
         {progress?.error && <p role="alert" style={{ color: '#ff8888', fontSize: 12 }}>{progress.error}</p>}
+        {progress && <details style={{ fontSize: 12, color: 'var(--text-secondary)', marginTop: 8 }}>
+          <summary style={{ cursor: 'pointer' }}>扫描详情</summary>
+        {!!progress?.verification?.workers && <p style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
+          已核验 {progress.verification.checked.toLocaleString()} / {progress.verification.total.toLocaleString()} 个文件
+          {' · '}路径失败 {progress.verification.path_errors.toLocaleString()}
+          {' · '}硬链接补查 {progress.verification.hard_link_queries.toLocaleString()} 次
+          {' · '}{progress.verification.workers} 个核验线程
+        </p>}
+        {!!progress?.size_filtered && <p style={{ fontSize: 12, color: 'var(--yellow)' }}>
+          按枚举大小筛除 {progress.size_filtered.toLocaleString()} 个小文件（未逐文件核验，变化尚未补查）
+        </p>}
+        {progress?.mft_bulk && <p style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
+          批量读取 {(progress.mft_bulk.bytes_read / 1048576).toFixed(1)} MiB
+          {' · '}{progress.mft_bulk.read_calls.toLocaleString()} 次读取
+          {' · '}异常记录单条补查 {progress.mft_bulk.record_fallbacks.toLocaleString()} 次
+          {!!progress.mft_bulk.prefetch_buffers && <>
+            {' · '}{progress.mft_bulk.prefetch_buffers} 个预读缓冲
+            <br />读取累计耗时 {((progress.mft_bulk.read_ms ?? 0) / 1000).toFixed(2)} 秒
+            {' · '}解析 {((progress.mft_bulk.parse_ms ?? 0) / 1000).toFixed(2)} 秒
+            {' · '}流水线实际耗时 {((progress.mft_bulk.pipeline_wall_ms ?? 0) / 1000).toFixed(2)} 秒（并发读取、解析耗时有重叠，不相加）
+            <br />省去 {(progress.mft_bulk.names_omitted ?? 0).toLocaleString()} 个小文件名称分配
+          </>}
+        </p>}
+        {progress?.mft_records && <p style={{ fontSize: 12, color: 'var(--text-secondary)' }}>
+          MFT 基础记录 {progress.mft_records.base_records.toLocaleString()}
+          {' · '}扩展记录 {progress.mft_records.extension_records.toLocaleString()}（不是独立文件）
+          {' · '}合并后文件及目录 {progress.mft_records.logical_entries.toLocaleString()}
+        </p>}
         {!!progress?.issues.length && (
           <details style={{ fontSize: 12, color: 'var(--yellow)', marginTop: 8 }}>
-            <summary>查看 {progress.issues.length} 条未解决问题</summary>
+            <summary>查看 {progress.issues.length} 条核验问题及扫描限制</summary>
+            <p>{issueCounts}</p>
             <textarea aria-label="未覆盖范围详情" readOnly rows={6}
               value={progress.issues.map(issue => `${issue.path}\n[${issue.stage}] ${issue.error}`).join('\n\n')}
               style={{ width: '100%', marginTop: 8, background: 'var(--glass)', color: 'var(--text-secondary)' }} />
@@ -303,6 +361,8 @@ export function ScanResults({ items, progress, onItemClick, selectedPath, onStop
               style={{ width: '100%', marginTop: 8, background: 'var(--glass)', color: 'var(--text-secondary)' }} />
           </details>
         )}
+
+        </details>}
 
         {/* ── Category tabs ── */}
         <div style={{

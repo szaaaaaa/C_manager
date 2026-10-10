@@ -283,9 +283,11 @@ export function Dashboard({ driveInfo, onStartScan, scanning, scanConfig, onConf
         <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr 1fr', gap: 16, marginBottom: 24 }}>
           <div>
             <label style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              扫描路径
+              <span id="scan-path-label">扫描路径</span>
             </label>
             <input
+              aria-labelledby="scan-path-label"
+              disabled={scanning}
               value={scanConfig.root}
               onChange={(e) => onConfigChange({ ...scanConfig, root: e.target.value })}
               style={inputStyle}
@@ -293,9 +295,11 @@ export function Dashboard({ driveInfo, onStartScan, scanning, scanConfig, onConf
           </div>
           <div>
             <label style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              最小大小 (MiB，0 表示全部文件)
+              <span id="scan-size-label">最小大小 (MiB，0 表示全部文件)</span>
             </label>
             <input
+              aria-labelledby="scan-size-label"
+              disabled={scanning}
               type="number"
               value={scanConfig.min_size_mb}
               onChange={(e) => onConfigChange({ ...scanConfig, min_size_mb: Number(e.target.value) })}
@@ -305,11 +309,15 @@ export function Dashboard({ driveInfo, onStartScan, scanning, scanConfig, onConf
           </div>
           <div>
             <label style={{ fontSize: 11, color: 'var(--text-muted)', display: 'block', marginBottom: 6, textTransform: 'uppercase', letterSpacing: '0.08em' }}>
-              扫描范围
+              <span id="scan-engine-label">扫描方式</span>
             </label>
-            <div style={{ ...inputStyle, lineHeight: 1.5 }}>全部层级 · 不跟随目录链接</div>
+            <div style={inputStyle}>MFT 双读取 worker · 2 线程</div>
           </div>
         </div>
+
+        <p style={{ fontSize: 12, color: 'var(--text-secondary)', lineHeight: 1.7, marginBottom: 16 }}>
+          需要管理员权限、NTFS 和整盘根目录。双线程读取 MFT，核验候选大文件。
+        </p>
 
         <motion.button
           onClick={() => onStartScan(scanConfig)}

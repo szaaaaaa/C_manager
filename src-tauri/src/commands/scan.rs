@@ -1,4 +1,5 @@
 use serde::Serialize;
+use sha2::{Digest, Sha256};
 use std::sync::atomic::{AtomicBool, AtomicU64, Ordering};
 use std::sync::{Arc, Mutex};
 use tauri::ipc::Channel;
@@ -42,16 +43,34 @@ impl From<FileRecord> for ScanItem {
     }
 }
 
+// Shared with api.ts: UTF-8 JSON [position, [[path, decimal size], ...]].
+fn batch_checksum(position: u64, files: &[ScanItem]) -> String {
+    let records: Vec<_> = files
+        .iter()
+        .map(|f| (&f.path, f.size.to_string()))
+        .collect();
+    let bytes = serde_json::to_vec(&(position, records)).expect("serializing scan paths and sizes");
+    format!("{:x}", Sha256::digest(bytes))
+}
+
+#[derive(Clone, Serialize)]
+pub struct ScanPage {
+    files: Vec<ScanItem>,
+    checksum: String,
+}
+
 #[derive(Clone, Serialize)]
 #[serde(tag = "type", rename_all = "snake_case")]
 pub enum ScanMessage {
+    Verification { verification: crate::scanner::models::VerificationProgress },
     Progress {
         entries_scanned: u64,
         files_matched: u64,
     },
     Files {
         sequence: u64,
-        files: Vec<ScanItem>,
+        #[serde(flatten)]
+        page: ScanPage,
     },
 }
 
@@ -81,17 +100,18 @@ impl Delivery {
             return;
         }
         let msg = match event {
+            ScanEvent::Verification(verification) => ScanMessage::Verification { verification },
             ScanEvent::Progress(entries_scanned, files_matched) => ScanMessage::Progress {
                 entries_scanned,
                 files_matched,
             },
             ScanEvent::FileFound(file) => ScanMessage::Files {
                 sequence: self.batches_sent,
-                files: vec![file.into()],
+                page: self.page(vec![file]),
             },
             ScanEvent::FilesFound(files) => ScanMessage::Files {
                 sequence: self.batches_sent,
-                files: files.into_iter().map(ScanItem::from).collect(),
+                page: self.page(files),
             },
         };
         let is_batch = matches!(msg, ScanMessage::Files { .. });
@@ -101,12 +121,21 @@ impl Delivery {
             Err(error) => self.error = Some(error),
         }
     }
+
+    fn page(&self, files: Vec<FileRecord>) -> ScanPage {
+        let files: Vec<_> = files.into_iter().map(ScanItem::from).collect();
+        ScanPage {
+            checksum: batch_checksum(self.batches_sent, &files),
+            files,
+        }
+    }
 }
 
 #[tauri::command]
 pub async fn scan_drive(
     root: String,
     min_size_mb: f64,
+    engine: Option<String>,
     on_event: Channel<ScanMessage>,
     scan_state: State<'_, ScanState>,
 ) -> Result<ScanCompletion, String> {
@@ -126,6 +155,7 @@ pub async fn scan_drive(
     let cancel = scan_state.cancel.clone();
     let stored = scan_state.report.clone();
     let scan_id = scan_state.next_id.fetch_add(1, Ordering::Relaxed) + 1;
+    let engine = engine.unwrap_or_else(|| "mft_dual".into());
     tokio::task::spawn_blocking(move || {
         let _guard = guard;
         *stored.lock().unwrap() = None;
@@ -141,15 +171,16 @@ pub async fn scan_drive(
                 .send(event, |msg| on_event.send(msg).map_err(|e| e.to_string()));
         });
         // A disconnected UI does not discard backend results; they remain available by page.
-        let mut report = match crate::scanner::scan_drive(
+        let mut report = match crate::scanner::scan_with_engine(
             &root,
             (min_size_mb * 1_048_576.0) as u64,
+            &engine,
             cancel,
             Some(event_fn),
         ) {
             Ok(report) => report,
             Err(error) => {
-                let mut report = ScanReport::new("directory");
+                let mut report = ScanReport::new(&engine);
                 report.summary.status = ScanStatus::Failed;
                 report.issue(std::path::Path::new(&root), "scan", error);
                 report
@@ -181,7 +212,7 @@ pub fn get_scan_results(
     offset: usize,
     limit: usize,
     scan_state: State<'_, ScanState>,
-) -> Result<Vec<ScanItem>, String> {
+) -> Result<ScanPage, String> {
     if limit == 0 || limit > 1000 {
         return Err("每页数量必须为 1–1000".into());
     }
@@ -193,14 +224,18 @@ pub fn get_scan_results(
     if offset > report.files.len() {
         return Err("结果偏移越界".into());
     }
-    Ok(report
+    let files: Vec<_> = report
         .files
         .iter()
         .skip(offset)
         .take(limit)
         .cloned()
         .map(ScanItem::from)
-        .collect())
+        .collect();
+    Ok(ScanPage {
+        checksum: batch_checksum(offset as u64, &files),
+        files,
+    })
 }
 
 #[tauri::command]
@@ -211,6 +246,20 @@ pub fn cancel_scan(scan_state: State<'_, ScanState>) {
 #[cfg(test)]
 mod tests {
     use super::*;
+    #[test]
+    fn checksum_matches_webcrypto_for_unicode_escaping_and_large_files() {
+        let files = vec![ScanItem::from(FileRecord {
+            path: "C:\\中文😀\\quote\"\t\n.bin".into(),
+            name: "ignored.bin".into(),
+            size: 20 * 1024u64.pow(3),
+            is_dir: false,
+        })];
+        assert_eq!(
+            batch_checksum(1000, &files),
+            "0fc9c6f6f5e338e619400d00451e69543d708aee316d3a805dc8b0b1609a1cc2"
+        );
+        assert_ne!(batch_checksum(0, &files), batch_checksum(1000, &files));
+    }
     #[test]
     fn delivery_sequences_batches_and_exposes_failure() {
         let file = FileRecord {
@@ -226,6 +275,13 @@ mod tests {
         for sequence in 0..2 {
             delivery.send(ScanEvent::FilesFound(vec![file.clone()]), |msg| {
                 assert!(matches!(msg, ScanMessage::Files { sequence: n, .. } if n == sequence));
+                let wire = serde_json::to_value(&msg).unwrap();
+                assert_eq!(wire["type"], "files");
+                assert_eq!(wire["files"][0]["path"], file.path);
+                assert_eq!(
+                    wire["checksum"],
+                    batch_checksum(sequence, &[file.clone().into()])
+                );
                 Ok(())
             });
         }

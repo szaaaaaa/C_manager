@@ -1,5 +1,5 @@
 //! Standalone CLI: scan a drive and export results as JSON for training data.
-//! Usage: cargo run --bin export_scan -- [root] [min_size_mb]
+//! Usage: cargo run --bin export_scan -- [root] [min_size_mb] [mft_dual]
 //! Example: cargo run --bin export_scan -- C:\ 100
 
 use c_manager_lib::safety::rate_safety;
@@ -31,14 +31,15 @@ fn main() {
         std::process::exit(1);
     }
     let min_bytes = (min_size_mb * 1024.0 * 1024.0) as u64;
+    let engine = args.get(3).map(String::as_str).unwrap_or("mft_dual");
 
     eprintln!("Scanning {} for files >= {} MB ...", root, min_size_mb);
 
     let cancel = Arc::new(AtomicBool::new(false));
-    let report = match scanner::scan_drive(root, min_bytes, cancel, None) {
+    let report = match scanner::scan_with_engine(root, min_bytes, engine, cancel, None) {
         Ok(report) => report,
         Err(error) => {
-            let mut report = scanner::models::ScanReport::new("directory");
+            let mut report = scanner::models::ScanReport::new(engine);
             report.summary.status = scanner::models::ScanStatus::Failed;
             report.issue(std::path::Path::new(root), "scan", error);
             eprintln!("{}", serde_json::to_string(&report.summary).unwrap());

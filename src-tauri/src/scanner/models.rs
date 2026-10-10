@@ -32,10 +32,24 @@ pub struct ScanTimings {
     pub metadata_ms: f64,
     pub path_ms: f64,
     pub sort_ms: f64,
+    pub hard_links_ms: f64,
+    pub verification_wall_ms: f64,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+pub struct VerificationProgress {
+    pub total: u64,
+    pub checked: u64,
+    pub path_errors: u64,
+    pub hard_link_queries: u64,
+    pub workers: usize,
 }
 
 #[derive(Clone, Debug, Serialize)]
 pub struct ScanSummary {
+    pub mft_bulk: Option<MftBulkStats>,
+    pub size_filtered: u64,
+    pub mft_records: Option<MftRecordCounts>,
     pub status: ScanStatus,
     pub engine: String,
     pub entries_scanned: u64,
@@ -44,6 +58,27 @@ pub struct ScanSummary {
     pub excluded_links: Vec<String>,
     pub elapsed_ms: u64,
     pub timings: ScanTimings,
+    pub verification: VerificationProgress,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+pub struct MftRecordCounts {
+    pub base_records: u64,
+    pub extension_records: u64,
+    pub logical_entries: u64,
+}
+
+#[derive(Clone, Debug, Default, Serialize)]
+pub struct MftBulkStats {
+    pub block_bytes: u64,
+    pub bytes_read: u64,
+    pub read_calls: u64,
+    pub record_fallbacks: u64,
+    pub prefetch_buffers: u32,
+    pub names_omitted: u64,
+    pub read_ms: f64,
+    pub parse_ms: f64,
+    pub pipeline_wall_ms: f64,
 }
 
 #[derive(Debug, Serialize)]
@@ -57,6 +92,9 @@ impl ScanReport {
         Self {
             files: Vec::new(),
             summary: ScanSummary {
+                mft_bulk: None,
+                size_filtered: 0,
+                mft_records: None,
                 status: ScanStatus::Completed,
                 engine: engine.to_string(),
                 entries_scanned: 0,
@@ -65,6 +103,7 @@ impl ScanReport {
                 excluded_links: Vec::new(),
                 elapsed_ms: 0,
                 timings: ScanTimings::default(),
+                verification: VerificationProgress::default(),
             },
         }
     }
