@@ -1,10 +1,7 @@
 {
   "productName": "C盘守护者",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "identifier": "com.cmanager.app",
-  "bundle": {
-    "resources": ["resources/qwen3.5-0.8b-q4_k_m.gguf"]
-  },
   "build": {
     "beforeBuildCommand": "cd frontend && npm run build",
     "beforeDevCommand": "cd frontend && npm run dev",

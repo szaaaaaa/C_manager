@@ -98,7 +98,12 @@ export interface AppSettings {
   modelSource: ModelSource;
 }
 
-export interface LocalModelOption { id: string; name: string; }
+export interface LocalModelOption {
+  id: string;
+  name: string;
+  installed: boolean;
+  size_label: string;
+}
 
 export interface LocalModelStatus {
   model_id?: string;

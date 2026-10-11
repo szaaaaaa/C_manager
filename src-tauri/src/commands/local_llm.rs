@@ -2,7 +2,6 @@ use std::num::NonZeroU32;
 use std::path::PathBuf;
 use std::sync::{Arc, Mutex};
 
-use super::local_server::{self, LocalServer};
 use llama_cpp_2::context::params::LlamaContextParams;
 use llama_cpp_2::llama_backend::LlamaBackend;
 use llama_cpp_2::llama_batch::LlamaBatch;
@@ -10,18 +9,49 @@ use llama_cpp_2::model::params::LlamaModelParams;
 use llama_cpp_2::model::{AddBos, LlamaModel};
 use llama_cpp_2::sampling::LlamaSampler;
 use serde::Serialize;
+use sha2::{Digest, Sha256};
 use tauri::Manager;
+use tokio::io::AsyncWriteExt;
 
-const MODEL_FILENAME: &str = "qwen3.5-0.8b-q4_k_m.gguf";
 const CTX_SIZE: u32 = 4096;
 const MAX_RESPONSE_TOKENS: usize = 1024;
+
+#[derive(Clone, Copy)]
+struct ModelSpec {
+    id: &'static str,
+    name: &'static str,
+    filename: &'static str,
+    url: &'static str,
+    sha256: &'static str,
+    size_label: &'static str,
+}
+
+const MODELS: [ModelSpec; 2] = [
+    ModelSpec {
+        id: "qwen35-08b",
+        name: "Qwen3.5-0.8B · Q4_K_M",
+        filename: "Qwen3.5-0.8B-Q4_K_M.gguf",
+        url: "https://huggingface.co/unsloth/Qwen3.5-0.8B-GGUF/resolve/ed4bdcdbcce9f095bb49e8759176c64e45fa294b/Qwen3.5-0.8B-Q4_K_M.gguf",
+        sha256: "bd258782e35f7f458f8aced1adc053e6e92e89bc735ba3be89d38a06121dc517",
+        size_label: "约 0.5 GB",
+    },
+    ModelSpec {
+        id: "qwen35-4b",
+        name: "Qwen3.5-4B · Q4_K_M",
+        filename: "Qwen3.5-4B-Q4_K_M.gguf",
+        url: "https://huggingface.co/unsloth/Qwen3.5-4B-GGUF/resolve/b0bd07786f94b700012140fd9263b2de83d4f97b/Qwen3.5-4B-Q4_K_M.gguf",
+        sha256: "00fe7986ff5f6b463e62455821146049db6f9313603938a70800d1fb69ef11a4",
+        size_label: "约 2.7 GB",
+    },
+];
 
 pub enum LoadedModel {
     Native {
         model: LlamaModel,
         backend: LlamaBackend,
+        id: String,
+        name: String,
     },
-    Server(LocalServer),
 }
 
 // llama.cpp model is thread-safe for reading (creating contexts).
@@ -51,15 +81,7 @@ pub struct LocalModelInfo {
 impl LoadedModel {
     fn info(&mut self) -> LocalModelInfo {
         let (id, name, loaded) = match self {
-            Self::Native { .. } => ("builtin", MODEL_FILENAME, true),
-            Self::Server(server) => {
-                let loaded = server.is_running();
-                (
-                    server.choice.id.as_str(),
-                    server.choice.name.as_str(),
-                    loaded,
-                )
-            }
+            Self::Native { id, name, .. } => (id.as_str(), name.as_str(), true),
         };
         LocalModelInfo {
             loaded,
@@ -74,56 +96,89 @@ impl LoadedModel {
 pub struct ModelOption {
     id: String,
     name: String,
+    installed: bool,
+    size_label: String,
 }
 
 #[tauri::command]
 pub fn list_local_models(app: tauri::AppHandle) -> Result<Vec<ModelOption>, String> {
-    let mut result = vec![ModelOption {
-        id: "builtin".into(),
-        name: "Qwen3.5-0.8B（内置）".into(),
-    }];
-    result.extend(
-        local_server::choices(&app)?
-            .into_iter()
-            .map(|m| ModelOption {
-                id: m.id,
-                name: m.name,
-            }),
-    );
-    Ok(result)
+    MODELS
+        .iter()
+        .map(|model| {
+            Ok(ModelOption {
+                id: model.id.into(),
+                name: model.name.into(),
+                installed: model_path(&app, model)?.is_file(),
+                size_label: model.size_label.into(),
+            })
+        })
+        .collect()
 }
 
-/// Find model GGUF file. Checks:
-/// Fresh training output in dev mode, then the bundled resource.
-fn find_model_path(app: &tauri::AppHandle) -> Result<PathBuf, String> {
-    let mut candidates: Vec<PathBuf> = Vec::new();
-    #[cfg(debug_assertions)]
-    {
-        let project = PathBuf::from(env!("CARGO_MANIFEST_DIR"));
-        candidates.push(
-            project
-                .join("..")
-                .join("lora-training")
-                .join("output")
-                .join("finetuned_model_gguf")
-                .join(MODEL_FILENAME),
-        );
-        candidates.push(project.join("resources").join(MODEL_FILENAME));
-    }
-    // Production: Tauri bundled resource
-    if let Ok(dir) = app.path().resource_dir() {
-        candidates.push(dir.join("resources").join(MODEL_FILENAME));
-    }
-    for candidate in &candidates {
-        if candidate.is_file() {
-            return Ok(candidate.clone());
-        }
-    }
+fn model_path(app: &tauri::AppHandle, model: &ModelSpec) -> Result<PathBuf, String> {
+    Ok(app
+        .path()
+        .app_local_data_dir()
+        .map_err(|e| e.to_string())?
+        .join("models")
+        .join(model.filename))
+}
 
-    Err(format!(
-        "未找到模型文件 {}。请将 GGUF 模型放入 src-tauri/resources/ 目录。",
-        MODEL_FILENAME
-    ))
+async fn ensure_model(app: &tauri::AppHandle, model: &ModelSpec) -> Result<PathBuf, String> {
+    let path = model_path(app, model)?;
+    if path.is_file() {
+        return Ok(path);
+    }
+    let parent = path.parent().ok_or("无法确定模型保存目录")?;
+    tokio::fs::create_dir_all(parent)
+        .await
+        .map_err(|e| format!("无法创建模型目录: {e}"))?;
+    let partial = path.with_extension("gguf.download");
+    let _ = tokio::fs::remove_file(&partial).await;
+    let result: Result<(), String> = async {
+        let mut response = reqwest::Client::builder()
+            .connect_timeout(std::time::Duration::from_secs(30))
+            .user_agent("C-manager/0.2")
+            .build()
+            .map_err(|e| e.to_string())?
+            .get(model.url)
+            .send()
+            .await
+            .map_err(|e| format!("模型下载失败: {e}"))?
+            .error_for_status()
+            .map_err(|e| format!("模型下载失败: {e}"))?;
+        let mut file = tokio::fs::File::create(&partial)
+            .await
+            .map_err(|e| format!("无法创建模型文件: {e}"))?;
+        let mut hasher = Sha256::new();
+        while let Some(chunk) = response
+            .chunk()
+            .await
+            .map_err(|e| format!("模型下载中断: {e}"))?
+        {
+            file.write_all(&chunk)
+                .await
+                .map_err(|e| format!("无法写入模型文件: {e}"))?;
+            hasher.update(&chunk);
+        }
+        file.flush()
+            .await
+            .map_err(|e| format!("无法保存模型文件: {e}"))?;
+        drop(file);
+        if format!("{:x}", hasher.finalize()) != model.sha256 {
+            return Err("模型校验失败，请重试下载".into());
+        }
+        tokio::fs::rename(&partial, &path)
+            .await
+            .map_err(|e| format!("无法保存模型文件: {e}"))?;
+        Ok(())
+    }
+    .await;
+    if let Err(error) = result {
+        let _ = tokio::fs::remove_file(&partial).await;
+        return Err(error);
+    }
+    Ok(path)
 }
 
 #[tauri::command]
@@ -132,22 +187,22 @@ pub async fn init_local_model(
     state: tauri::State<'_, LocalLlmState>,
     model_id: Option<String>,
 ) -> Result<LocalModelInfo, String> {
-    let id = model_id.unwrap_or_else(|| "builtin".into());
-    let choice = if id == "builtin" {
-        None
-    } else {
-        Some(
-            local_server::choices(&app)?
-                .into_iter()
-                .find(|m| m.id == id)
-                .ok_or("未知本地模型，请刷新模型列表")?,
-        )
-    };
-    let native_path = if choice.is_none() {
-        Some(find_model_path(&app)?)
-    } else {
-        None
-    };
+    let id = model_id.unwrap_or_else(|| MODELS[0].id.into());
+    let spec = MODELS
+        .iter()
+        .find(|model| model.id == id)
+        .copied()
+        .ok_or("未知本地模型，请刷新模型列表")?;
+    {
+        let mut guard = state.inner.lock().map_err(|e| e.to_string())?;
+        if let Some(loaded) = guard.as_mut() {
+            let info = loaded.info();
+            if info.model_id == id && info.loaded {
+                return Ok(info);
+            }
+        }
+    }
+    let native_path = ensure_model(&app, &spec).await?;
     let inner = state.inner.clone();
     tokio::task::spawn_blocking(move || {
         let mut guard = inner.lock().map_err(|e| e.to_string())?;
@@ -159,17 +214,18 @@ pub async fn init_local_model(
         }
         // Release the old model before allocating another model's RAM/VRAM.
         drop(guard.take());
-        let loaded = if let Some(choice) = choice {
-            LoadedModel::Server(LocalServer::start(choice)?)
-        } else {
-            let backend = LlamaBackend::init().map_err(|e| format!("llama.cpp 初始化失败: {e}"))?;
-            let model = LlamaModel::load_from_file(
-                &backend,
-                native_path.unwrap(),
-                &LlamaModelParams::default(),
-            )
-            .map_err(|e| format!("模型加载失败: {e}"))?;
-            LoadedModel::Native { model, backend }
+        let backend = LlamaBackend::init().map_err(|e| format!("llama.cpp 初始化失败: {e}"))?;
+        let model = LlamaModel::load_from_file(
+            &backend,
+            native_path,
+            &LlamaModelParams::default(),
+        )
+        .map_err(|e| format!("模型加载失败: {e}"))?;
+        let loaded = LoadedModel::Native {
+            model,
+            backend,
+            id,
+            name: spec.name.into(),
         };
         *guard = Some(loaded);
         Ok(guard.as_mut().unwrap().info())
@@ -190,8 +246,8 @@ pub async fn get_local_model_status(
             .map(LoadedModel::info)
             .unwrap_or(LocalModelInfo {
                 loaded: false,
-                model_id: "builtin".into(),
-                model_name: MODEL_FILENAME.into(),
+                model_id: MODELS[0].id.into(),
+                model_name: MODELS[0].name.into(),
                 error: None,
             }))
     })
@@ -230,10 +286,7 @@ pub fn infer_with_grammar(
         .as_mut()
         .ok_or("本地模型未加载，请先在设置中点击「加载模型」")?;
 
-    let (model, backend) = match loaded {
-        LoadedModel::Server(server) => return server.infer_with_grammar(messages, grammar),
-        LoadedModel::Native { model, backend } => (model, backend),
-    };
+    let LoadedModel::Native { model, backend, .. } = loaded;
     let prompt = format_chatml(messages);
 
     let ctx_params = LlamaContextParams::default()
@@ -322,7 +375,7 @@ mod tests {
             .unwrap_or_else(|| {
                 PathBuf::from(env!("CARGO_MANIFEST_DIR"))
                     .join("resources")
-                    .join(MODEL_FILENAME)
+                    .join(MODELS[0].filename)
             });
         let model =
             LlamaModel::load_from_file(&backend, path, &LlamaModelParams::default()).unwrap();
@@ -333,7 +386,12 @@ mod tests {
             .flat_map(|t| model.token_to_piece_bytes(*t, 1024, false, None).unwrap())
             .collect();
         assert_eq!(String::from_utf8(decoded).unwrap(), text);
-        let inner = Arc::new(Mutex::new(Some(LoadedModel::Native { model, backend })));
+        let inner = Arc::new(Mutex::new(Some(LoadedModel::Native {
+            model,
+            backend,
+            id: MODELS[0].id.into(),
+            name: MODELS[0].name.into(),
+        })));
         let packet = super::super::evidence::EvidencePacket {
             path: "C:\\example\\unknown.bin".into(),
             size_human: "200 MB".into(),
