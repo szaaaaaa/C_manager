@@ -128,3 +128,69 @@ body::before {
 .btn-scan-idle {
   animation: glow-pulse 2.4s ease-in-out infinite;
 }
+
+/* File explanation controls share the app's dark surfaces and cyan accents. */
+.explanation-panel { color-scheme: dark; box-shadow: 0 24px 80px rgba(0,0,0,.5); }
+.explanation-panel > p { margin: 12px 0; }
+.explanation-panel button,
+.explanation-panel :is(input,textarea) {
+  font: inherit;
+  color: var(--text-primary);
+  background: var(--glass);
+  border: 1px solid var(--border-bright);
+  border-radius: var(--radius-sm);
+  transition: border-color .15s, background .15s, box-shadow .15s;
+}
+.explanation-panel button {
+  min-height: 36px;
+  padding: 8px 12px;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1.4;
+}
+.explanation-panel button:hover:not(:disabled) {
+  background: rgba(0,212,255,.1);
+  border-color: rgba(0,212,255,.4);
+}
+.explanation-panel button.explanation-primary {
+  background: rgba(0,212,255,.12);
+  border-color: rgba(0,212,255,.3);
+  color: var(--accent-cyan);
+  font-weight: 600;
+}
+.explanation-panel button:disabled {
+  background: rgba(255,255,255,.025);
+  border-color: var(--border);
+  color: rgba(255,255,255,.35);
+  cursor: not-allowed;
+}
+.explanation-panel button.explanation-close {
+  width: 32px;
+  min-height: 32px;
+  padding: 6px;
+  flex-shrink: 0;
+  color: var(--text-secondary);
+}
+.explanation-panel :is(input,textarea) { padding: 11px 12px; background: var(--bg-surface); }
+.explanation-panel :is(input,textarea)::placeholder { color: var(--text-secondary); }
+.explanation-panel :is(button,input,textarea,a,summary):focus-visible {
+  outline: 2px solid var(--accent-cyan);
+  outline-offset: 3px;
+}
+.explanation-panel :is(input,textarea):focus { border-color: var(--accent-cyan); }
+.explanation-panel :is(input,textarea):disabled { opacity: .55; }
+.explanation-panel label { color: var(--text-secondary); }
+.explanation-panel details {
+  padding: 12px 14px;
+  background: var(--glass);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-md);
+}
+.explanation-panel summary { cursor: pointer; color: var(--accent-cyan); }
+.explanation-panel details p { margin-top: 8px; }
+.explanation-panel ul { padding-left: 20px; }
+.explanation-panel footer { border-top: 1px solid var(--border); padding-top: 14px; }
+
+.explanation-panel textarea { resize: vertical; min-height: 76px; }

@@ -152,8 +152,8 @@ function setup(scanDrive, getScanResults = () => { throw new Error('unexpected r
     scanDrive, getScanResults, scanRunningRef: { current: false }, explainRequestRef: { current: 0 },
     fileBatchRef: { current: [] }, flushTimerRef: { current: null },
     setTimeout: () => 1, clearTimeout: () => {},
-    setExplainLoading() {}, setSelectedItem() {}, setExplanation() {}, setExplainError() {}, setView() {},
-    setActiveScanConfig() {},
+    setExplainLoading() {}, setSelectedItem() {}, setPreview() {}, setExplainError() {}, setView() {},
+    setActiveScanConfig() {}, setClassifications() {}, setClassificationError() {},
     setScanRun: value => { state.scanRun = value(state.scanRun); },
     setScanning: value => { state.scanning = value; },
     setBackendError: value => { state.backendError = value; },
@@ -290,7 +290,7 @@ vm.runInNewContext(transpile(readFileSync(new URL('../src/components/ScanResults
   require: name => {
     if (name === 'framer-motion') return { motion: new Proxy({}, { get: (_target, tag) => tag }) };
     if (name === 'lucide-react') return new Proxy({}, { get: () => () => null });
-    if (name === './SafetyBadge') return { SafetyBadge: () => null };
+    if (name === './ClassificationBadge') return { ClassificationBadge: () => null };
     if (name === '../api') return {};
     return require(name);
   },

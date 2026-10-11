@@ -1,6 +1,8 @@
 node_modules/
 frontend/node_modules/
 frontend/dist/
+__pycache__/
+*.pyc
 src-tauri/target/
 src-tauri/resources/*.gguf
 src-tauri/result.json

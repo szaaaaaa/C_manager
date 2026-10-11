@@ -23,10 +23,10 @@ function setup() {
   const context = vm.createContext({
     selectedItem: null, savedSettings: { modelSource: 'local' }, explainRequestRef: { current: 0 },
     setSelectedItem: item => { state.selected = item; context.selectedItem = item; },
-    setExplanation: value => { state.explanation = value; },
+    setPreview: value => { state.explanation = value; },
     setExplainError: value => { state.error = value; },
     setExplainLoading: value => { state.loading = value; },
-    explainItem: path => new Promise((resolve, reject) => pending.push({ path, resolve, reject })),
+    prepareExplanation: path => new Promise((resolve, reject) => pending.push({ path, resolve, reject })),
   });
   for (const [name, callback] of Object.entries(callbacks)) {
     vm.runInContext(ts.transpileModule(`globalThis.${name} = ${callback}`, {}).outputText, context);

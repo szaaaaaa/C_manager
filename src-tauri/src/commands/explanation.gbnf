@@ -1,0 +1,11 @@
+root ::= "{" ws "\"decision\":" ws decision "," ws "\"condition\":" ws string "," ws "\"ownership\":" ws section "," ws "\"advice\":" ws section "," ws "\"impact\":" ws section "," ws "\"recovery\":" ws recovery "," ws "\"unknowns\":" ws strings "}" ws
+section ::= "{" ws "\"text\":" ws string "," ws "\"status\":" ws status "," ws "\"evidence_ids\":" ws strings "}" ws
+recovery ::= "{" ws "\"text\":" ws string "," ws "\"status\":" ws uncertain "," ws "\"evidence_ids\":" ws strings "}" ws
+status ::= "\"supported\"" | uncertain
+uncertain ::= "\"uncertain\"" | "\"unknown\""
+strings ::= "[" ws (string ("," ws string)*)? "]" ws
+string ::= "\"" char* "\"" ws
+char ::= [^"\\\x00-\x1F] | "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+ws ::= [ \t\n\r]*
+
+decision ::= "\"direct_delete\"" | "\"managed_cleanup\"" | "\"conditional_delete\"" | "\"keep\"" | "\"unknown\""

@@ -1,4 +1,4 @@
-import { useCallback, useEffect, useRef, useState } from 'react';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import { Dashboard } from './components/Dashboard';
 import { ScanResults } from './components/ScanResults';
@@ -6,8 +6,9 @@ import { ExplanationBubble } from './components/ExplanationBubble';
 import { Sidebar } from './components/Sidebar';
 import {
   cancelScan,
+  classifyFiles,
   checkAdmin,
-  explainItem,
+  prepareExplanation,
   fetchDriveInfo,
   getScanResults,
   relaunchAsAdmin,
@@ -15,8 +16,9 @@ import {
 } from './api';
 import type {
   AppSettings,
+  FileClassification,
   DriveInfo,
-  ExplainResponse,
+  EvidencePacket,
   ScanConfig,
   ScanItem,
   ScanProgress,
@@ -32,7 +34,6 @@ const DEFAULT_SETTINGS: AppSettings = {
   baseUrl: 'https://openrouter.ai/api/v1',
   model: 'anthropic/claude-haiku-4-5',
   modelSource: 'local',
-  tavilyKey: '',
 };
 
 const DEFAULT_CONFIG: ScanConfig = {
@@ -68,8 +69,23 @@ export default function App() {
   const [scanRun, setScanRun] = useState(0);
   const [progress, setProgress] = useState<ScanProgress | null>(null);
   const [results, setResults] = useState<ScanItem[]>([]);
+  const [classifications, setClassifications] = useState<Record<string, FileClassification>>({});
+  const [classificationError, setClassificationError] = useState<string | null>(null);
+  const classifiedResults = useMemo(() => results.map(item => ({ ...item, classification: classifications[item.path] })), [results, classifications]);
+  useEffect(() => {
+    if (classificationError) return;
+    const batch = results.filter(item => !classifications[item.path]).slice(0, 1000);
+    if (!batch.length) return;
+    let active = true;
+    classifyFiles(batch).then(values => {
+      if (!active) return;
+      if (values.length !== batch.length) throw new Error('分类结果数量不一致');
+      setClassifications(previous => ({ ...previous, ...Object.fromEntries(batch.map((item, i) => [item.path, values[i]])) }));
+    }).catch(error => { if (active) setClassificationError(String(error)); });
+    return () => { active = false; };
+  }, [results, classifications, classificationError]);
   const [selectedItem, setSelectedItem] = useState<ScanItem | null>(null);
-  const [explanation, setExplanation] = useState<ExplainResponse | null>(null);
+  const [preview, setPreview] = useState<EvidencePacket | null>(null);
   const [explainLoading, setExplainLoading] = useState(false);
   const [explainError, setExplainError] = useState<string | null>(null);
   const explainRequestRef = useRef(0);
@@ -120,9 +136,11 @@ export default function App() {
     explainRequestRef.current += 1;
     setExplainLoading(false);
     setResults([]);
+    setClassifications({});
+    setClassificationError(null);
     fileBatchRef.current = [];
     setSelectedItem(null);
-    setExplanation(null);
+    setPreview(null);
     setExplainError(null);
     setProgress({ status: 'running', engine: config.engine, entries_scanned: 0, files_matched: 0,
       issues: [], excluded_links: [], elapsed_ms: 0, error: null });
@@ -194,54 +212,38 @@ export default function App() {
     setExplainLoading(false);
     if (selectedItem?.path === item.path) {
       setSelectedItem(null);
-      setExplanation(null);
+      setPreview(null);
       setExplainError(null);
       return;
     }
 
     setSelectedItem(item);
-    setExplanation(null);
+    setPreview(null);
     setExplainError(null);
-
-    const s = savedSettings;
-    const isLocal = s.modelSource === 'local';
-
-    if (!isLocal && !s.apiKey && !s.useEnvKey) {
-      setExplainError('no api key');
-      return;
-    }
 
     setExplainLoading(true);
     try {
-      const resp = await explainItem(
-        item.path,
-        item.size,
-        item.is_dir,
-        isLocal ? '' : (s.useEnvKey ? '' : s.apiKey),
-        isLocal ? '' : s.baseUrl,
-        isLocal ? '' : s.model,
-        isLocal,
-        isLocal ? (s.tavilyKey || '') : '',
-      );
-      if (requestId === explainRequestRef.current) setExplanation(resp);
+      const packet = await prepareExplanation(item.path);
+      if (requestId === explainRequestRef.current) setPreview(packet);
     } catch (e: unknown) {
       if (requestId === explainRequestRef.current) setExplainError(e instanceof Error ? e.message : String(e));
     } finally {
       if (requestId === explainRequestRef.current) setExplainLoading(false);
     }
-  }, [selectedItem, savedSettings]);
+  }, [selectedItem]);
 
   const handleCloseExplanation = useCallback(() => {
     explainRequestRef.current += 1;
     setExplainLoading(false);
     setSelectedItem(null);
-    setExplanation(null);
+    setPreview(null);
     setExplainError(null);
   }, []);
 
   return (
     <div style={{ display: 'flex', height: '100vh', overflow: 'hidden', position: 'relative', zIndex: 1 }}>
       <Sidebar
+        onLocalModelChange={handleCloseExplanation}
         currentView={view}
         onViewChange={setView}
         hasResults={progress !== null || scanning}
@@ -314,7 +316,8 @@ export default function App() {
                 <ScanResults
                   key={scanRun}
                   config={activeScanConfig}
-                  items={results}
+                  items={classifiedResults}
+                  classificationError={classificationError}
                   progress={progress}
                   onItemClick={handleItemClick}
                   selectedPath={selectedItem?.path ?? null}
@@ -327,8 +330,9 @@ export default function App() {
                   }}
                 />
                 <ExplanationBubble
-                  item={selectedItem}
-                  explanation={explanation}
+                  item={selectedItem ? { ...selectedItem, classification: classifications[selectedItem.path] } : null}
+                  key={selectedItem?.path ?? "closed"}
+                  preview={preview}
                   loading={explainLoading}
                   error={explainError}
                   onClose={handleCloseExplanation}
