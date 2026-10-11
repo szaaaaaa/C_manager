@@ -4,24 +4,12 @@ import {
   Folder, File, FileText, Image, Archive, Video, Music,
   AlertTriangle, Square, FolderOpen, Check, ClipboardCopy, Minus, Trash2, Loader2,
 } from 'lucide-react';
-import { SafetyBadge } from './SafetyBadge';
+import { ClassificationBadge } from './ClassificationBadge';
 import { openInExplorer, deleteToRecycleBin } from '../api';
 import type { ScanConfig, ScanItem, ScanProgress, FileCategory } from '../types';
 
-// ── Extension → Category mapping ──
-
-const EXT_MAP: Record<string, FileCategory> = {};
-const addExts = (cat: FileCategory, exts: string[]) => exts.forEach(e => { EXT_MAP[e] = cat; });
-addExts('文档', ['doc','docx','pdf','xls','xlsx','ppt','pptx','txt','csv','md','rtf','odt']);
-addExts('图片', ['jpg','jpeg','png','gif','bmp','svg','webp','ico','tiff','tif','psd','raw']);
-addExts('压缩包', ['zip','rar','7z','tar','gz','bz2','xz','zst','cab','iso','wim']);
-addExts('视频', ['mp4','avi','mkv','mov','wmv','flv','webm','m4v','ts','vob']);
-addExts('音频', ['mp3','wav','flac','aac','ogg','wma','m4a','opus']);
-
 function getCategory(item: ScanItem): FileCategory {
-  if (item.is_dir) return '其他';
-  const ext = item.name.split('.').pop()?.toLowerCase() ?? '';
-  return EXT_MAP[ext] ?? '其他';
+  return item.classification?.file_type ?? '其他';
 }
 
 function getCategoryIcon(cat: FileCategory) {
@@ -49,11 +37,12 @@ function formatTotalSize(bytes: number): string {
 
 // ── Categories ──
 
-const CATEGORIES: FileCategory[] = ['全部', '文档', '图片', '压缩包', '视频', '音频', '其他'];
+const CATEGORIES: FileCategory[] = ['全部', '文档', '图片', '压缩包', '视频', '安装包', '音频', '其他'];
 
 // ── Props ──
 
 interface Props {
+  classificationError?: string | null;
   config?: ScanConfig;
   items: ScanItem[];
   progress: ScanProgress | null;
@@ -63,7 +52,7 @@ interface Props {
   onItemsDeleted?: (deletedPaths: string[]) => void;
 }
 
-export function ScanResults({ config, items, progress, onItemClick, selectedPath, onStopScan, onItemsDeleted }: Props) {
+export function ScanResults({ classificationError, config, items, progress, onItemClick, selectedPath, onStopScan, onItemsDeleted }: Props) {
   const [reportMessage, setReportMessage] = useState('');
   const [checkedPaths, setCheckedPaths] = useState<Set<string>>(new Set());
   const [activeCategory, setActiveCategory] = useState<FileCategory>('全部');
@@ -408,7 +397,7 @@ export function ScanResults({ config, items, progress, onItemClick, selectedPath
       {/* ── Column headers ── */}
       <div style={{
         display: 'grid',
-        gridTemplateColumns: '36px 36px 1fr 60px 100px 90px 36px',
+        gridTemplateColumns: '36px 36px minmax(0, 1fr) 60px 100px 180px 36px',
         gap: 8,
         padding: '10px 32px',
         borderBottom: '1px solid var(--border)',
@@ -429,7 +418,7 @@ export function ScanResults({ config, items, progress, onItemClick, selectedPath
         <span>名称 / 路径</span>
         <span style={{ textAlign: 'center' }}>磁盘</span>
         <span style={{ textAlign: 'right' }}>逻辑大小</span>
-        <span style={{ textAlign: 'center' }}>安全</span>
+        <span title={classificationError ? `分类失败：${classificationError}` : "按联想路径及文件名规则分类；用途标签不代表删除建议"} style={{ textAlign: 'center' }}>{classificationError ? '分类失败' : '用途分类'}</span>
         <span />
       </div>
 
@@ -614,7 +603,7 @@ interface RowProps {
 
 function ResultRow({ item, index, maxSize, isSelected, isChecked, onCheck, onClick, onOpenExplorer, animate }: RowProps) {
   const barWidth = Math.max(3, (item.size / maxSize) * 100);
-  const safetyColor = { red: 'var(--red)', yellow: 'var(--yellow)', green: 'var(--green)' }[item.safety];
+
   const drive = item.path.match(/^([A-Z]):/i)?.[1]?.toUpperCase() ?? '';
 
   const Wrapper = animate ? motion.div : 'div';
@@ -629,7 +618,7 @@ function ResultRow({ item, index, maxSize, isSelected, isChecked, onCheck, onCli
       {...animProps}
       style={{
         display: 'grid',
-        gridTemplateColumns: '36px 36px 1fr 60px 100px 90px 36px',
+        gridTemplateColumns: '36px 36px minmax(0, 1fr) 60px 100px 180px 36px',
         gap: 8,
         padding: '10px 32px',
         cursor: 'pointer',
@@ -673,7 +662,7 @@ function ResultRow({ item, index, maxSize, isSelected, isChecked, onCheck, onCli
             style={{
               height: '100%',
               width: `${barWidth}%`,
-              background: `linear-gradient(90deg, ${safetyColor}66, ${safetyColor})`,
+              background: 'var(--accent-cyan)',
               borderRadius: 2,
               transition: 'width 0.4s ease-out',
             }}
@@ -707,7 +696,7 @@ function ResultRow({ item, index, maxSize, isSelected, isChecked, onCheck, onCli
 
       {/* Safety badge */}
       <div onClick={onClick} style={{ display: 'flex', justifyContent: 'center' }}>
-        <SafetyBadge safety={item.safety} size="sm" />
+        <ClassificationBadge classification={item.classification} size="sm" />
       </div>
 
       {/* Open in explorer */}

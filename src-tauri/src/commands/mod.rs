@@ -1,11 +1,14 @@
+pub mod classification;
 pub mod admin;
-pub mod scan;
 pub mod drive;
-pub mod explain;
 pub mod evidence;
-pub mod models;
+pub mod explain;
 pub mod explorer;
 pub mod local_llm;
+pub mod local_search;
+pub mod local_server;
+pub mod models;
+pub mod scan;
 
 pub fn format_size(bytes: u64) -> String {
     let units = ["B", "KB", "MB", "GB", "TB", "PB", "EB"];
@@ -43,10 +46,16 @@ pub fn validate_base_url(url: &str) -> Result<(), String> {
     // Extract host, handling IPv6 brackets: [::1]:port → [::1]
     let host = if host_port.starts_with('[') {
         // IPv6: take everything up to and including ']'
-        host_port.split(']').next().map(|s| format!("{}]", s)).unwrap_or_default()
+        host_port
+            .split(']')
+            .next()
+            .map(|s| format!("{}]", s))
+            .unwrap_or_default()
     } else {
         // IPv4 / hostname: strip port after last ':'
-        host_port.rsplit_once(':').map_or(host_port.to_string(), |(h, _)| h.to_string())
+        host_port
+            .rsplit_once(':')
+            .map_or(host_port.to_string(), |(h, _)| h.to_string())
     };
 
     let blocked = [
@@ -59,7 +68,10 @@ pub fn validate_base_url(url: &str) -> Result<(), String> {
     ];
     for b in &blocked {
         if host.starts_with(b) {
-            return Err(format!("API base URL must not point to local/private address: {}", host));
+            return Err(format!(
+                "API base URL must not point to local/private address: {}",
+                host
+            ));
         }
     }
     // Block common private IP ranges
@@ -67,7 +79,10 @@ pub fn validate_base_url(url: &str) -> Result<(), String> {
         || host.starts_with("192.168.")
         || (host.starts_with("172.") && is_172_private(&host))
     {
-        return Err(format!("API base URL must not point to private network: {}", host));
+        return Err(format!(
+            "API base URL must not point to private network: {}",
+            host
+        ));
     }
 
     Ok(())
@@ -83,3 +98,5 @@ fn is_172_private(host: &str) -> bool {
     }
     false
 }
+
+pub mod search_agent;

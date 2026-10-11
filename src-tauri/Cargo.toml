@@ -14,9 +14,10 @@ tauri-build = { version = "2", features = [] }
 serde = { version = "1", features = ["derive"] }
 serde_json = "1"
 sha2 = "0.10"
-reqwest = { version = "0.12", features = ["json"] }
+reqwest = { version = "0.12", features = ["json", "blocking"] }
 tokio = { version = "1", features = ["full"] }
 rayon = "1"
+regex = "1"
 llama-cpp-2 = "0.1"
 
 [target.'cfg(windows)'.dependencies]
@@ -27,6 +28,7 @@ windows-sys = { version = "0.59", features = [
     "Win32_Security",
     "Win32_System_Threading",
     "Win32_System_IO",
+    "Win32_System_JobObjects",
     "Win32_UI_Shell",
 ] }
 

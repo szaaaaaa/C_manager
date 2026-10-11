@@ -9,6 +9,7 @@ pub fn run() {
         .manage(commands::local_llm::LocalLlmState::new())
         .invoke_handler(tauri::generate_handler![
             commands::admin::check_admin,
+            commands::classification::classify_files,
             commands::admin::relaunch_as_admin,
             commands::scan::scan_drive,
             commands::scan::get_scan_results,
@@ -20,6 +21,7 @@ pub fn run() {
             commands::models::get_env_key,
             commands::explorer::open_in_explorer,
             commands::explorer::delete_to_recycle_bin,
+            commands::local_llm::list_local_models,
             commands::local_llm::init_local_model,
             commands::local_llm::get_local_model_status,
         ])

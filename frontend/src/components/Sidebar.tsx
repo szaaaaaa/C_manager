@@ -1,8 +1,8 @@
 import { motion, AnimatePresence } from 'framer-motion';
 import { useEffect, useState } from 'react';
 import { LayoutDashboard, List, Settings, HardDrive, Key, ChevronDown, Check, Loader2, Cpu, Cloud, Search } from 'lucide-react';
-import { fetchModels, fetchEnvKey, initLocalModel, getLocalModelStatus } from '../api';
-import type { AppSettings, LocalModelStatus, ModelInfo } from '../types';
+import { fetchModels, fetchEnvKey, initLocalModel, getLocalModelStatus, listLocalModels } from '../api';
+import type { AppSettings, LocalModelStatus, LocalModelOption, ModelInfo } from '../types';
 
 type View = 'dashboard' | 'results';
 
@@ -16,6 +16,7 @@ interface Props {
   onToggleSettings: () => void;
   onSaveSettings: () => void;
   settingsDirty: boolean;
+  onLocalModelChange: () => void;
 }
 
 export function Sidebar({
@@ -28,6 +29,7 @@ export function Sidebar({
   onToggleSettings,
   onSaveSettings,
   settingsDirty,
+  onLocalModelChange,
 }: Props) {
   const [models, setModels] = useState<ModelInfo[]>([]);
   const [modelsLoading, setModelsLoading] = useState(false);
@@ -38,21 +40,31 @@ export function Sidebar({
   const [savedFlash, setSavedFlash] = useState(false);
   const [localStatus, setLocalStatus] = useState<LocalModelStatus>({ loaded: false, model_name: '', error: null });
   const [localLoading, setLocalLoading] = useState(false);
+  const [localModels, setLocalModels] = useState<LocalModelOption[]>([{ id: 'builtin', name: 'Qwen3.5-0.8B（内置）' }]);
+  const [localModelId, setLocalModelId] = useState('builtin');
+  const [localListError, setLocalListError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchEnvKey().then(setEnvKeyInfo).catch(() => {});
     // Check local model status on mount
-    getLocalModelStatus().then(setLocalStatus).catch(() => {});
+    getLocalModelStatus().then(status => {
+      setLocalStatus(status);
+      if (status.loaded) setLocalModelId(status.model_id || 'builtin');
+    }).catch(() => {});
+    listLocalModels().then(setLocalModels).catch(e => setLocalListError(String(e)));
   }, []);
 
   const handleLoadLocalModel = async () => {
     setLocalLoading(true);
+    onLocalModelChange();
     try {
-      const status = await initLocalModel();
+      const status = await initLocalModel(localModelId);
       setLocalStatus(status);
     } catch (e: unknown) {
-      setLocalStatus({ loaded: false, model_name: '', error: e instanceof Error ? e.message : String(e) });
+      const current = await getLocalModelStatus().catch(() => ({ loaded: false, model_name: '', error: null }));
+      setLocalStatus({ ...current, error: e instanceof Error ? e.message : String(e) });
     } finally {
+      onLocalModelChange();
       setLocalLoading(false);
     }
   };
@@ -193,6 +205,13 @@ export function Sidebar({
 
               {isLocal ? (
                 <>
+                  <label htmlFor="local-model" style={{ display: 'block', fontSize: 11, marginBottom: 6, color: 'var(--text-secondary)' }}>本地释义模型</label>
+                  <select id="local-model" value={localModelId} disabled={localLoading}
+                    onChange={e => setLocalModelId(e.target.value)}
+                    style={{ width: '100%', padding: '8px', borderRadius: 6, marginBottom: 8, background: '#101020', color: 'var(--text-primary)', border: '1px solid var(--border)', fontSize: 11 }}>
+                    {localModels.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
+                  </select>
+                  {localListError && <div role="alert" style={{ fontSize: 10, color: '#ff6464', marginBottom: 8 }}>{localListError}</div>}
                   {/* Local Model Status */}
                   <div style={{
                     padding: '8px 10px', borderRadius: 8, marginBottom: 10,
@@ -219,7 +238,7 @@ export function Sidebar({
                       </div>
                     )}
 
-                    {!localStatus.loaded && (
+                    {(
                       <button
                         onClick={handleLoadLocalModel}
                         disabled={localLoading}
@@ -235,7 +254,7 @@ export function Sidebar({
                             <Loader2 size={12} />
                           </motion.div>
                         )}
-                        {localLoading ? '加载中...' : '加载模型'}
+                        {localLoading ? '加载中...' : '加载并使用所选模型'}
                       </button>
                     )}
 
@@ -245,19 +264,13 @@ export function Sidebar({
                       </div>
                     )}
                   </div>
-
-                  {/* Tavily Search API Key */}
-                  <SectionLabel icon={<Search size={13} />} label="联网搜索 (Tavily)" />
-                  <SettingField
-                    label=""
-                    value={settings.tavilyKey || ''}
-                    type="password"
-                    placeholder="tvly-..."
-                    onChange={(v) => onSettingsChange({ ...settings, tavilyKey: v })}
-                  />
-                  <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: -4, marginBottom: 10, lineHeight: 1.5 }}>
-                    填入后本地模型会先搜索再回答，减少幻觉。留空则纯离线。
+                  <div style={{ fontSize: 10, color: 'var(--text-muted)', marginBottom: 12, lineHeight: 1.5 }}>
+                    点击加载后生效。切换会释放旧模型；微调版使用同一 4B 基座搭配各自适配器。
                   </div>
+
+                  <SectionLabel icon={<Search size={13} />} label="联网搜索" />
+                  <p style={{ color: 'var(--accent-cyan)', fontSize: 12 }}>专属多轮检索 · DDGS</p>
+                  <p style={{ fontSize: 10, color: 'var(--text-secondary)', marginBottom: 10 }}>无需搜索 Key。根据缺少的依据选择查询、读取正文和补搜，最多8次检索/阅读；工具单次30秒，模型分析另计时。点击联网分析后启用。</p>
                 </>
               ) : (
                 <>
@@ -465,7 +478,7 @@ export function Sidebar({
 
               <div style={{ fontSize: 10, color: 'var(--text-muted)', marginTop: 10, lineHeight: 1.5 }}>
                 {isLocal
-                  ? '使用内置本地模型，完全离线，免费使用。无需安装其他软件。'
+                  ? '本地推理不调用云端模型。未配置联网搜索时离线回答。'
                   : '支持 OpenRouter / OpenAI 兼容接口。环境变量 OPENROUTER_API_KEY 或 OPENAI_API_KEY 可自动识别。'
                 }
               </div>

@@ -1,5 +1,5 @@
 import { invoke, Channel } from '@tauri-apps/api/core';
-import type { DriveInfo, EvidencePacket, ExplainResponse, LocalModelStatus, ModelInfo, ScanConfig, ScanItem, ScanSummary } from './types';
+import type { SearchStep, FileClassification, DriveInfo, EvidencePacket, ExplainResponse, LocalModelStatus, ModelInfo, ScanConfig, ScanItem, ScanSummary } from './types';
 
 export async function checkAdmin(): Promise<boolean> {
   return invoke<boolean>('check_admin');
@@ -96,10 +96,12 @@ export async function prepareExplanation(path: string): Promise<EvidencePacket> 
 export async function explainItem(
   path: string, fingerprint: string, allowSearch: boolean,
   apiKey: string, baseUrl: string, model: string, useLocal: boolean,
-  tavilyKey = '', question: string | null = null,
+  question: string | null = null, searchQuery: string | null = null, onSearchStep?: (step: SearchStep) => void,
 ): Promise<ExplainResponse> {
+  const channel = new Channel<SearchStep>();
+  channel.onmessage = step => onSearchStep?.(step);
   return invoke<ExplainResponse>('explain_item', {
-    path, fingerprint, allowSearch, apiKey, baseUrl, model, useLocal, tavilyKey, question,
+    path, fingerprint, allowSearch, apiKey, baseUrl, model, useLocal, question, searchQuery, onSearchEvent: channel,
   });
 }
 
@@ -121,8 +123,8 @@ export async function fetchEnvKey(): Promise<{ has_env_key: boolean; source: str
   return invoke('get_env_key');
 }
 
-export async function initLocalModel(): Promise<LocalModelStatus> {
-  return invoke<LocalModelStatus>('init_local_model');
+export async function initLocalModel(modelId = 'builtin'): Promise<LocalModelStatus> {
+  return invoke<LocalModelStatus>('init_local_model', { modelId });
 }
 
 export async function openInExplorer(path: string): Promise<void> {
@@ -140,4 +142,12 @@ export async function deleteToRecycleBin(paths: string[]): Promise<DeleteResult>
 
 export async function getLocalModelStatus(): Promise<LocalModelStatus> {
   return invoke<LocalModelStatus>('get_local_model_status');
+}
+
+export async function listLocalModels(): Promise<import('./types').LocalModelOption[]> {
+  return invoke('list_local_models');
+}
+
+export async function classifyFiles(files: Pick<ScanItem, 'path' | 'is_dir'>[]): Promise<FileClassification[]> {
+  return invoke('classify_files', { files: files.map(({ path, is_dir }) => ({ path, is_dir })) });
 }

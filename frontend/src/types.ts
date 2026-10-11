@@ -6,6 +6,7 @@ export interface ScanItem {
   is_dir: boolean;
   children_count: number;
   safety: 'red' | 'yellow' | 'green';
+  classification?: FileClassification;
 }
 
 export interface DriveInfo {
@@ -18,7 +19,7 @@ export interface DriveInfo {
 
 export interface Evidence {
   id: string;
-  kind: 'local_observation' | 'web_excerpt';
+  kind: 'local_observation' | 'web_excerpt' | 'web_document';
   title: string;
   content: string;
   url: string | null;
@@ -43,6 +44,8 @@ export interface ExplanationSection {
 export interface ExplainResponse {
   packet: EvidencePacket;
   explanation: {
+    decision: 'direct_delete' | 'managed_cleanup' | 'conditional_delete' | 'keep' | 'unknown';
+    condition: string;
     ownership: ExplanationSection;
     impact: ExplanationSection;
     recovery: ExplanationSection;
@@ -50,6 +53,7 @@ export interface ExplainResponse {
     unknowns: string[];
   };
   search_status: string;
+  search_steps: SearchStep[];
   backend_used: string;
 }
 
@@ -92,19 +96,34 @@ export interface AppSettings {
   baseUrl: string;
   model: string;
   modelSource: ModelSource;
-  tavilyKey: string;
 }
 
+export interface LocalModelOption { id: string; name: string; }
+
 export interface LocalModelStatus {
+  model_id?: string;
   loaded: boolean;
   model_name: string;
   error: string | null;
 }
 
-export type FileCategory = '全部' | '文档' | '图片' | '压缩包' | '视频' | '音频' | '其他';
+export type FileCategory = '全部' | '文档' | '图片' | '压缩包' | '视频' | '音频' | '安装包' | '其他';
 
 export interface ModelInfo {
   id: string;
   name: string;
   context_length: number;
+}
+
+export interface FileClassification {
+  file_type: FileCategory;
+  matches: { rule_id: string; category: string; group: string; label: string;
+    path_pattern: string; default_selected: boolean; requires_idle: boolean }[];
+}
+
+export interface SearchStep {
+  round: number; action: string; target: string; reason: string; missing: string[]; outcome: string;
+  goal: 'identity' | 'purpose' | 'impact' | 'handling';
+  focus: string; site: string; finding: string; evidence_ids: string[];
+  sources: { id: string; title: string; url: string; kind: string }[];
 }
