@@ -40,18 +40,33 @@ export function Sidebar({
   const [savedFlash, setSavedFlash] = useState(false);
   const [localStatus, setLocalStatus] = useState<LocalModelStatus>({ loaded: false, model_name: '', error: null });
   const [localLoading, setLocalLoading] = useState(false);
-  const [localModels, setLocalModels] = useState<LocalModelOption[]>([{ id: 'builtin', name: 'Qwen3.5-0.8B（内置）' }]);
-  const [localModelId, setLocalModelId] = useState('builtin');
+  const [localModels, setLocalModels] = useState<LocalModelOption[]>([
+    { id: 'qwen35-08b', name: 'Qwen3.5-0.8B · Q4_K_M', installed: false, size_label: '约 0.5 GB' },
+    { id: 'qwen35-4b', name: 'Qwen3.5-4B · Q4_K_M', installed: false, size_label: '约 2.7 GB' },
+  ]);
+  const [localModelId, setLocalModelId] = useState('qwen35-08b');
   const [localListError, setLocalListError] = useState<string | null>(null);
 
   useEffect(() => {
     fetchEnvKey().then(setEnvKeyInfo).catch(() => {});
-    // Check local model status on mount
-    getLocalModelStatus().then(status => {
+    Promise.all([getLocalModelStatus(), listLocalModels()]).then(([status, available]) => {
       setLocalStatus(status);
-      if (status.loaded) setLocalModelId(status.model_id || 'builtin');
-    }).catch(() => {});
-    listLocalModels().then(setLocalModels).catch(e => setLocalListError(String(e)));
+      setLocalModels(available);
+      if (status.loaded) {
+        setLocalModelId(status.model_id || 'qwen35-08b');
+        return;
+      }
+      const savedModelId = localStorage.getItem('c-manager-local-model');
+      const savedModel = available.find(model => model.id === savedModelId && model.installed);
+      if (savedModel) {
+        setLocalModelId(savedModel.id);
+        setLocalLoading(true);
+        initLocalModel(savedModel.id)
+          .then(setLocalStatus)
+          .catch(e => setLocalStatus(current => ({ ...current, error: e instanceof Error ? e.message : String(e) })))
+          .finally(() => setLocalLoading(false));
+      }
+    }).catch(e => setLocalListError(String(e)));
   }, []);
 
   const handleLoadLocalModel = async () => {
@@ -60,6 +75,8 @@ export function Sidebar({
     try {
       const status = await initLocalModel(localModelId);
       setLocalStatus(status);
+      localStorage.setItem('c-manager-local-model', localModelId);
+      setLocalModels(await listLocalModels());
     } catch (e: unknown) {
       const current = await getLocalModelStatus().catch(() => ({ loaded: false, model_name: '', error: null }));
       setLocalStatus({ ...current, error: e instanceof Error ? e.message : String(e) });
@@ -70,6 +87,7 @@ export function Sidebar({
   };
 
   const isLocal = settings.modelSource === 'local';
+  const selectedLocalModel = localModels.find(model => model.id === localModelId);
 
   const handleFetchModels = async () => {
     const key = settings.useEnvKey ? '' : settings.apiKey;
@@ -209,7 +227,7 @@ export function Sidebar({
                   <select id="local-model" value={localModelId} disabled={localLoading}
                     onChange={e => setLocalModelId(e.target.value)}
                     style={{ width: '100%', padding: '8px', borderRadius: 6, marginBottom: 8, background: '#101020', color: 'var(--text-primary)', border: '1px solid var(--border)', fontSize: 11 }}>
-                    {localModels.map(m => <option key={m.id} value={m.id}>{m.name}</option>)}
+                    {localModels.map(m => <option key={m.id} value={m.id}>{m.name}（{m.installed ? '已下载' : m.size_label}）</option>)}
                   </select>
                   {localListError && <div role="alert" style={{ fontSize: 10, color: '#ff6464', marginBottom: 8 }}>{localListError}</div>}
                   {/* Local Model Status */}
@@ -225,7 +243,7 @@ export function Sidebar({
                       }} />
                       <span style={{ fontSize: 11, color: 'var(--text-secondary)', flex: 1 }}>
                         {localLoading
-                          ? '正在加载模型...'
+                          ? selectedLocalModel?.installed ? '正在加载模型...' : '正在下载并加载模型...'
                           : localStatus.loaded
                             ? '本地模型已就绪'
                             : '本地模型未加载'}
@@ -254,7 +272,9 @@ export function Sidebar({
                             <Loader2 size={12} />
                           </motion.div>
                         )}
-                        {localLoading ? '加载中...' : '加载并使用所选模型'}
+                        {localLoading
+                          ? selectedLocalModel?.installed ? '加载中...' : '下载中...'
+                          : selectedLocalModel?.installed ? '加载并使用所选模型' : '下载并使用所选模型'}
                       </button>
                     )}
 
@@ -265,7 +285,7 @@ export function Sidebar({
                     )}
                   </div>
                   <div style={{ fontSize: 10, color: 'var(--text-muted)', marginBottom: 12, lineHeight: 1.5 }}>
-                    点击加载后生效。切换会释放旧模型；微调版使用同一 4B 基座搭配各自适配器。
+                    模型首次使用时从 Hugging Face 下载到本机；切换会释放旧模型。再次打开应用时自动加载上次使用且已下载的模型。
                   </div>
 
                   <SectionLabel icon={<Search size={13} />} label="联网搜索" />
