@@ -1,0 +1,9 @@
+root ::= "{" ws "\"ownership\":" ws section "," ws "\"impact\":" ws section "," ws "\"recovery\":" ws recovery "," ws "\"advice\":" ws section "," ws "\"unknowns\":" ws strings "}" ws
+section ::= "{" ws "\"text\":" ws string "," ws "\"status\":" ws status "," ws "\"evidence_ids\":" ws strings "}" ws
+recovery ::= "{" ws "\"text\":" ws string "," ws "\"status\":" ws uncertain "," ws "\"evidence_ids\":" ws strings "}" ws
+status ::= "\"supported\"" | uncertain
+uncertain ::= "\"uncertain\"" | "\"unknown\""
+strings ::= "[" ws (string ("," ws string)*)? "]" ws
+string ::= "\"" char* "\"" ws
+char ::= [^"\\\x00-\x1F] | "\\" (["\\/bfnrt] | "u" [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F] [0-9a-fA-F])
+ws ::= [ \t\n\r]*

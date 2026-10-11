@@ -1,5 +1,5 @@
 import { invoke, Channel } from '@tauri-apps/api/core';
-import type { DriveInfo, ExplainResponse, LocalModelStatus, ModelInfo, ScanConfig, ScanItem, ScanSummary } from './types';
+import type { DriveInfo, EvidencePacket, ExplainResponse, LocalModelStatus, ModelInfo, ScanConfig, ScanItem, ScanSummary } from './types';
 
 export async function checkAdmin(): Promise<boolean> {
   return invoke<boolean>('check_admin');
@@ -89,25 +89,17 @@ export async function getScanResults(scanId: number, offset: number): Promise<Sc
   return page.files;
 }
 
+export async function prepareExplanation(path: string): Promise<EvidencePacket> {
+  return invoke<EvidencePacket>('prepare_explanation', { path });
+}
+
 export async function explainItem(
-  path: string,
-  sizeBytes: number,
-  isDir: boolean,
-  apiKey: string,
-  baseUrl: string,
-  model: string,
-  useLocal: boolean,
-  tavilyKey: string = '',
+  path: string, fingerprint: string, allowSearch: boolean,
+  apiKey: string, baseUrl: string, model: string, useLocal: boolean,
+  tavilyKey = '', question: string | null = null,
 ): Promise<ExplainResponse> {
   return invoke<ExplainResponse>('explain_item', {
-    path,
-    sizeBytes,
-    isDir,
-    apiKey,
-    baseUrl,
-    model,
-    useLocal,
-    tavilyKey,
+    path, fingerprint, allowSearch, apiKey, baseUrl, model, useLocal, tavilyKey, question,
   });
 }
 
@@ -118,23 +110,6 @@ export async function fetchModels(
   return invoke<ModelInfo[]>('fetch_models', {
     apiKey,
     baseUrl,
-  });
-}
-
-export async function chatAboutFile(
-  path: string,
-  sizeBytes: number,
-  isDir: boolean,
-  history: { role: string; content: string }[],
-  userMessage: string,
-  apiKey: string,
-  baseUrl: string,
-  model: string,
-  useLocal: boolean,
-  tavilyKey: string = '',
-): Promise<string> {
-  return invoke<string>('chat_about_file', {
-    path, sizeBytes, isDir, history, userMessage, apiKey, baseUrl, model, useLocal, tavilyKey,
   });
 }
 

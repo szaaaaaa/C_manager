@@ -16,11 +16,40 @@ export interface DriveInfo {
   error?: string;
 }
 
-export interface ExplainResponse {
+export interface Evidence {
+  id: string;
+  kind: 'local_observation' | 'web_excerpt';
+  title: string;
+  content: string;
+  url: string | null;
+}
+
+export interface EvidencePacket {
   path: string;
-  safety: 'red' | 'yellow' | 'green';
   size_human: string;
-  explanation: string;
+  fingerprint: string;
+  query: string | null;
+  evidence: Evidence[];
+  warnings: string[];
+  checked_at: number;
+}
+
+export interface ExplanationSection {
+  text: string;
+  status: 'supported' | 'uncertain' | 'unknown';
+  evidence_ids: string[];
+}
+
+export interface ExplainResponse {
+  packet: EvidencePacket;
+  explanation: {
+    ownership: ExplanationSection;
+    impact: ExplanationSection;
+    recovery: ExplanationSection;
+    advice: ExplanationSection;
+    unknowns: string[];
+  };
+  search_status: string;
   backend_used: string;
 }
 

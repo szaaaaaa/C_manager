@@ -7,7 +7,7 @@ import { Sidebar } from './components/Sidebar';
 import {
   cancelScan,
   checkAdmin,
-  explainItem,
+  prepareExplanation,
   fetchDriveInfo,
   getScanResults,
   relaunchAsAdmin,
@@ -16,7 +16,7 @@ import {
 import type {
   AppSettings,
   DriveInfo,
-  ExplainResponse,
+  EvidencePacket,
   ScanConfig,
   ScanItem,
   ScanProgress,
@@ -69,7 +69,7 @@ export default function App() {
   const [progress, setProgress] = useState<ScanProgress | null>(null);
   const [results, setResults] = useState<ScanItem[]>([]);
   const [selectedItem, setSelectedItem] = useState<ScanItem | null>(null);
-  const [explanation, setExplanation] = useState<ExplainResponse | null>(null);
+  const [preview, setPreview] = useState<EvidencePacket | null>(null);
   const [explainLoading, setExplainLoading] = useState(false);
   const [explainError, setExplainError] = useState<string | null>(null);
   const explainRequestRef = useRef(0);
@@ -122,7 +122,7 @@ export default function App() {
     setResults([]);
     fileBatchRef.current = [];
     setSelectedItem(null);
-    setExplanation(null);
+    setPreview(null);
     setExplainError(null);
     setProgress({ status: 'running', engine: config.engine, entries_scanned: 0, files_matched: 0,
       issues: [], excluded_links: [], elapsed_ms: 0, error: null });
@@ -194,48 +194,31 @@ export default function App() {
     setExplainLoading(false);
     if (selectedItem?.path === item.path) {
       setSelectedItem(null);
-      setExplanation(null);
+      setPreview(null);
       setExplainError(null);
       return;
     }
 
     setSelectedItem(item);
-    setExplanation(null);
+    setPreview(null);
     setExplainError(null);
-
-    const s = savedSettings;
-    const isLocal = s.modelSource === 'local';
-
-    if (!isLocal && !s.apiKey && !s.useEnvKey) {
-      setExplainError('no api key');
-      return;
-    }
 
     setExplainLoading(true);
     try {
-      const resp = await explainItem(
-        item.path,
-        item.size,
-        item.is_dir,
-        isLocal ? '' : (s.useEnvKey ? '' : s.apiKey),
-        isLocal ? '' : s.baseUrl,
-        isLocal ? '' : s.model,
-        isLocal,
-        isLocal ? (s.tavilyKey || '') : '',
-      );
-      if (requestId === explainRequestRef.current) setExplanation(resp);
+      const packet = await prepareExplanation(item.path);
+      if (requestId === explainRequestRef.current) setPreview(packet);
     } catch (e: unknown) {
       if (requestId === explainRequestRef.current) setExplainError(e instanceof Error ? e.message : String(e));
     } finally {
       if (requestId === explainRequestRef.current) setExplainLoading(false);
     }
-  }, [selectedItem, savedSettings]);
+  }, [selectedItem]);
 
   const handleCloseExplanation = useCallback(() => {
     explainRequestRef.current += 1;
     setExplainLoading(false);
     setSelectedItem(null);
-    setExplanation(null);
+    setPreview(null);
     setExplainError(null);
   }, []);
 
@@ -328,7 +311,8 @@ export default function App() {
                 />
                 <ExplanationBubble
                   item={selectedItem}
-                  explanation={explanation}
+                  key={selectedItem?.path ?? "closed"}
+                  preview={preview}
                   loading={explainLoading}
                   error={explainError}
                   onClose={handleCloseExplanation}

@@ -152,7 +152,7 @@ function setup(scanDrive, getScanResults = () => { throw new Error('unexpected r
     scanDrive, getScanResults, scanRunningRef: { current: false }, explainRequestRef: { current: 0 },
     fileBatchRef: { current: [] }, flushTimerRef: { current: null },
     setTimeout: () => 1, clearTimeout: () => {},
-    setExplainLoading() {}, setSelectedItem() {}, setExplanation() {}, setExplainError() {}, setView() {},
+    setExplainLoading() {}, setSelectedItem() {}, setPreview() {}, setExplainError() {}, setView() {},
     setActiveScanConfig() {},
     setScanRun: value => { state.scanRun = value(state.scanRun); },
     setScanning: value => { state.scanning = value; },

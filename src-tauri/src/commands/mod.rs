@@ -2,6 +2,7 @@ pub mod admin;
 pub mod scan;
 pub mod drive;
 pub mod explain;
+pub mod evidence;
 pub mod models;
 pub mod explorer;
 pub mod local_llm;

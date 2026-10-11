@@ -15,7 +15,7 @@ pub fn run() {
             commands::scan::cancel_scan,
             commands::drive::get_drive_info,
             commands::explain::explain_item,
-            commands::explain::chat_about_file,
+            commands::explain::prepare_explanation,
             commands::models::fetch_models,
             commands::models::get_env_key,
             commands::explorer::open_in_explorer,
